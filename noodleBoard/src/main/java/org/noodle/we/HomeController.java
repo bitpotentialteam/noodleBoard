@@ -20,7 +20,6 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		logger.info("apiGET.....");
-		
 	
 		
 		return "developer/api";
