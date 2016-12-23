@@ -9,7 +9,7 @@
 -->
 <html>
 	<head>
-		<title>Hyperspace by HTML5 UP</title>
+		<title>라면나라 상화공주</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -224,13 +224,14 @@
 											<label for="submit"><br></label>
 											<input type="button" name="submit" id="submit" value="submit"/>
 										</div>
-										</div><br>
+										
 										<div class="field">
 											<label for="message">Output data</label>
 											<textarea name="message" id="message" rows="10"></textarea>
 										</div>
 									</form>
 								</section>
+								</div>
 				
 
 								<section>
