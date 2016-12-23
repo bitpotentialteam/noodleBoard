@@ -45,8 +45,8 @@
 					<nav>
 						<ul>
 							<li><a href="#intro">Introduce</a></li>
-							<li><a href="#one">Guide</a></li>
 							<li><a href="#two">Database</a></li>
+							<li><a href="#one">Guide</a></li>
 							<li><a href="#three">Using Data</a></li>
 						</ul>
 					</nav>
@@ -64,6 +64,55 @@
 							 그리고 그 탄생을 저희가 이뤄낸 과업입니다. 라면의, 라면을 위한, 라면에 의한  API는 라면에 관한 모든 데이터를 무료로 사용하실 수 있습니다! 사실 뻘소리를 쓴 것이니 자세히 들여다보시지 말아주세요.</p>
 							<ul class="actions">
 								<li><a href="#three" class="button scrolly">Lean more</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>Database</h2>
+							<p>데이터베이스 테이블 소개입니다. 블라블라블라</p>
+							<div class="features">
+								<section>
+									<span class="icon major fa-desktop"></span>
+									<h3>Noodles data</h3>
+									<p>라면에 대한 기본적인 정보를 제공합니다.</p>
+									<p>brand, name, type, noodleType, soupColor, weight, releaseDate</p>
+								</section>
+								<section>
+									<span class="icon major fa-code"></span>
+									<h3>Nutritions data</h3>
+									<p>라면에 대한 영양 정보를 제공합니다.</p>
+									<p>colories, carbonhydrate, protein, fat, staturedFat, transFat, cholesterol, natrium</p>
+								</section>
+								<section>
+									<span class="icon major fa-cog"></span>
+									<h3>Materials date</h3>
+									<p>라면에 대한 원재료 정보를 제공합니다.</p>
+									<p>materials of noodle, materials of powder</p>
+								</section>
+								<section>
+									<span class="icon major fa-lock"></span>
+									<h3>Components data</h3>
+									<p>라면에 대한 구성 정보를 제공합니다.</p>
+									<p>category, component, time</p>
+								</section>
+								<section>
+									<span class="icon major fa-chain"></span>
+									<h3>Rank data</h3>
+									<p>라면에 대한 인기순위 정보를 제공합니다.</p>
+									<p>year, rank</p>
+								</section>
+								<section>
+									<span class="icon major fa-diamond"></span>
+									<h3>Recipes data</h3>
+									<p>라면에 대한 조리법 정보를 제공합니다.</p>
+									<p>water, minutes</p>
+								</section>
+							</div>
+							<ul class="actions">
+								<li><a href="#three" class="button">Learn more</a></li>
 							</ul>
 						</div>
 					</section>
@@ -183,54 +232,6 @@
 									</form>
 								</section>
 				
-				<!-- Two -->
-					<section id="two" class="wrapper style3 fade-up">
-						<div class="inner">
-							<h2>Database</h2>
-							<p>데이터베이스 테이블 소개입니다. 블라블라블라</p>
-							<div class="features">
-								<section>
-									<span class="icon major fa-desktop"></span>
-									<h3>Noodles data</h3>
-									<p>라면에 대한 기본적인 정보를 제공합니다.</p>
-									<p>brand, name, type, noodleType, soupColor, weight, releaseDate</p>
-								</section>
-								<section>
-									<span class="icon major fa-code"></span>
-									<h3>Nutritions data</h3>
-									<p>라면에 대한 영양 정보를 제공합니다.</p>
-									<p>colories, carbonhydrate, protein, fat, staturedFat, transFat, cholesterol, natrium</p>
-								</section>
-								<section>
-									<span class="icon major fa-cog"></span>
-									<h3>Materials date</h3>
-									<p>라면에 대한 원재료 정보를 제공합니다.</p>
-									<p>materials of noodle, materials of powder</p>
-								</section>
-								<section>
-									<span class="icon major fa-lock"></span>
-									<h3>Components data</h3>
-									<p>라면에 대한 구성 정보를 제공합니다.</p>
-									<p>category, component, time</p>
-								</section>
-								<section>
-									<span class="icon major fa-chain"></span>
-									<h3>Rank data</h3>
-									<p>라면에 대한 인기순위 정보를 제공합니다.</p>
-									<p>year, rank</p>
-								</section>
-								<section>
-									<span class="icon major fa-diamond"></span>
-									<h3>Recipes data</h3>
-									<p>라면에 대한 조리법 정보를 제공합니다.</p>
-									<p>water, minutes</p>
-								</section>
-							</div>
-							<ul class="actions">
-								<li><a href="#three" class="button">Learn more</a></li>
-							</ul>
-						</div>
-					</section>
 
 								<section>
 									<ul class="contact">
