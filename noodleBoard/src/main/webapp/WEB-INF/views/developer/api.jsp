@@ -29,6 +29,12 @@
 	.groupType{
 		margin-bottom: 2em;
 	}
+	
+	.contact{
+		margin-left: 4em;
+		margin-top: 2em;
+		font-style: inherit;
+	}
 	</style>
 	</head>
 	<body>
@@ -113,56 +119,7 @@
 							</div>
 						</section>
 					</section>
-
-				<!-- Two -->
-					<section id="two" class="wrapper style3 fade-up">
-						<div class="inner">
-							<h2>Database</h2>
-							<p>데이터베이스 테이블 소개입니다. 블라블라블라</p>
-							<div class="features">
-								<section>
-									<span class="icon major fa-desktop"></span>
-									<h3>Noodle data</h3>
-									<p>라면에 대한 기본적인 정보를 제공합니다.</p>
-									<p>brand, name, type, noodleType, soupColor, weight, releaseDate, regDate, updateDate</p>
-								</section>
-								<section>
-									<span class="icon major fa-code"></span>
-									<h3>Nutrition data</h3>
-									<p>라면에 대한 영양 정보를 제공합니다.</p>
-									<p>name, colories, carbonhydrate, protein, fat, staturedFat, transFat, cholesterol, natrium, regDate, updateDate</p>
-								</section>
-								<section>
-									<span class="icon major fa-cog"></span>
-									<h3>Material date</h3>
-									<p>라면에 대한 원재료 정보를 제공합니다.</p>
-									<p>name, material_noodle, material_powder, regDate, updateDate </p>
-								</section>
-								<section>
-									<span class="icon major fa-lock"></span>
-									<h3>Component data</h3>
-									<p>라면에 대한 구성 정보를 제공합니다.</p>
-									<p>name, category, component, time, regDate, updateDate</p>
-								</section>
-								<section>
-									<span class="icon major fa-chain"></span>
-									<h3>Rank data</h3>
-									<p>라면에 대한 인기순위 정보를 제공합니다.</p>
-									<p>name, year, rank, regDate, updateDate</p>
-								</section>
-								<section>
-									<span class="icon major fa-diamond"></span>
-									<h3>Recipe data</h3>
-									<p>라면에 대한 조리법 정보를 제공합니다.</p>
-									<p>name, water, minutes, regDate, updateDate</p>
-								</section>
-							</div>
-							<ul class="actions">
-								<li><a href="#three" class="button">Learn more</a></li>
-							</ul>
-						</div>
-					</section>
-
+				
 				<!-- Three -->
 					<section id="three" class="wrapper style1 fade-up">
 						<div class="inner">
@@ -225,45 +182,82 @@
 										</div>
 									</form>
 								</section>
+				
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>Database</h2>
+							<p>데이터베이스 테이블 소개입니다. 블라블라블라</p>
+							<div class="features">
+								<section>
+									<span class="icon major fa-desktop"></span>
+									<h3>Noodles data</h3>
+									<p>라면에 대한 기본적인 정보를 제공합니다.</p>
+									<p>brand, name, type, noodleType, soupColor, weight, releaseDate</p>
+								</section>
+								<section>
+									<span class="icon major fa-code"></span>
+									<h3>Nutritions data</h3>
+									<p>라면에 대한 영양 정보를 제공합니다.</p>
+									<p>colories, carbonhydrate, protein, fat, staturedFat, transFat, cholesterol, natrium</p>
+								</section>
+								<section>
+									<span class="icon major fa-cog"></span>
+									<h3>Materials date</h3>
+									<p>라면에 대한 원재료 정보를 제공합니다.</p>
+									<p>materials of noodle, materials of powder</p>
+								</section>
+								<section>
+									<span class="icon major fa-lock"></span>
+									<h3>Components data</h3>
+									<p>라면에 대한 구성 정보를 제공합니다.</p>
+									<p>category, component, time</p>
+								</section>
+								<section>
+									<span class="icon major fa-chain"></span>
+									<h3>Rank data</h3>
+									<p>라면에 대한 인기순위 정보를 제공합니다.</p>
+									<p>year, rank</p>
+								</section>
+								<section>
+									<span class="icon major fa-diamond"></span>
+									<h3>Recipes data</h3>
+									<p>라면에 대한 조리법 정보를 제공합니다.</p>
+									<p>water, minutes</p>
+								</section>
+							</div>
+							<ul class="actions">
+								<li><a href="#three" class="button">Learn more</a></li>
+							</ul>
+						</div>
+					</section>
+
 								<section>
 									<ul class="contact">
 										<li>
 											<h3>Address</h3>
-											<span>12345 Somewhere Road #654<br />
-											Nashville, TN 00000-0000<br />
-											USA</span>
+											<span>비트캠프 | 서울시 서초구 서초동 1327-15번지 비트아카데미 빌딩 3층 <br />
+											 사업자등록번호: 214-85-24928 | (주)비트컴퓨터 서초지점 대표 조현정<br />
+											</span>
 										</li>
 										<li>
 											<h3>Email</h3>
-											<a href="#">user@untitled.tld</a>
+											<a href="#"> bit@bitacademy.net</a>
 										</li>
 										<li>
 											<h3>Phone</h3>
-											<span>(000) 000-0000</span>
-										</li>
-										<li>
-											<h3>Social</h3>
-											<ul class="icons">
-												<li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="fa-github"><span class="label">GitHub</span></a></li>
-												<li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
-											</ul>
+											<span>02)3486-9600</span>
 										</li>
 									</ul>
 								</section>
 							</div>
-						</div>
-					</section>
-
-			</div>
+						
 
 		<!-- Footer -->
 			<footer id="footer" class="wrapper style1-alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>와꾸대장 김국희</li><li>NORTH KOREA</li>
 					</ul>
 				</div>
 			</footer>
@@ -276,6 +270,11 @@
 			<script src="../resources/assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="../resources/assets/js/main.js"></script>
+
+
+	<script>
+		
+	</script>
 
 	</body>
 </html>
