@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE HTML>
 <!--
@@ -299,7 +301,7 @@
 							</div>
 							<div class='groupType'>
 								<p>data type</p>
-								<div class="outputCheckbox">
+								<div class="outputTypeCheckbox">
 									<span id='noodle'><input type="checkbox"><label>noodle</label></span>
 									<span id='nutrition'><input type="checkbox"><label>nutrition</label></span>
 									<span id='material'><input type="checkbox"><label>material</label></span>
@@ -329,7 +331,11 @@
 										
 										<div class="field">
 											<label for="message">Output data</label>
-											<textarea name="message" id="message" rows="10"></textarea>
+											<textarea name="message" id="message" rows="10">
+												<c:if test="${param.outputTypeValue =='noodle'}">
+													<!-- 여기에 if문으로 걸러서 데이터를 추출해야함. (JSON data) -->
+												</c:if>
+											</textarea>
 										</div>
 									</form>
 								</section>
@@ -387,8 +393,12 @@
 		
 		$(".brandTypeCheckbox span").on("click", function() {
 			var input = $(this).children();
+			console.log(input);
 			
-			if(input.is(":checked")){
+			var brandValue = input.parent().attr('id'); 
+			console.log(brandValue);
+			
+			if(input.is(":checked")){                                                                                                                                    
 				input.prop("checked", false);
 				
 			}else{
@@ -399,6 +409,10 @@
 		
 		$(".kindsCheckbox span").on("click", function() {
 			var input = $(this).children();
+			console.log(input);
+			
+			var kindsValue =  input.parent().attr('id');
+			console.log(kindsValue);
 			
 			if(input.is(":checked")){
 				input.prop("checked", false);
@@ -411,6 +425,10 @@
 		
 		$(".noodleTypeCheckbox span").on("click", function() {
 			var input = $(this).children();
+			console.log(input);
+			
+			var noodleTypeValue =  input.parent().attr('id');
+			console.log(noodleTypeValue);
 			
 			if(input.is(":checked")){
 				input.prop("checked", false);
@@ -425,12 +443,19 @@
 			var button = $(this).children();
 			console.log(button);
 			
+			var orderTypeValue =  button.parent().attr('id');
+			console.log(orderTypeValue);
+			
 		});
 		
-		/* 데이터 출력 방식 --> foreach문으로 데이터 출력....
-		$(".outputCheckbox span").on("click", function() {
-			
+		
+
+		$(".outputTypeCheckbox span").on("click", function() {
 			var input = $(this).children();
+			console.log(input);
+			
+			var outputTypeValue = input.parent().attr('id');
+			console.log(outputTypeValue);
 			
 			if(input.is(":checked")){
 				input.prop("checked", false);
@@ -439,7 +464,7 @@
 				input.prop("checked", true);
 			}
 		});
-		*/
+		
 		
 	}); //end ready...
 	

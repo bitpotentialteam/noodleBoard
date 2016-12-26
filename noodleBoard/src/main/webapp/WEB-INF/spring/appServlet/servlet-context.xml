@@ -22,6 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="org.noodle.we" />
+	<context:component-scan base-package="org.noodle.controller" />
 	
 	
 	
