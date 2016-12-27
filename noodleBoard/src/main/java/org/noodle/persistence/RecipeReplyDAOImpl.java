@@ -28,7 +28,7 @@ public class RecipeReplyDAOImpl implements RecipeReplyDAO {
 
 	@Override
 	public void delete(int rno) throws Exception {
-		session.delete(NAME + ".delete", rno);
+		session.delete(NAME + ".delete", rno); 
 	}
 
 	@Override
