@@ -395,12 +395,17 @@
 			var input = $(this).children();
 			console.log(input);
 			
-			var brandValue = input.parent().attr('id'); 
-			console.log(brandValue);
-			
 			if(input.is(":checked")){                                                                                                                                    
 				input.prop("checked", false);
 				
+				var brandValue = input.parent().attr('id'); 
+				console.log(brandValue);
+				
+				$.ajax({
+			           url:'/brands/' + brandValue,
+			           type:'post',
+			           data:brandValue,
+			       })
 			}else{
 				input.prop("checked", true);
 			}
@@ -464,7 +469,7 @@
 				input.prop("checked", true);
 			}
 		});
-		
+	
 		
 	}); //end ready...
 	
