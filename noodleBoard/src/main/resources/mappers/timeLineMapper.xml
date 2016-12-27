@@ -20,7 +20,7 @@
 	</select>
 	
 	
-	<update id="update" parameterType="TimeLineVO">
+	<update id="update">
 	
 		update tbl_timeline
 		set content = #{content}, updatedate = sysdate
@@ -29,7 +29,7 @@
 	</update>
 	
 	
-	<delete id="delete" parameterType="TimeLineVO">
+	<delete id="delete">
 	
 		delete from tbl_timeline
 		where tno = #{tno}
