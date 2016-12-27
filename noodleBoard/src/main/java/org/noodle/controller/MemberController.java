@@ -34,6 +34,7 @@ public class MemberController {
 		logger.info("register page...");
 		return "user/register";
 	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET(MemberVO vo, Model model) throws Exception {
 
