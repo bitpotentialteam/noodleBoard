@@ -7,6 +7,8 @@ public class TimeLineVO {
 	private int tno;
 	private int mno;
 	private String content;
+	private String nickname;
+	private String picture;
 	private int likeCnt;
 	private int replyCnt;
 	private Date regDate;
@@ -14,8 +16,9 @@ public class TimeLineVO {
 
 	@Override
 	public String toString() {
-		return "TimeLineVO [tno=" + tno + ", mno=" + mno + ", content=" + content + ", likeCnt=" + likeCnt
-				+ ", replyCnt=" + replyCnt + ", regDate=" + regDate + ", updateDate=" + updateDate + "]";
+		return "TimeLineVO [tno=" + tno + ", mno=" + mno + ", content=" + content + ", nickname=" + nickname
+				+ ", picture=" + picture + ", likeCnt=" + likeCnt + ", replyCnt=" + replyCnt + ", regDate=" + regDate
+				+ ", updateDate=" + updateDate + "]";
 	}
 
 	public int getTno() {
@@ -40,6 +43,22 @@ public class TimeLineVO {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	public int getLikeCnt() {
@@ -73,6 +92,5 @@ public class TimeLineVO {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-	
-	
+
 }
