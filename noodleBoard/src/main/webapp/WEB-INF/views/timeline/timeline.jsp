@@ -26,6 +26,9 @@
 <!-- iCheck -->
 <link rel="stylesheet" href="../resources/css/blue.css">
 
+<!-- Theme CSS -->
+<link href="../resources/css/agency.min.css" rel="stylesheet">
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -44,7 +47,7 @@
 	background-color: pink;
 }
 
-#register {
+#content {
 	width: 50%;
 	height: 150px;
 	padding: 12px 20px;
@@ -56,107 +59,131 @@
 }
 </style>
 
-	<div class="header">
-		<header class="main-header"> <!-- Logo --> <a
-			href="../index2.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>라면</b>먹고갈래?</span>
-		</a> <!-- Header Navbar: style can be found in header.less --> <nav
-			class="navbar navbar-static-top"> <!-- Sidebar toggle button-->
-
-		</nav> </header>
-
-	</div>
-
-	<!--  AdminLTE 헤더 템플릿 끝이욥! -->
-
-
-
-
-
-
-
-	<div class="box box-widget">
-
-		<div class="img-push">
-			<form>
-				<input id="register" type="text" class="form-control input-sm"
-					placeholder="Press enter to post comment">
-			</form>
+	<!-- Navigation -->
+	<nav id="mainNav"
+		class="navbar navbar-default navbar-custom navbar-fixed-top">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header page-scroll">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> Menu <i
+					class="fa fa-bars"></i>
+			</button>
+			<a class="navbar-brand page-scroll" href="#page-top">Noodles.com</a>
 		</div>
-		
-		
-		
-		
-		<ul>
-			<c:forEach items="${list}" var="vo">
 
-				<div class="box-header with-border">
-					<div class="user-block">
-						<img class="img-circle"
-							src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg"
-							alt="User Image"> <span class="username"><a href="#">
-								${vo.nickname} </a></span> <span class="description"> ${vo.regDate}
-						</span>
-					</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="hidden"><a href="#page-top"></a></li>
+				<li><a class="page-scroll" href="#">Noodle-Wiki</a></li>
+				<li><a class="page-scroll" href="/recipeBoard/demo">Recipe</a></li>
+				<li><a class="page-scroll" href="/timeline/timeline">Community</a></li>
+				<li><a class="page-scroll" href="/developer/api">Developer</a></li>
+				<li><a class="page-scroll" href="/user/login">LOGIN</a></li>
+				<li><a class="page-scroll" href="/user/register">SING-IN</a></li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container-fluid --> </nav>
 
-				</div>
-				<!-- /.box-header -->
-				<div class="box-body">
-					<!-- post text -->
-					<p>${vo.content}</p>
+	<section>
+	<div class="container">
+		<div class="row">
 
-					<!-- Social sharing buttons -->
+			<div class="box box-widget">
 
-					<button type="button" class="btn btn-default btn-xs">
-						<i class="fa fa-thumbs-o-up"></i> Like
-					</button>
-					<button type="button" class="btn btn-box-tool" data-widget="remove">
-						<i class="fa fa-times"></i>
-					</button>
-					<span class="pull-right text-muted">${vo.likeCnt} likes -
-						${vo.replyCnt} comments</span>
-				</div>
-				<!-- /.box-body -->
-				<div class="box-footer box-comments">
-					<div class="box-comment">
-						<!-- User image -->
-						<img class="img-circle img-sm"
-							src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg"
-							alt="User Image">
-
-						<div class="comment-text">
-							<span class="username"> 댓글쓴이!!!!!!!!!!!!!! <span
-								class="text-muted pull-right"> 댓글쓴애 시간 </span>
-							</span>
-							<!-- /.username -->
-							댓글내용이구여!!!!!!!!!!!!!!!!!!!!!!!!!!
-						</div>
-						<!-- /.comment-text -->
-					</div>
-					<!-- /.box-comment -->
-
-				</div>
-				<!-- /.box-footer -->
-				<div class="box-footer">
-					<form action="#" method="post">
-						<img class="img-responsive img-circle img-sm"
-							src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user4-128x128.jpg"
-							alt="Alt Text">
-						<!-- .img-push is used to add margin to elements next to floating images -->
-						<div class="img-push">
-							<input type="text" class="form-control input-sm"
-								placeholder="Press enter to post comment">
-						</div>
+				<div class="img-push">
+					<form action='regist' method='post'>
+						<input id="content" type="text" class="form-control input-sm"
+							placeholder="Press enter to post comment">
+							
+							<input type="text" id="mno" placeholder="mno">
+							
+							<button> submit! </button>
 					</form>
 
 				</div>
-				<!-- /.box-footer -->
-			</c:forEach>
-		</ul>
+
+
+
+
+				<ul>
+					<c:forEach items="${list}" var="vo">
+
+						<div class="box-header with-border">
+							<div class="user-block">
+								<img class="img-circle"
+									src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg"
+									alt="User Image"> <span class="username"><a
+									href="#"> ${vo.nickname} </a></span> <span class="description">
+									${vo.regDate} </span>
+							</div>
+
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<!-- post text -->
+							<p>${vo.content}</p>
+
+							<!-- Social sharing buttons -->
+
+							<button type="button" class="btn btn-default btn-xs">
+								<i class="fa fa-thumbs-o-up"></i> Like
+							</button>
+							<button type="button" class="btn btn-box-tool"
+								data-widget="remove">
+								<i class="fa fa-times"></i>
+							</button>
+							<span class="pull-right text-muted">${vo.likeCnt} likes -
+								${vo.replyCnt} comments</span>
+						</div>
+						<!-- /.box-body -->
+						<div class="box-footer box-comments">
+							<div class="box-comment">
+								<!-- User image -->
+								<img class="img-circle img-sm"
+									src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg"
+									alt="User Image">
+
+								<div class="comment-text">
+									<span class="username"> 댓글쓴이!!!!!!!!!!!!!! <span
+										class="text-muted pull-right"> 댓글쓴애 시간 </span>
+									</span>
+									<!-- /.username -->
+									댓글내용이구여!!!!!!!!!!!!!!!!!!!!!!!!!!
+								</div>
+								<!-- /.comment-text -->
+							</div>
+							<!-- /.box-comment -->
+
+						</div>
+						<!-- /.box-footer -->
+						<div class="box-footer">
+							<form action="#" method="post">
+								<img class="img-responsive img-circle img-sm"
+									src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user4-128x128.jpg"
+									alt="Alt Text">
+								<!-- .img-push is used to add margin to elements next to floating images -->
+								<div class="img-push">
+									<input type="text" class="form-control input-sm"
+										placeholder="Press enter to post comment">
+								</div>
+							</form>
+
+						</div>
+						<!-- /.box-footer -->
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+
 	</div>
 
-
+	</section>
 
 </body>
 </html>
