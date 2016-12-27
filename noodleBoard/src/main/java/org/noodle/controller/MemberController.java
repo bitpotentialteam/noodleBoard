@@ -32,7 +32,7 @@ public class MemberController {
 	@GetMapping("user/register")
 	public void register() throws Exception{
 		logger.info("register page...");
-		
+		 
 	}
 	
 
