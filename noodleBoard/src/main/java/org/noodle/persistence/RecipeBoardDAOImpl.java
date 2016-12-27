@@ -10,7 +10,7 @@ import org.noodle.domain.Criteria;
 import org.noodle.domain.RecipeBoardVO;
 import org.springframework.stereotype.Repository;
 @Repository
-public class RecipeBoardDAOImple implements RecipeBoardDAO {
+public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 
 	@Inject
 	private SqlSession session;

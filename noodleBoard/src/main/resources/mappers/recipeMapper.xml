@@ -23,7 +23,7 @@
   delete tbl_recipeboard where bno = #{bno}
   </delete>
   
-  <select id="listAll">
+  <select id="listAll" resultType="RecipeBoardVO">
   select * from tbl_recipeboard
   </select>
   
