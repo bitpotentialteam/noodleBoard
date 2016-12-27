@@ -24,7 +24,7 @@ public class RecipeBoardVO {
 	public int getBno() {
 		return bno;
 	}
-	public void setBno(int bno) {
+	public void setBno(int bno) { 
 		this.bno = bno;
 	}
 	public int getIno() {
