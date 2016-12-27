@@ -7,7 +7,9 @@ import javax.inject.Inject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.noodle.domain.RecipeBoardVO;
+import org.noodle.domain.RecipeReplyVO;
 import org.noodle.persistence.RecipeBoardDAO;
+import org.noodle.persistence.RecipeReplyDAO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -17,6 +19,9 @@ public class RecipeDAOTester {
 	
 	@Inject
 	private RecipeBoardDAO dao;
+	
+	@Inject
+	private RecipeReplyDAO rdao;
 
 	@Test
 	public void createTest() throws Exception {
@@ -55,11 +60,38 @@ public class RecipeDAOTester {
 	
 	@Test
 	public void listAllTest() throws Exception{
-		System.out.println();
-		
+		System.out.println(dao.listAll());
 	}
 	
 	
+	@Test
+	public void replyCreateTest() throws Exception {
+		RecipeReplyVO vo = new RecipeReplyVO();
+		vo.setMno(1);
+		vo.setRno(1);
+		vo.setContent("test");
+		
+		rdao.create(vo);
+	}
 	
-
+	@Test
+	public void replyUpdateTest() throws Exception {
+		RecipeReplyVO vo = new RecipeReplyVO();
+		
+		vo.setMno(3);
+		vo.setContent("테스트");
+		vo.setRno(1);
+		
+		rdao.update(vo);
+	}
+	
+	@Test
+	public void replyDeleteTest() throws Exception {
+		rdao.delete(1);
+	}
+	
+	@Test
+	public void replyListAllTest() throws Exception {
+		System.out.println(rdao.listAll());
+	}
 }
