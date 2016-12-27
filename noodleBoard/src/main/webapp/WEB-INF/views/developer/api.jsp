@@ -382,14 +382,13 @@
 			<script src="../resources/assets/js/main.js"></script>
 
 			<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+				
+	
 	
 	<script>
 
-	
-
 	$(document).ready(function(){
 		$("input").removeAttr("disabled");
-	
 		
 		$(".brandTypeCheckbox span").on("click", function() {
 			var input = $(this).children();
@@ -398,18 +397,16 @@
 			if(input.is(":checked")){                                                                                                                                    
 				input.prop("checked", false);
 				
-				var brandValue = input.parent().attr('id'); 
-				console.log(brandValue);
-				
-				$.ajax({
-			           url:'/brands/' + brandValue,
-			           type:'post',
-			           data:brandValue,
-			       })
 			}else{
 				input.prop("checked", true);
-			}
-		});
+				
+				var brandValue = input.parent().attr('id'); 
+					console.log(brandValue);
+				
+					
+			       	
+			}// end else...
+		});	// end brandType...
 		
 		
 		$(".kindsCheckbox span").on("click", function() {
