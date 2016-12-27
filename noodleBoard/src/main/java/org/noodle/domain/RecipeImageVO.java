@@ -3,30 +3,30 @@ package org.noodle.domain;
 public class RecipeImageVO {
 	
 	
-	private int bno;
-	private int ino;
-	private int order;
+	private Integer bno;
+	private Integer ino;
+	private Integer step;
 	private String image;
 	private String thumbnail;
 	
 	
-	public int getBno() {
+	public Integer getBno() {
 		return bno;
 	}
-	public void setBno(int bno) {
+	public void setBno(Integer bno) {
 		this.bno = bno;
 	}
-	public int getIno() {
+	public Integer getIno() {
 		return ino;
 	}
-	public void setIno(int ino) {
+	public void setIno(Integer ino) {
 		this.ino = ino;
 	}
-	public int getOrder() {
-		return order;
+	public Integer getStep() {
+		return step;
 	}
-	public void setOrder(int order) {
-		this.order = order;
+	public void setStep(Integer step) {
+		this.step = step;
 	}
 	public String getImage() {
 		return image;
@@ -42,7 +42,7 @@ public class RecipeImageVO {
 	}
 	@Override
 	public String toString() {
-		return "RecipeImageVO [bno=" + bno + ", ino=" + ino + ", order=" + order + ", image=" + image + ", thumbnail="
+		return "RecipeImageVO [bno=" + bno + ", ino=" + ino + ", step=" + step + ", image=" + image + ", thumbnail="
 				+ thumbnail + "]";
 	}
 	

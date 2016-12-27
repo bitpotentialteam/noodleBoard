@@ -21,15 +21,15 @@ public class RecipeImageDAOImpl implements RecipeImageDAO {
 	}
 
 	@Override
-	public RecipeImageVO read(Integer bno) throws Exception {
+	public RecipeImageVO read(Integer ino) throws Exception {
 
-		return session.selectOne(namespace +"read", bno);
+		return session.selectOne(namespace +"read", ino);
 	}
 
 	@Override
-	public void delete(Integer bno) throws Exception {
+	public void delete(Integer ino) throws Exception {
 
-		session.delete(namespace + ".delete", bno);
+		session.delete(namespace + "delete", ino);
 	}
 
 }
