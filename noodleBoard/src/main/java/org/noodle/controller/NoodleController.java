@@ -53,19 +53,7 @@ public class NoodleController {
 		
 	}
 	
-	//seungwoo pratice
-	@GetMapping("/user/login")
-	public String login() throws Exception{
-		logger.info("login page called.....");
-		
-		return "user/login";
-	}
-	
-	@GetMapping("/user/register")
-	public String register() throws Exception{
-		logger.info("register page...");
-		return "user/register";
-	}
+
 	
 
 	
