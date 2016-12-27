@@ -6,14 +6,14 @@ import javax.inject.Inject;
 
 import org.noodle.domain.Criteria;
 import org.noodle.domain.RecipeBoardVO;
-import org.noodle.persistence.RecipeBoardDAO;
+import org.noodle.persistence.RecipeBoardDAOImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RecipeBoardServiceImple implements RecipeBoardService {
+public class RecipeBoardServiceImpl implements RecipeBoardService {
 
 	@Inject
-	private RecipeBoardDAO dao;
+	private RecipeBoardDAOImpl dao;
 	
 	@Override
 	public void regist(RecipeBoardVO vo) throws Exception {

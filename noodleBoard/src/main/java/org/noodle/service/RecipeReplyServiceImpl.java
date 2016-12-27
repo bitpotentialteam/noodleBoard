@@ -5,14 +5,14 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.noodle.domain.RecipeReplyVO;
-import org.noodle.persistence.RecipeReplyDAO;
+import org.noodle.persistence.RecipeReplyDAOImpl;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RecipeReplyServiceImpl implements RecipeReplyService {
 	
 	@Inject
-	private RecipeReplyDAO dao;
+	private RecipeReplyDAOImpl dao;
 
 	@Override
 	public void regist(RecipeReplyVO vo) throws Exception {
