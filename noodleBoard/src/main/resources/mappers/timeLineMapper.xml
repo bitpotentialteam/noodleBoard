@@ -15,7 +15,12 @@
 	
 	<select id="listView" resultType="TimeLineVO">
 	
-		select * from tbl_timeline
+		select tbl_user.nickname, tbl_user.picture,
+				tbl_timeline.content, tbl_timeline.likecnt, tbl_timeline.replycnt, tbl_timeline.regdate
+			from tbl_timeline
+		join tbl_user
+		 on tbl_user.mno = tbl_timeline.mno
+		order by regdate desc
 	
 	</select>
 	
