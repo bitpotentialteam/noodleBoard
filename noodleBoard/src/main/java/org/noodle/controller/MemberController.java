@@ -7,7 +7,7 @@ import org.noodle.service.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,25 +22,21 @@ public class MemberController {
 	@Inject
 	private MemberService service;
 	//seungwoo pratice
-	@GetMapping("/user/login")
-	public String login() throws Exception{
+	@GetMapping("user/login")
+	public void login() throws Exception{
 		logger.info("login page called.....");
 		
-		return "user/login";
+		
 	}
 	
-	@GetMapping("/user/register")
-	public String register() throws Exception{
+	@GetMapping("user/register")
+	public void register() throws Exception{
 		logger.info("register page...");
-		return "user/register";
+		
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registerGET(MemberVO vo, Model model) throws Exception {
 
-		logger.info("register...");
-	}
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "user/register", method = RequestMethod.POST)
 	public String registPOST(MemberVO vo, RedirectAttributes rttr) throws Exception {
 
 		logger.info("regist post....");

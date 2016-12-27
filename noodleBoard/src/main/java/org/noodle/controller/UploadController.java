@@ -23,12 +23,12 @@ public class UploadController {
 	public String uploadFile(MultipartFile file, Model model) throws Exception {
 
 		UUID uid = UUID.randomUUID();
-
+		
 		String fileName = file.getOriginalFilename();
 		String uploadName = uid + "_" + fileName;
 
 		FileOutputStream fos = new FileOutputStream("C:\\zzz\\upload\\" + uploadName);
-
+		
 		IOUtils.copy(file.getInputStream(), fos);
 		model.addAttribute("uploadName", uploadName);
 		fos.close();
