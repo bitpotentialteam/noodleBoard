@@ -60,6 +60,7 @@ public class NoodleController {
 	
 	
 	
+	
 //	@GetMapping("/{name}")
 //	public @ResponseBody List<NoodleVO> list(@ModelAttribute(name) String name , Model model )throws Exception{
 //		
