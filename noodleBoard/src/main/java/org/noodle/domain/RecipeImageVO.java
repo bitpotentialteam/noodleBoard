@@ -1,11 +1,15 @@
 package org.noodle.domain;
 
-public class RecipeRegistVO {
+public class RecipeImageVO {
+	
 	
 	private int bno;
 	private int ino;
+	private int order;
 	private String image;
 	private String thumbnail;
+	
+	
 	public int getBno() {
 		return bno;
 	}
@@ -17,6 +21,12 @@ public class RecipeRegistVO {
 	}
 	public void setIno(int ino) {
 		this.ino = ino;
+	}
+	public int getOrder() {
+		return order;
+	}
+	public void setOrder(int order) {
+		this.order = order;
 	}
 	public String getImage() {
 		return image;
@@ -30,11 +40,10 @@ public class RecipeRegistVO {
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
 	}
-	
 	@Override
 	public String toString() {
-		return "RecipeRegistVO [bno=" + bno + ", ino=" + ino + ", image=" + image + ", thumbnail=" + thumbnail + "]";
+		return "RecipeImageVO [bno=" + bno + ", ino=" + ino + ", order=" + order + ", image=" + image + ", thumbnail="
+				+ thumbnail + "]";
 	}
-	
 	
 }
