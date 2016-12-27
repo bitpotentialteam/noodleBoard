@@ -523,9 +523,9 @@
 					$.ajax({  
 						  url: "../search",  
 						  dataType: 'json',  
-						  data: data,  
-						  success: function(){
+						  success: function(data){
 							  $("#output").val = data;
+							  console.log(data);
 						  }
 						});
 					
