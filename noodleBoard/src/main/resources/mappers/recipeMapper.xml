@@ -5,17 +5,18 @@
   
   <mapper namespace="org.noodle.mapper.RecipeMapper">
   <insert id="create">
-  insert into tbl_recipeboard(mno, bno, thumbnail, title)
-  values(#{mno}, #{bno}, #{thumbnail}, #{title})
+  insert into tbl_recipeboard(mno, bno, ino, title, content, materialContent)
+  values(#{mno}, seq_bno.nextval, #{ino}, #{title}, #{content}, #{materialContent})
   
   </insert>
   
   <select id="read" resultType="RecipeBoardVO">
-  select * from tbl_recipeboard where mno = #{mno}
+  select * from tbl_recipeboard where bno = #{bno}
   </select>
   
   <update id="update">
-  update tbl_recipeboard set mno = #{mno}, title = #{title}, thumbnail = #{thumbnail} 
+  update tbl_recipeboard set mno = #{mno}, title = #{title}, ino = #{ino}, content = #{content},
+  materialcontent = #{materialContent} 
   where bno = #{bno}
   </update>
   
