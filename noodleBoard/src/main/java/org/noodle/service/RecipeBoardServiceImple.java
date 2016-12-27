@@ -16,38 +16,33 @@ public class RecipeBoardServiceImple implements RecipeBoardService {
 	private RecipeBoardDAO dao;
 	
 	@Override
-	public void create(RecipeBoardVO vo) throws Exception {
-
+	public void regist(RecipeBoardVO vo) throws Exception {
+		dao.create(vo);
 	}
 
 	@Override
-	public RecipeBoardVO read(Integer mno) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public RecipeBoardVO view(int bno) throws Exception {
+		return dao.read(bno);
 	}
 
 	@Override
-	public void update(RecipeBoardVO vo) throws Exception {
-		// TODO Auto-generated method stub
-
+	public void modify(RecipeBoardVO vo) throws Exception {
+		dao.update(vo);
 	}
 
 	@Override
-	public void delete(Integer mno) throws Exception {
-		// TODO Auto-generated method stub
-
+	public void remove(int bno) throws Exception {
+		dao.delete(bno);
 	}
 
 	@Override
 	public List<RecipeBoardVO> listAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listAll();
 	}
 
 	@Override
 	public List<RecipeBoardVO> search(Criteria cri) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.search(cri);
 	}
 
 }

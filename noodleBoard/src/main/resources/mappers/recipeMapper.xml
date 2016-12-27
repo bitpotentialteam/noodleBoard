@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="org.noodle.mapper.RecipeMapper">
+  <insert id="create">
+  insert into tbl_recipeboard(mno, bno, thumbnail, title)
+  values(#{mno}, #{bno}, #{thumbnail}, #{title})
+  
+  </insert>
+  
+  <select id="read" resultType="RecipeBoardVO">
+  select * from tbl_recipeboard where mno = #{mno}
+  </select>
+  
+  <update id="update">
+  update tbl_recipeboard set mno = #{mno}, title = #{title}, thumbnail = #{thumbnail} 
+  where bno = #{bno}
+  </update>
+  
+  <delete id="delete">
+  delete tbl_recipeboard where bno = #{bno}
+  </delete>
+  
+  <select id="listAll">
+  select * from tbl_recipeboard
+  </select>
+  
+  </mapper>
