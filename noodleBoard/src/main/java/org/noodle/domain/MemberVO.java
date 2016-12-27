@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class MemberVO {
 
+	private int mno;
 	private String userid;
 	private String userpw;
 	private String username;
@@ -14,6 +15,12 @@ public class MemberVO {
 	private String client_PW;
 	private Date regdate;
 	private Date updatedate;
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
 	public String getUserid() {
 		return userid;
 	}
@@ -76,10 +83,12 @@ public class MemberVO {
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [userid=" + userid + ", userpw=" + userpw + ", username=" + username + ", nickname=" + nickname
-				+ ", email=" + email + ", picture=" + picture + ", client_ID=" + client_ID + ", client_PW=" + client_PW
-				+ ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
+		return "MemberVO [mno=" + mno + ", userid=" + userid + ", userpw=" + userpw + ", username=" + username
+				+ ", nickname=" + nickname + ", email=" + email + ", picture=" + picture + ", client_ID=" + client_ID
+				+ ", client_PW=" + client_PW + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
 	}
+	
+	
 	
 	
 	
