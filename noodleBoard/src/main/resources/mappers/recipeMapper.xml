@@ -23,4 +23,8 @@
   delete tbl_recipeboard where bno = #{bno}
   </delete>
   
+  <select id="listAll">
+  select * from tbl_recipeboard
+  </select>
+  
   </mapper>

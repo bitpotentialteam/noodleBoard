@@ -53,5 +53,11 @@ public class RecipeDAOTester {
 		dao.delete(2);
 	}
 	
+	@Test
+	public void listAllTest() throws Exception{
+		System.out.println();
+		
+	}
+	
 
 }
