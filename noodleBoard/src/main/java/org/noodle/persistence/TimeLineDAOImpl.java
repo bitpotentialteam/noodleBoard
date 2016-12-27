@@ -37,7 +37,7 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 	@Override
 	public void delete(int tno) throws Exception {
 		
-		session.delete(namespace + "delete",tno);
+		session.delete(namespace + ".delete",tno);
 
 	}
 

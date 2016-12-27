@@ -48,5 +48,13 @@ public class TimeLineTest {
 		dao.update(vo);
 		
 	}
+	
+	@Test
+	public void deleteTest()throws Exception{
+		
+		
+		dao.delete(2);
+		
+	}
 
 }
