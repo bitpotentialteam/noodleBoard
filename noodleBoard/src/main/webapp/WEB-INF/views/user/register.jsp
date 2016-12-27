@@ -141,7 +141,7 @@ $(document).ready(function(){
          uploadedList.html("<img src=show?name="+data+">");
          $("#thumbnail").val(data);
          }
-      });
+      }); 
    });
 });   
 </script>
