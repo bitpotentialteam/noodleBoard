@@ -20,14 +20,43 @@ public class MemberDAOTester {
 		
 		MemberVO vo = new MemberVO();
 		
-		vo.setUserid("user03");
-		vo.setUserpw("user03");
-		vo.setUsername("lee3");
-		vo.setNickname("lee3");
-		vo.setEmail("lee@bbbd");
+		vo.setUserid("user04");
+		vo.setUserpw("user04");
+		vo.setUsername("lee4");
+		vo.setNickname("lee4");
+		vo.setEmail("lee@d");
 		vo.setPicture("picture");
 		
 		dao.create(vo);
+	}
+	
+	@Test
+	public void readTest()throws Exception{
+		
+		dao.read(3);
+		System.out.println(dao.read(3));
+	}
+	
+	@Test
+	public void updateTest()throws Exception{
+		
+		MemberVO vo = new MemberVO();
+		
+		vo.setMno(2);
+		vo.setUserpw("123");
+		vo.setUsername("fix");
+		vo.setNickname("fix");
+		vo.setEmail("fix");
+		vo.setPicture("picture");
+		
+		dao.update(vo);
+		
+		
+	}
+	@Test
+	public void deleteTest()throws Exception{
+		
+		dao.delete(4);
 	}
 	
 
