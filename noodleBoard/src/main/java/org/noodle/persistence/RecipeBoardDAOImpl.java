@@ -10,12 +10,12 @@ import org.noodle.domain.Criteria;
 import org.noodle.domain.RecipeBoardVO;
 import org.springframework.stereotype.Repository;
 @Repository
-public class RecipeBoardDAOImple implements RecipeBoardDAO {
+public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 
 	@Inject
 	private SqlSession session;
 	
-	private static final String namespace = "org.noodle.persistence"; 
+	private static final String namespace = "org.noodle.mapper.RecipeMapper"; 
 	
 	@Override
 	public void create(RecipeBoardVO vo) throws Exception {
@@ -23,8 +23,8 @@ public class RecipeBoardDAOImple implements RecipeBoardDAO {
 	}
 
 	@Override
-	public RecipeBoardVO read(int mno) throws Exception {
-		return session.selectOne(namespace + ".read", mno);
+	public RecipeBoardVO read(int bno) throws Exception {
+		return session.selectOne(namespace + ".read", bno);
 	}
 
 	@Override
@@ -33,8 +33,8 @@ public class RecipeBoardDAOImple implements RecipeBoardDAO {
 	}
 
 	@Override
-	public void delete(int mno) throws Exception {
-		session.delete(namespace + ".delete", mno);
+	public void delete(int bno) throws Exception {
+		session.delete(namespace + ".delete", bno);
 	}
 
 	@Override

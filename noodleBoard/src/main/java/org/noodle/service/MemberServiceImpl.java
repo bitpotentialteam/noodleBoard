@@ -13,7 +13,7 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO dao;
 	
 	@Override
-	public void create(MemberVO vo) throws Exception {
+	public void regist(MemberVO vo) throws Exception {
 
 		dao.create(vo);
 	}
@@ -25,15 +25,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void update(MemberVO vo) throws Exception {
+	public void modify(MemberVO vo) throws Exception {
 
 		dao.update(vo);
 	}
 
 	@Override
-	public void delete(int mno) throws Exception {
+	public void remove(int mno) throws Exception {
 
 		dao.delete(mno);
 	}
 
 }
+ 
