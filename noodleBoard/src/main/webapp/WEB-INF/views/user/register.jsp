@@ -5,19 +5,19 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Registration Page</title>
+  <title>New Member</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../resources/vender/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../resources/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../resources/dist/css/AdminLTE.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="../resources/css/blue.css">
+  <link rel="stylesheet" href="../resources/plugins/iCheck/square/blue.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,32 +29,32 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <b>회원정보기입</b>
   </div>
 
   <div class="register-box-body">
     <p class="login-box-msg">Register a new membership</p>
 
-    <form action="../../index.html" method="post">
+    <form action="#" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="ID">
-        
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="PassWord">
-        
+        <input type="password" class="form-control" placeholder="Password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="UserName">
-        
+        <input type="text" class="form-control" placeholder="Username">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="NickName">
-        
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="E-mail">
-        
+        <input type="email" class="form-control" placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Picture">
@@ -76,18 +76,20 @@
       </div>
     </form>
 
-    <a href="../user/login" class="text-center">I already have a membership</a>
+    
+
+    <a href="login" class="text-center">I already have a membership</a>
   </div>
   <!-- /.form-box -->
 </div>
 <!-- /.register-box -->
 
 <!-- jQuery 2.2.3 -->
-<script src="../resources/vendor/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="../resources/vendor/css/bootstrap.min.js"></script>
+<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
 <!-- iCheck -->
-<script src="../resources/vendor/jquery/icheck.min.js"></script>
+<script src="../resources/plugins/iCheck/icheck.min.js"></script>
 <script>
   $(function () {
     $('input').iCheck({
@@ -96,6 +98,52 @@
       increaseArea: '20%' // optional
     });
   });
+</script>
+<script>
+
+$(document).ready(function(){
+   
+   var uploadedList = $(".uploadedList")
+   
+//    띄어쓰기하고 두개 쓰면 이벤트가 두개 다 걸림
+// 드래그하면 새창열리는거 방지여
+   $(".fileDrop").on("dragenter dragover", function(event){
+   event.preventDefault();      
+   });
+   
+   $(".fileDrop").on("drop", function(event){
+      event.preventDefault();   
+      
+      
+      var files = event.originalEvent.dataTransfer.files;
+      
+      var file = files[0];
+      console.log(file);
+      
+      //form tag 추가해버리는거 근데 최근 브라우저에서만 지원함 옛날꺼는 안돼영!
+      
+      var formData = new FormData();
+      formData.append("file",file);
+      
+      console.log(formData);
+      
+      
+      $.ajax({
+         url:"uploadFile",
+         data : formData, //기본이 멀티파트   
+         dataType : 'text',
+         type:"post",
+         contentType:false,
+         processData: false,
+         success : function(data){
+            console.log(data);
+            //alert(data);
+         uploadedList.html("<img src=show?name="+data+">");
+         $("#thumbnail").val(data);
+         }
+      });
+   });
+});   
 </script>
 </body>
 </html>
