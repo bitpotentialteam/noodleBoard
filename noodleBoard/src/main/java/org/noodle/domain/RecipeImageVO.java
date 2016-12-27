@@ -5,7 +5,9 @@ public class RecipeImageVO {
 	private int bno;
 	private int ino;
 	private String image;
+	private String content;
 	private String thumbnail;
+	
 	public int getBno() {
 		return bno;
 	}
@@ -24,6 +26,12 @@ public class RecipeImageVO {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public String getThumbnail() {
 		return thumbnail;
 	}
@@ -32,10 +40,9 @@ public class RecipeImageVO {
 	}
 	@Override
 	public String toString() {
-		return "RecipeImageVO [bno=" + bno + ", ino=" + ino + ", image=" + image + ", thumbnail=" + thumbnail + "]";
+		return "RecipeImageVO [bno=" + bno + ", ino=" + ino + ", image=" + image + ", content=" + content
+				+ ", thumbnail=" + thumbnail + "]";
 	}
 	
 	
-	
-
 }

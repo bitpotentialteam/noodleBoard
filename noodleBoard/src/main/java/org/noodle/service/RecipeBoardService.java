@@ -6,10 +6,10 @@ import org.noodle.domain.Criteria;
 import org.noodle.domain.RecipeBoardVO;
 
 public interface RecipeBoardService {
-	public void create(RecipeBoardVO vo) throws Exception;
-	public RecipeBoardVO read(Integer mno)throws Exception;
-	public void update(RecipeBoardVO vo)throws Exception;
-	public void delete(Integer mno)throws Exception;
+	public void regist(RecipeBoardVO vo) throws Exception;
+	public RecipeBoardVO view(int bno)throws Exception;
+	public void modify(RecipeBoardVO vo)throws Exception;
+	public void remove(int bno)throws Exception;
 	public List<RecipeBoardVO> listAll()throws Exception;
 	public List<RecipeBoardVO> search(Criteria cri)throws Exception;
 
