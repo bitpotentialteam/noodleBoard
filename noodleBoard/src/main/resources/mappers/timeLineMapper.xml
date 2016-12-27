@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.noodle.mapper.TimeLineMapper">
+
+	<insert id="create" parameterType="TimeLineVO">
+	
+		insert into tbl_timeline(tno,mno,content)
+		values
+		(seq_tno.nextval, #{mno},#{content})
+
+	</insert>
+	
+	<select id="listView" resultType="TimeLineVO">
+	
+		select * from tbl_timeline
+	
+	</select>
+	
+	
+	<update id="update" parameterType="TimeLineVO">
+	
+		update tbl_timeline
+		set content = #{content}, updatedate = sysdate
+		where tno = #{tno}
+	
+	</update>
+	
+	
+	<delete id="delete" parameterType="TimeLineVO">
+	
+		delete from tbl_timeline
+		where tno = #{tno}
+	
+	</delete>
+
+
+
+</mapper>
