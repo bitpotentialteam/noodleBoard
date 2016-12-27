@@ -1,27 +1,28 @@
 package org.noodle.controller;
 
+import javax.inject.Inject;
 
-
-
+import org.noodle.service.TimeLineService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
-@RestController
-@RequestMapping("/board/*")
+@Controller("/")
 public class TimeLineController {
+	
+	@Inject
+	TimeLineService service;
 
 	private static final Logger logger = LoggerFactory.getLogger(NoodleController.class);
 
-	@RequestMapping(value = "timeline", method = RequestMethod.GET)
-	public void timeLine() {
+	@GetMapping("/timeline")
+	public String timeLine() throws Exception{
 
 		logger.info("getTIMELINE.....");
 
+		return "timeline/timeline";
 	}
 
 }
