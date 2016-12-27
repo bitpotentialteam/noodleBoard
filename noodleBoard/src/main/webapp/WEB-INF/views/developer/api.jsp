@@ -349,11 +349,7 @@
 
 							<div class="field">
 								<label for="output">Output data</label>
-								<textarea name="output" id="output" rows="10">
-												<c:if test="${param.outputTypeValue =='noodle'}">
-													<!-- 여기에 if문으로 걸러서 데이터를 추출해야함. (JSON data) -->
-												</c:if>
-											</textarea>
+								<textarea name="output" id="output" rows="10"></textarea>
 							</div>
 						</form>
 					</section>
@@ -452,7 +448,7 @@
 								data : kindsValue,
 								dataType:'text',
 								processData: false,
-								contentType: false,
+								contentType: false
 
 							})
 						}// end else...
@@ -477,7 +473,7 @@
 								data : noodleTypeValue,
 								dataType:'text',
 								processData: false,
-								contentType: false,
+								contentType: false
 
 							})
 						}// end else...
@@ -496,7 +492,7 @@
 							data : orderTypeValue,
 							dataType:'text',
 							processData: false,
-							contentType: false,
+							contentType: false
 
 						})
 
@@ -515,17 +511,34 @@
 							var outputTypeValue = input.parent().attr('id');
 							console.log(outputTypeValue);
 							
-							
-							
 						}
 					});// end outputType...
 
+					$(".submit").on("click", function(keyword){
+						console.log("click");
+						$.ajax({  
+							  url: "../search/" + keyword,
+							  type:"POST",
+							  dataType: 'json', 
+							  success:function(){
+								  console.log(keyword);
+							  }
+							  
+							  
+							});
+							
+					});
+					
+						
+					
+					
 					$.ajax({  
 						  url: "../search",  
 						  dataType: 'json',  
 						  success: function(data){
-							  $("#output").val = data;
+							  $("#output").innerHTML(data);
 							  console.log(data);
+							  
 						  }
 						});
 					
