@@ -61,6 +61,12 @@ public class NoodleController {
 		return "user/login";
 	}
 	
+	@GetMapping("/user/register")
+	public String register() throws Exception{
+		logger.info("register page...");
+		return "user/register";
+	}
+	
 
 	
 	
