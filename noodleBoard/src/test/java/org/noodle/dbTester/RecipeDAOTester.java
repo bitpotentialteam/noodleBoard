@@ -27,10 +27,11 @@ public class RecipeDAOTester {
 	public void createTest() throws Exception {
 		RecipeBoardVO vo = new RecipeBoardVO();
 		
-		vo.setMno(2);
-		vo.setBno(2);
-		vo.setThumbnail(2);
+		vo.setMno(3);
+		vo.setIno(3);
 		vo.setTitle("test");
+		vo.setContent("test");
+		vo.setMaterialContent("test");
 		
 		dao.create(vo);
 	}
@@ -44,9 +45,11 @@ public class RecipeDAOTester {
 	public void updateTest() throws Exception{
 		RecipeBoardVO vo = new RecipeBoardVO();
 		
-		vo.setMno(2);
+		vo.setMno(22);
+		vo.setIno(22);
 		vo.setTitle("제목");
-		vo.setThumbnail(2);
+		vo.setContent("내용");
+		vo.setMaterialContent("재료내용");
 		vo.setBno(1);
 		
 		dao.update(vo);
@@ -55,7 +58,7 @@ public class RecipeDAOTester {
 	
 	@Test
 	public void deleteTest() throws Exception{
-		dao.delete(2);
+		dao.delete(1);
 	}
 	
 	@Test
