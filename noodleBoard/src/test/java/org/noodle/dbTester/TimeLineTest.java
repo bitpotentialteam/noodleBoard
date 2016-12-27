@@ -6,8 +6,11 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.noodle.domain.Criteria;
+import org.noodle.domain.NoodleVO;
 import org.noodle.domain.TimeLineVO;
 import org.noodle.persistence.TimeLineDAO;
+import org.noodle.persistence.wikiDAO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -18,6 +21,8 @@ public class TimeLineTest {
 
 	@Inject
 	TimeLineDAO dao;
+	@Inject
+	wikiDAO wiki;
 	
 	@Test
 	public void createTest() throws Exception {
@@ -54,6 +59,39 @@ public class TimeLineTest {
 		
 		
 		dao.delete(2);
+		
+	}
+	
+	@Test
+	public void wikiTest()throws Exception{
+	
+		NoodleVO vo = new NoodleVO();
+		vo.setName("신라면");
+		
+		System.out.println(wiki.read(vo));
+	}
+	
+	@Test
+	public void wikiSearch()throws Exception{
+		
+		Criteria cri = new Criteria();
+		
+		
+		String[] noodle = {"유탕","건면"};
+		String[] brand = {"삼양","농심"};
+		String[] kind = {"일반"};
+		
+	
+		cri.setNoodleTypeFilter(noodle);
+		cri.setBrandFilter(brand);
+		cri.setKindFilter(kind);
+
+		cri.setOrderType("new");
+		
+		System.out.println(cri.toString());
+		
+		List<NoodleVO> result = wiki.listWiki(cri);
+		System.out.println(result);
 		
 	}
 

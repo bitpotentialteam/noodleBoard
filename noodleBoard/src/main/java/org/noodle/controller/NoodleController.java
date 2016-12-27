@@ -21,10 +21,11 @@ public class NoodleController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String apiGET(Model model, Criteria cri) {
 		logger.info("apiGET.....");
-
-		cri.setBrandFilter("test");
 		
-		logger.info(cri.getBrandFilter());
+		String[] test = {"test"};
+
+		cri.setBrandFilter(test);
+		
 		
 		return "developer/api";
 	}

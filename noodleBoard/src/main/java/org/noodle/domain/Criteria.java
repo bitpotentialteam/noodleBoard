@@ -1,17 +1,24 @@
 package org.noodle.domain;
 
+import java.util.Arrays;
+
 public class Criteria {
 
-	
 	private String searchType;
 	private String keyword;
-	
-	private String brandFilter;
-	private String typefilter;
-	private String noodleTypeFilter;
-	
+
+	private String[] brandFilter;
+	private String[] kindFilter;
+	private String[] noodleTypeFilter;
+
 	private String orderType;
-	
+
+	@Override
+	public String toString() {
+		return "Criteria [searchType=" + searchType + ", keyword=" + keyword + ", brandFilter="
+				+ Arrays.toString(brandFilter) + ", kindFilter=" + Arrays.toString(kindFilter) + ", noodleTypeFilter="
+				+ Arrays.toString(noodleTypeFilter) + ", orderType=" + orderType + "]";
+	}
 
 	public String getSearchType() {
 		return searchType;
@@ -29,27 +36,27 @@ public class Criteria {
 		this.keyword = keyword;
 	}
 
-	public String getBrandFilter() {
+	public String[] getBrandFilter() {
 		return brandFilter;
 	}
 
-	public void setBrandFilter(String brandFilter) {
+	public void setBrandFilter(String[] brandFilter) {
 		this.brandFilter = brandFilter;
 	}
 
-	public String getTypefilter() {
-		return typefilter;
+	public String[] getKindFilter() {
+		return kindFilter;
 	}
 
-	public void setTypefilter(String typefilter) {
-		this.typefilter = typefilter;
+	public void setKindFilter(String[] kindFilter) {
+		this.kindFilter = kindFilter;
 	}
 
-	public String getNoodleTypeFilter() {
+	public String[] getNoodleTypeFilter() {
 		return noodleTypeFilter;
 	}
 
-	public void setNoodleTypeFilter(String noodleTypeFilter) {
+	public void setNoodleTypeFilter(String[] noodleTypeFilter) {
 		this.noodleTypeFilter = noodleTypeFilter;
 	}
 
@@ -61,12 +68,5 @@ public class Criteria {
 		this.orderType = orderType;
 	}
 
-	@Override
-	public String toString() {
-		return "Criteria [searchType=" + searchType + ", keyword=" + keyword + ", brandFilter=" + brandFilter
-				+ ", typefilter=" + typefilter + ", noodleTypeFilter=" + noodleTypeFilter + ", orderType=" + orderType
-				+ "]";
-	}
-	
 	
 }
