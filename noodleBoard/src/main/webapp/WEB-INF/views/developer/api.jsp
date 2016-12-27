@@ -515,18 +515,20 @@
 							var outputTypeValue = input.parent().attr('id');
 							console.log(outputTypeValue);
 							
-							$.ajax({  
-								  url: "../search",  
-								  dataType: 'json',  
-								  data: data,  
-								  success: function(){
-									  $("#output").val = data;
-								  }
-								});
+							
 							
 						}
 					});// end outputType...
 
+					$.ajax({  
+						  url: "../search",  
+						  dataType: 'json',  
+						  data: data,  
+						  success: function(){
+							  $("#output").val = data;
+						  }
+						});
+					
 				}); //end ready...
 			</script>
 </body>
