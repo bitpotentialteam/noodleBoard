@@ -9,7 +9,7 @@
 	
 		insert into tbl_timeline(tno,mno,content)
 		values
-		(seq_tno.nextval, #{mno},#{content})
+		(seq_tno.nextval, #{mno, jdbcType=INTEGER},#{content, jdbcType=VARCHAR})
 
 	</insert>
 	

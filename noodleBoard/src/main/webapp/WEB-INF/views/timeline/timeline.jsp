@@ -97,13 +97,15 @@
 			<div class="box box-widget">
 
 				<div class="img-push">
+				
 					<form action='regist' method='post'>
-						<input id="content" type="text" class="form-control input-sm"
+					
+						<input id="content" name="content" type="text" class="form-control input-sm"
 							placeholder="Press enter to post comment">
 							
-							<input type="text" id="mno" placeholder="mno">
+							<input type="text" name="mno" placeholder="mno">
 							
-							<button> submit! </button>
+							<button type="submit"> submit! </button>
 					</form>
 
 				</div>
