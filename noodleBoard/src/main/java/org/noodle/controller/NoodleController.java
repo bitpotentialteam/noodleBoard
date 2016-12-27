@@ -22,18 +22,6 @@ public class NoodleController {
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(NoodleController.class);
-	        
-	@GetMapping("/search")
-	public List<NoodleVO> search(@ModelAttribute("cri") Criteria cri)throws Exception{
-	
-		logger.info("search called..." + cri.toString());
-		
-		List<NoodleVO> list = new ArrayList<NoodleVO>();
-		
-		return list;
-	}
-	
-	
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
