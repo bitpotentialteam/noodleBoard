@@ -20,11 +20,12 @@ public class MemberDAOTester {
 		
 		MemberVO vo = new MemberVO();
 		
-		vo.setUserid("user01");
-		vo.setUserpw("user01");
-		vo.setUsername("lee");
-		vo.setNickname("lee");
-		vo.setEmail("lee@aaa");
+		vo.setUserid("user03");
+		vo.setUserpw("user03");
+		vo.setUsername("lee3");
+		vo.setNickname("lee3");
+		vo.setEmail("lee@bbbd");
+		vo.setPicture("picture");
 		
 		dao.create(vo);
 	}
