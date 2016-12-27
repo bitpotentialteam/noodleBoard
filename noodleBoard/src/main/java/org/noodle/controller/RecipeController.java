@@ -41,6 +41,11 @@ public class RecipeController {
 		logger.info("listAll.............");
 	}
 	
+	@GetMapping("/demo")
+	public void test() throws Exception {
+		logger.info("listAll.............");
+	}
+	
 	
 
 }
