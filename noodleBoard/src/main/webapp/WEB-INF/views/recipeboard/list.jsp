@@ -31,16 +31,7 @@
 	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
 	rel='stylesheet' type='text/css'>
 
-<!-- Theme CSS -->
 <link href="../resources/css/agency.min.css" rel="stylesheet">
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 
 </head>
 <body id="page-top" class="index">
@@ -169,6 +160,49 @@
                 </div>
             </div>
         </div>
+        
+        <div class='box'>
+				<div class="box-header with-border">
+					<h3 class="box-title">Search</h3>
+				</div>
+
+
+				<div class='box-body'>
+
+					<select name="searchType">
+						<option value="n"
+							<c:out value="${cri.searchType == null?'selected':''}"/>>
+							---</option>
+						<option value="t"
+							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+							제목</option>
+						<option value="c"
+							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+							내용</option>
+						<option value="w"
+							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+							작성자</option>
+						<option value="tc"
+							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+							제목+내용</option>
+						<option value="cw"
+							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
+							내용+작성자</option>
+						<option value="tcw"
+							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
+							제목+내용+작성자</option>
+					</select> 
+					
+					<p></p>
+					<input type="text" name='keyword' id="keywordInput"
+						value='${cri.keyword}'>
+						<p></p>
+						
+					<button id='searchBtn'>Search</button>
+				
+
+				</div>
+			</div>
     </section>
 
    
@@ -190,9 +224,7 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
-                        <li><a href="#">Privacy Policy</a>
-                        </li>
-                        <li><a href="#">Terms of Use</a>
+                        <li><a href="#">top</a>
                         </li>
                     </ul>
                 </div>
