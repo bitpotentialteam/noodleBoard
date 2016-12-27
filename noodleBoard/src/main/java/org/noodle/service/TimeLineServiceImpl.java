@@ -5,14 +5,14 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.noodle.domain.TimeLineVO;
-import org.noodle.persistence.TimeLineDAO;
+import org.noodle.persistence.TimeLineDAOImpl;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TimeLineServiceImpl implements TimeLineService {
 	
 	@Inject
-	private TimeLineDAO dao;
+	TimeLineDAOImpl dao;
 
 	@Override
 	public void regist(TimeLineVO vo) throws Exception {

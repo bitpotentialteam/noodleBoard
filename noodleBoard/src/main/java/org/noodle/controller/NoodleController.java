@@ -27,10 +27,11 @@ public class NoodleController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String apiGET(Model model, Criteria cri) {
 		logger.info("apiGET.....");
-
-		cri.setBrandFilter("test");
 		
-		logger.info(cri.getBrandFilter());
+		String[] test = {"test"};
+
+		cri.setBrandFilter(test);
+		
 		
 		return "developer/api";
 	}
@@ -52,8 +53,13 @@ public class NoodleController {
 		
 	}
 	
-	
-	
+	//seungwoo pratice
+	@GetMapping("/user/login")
+	public String login() throws Exception{
+		logger.info("login page called.....");
+		
+		return "user/login";
+	}
 	
 
 	
