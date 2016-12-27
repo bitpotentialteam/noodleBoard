@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class wikiDAOImpl implements wikiDAO {
-	
+	 
 	@Inject 
 	SqlSession session;
 	
