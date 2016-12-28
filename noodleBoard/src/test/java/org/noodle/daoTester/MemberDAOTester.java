@@ -1,9 +1,10 @@
-package org.noodle.dbTester;
+package org.noodle.daoTester;
  
 import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.noodle.domain.ClientVO;
 import org.noodle.domain.MemberVO;
 import org.noodle.persistence.MemberDAO;
 import org.springframework.test.context.ContextConfiguration;
@@ -57,6 +58,17 @@ public class MemberDAOTester {
 	public void deleteTest()throws Exception{
 		
 		dao.delete(4);
+	}
+	
+	@Test
+	public void testCreate_client() throws Exception{
+		
+		ClientVO cvo = new ClientVO();
+		
+		cvo.setUUID_ID("testestestesIDIDIDID");
+		cvo.setUUID_PW("testsetsetsePWPWPWPWP");
+		
+		dao.create_client(18);
 	}
 	
 
