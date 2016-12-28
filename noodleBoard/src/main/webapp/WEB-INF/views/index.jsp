@@ -262,7 +262,7 @@
                             </li>
                             <li><a href="#"><i class="fa fa-linkedin"></i></a>
                             </li>
-                        </ul>
+                        </ul> 
                     </div>
                 </div>
             </div>
