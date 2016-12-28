@@ -37,7 +37,7 @@ public class UploadController {
 
 	}
 
-	@GetMapping(value = "/show", produces = { "image/gif", "image/jpg", "image/jpeg" })
+	@GetMapping(value = "user/show", produces = { "image/gif", "image/jpg", "image/jpeg" })
 
 	public @ResponseBody byte[] show(String name) throws Exception {
 
