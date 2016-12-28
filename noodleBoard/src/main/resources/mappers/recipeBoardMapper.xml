@@ -4,13 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="org.noodle.mapper.RecipeBoardMapper">
+<mapper namespace="org.noodle.RecipeBoardMapper">
 
 	<insert id="create">
 		insert into tbl_recipeboard(mno, bno, ino, title, content, materialContent)
 		values(#{mno}, seq_bno.nextval, #{ino}, #{title}, #{content},
 		#{materialContent})
-
 	</insert>
 
 	<select id="read" resultType="RecipeBoardVO">
@@ -27,7 +26,6 @@
 	<delete id="delete">
 		delete tbl_recipeboard where bno = #{bno}
 	</delete>
-
 
 	<select id="list" resultType="RecipeBoardVO">
 		select * from tbl_recipeboard

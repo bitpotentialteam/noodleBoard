@@ -32,4 +32,5 @@
 		where 
 			bno = #{bno}
 	</delete>	
+	
 </mapper>
