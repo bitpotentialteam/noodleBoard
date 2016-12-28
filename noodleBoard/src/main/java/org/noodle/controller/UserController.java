@@ -55,11 +55,22 @@ public class UserController {
 
 		return "redirect:/user/login";
 	}
+	
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
 	public void modifyGET()throws Exception{
 		
 		logger.info("myPage page...");
 	}
+	
+	@RequestMapping(value = "/myPage", method = RequestMethod.POST)
+	public String modifyPOST()throws Exception{
+		
+		logger.info("my Page POST...");
+		
+		return "redirect:../";
+		
+	}
+	
 	
 	
 }
