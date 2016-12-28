@@ -5,7 +5,7 @@ import java.util.List;
 import org.noodle.domain.Criteria;
 import org.noodle.domain.NoodleVO;
 
-public interface wikiDAO {
+public interface WikiDAO {
 	
 	//검색결과화면
 	public List<NoodleVO> listWiki(Criteria cri) throws Exception;

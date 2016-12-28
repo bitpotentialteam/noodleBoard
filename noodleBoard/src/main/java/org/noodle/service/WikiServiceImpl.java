@@ -6,14 +6,14 @@ import javax.inject.Inject;
 
 import org.noodle.domain.Criteria;
 import org.noodle.domain.NoodleVO;
-import org.noodle.persistence.wikiDAOImpl;
+import org.noodle.persistence.WikiDAOImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class wikiServiceImpl implements wikiService {
+public class WikiServiceImpl implements WikiService {
 
 	@Inject
-	wikiDAOImpl dao;
+	WikiDAOImpl dao;
 	
 	@Override
 	public List<NoodleVO> listWiki(Criteria cri) throws Exception {

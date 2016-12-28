@@ -10,7 +10,7 @@ import org.noodle.domain.Criteria;
 import org.noodle.domain.NoodleVO;
 import org.noodle.domain.TimeLineVO;
 import org.noodle.persistence.TimeLineDAO;
-import org.noodle.persistence.wikiDAO;
+import org.noodle.persistence.WikiDAO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -22,7 +22,7 @@ public class TimeLineTest {
 	@Inject
 	TimeLineDAO dao;
 	@Inject
-	wikiDAO wiki;
+	WikiDAO wiki;
 	
 	@Test
 	public void createTest() throws Exception {

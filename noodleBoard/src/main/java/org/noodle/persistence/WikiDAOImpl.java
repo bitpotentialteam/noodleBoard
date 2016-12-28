@@ -10,7 +10,7 @@ import org.noodle.domain.NoodleVO;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class wikiDAOImpl implements wikiDAO {
+public class WikiDAOImpl implements WikiDAO {
 	 
 	@Inject 
 	SqlSession session;

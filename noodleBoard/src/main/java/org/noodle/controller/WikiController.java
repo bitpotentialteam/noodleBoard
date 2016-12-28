@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/wiki/*")
-public class wikiController {
+public class WikiController {
 	
 	
 

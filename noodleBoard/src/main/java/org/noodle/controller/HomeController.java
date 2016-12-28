@@ -3,6 +3,7 @@ package org.noodle.controller;
 import javax.inject.Inject;
 
 import org.noodle.service.TimeLineService;
+import org.noodle.service.WikiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ public class HomeController {
 	
 	@Inject
 	TimeLineService service;
+	@Inject
+	WikiService wiki;
 
 	@GetMapping("/")
 	public String home()throws Exception{
@@ -28,6 +31,16 @@ public class HomeController {
 	public String timeLine(Model model) throws Exception {
 
 		logger.info("getTIMELINE.....");
+
+		model.addAttribute("list", service.listView());
+
+		return "timeline/timeline";
+	}
+	
+	@GetMapping("/wiki")
+	public String wiki(Model model) throws Exception {
+
+		logger.info("getWIKI.....");
 
 		model.addAttribute("list", service.listView());
 
