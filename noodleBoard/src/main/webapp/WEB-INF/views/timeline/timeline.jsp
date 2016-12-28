@@ -38,7 +38,8 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
+	<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	
 </head>
 <body>
 
@@ -58,6 +59,14 @@
 	resize: none;
 }
 </style>
+
+	<form id='form' method='post' action="regist">
+
+		<input type='hidden' name='tno' value='${timeLineVO.bno}'>
+
+	</form>
+	
+	
 
 	<!-- Navigation -->
 	<nav id="mainNav"
@@ -97,13 +106,15 @@
 			<div class="box box-widget">
 
 				<div class="img-push">
+				
 					<form action='regist' method='post'>
-						<input id="content" type="text" class="form-control input-sm"
+					
+						<input id="content" name="content" type="text" class="form-control input-sm"
 							placeholder="Press enter to post comment">
 							
-							<input type="text" id="mno" placeholder="mno">
+							<input type="text" name="mno" placeholder="mno">
 							
-							<button> submit! </button>
+							<button type="submit" id="create" > submit! </button>
 					</form>
 
 				</div>
@@ -121,7 +132,17 @@
 									alt="User Image"> <span class="username"><a
 									href="#"> ${vo.nickname} </a></span> <span class="description">
 									${vo.regDate} </span>
+									
+										<button type="button" id="remove" class="pull-right text-muted"
+								data-widget="remove">
+								
+								<i class="fa fa-times"></i>
+							</button>
+									
+									
 							</div>
+							
+							
 
 						</div>
 						<!-- /.box-header -->
@@ -134,10 +155,9 @@
 							<button type="button" class="btn btn-default btn-xs">
 								<i class="fa fa-thumbs-o-up"></i> Like
 							</button>
-							<button type="button" class="btn btn-box-tool"
-								data-widget="remove">
-								<i class="fa fa-times"></i>
-							</button>
+					
+					
+
 							<span class="pull-right text-muted">${vo.likeCnt} likes -
 								${vo.replyCnt} comments</span>
 						</div>
@@ -184,6 +204,38 @@
 	</div>
 
 	</section>
+	
+	<script>
+	
+		var formObj = $("#form");
+
+		console.log(formObj);
+
+		$("#create").on("click", function(event) {
+
+			formObj.attr("action", "register");
+			formObj.attr("method", "post");
+			formObj.submit();
+
+		});
+		
+		$("#remove").on("click", function(event) {
+		
+			if(!confirm("정말 삭제하시겠습니까?"))
+				{
+			return
+				}
+			else
+				formObj.attr("action", "delete");
+				formObj.attr("method", "post");
+				formObj.submit();
+			
+		});
+		
+	</script>
+	
+
 
 </body>
+
 </html>

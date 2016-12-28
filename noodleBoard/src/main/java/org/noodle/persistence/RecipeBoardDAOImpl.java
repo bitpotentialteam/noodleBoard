@@ -15,7 +15,7 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	@Inject
 	private SqlSession session;
 	
-	private static final String namespace = "org.noodle.mapper.RecipeMapper"; 
+	private static final String namespace = "org.noodle.mapper.RecipeBoardMapper"; 
 	
 	@Override
 	public void create(RecipeBoardVO vo) throws Exception {
@@ -46,5 +46,37 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	public List<RecipeBoardVO> search(Criteria cri) throws Exception {
 		return session.selectList(namespace + ".saerch", cri);
 	}
+
+	@Override
+	public void addViewCount(Integer bno) throws Exception {
+
+		session.update(namespace + ".addViewCount");
+	}
+
+	@Override
+	public void addLikeCount(Integer bno) throws Exception {
+
+		session.update(namespace + ".addLikeCount");
+	}
+
+	@Override
+	public void minusLikeCount(Integer bno) throws Exception {
+
+		session.update(namespace + ".minusLikeCount");
+	}
+
+	@Override
+	public void addReplyCount(Integer bno) throws Exception {
+
+		session.update(namespace + ".addReplyCount");
+	}
+
+	@Override
+	public void minusReplyCount(Integer bno) throws Exception {
+
+		session.update(namespace + ".minusReplyCount");
+	}
+
+	
 
 }

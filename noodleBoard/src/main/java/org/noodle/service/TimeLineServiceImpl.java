@@ -34,7 +34,7 @@ public class TimeLineServiceImpl implements TimeLineService {
 	}
 
 	@Override
-	public void remove(int tno) throws Exception {
+	public void remove(Integer tno) throws Exception {
 		dao.delete(tno);
 
 	}

@@ -10,6 +10,7 @@ public class RecipeBoardVO {
 	private String title;
 	private String content;
 	private String materialContent;
+	private String image;
 	private int viewCnt;
 	private int likeCnt;
 	private int replyCnt;
@@ -24,7 +25,7 @@ public class RecipeBoardVO {
 	public int getBno() {
 		return bno;
 	}
-	public void setBno(int bno) { 
+	public void setBno(int bno) {
 		this.bno = bno;
 	}
 	public int getIno() {
@@ -50,6 +51,12 @@ public class RecipeBoardVO {
 	}
 	public void setMaterialContent(String materialContent) {
 		this.materialContent = materialContent;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	public int getViewCnt() {
 		return viewCnt;
@@ -81,14 +88,13 @@ public class RecipeBoardVO {
 	public void setUpdatedate(Date updatedate) {
 		this.updatedate = updatedate;
 	}
-	
 	@Override
 	public String toString() {
 		return "RecipeBoardVO [mno=" + mno + ", bno=" + bno + ", ino=" + ino + ", title=" + title + ", content="
-				+ content + ", materialContent=" + materialContent + ", viewCnt=" + viewCnt + ", likeCnt=" + likeCnt
-				+ ", replyCnt=" + replyCnt + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
+				+ content + ", materialContent=" + materialContent + ", image=" + image + ", viewCnt=" + viewCnt
+				+ ", likeCnt=" + likeCnt + ", replyCnt=" + replyCnt + ", regdate=" + regdate + ", updatedate="
+				+ updatedate + "]";
 	}
-	
 	
 	
 
