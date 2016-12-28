@@ -23,18 +23,6 @@ public class TimeLineController {
 
 	private static final Logger logger = LoggerFactory.getLogger(TimeLineController.class);
 
-	@GetMapping("")
-	public String timeLine(Model model) throws Exception {
-
-		logger.info("getTIMELINE.....");
-
-		model.addAttribute("list", service.listView());
-
-		return "timeline/timeline";
-	}
-	
-
-
 	@PostMapping("/regist")
 	public String registerPost(TimeLineVO vo, Model model) throws Exception {
 
