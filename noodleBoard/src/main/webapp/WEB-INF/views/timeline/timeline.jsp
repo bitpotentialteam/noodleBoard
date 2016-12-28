@@ -51,14 +51,6 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-<<<<<<< HEAD
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-	
-</head>
-<body>
-=======
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
@@ -66,7 +58,6 @@
 body {
 	background-color: #222;
 }
->>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 
 .header {
 	background-color: pink;
@@ -82,18 +73,6 @@ body {
 	background-color: #f8f8f8;
 	resize: none;
 }
-<<<<<<< HEAD
-</style>
-
-	<form id='form' method='post' action="regist">
-
-		<input type='hidden' name='tno' value='${timeLineVO.bno}'>
-
-	</form>
-	
-	
-=======
->>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 
 /* The Modal (background) */
 .modal {
@@ -184,7 +163,7 @@ input#content{
 				<li class="hidden"><a href="#page-top"></a></li>
 				<li><a class="page-scroll" href="#">Noodle-Wiki</a></li>
 				<li><a class="page-scroll" href="/recipeBoard/demo">Recipe</a></li>
-				<li><a class="page-scroll" href="/timeline/timeline">Community</a></li>
+				<li><a class="page-scroll" href="/timeline">Community</a></li>
 				<li><a class="page-scroll" href="/developer/api">Developer</a></li>
 				<li><a class="page-scroll" href="/user/login">LOGIN</a></li>
 				<li><a class="page-scroll" href="/user/register">SING-IN</a></li>
@@ -199,23 +178,6 @@ input#content{
 	<section>
 	<div class="container">
 		<div class="row">
-<<<<<<< HEAD
-
-			<div class="box box-widget">
-
-				<div class="img-push">
-				
-					<form action='regist' method='post'>
-					
-						<input id="content" name="content" type="text" class="form-control input-sm"
-							placeholder="Press enter to post comment">
-							
-							<input type="text" name="mno" placeholder="mno">
-							
-							<button type="submit" id="create" > submit! </button>
-					</form>
-
-=======
 		<!-- INPUT START -->
 			<div class="box" id="temp">
 			<!-- .box-header START -->
@@ -224,7 +186,6 @@ input#content{
 						<img class="img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
 						<span class="username"><a href="#"> 로그인한 사람 이름</a></span>   
 					</div>
->>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 				</div>
 			<!-- .box-header END-->
 			<!-- .box-body START -->
@@ -250,21 +211,6 @@ input#content{
 						<!-- .box-header START -->
 						<div class="box-header with-border">
 							<div class="user-block">
-<<<<<<< HEAD
-								<img class="img-circle"
-									src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg"
-									alt="User Image"> <span class="username"><a
-									href="#"> ${vo.nickname} </a></span> <span class="description">
-									${vo.regDate} </span>
-									
-										<button type="button" id="remove" class="pull-right text-muted"
-								data-widget="remove">
-								
-								<i class="fa fa-times"></i>
-							</button>
-									
-									
-=======
 								<img class="img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
 								<span class="username"><a href="#"> ${vo.nickname}</a></span>
 								<span class="description"> ${vo.regDate} </span>
@@ -274,14 +220,7 @@ input#content{
 								<button type="button" id="modify" value="${vo.tno}" class="pull-right text-muted" data-widget="modify"> 
 									<span class="glyphicon glyphicon-erase"></span>
 								</button>           
->>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 							</div>
-<<<<<<< HEAD
-							
-							
-
-=======
->>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 						</div>
 						<!-- .box-header END-->
 						<!-- .box-body START -->
@@ -290,18 +229,8 @@ input#content{
 							<p>${vo.content}</p>
 							<!-- Social sharing buttons -->
 							<button type="button" class="btn btn-default btn-xs">
-<<<<<<< HEAD
-								<i class="fa fa-thumbs-o-up"></i> Like
-							</button>
-					
-					
-
-							<span class="pull-right text-muted">${vo.likeCnt} likes -
-								${vo.replyCnt} comments</span>
-=======
 								<i class="fa fa-thumbs-o-up"></i> Like </button>
 							<span class="pull-right text-muted">${vo.likeCnt} likes - ${vo.replyCnt} comments</span>
->>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 						</div>
 						<!-- .box-body END -->
 						<!-- .box-footer START -->
@@ -369,34 +298,6 @@ input#content{
 	</section>
 	
 	<script>
-<<<<<<< HEAD
-	
-		var formObj = $("#form");
-
-		console.log(formObj);
-
-		$("#create").on("click", function(event) {
-
-			formObj.attr("action", "register");
-			formObj.attr("method", "post");
-			formObj.submit();
-
-		});
-		
-		$("#remove").on("click", function(event) {
-		
-			if(!confirm("정말 삭제하시겠습니까?"))
-				{
-			return
-				}
-			else
-				formObj.attr("action", "delete");
-				formObj.attr("method", "post");
-				formObj.submit();
-			
-		});
-		
-=======
 	$( document ).ready(function() {
 		var formObj = $("#form");
 
@@ -404,7 +305,7 @@ input#content{
 
 		$("#create").on("click", function(event) {
 
-			formObj.attr("action", "timeline/register");
+			formObj.attr("action", "/timeline/register");
 			formObj.attr("method", "post");
 			formObj.submit();
 
@@ -443,12 +344,11 @@ input#content{
 		
 		$(".mod").on("click", function(event){
 			
-			formObj.attr("action", "modify");
+			formObj.attr("action", "timeline/modify");
 			formObj.submit();
 		
 		});
 	});
->>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 	</script>
 	
 

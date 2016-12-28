@@ -70,7 +70,7 @@
 					<li><a class="page-scroll" href="#">Noodle-Wiki</a></li>
 <<<<<<< HEAD
 					<li><a class="page-scroll" href="/recipeBoard/demo">Recipe</a></li>
-					<li><a class="page-scroll" href="/timeline/timeline">Community</a></li>
+					<li><a class="page-scroll" href="/timeline">Community</a></li>
 					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
 					<li><a class="page-scroll" href="/user/login">LOGIN</a></li>
 					<li><a class="page-scroll" href="/user/register">SING-IN</a></li>
