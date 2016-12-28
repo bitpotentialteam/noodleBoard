@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/recipeboard/*")
 public class RecipeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(NoodleController.class);
+	private static final Logger logger = LoggerFactory.getLogger(RecipeController.class);
 	
 	@Inject
 	private RecipeBoardService service;
