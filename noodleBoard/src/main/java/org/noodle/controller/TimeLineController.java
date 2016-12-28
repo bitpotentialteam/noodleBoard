@@ -17,7 +17,7 @@ public class TimeLineController {
 	@Inject
 	TimeLineService service;
 
-	private static final Logger logger = LoggerFactory.getLogger(NoodleController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TimeLineController.class);
 
 	@GetMapping("/timeline")
 	public String timeLine(Model model) throws Exception {
