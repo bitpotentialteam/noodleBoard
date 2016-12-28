@@ -118,12 +118,12 @@ body {
 			<div class='groupType'>
 				<p>search type</p>
 				<div class="brandTypeCheckbox">
-					<span id='nongsim'><input type="checkbox" name='brandType'><label>³ó½É</label></span>
-					<span id='samyang'><input type="checkbox" name='brandType'><label>»ï¾ç</label></span>
-					<span id='paldo'><input type="checkbox" name='brandType'><label>ÆÈµµ</label></span>
-					<span id='ottogi'><input type="checkbox" name='brandType'><label>¿À¶Ñ±â</label></span>
-					<span id='pulmuone'><input type="checkbox" name='brandType'><label>Ç®¹«¿ø</label></span>
-					<span id='brandEtc'><input type="checkbox" name='brandType'><label>±âÅ¸</label></span>
+					<span id='nongsim'><input type="checkbox" name='brandType' value="³ó½É"><label>³ó½É</label></span>
+					<span id='samyang'><input type="checkbox" name='brandType' value="»ï¾ç"><label>»ï¾ç</label></span>
+					<span id='paldo'><input type="checkbox" name='brandType' value="ÆÈµµ"><label>ÆÈµµ</label></span>
+					<span id='ottogi'><input type="checkbox" name='brandType' value="¿À¶Ñ±â"><label>¿À¶Ñ±â</label></span>
+					<span id='pulmuone'><input type="checkbox" name='brandType' value="Ç®¹«¿ø"><label>Ç®¹«¿ø</label></span>
+					<span id='brandEtc'><input type="checkbox" name='brandType' value="±âÅ¸"><label>±âÅ¸</label></span>
 				</div>
 				<div class="kindsCheckbox">
 					<span id='nomal'><input type="checkbox" name='kinds'><label>ÀÏ¹Ý</label></span>
@@ -175,6 +175,32 @@ body {
 		</div>
 	</section>
 	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	
+	<script> 
+	
+	function checkboxArr() {
+		var checkArr = new Array;
+		$("input[name=brandType]:checked").each(function(i){
+			
+			checkArr.push($(this.val());
+			console.log(checkArr);
+		});
+	}
+	
+	$.ajax({
+		
+		url:'../list'
+		,type:'post'
+		,dataType:'text'
+		,data:{
+			valueArrTest : checkArr
+		}
+		
+	});
+	
+	</script>
 
 </body>
 </html>
