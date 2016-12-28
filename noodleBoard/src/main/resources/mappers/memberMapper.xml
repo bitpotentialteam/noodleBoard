@@ -32,8 +32,8 @@
 		where mno = #{mno}
 	</delete>
 
-	<update id="create_client">
-		update tbl_user set client_ID = #{UUID_ID}, Client_PW = #{UUID_PW} where mno=#{mno}
+	<update id="create_client" parameterType="hashmap">
+		update tbl_user set client_ID = #{Client_ID, jdbcType=VARCHAR}, Client_PW = #{Client_PW, jdbcType=VARCHAR} where mno=#{mno}
 	</update>
 
 	<update id="delete_client">
