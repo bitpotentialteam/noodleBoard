@@ -2,33 +2,42 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="org.noodle.mapper.MemberMapper">
-  
-  <insert id="create">
-  insert into tbl_user(mno,userid,userpw,username,nickname,email,picture)
-  values
-  (seq_user.nextval, #{userid, jdbcType=VARCHAR},#{userpw, jdbcType=VARCHAR},#{username, jdbcType=VARCHAR},#{nickname, jdbcType=VARCHAR},#{email, jdbcType=VARCHAR},#{picture, jdbcType=VARCHAR})
-  </insert>
-  
-  <select id="read" resultType="MemberVO">
-  select userid, userpw, username, nickname, email
-  from tbl_user
-  where mno = #{mno} 
-  </select>
-  
-  <update id="update">
-  update tbl_user
-  set 
-  userpw = #{userpw}, username = #{username}, nickname = #{nickname}, email = #{email}, picture = #{picture}
-  where mno = #{mno}
-  </update>
-  
-  <delete id="delete">
-  delete from tbl_user
-  where mno = #{mno}
-  </delete>
-  
-  
-  
-  </mapper>
+
+<mapper namespace="org.noodle.mapper.MemberMapper">
+
+	<insert id="create">
+		insert into tbl_user(mno,userid,userpw,username,nickname,email,picture)
+		values
+		(seq_user.nextval, #{userid, jdbcType=VARCHAR},#{userpw, jdbcType=VARCHAR},#{username,
+		jdbcType=VARCHAR},#{nickname, jdbcType=VARCHAR},#{email,
+		jdbcType=VARCHAR},#{picture, jdbcType=VARCHAR})
+	</insert>
+
+	<select id="read" resultType="MemberVO">
+		select userid, userpw, username, nickname, email
+		from tbl_user
+		where mno = #{mno}
+	</select>
+
+	<update id="update">
+		update tbl_user
+		set
+		userpw = #{userpw}, username = #{username}, nickname = #{nickname}, email =
+		#{email}, picture = #{picture}
+		where mno = #{mno}
+	</update>
+
+	<delete id="delete">
+		delete from tbl_user
+		where mno = #{mno}
+	</delete>
+
+	<update id="create_client">
+		update tbl_user set client_ID = #{UUID_ID}, Client_PW = #{UUID_PW} where mno=#{mno};
+	</update>
+
+	<update id="delete_client">
+		update tbl_user set client_ID = null, Client_PW = null where mno=#{mno};
+	</update>
+
+</mapper>
