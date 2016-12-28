@@ -20,7 +20,7 @@ public class RecipeCuisineDAOImpl implements RecipeCuisineDAO {
 	}
 
 	@Override
-	public RecipeCuisineVO read(int bno) throws Exception {
+	public RecipeCuisineVO read(Integer bno) throws Exception {
 
 		return session.selectOne(namespace + "read", bno);
 	}
@@ -32,9 +32,16 @@ public class RecipeCuisineDAOImpl implements RecipeCuisineDAO {
 	}
 
 	@Override
-	public void delete(int bno) throws Exception {
+	public void delete(Integer bno) throws Exception {
 
 		session.delete(namespace + "delete", bno);
+	}
+
+
+	@Override
+	public RecipeCuisineVO readStep(RecipeCuisineVO vo) throws Exception {
+		
+		return session.selectOne(namespace + "readStep", vo);
 	}
 
 }

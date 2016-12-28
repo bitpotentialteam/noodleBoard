@@ -32,4 +32,10 @@ public class RecipeImageDAOImpl implements RecipeImageDAO {
 		session.delete(namespace + "delete", ino);
 	}
 
+	@Override
+	public RecipeImageVO readStep(RecipeImageVO vo) throws Exception {
+
+		return session.selectOne(namespace + "readStep", vo);
+	}
+
 }

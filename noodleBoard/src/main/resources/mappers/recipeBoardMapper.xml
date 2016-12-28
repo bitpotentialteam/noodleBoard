@@ -19,7 +19,8 @@
 	<update id="update">
 		update tbl_recipeboard set mno = #{mno}, title = #{title}, ino = #{ino},
 		content = #{content},
-		materialcontent = #{materialContent}
+		materialcontent = #{materialContent},
+		updatedate = sysdate
 		where bno = #{bno}
 	</update>
 

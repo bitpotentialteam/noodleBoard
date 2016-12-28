@@ -33,4 +33,8 @@
 			bno = #{bno}
 	</delete>	
 	
+	<select id="readStep">
+		select * from tbl_recipeCuisine where bno = #{bno} and step = #{step}
+	</select>
+	
 </mapper>
