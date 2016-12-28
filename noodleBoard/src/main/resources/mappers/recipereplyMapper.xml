@@ -2,29 +2,31 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="org.noodle.mapper.RecipeReplyMapper">
-  <insert id="create">
-  insert into tbl_recipereply(mno, bno, rno, content)
-  values(#{mno}, #{bno}, seq_recipeReply.nextval, #{content})
-  
-  </insert>
-  
-  <select id="read" resultType="RecipeReplyVO">
-  select * from tbl_recipereply where rno = #{rno}
-  </select>
-  
-  <update id="update">
-  update tbl_recipereply set bno = #{bno}, content = #{content}, updatedate = sysdate 
-  where rno = #{rno}
-  </update>
-  
-  <delete id="delete">
-  delete tbl_recipereply where rno = #{rno}
-  </delete>
-  
-  <select id="listAll" resultType="RecipeReplyVO">
-  select * from tbl_recipereply
-  </select>
-  
-  </mapper>
+
+<mapper namespace="org.noodle.RecipeReplyMapper">
+
+	<insert id="create">
+		insert into tbl_recipereply(mno, bno, rno, content)
+		values(#{mno}, #{bno}, seq_recipeReply.nextval, #{content})
+
+	</insert>
+
+	<select id="read" resultType="RecipeReplyVO">
+		select * from tbl_recipereply where rno = #{rno}
+	</select>
+
+	<update id="update">
+		update tbl_recipereply set bno = #{bno}, content = #{content}, updatedate =
+		sysdate
+		where rno = #{rno}
+	</update>
+
+	<delete id="delete">
+		delete tbl_recipereply where rno = #{rno}
+	</delete>
+
+	<select id="listAll" resultType="RecipeReplyVO">
+		select * from tbl_recipereply order by rno desc
+	</select>
+
+</mapper>
