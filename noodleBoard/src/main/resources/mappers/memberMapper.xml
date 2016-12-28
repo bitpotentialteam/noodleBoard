@@ -6,9 +6,9 @@
   <mapper namespace="org.noodle.mapper.MemberMapper">
   
   <insert id="create">
-  insert into tbl_user(mno,userid,userpw,username,nickname,email)
+  insert into tbl_user(mno,userid,userpw,username,nickname,email,picture)
   values
-  (seq_user.nextval, #{userid},#{userpw},#{username},#{nickname},#{email})
+  (seq_user.nextval, #{userid, jdbcType=VARCHAR},#{userpw, jdbcType=VARCHAR},#{username, jdbcType=VARCHAR},#{nickname, jdbcType=VARCHAR},#{email, jdbcType=VARCHAR},#{picture, jdbcType=VARCHAR})
   </insert>
   
   <select id="read" resultType="MemberVO">
