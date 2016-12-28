@@ -65,9 +65,21 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public void modifyGET() throws Exception {
+	public void modifyGET(Model model) throws Exception {
 
 		logger.info("myPage page...");
+		
+		model.addAttribute("vo", service.read(27));
+		
+	}
+	
+	@RequestMapping(value = "/myPage", method = RequestMethod.POST)
+	public String modifyPOST(MemberVO vo) throws Exception{
+		
+		logger.info("myPage POST...");
+		
+		service.modify(vo);
+		return "redirect:../";
 	}
 
 }

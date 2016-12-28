@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Widgets</title>
+  <title>My Page</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -37,19 +37,21 @@
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-yellow">
               <div class="widget-user-image">
-                <img class="img-circle" src="../resources/dist/img/user7-128x128.jpg" alt="User Avatar">
+                <img class="img-circle" src="show?name=${vo.picture}" alt="User Avatar">
               </div>
               <!-- /.widget-user-image -->
-              <h3 class="widget-user-username">Nadia Carmichael</h3>
-              <h5 class="widget-user-desc">Lead Developer</h5>
+              <h3 class="widget-user-username">${vo.username}</h3>
+              <h5 class="widget-user-desc">${vo.nickname}</h5>
             </div>
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                <li><input type="text" name="userid" id="userid">${MemberVO.userid}</li>
-                <li><input type="text" name="userid" id="userid">${MemberVO.username}</a></li>
-                <li><input type="text" name="userid" id="userid">${MemberVO.nickname}</a></li>
-                <li><input type="text" name="userid" id="userid">${MemberVO.email}</a></li>
-                <li><input type="text" name="userid" id="userid">${MemberVO.picture}</a></li>
+              
+                <li>ID:<input type="text" name="userid" id="userid" value="${vo.userid}"></li>
+                <li>NAME:<input type="text" name="username" id="username" value="${vo.username}"></li>
+                <li>NICK:<input type="text" name="nickname" id="nickname" value="${vo.nickname}"></li>
+                <li>EMAIL:<input type="text" name="email" id="email" value="${vo.email}"></li>
+                
+                
 
               </ul>
             </div>
