@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-public class MemberController {
+public class UserController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	
 	@Inject
