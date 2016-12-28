@@ -116,7 +116,7 @@ body {
 /* mod button */
 
 .mod {
-    color: aqua;
+    color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -124,7 +124,7 @@ body {
 
 .mod:hover,
 .mod:focus {
-    color: red;
+    color: black;
    
     cursor: pointer;
 }
@@ -206,6 +206,7 @@ input#content{
 				<div class="box" id="temp">
 						<form id='form' method='post' action="regist">
 							<input type='hidden' name='tno' value='${vo.tno}'>
+							<input type='hidden' name='mno' value='${vo.mno}'>
 							<input type='hidden' name='content' value='${vo.content}'>
 						</form>
 						<!-- .box-header START -->
@@ -215,7 +216,7 @@ input#content{
 								<span class="username"><a href="#"> ${vo.nickname}</a></span>
 								<span class="description"> ${vo.regDate} </span>
 								<button type="button" id="remove" value="${vo.tno}" class="pull-right text-muted" data-widget="remove"> 
-									<i class="fa fa-times"></i>
+									<span class="glyphicon glyphicon-trash"></span>
 								</button>           
 								<button type="button" id="modify" value="${vo.tno}" class="pull-right text-muted" data-widget="modify"> 
 									<span class="glyphicon glyphicon-erase"></span>
@@ -264,15 +265,15 @@ input#content{
 									<div class="modal-content">
 										<div class="modal-header">
 											<span class="close">&times;</span>
-											<h2>수정할 내용 입력</h2>
+											<h2>수정할 내용을 입력해주세요!</h2>
 										</div>
 										<div class="modal-body">
 									
-											<input value="${vo.content}" id="content">
+											<input value="${vo.content}" name="content" id="content">
 											
 										</div>
 										<div class="modal-footer">
-											<span class="mod glyphicon glyphicon-erase"></span>
+											<span class="mod glyphicon glyphicon-erase" id="mod"></span>
 										</div>
 									</div>
 
@@ -342,7 +343,7 @@ input#content{
 		});
 		
 		
-		$(".mod").on("click", function(event){
+		$("#mod").on("click", function(event){
 			
 			formObj.attr("action", "timeline/modify");
 			formObj.submit();
