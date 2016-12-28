@@ -212,26 +212,26 @@ input#content{
 			</div>
 			<!-- INPUT END -->
 					
-					<!-- data START -->
-					<c:forEach items="${list}" var="vo">
-				<div class="box" id="temp">
 						<form id='form' method='post' action="regist">
 							<input type='hidden' name='tno' value='${vo.tno}'>
 							<input type='hidden' name='mno' value='${vo.mno}'>
 							<input type='hidden' name='content' value='${vo.content}'>
 						</form>
+					<!-- data START -->
+					<c:forEach items="${list}" var="vo">
+				<div class="box" id="temp">
 						<!-- .box-header START -->
 						<div class="box-header with-border">
 							<div class="user-block">
 								<img class="img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
 								<span class="username"><a href="#"> ${vo.nickname}</a></span>
 								<span class="description"> ${vo.regDate} </span>
-								<button type="button" id="remove" value="${vo.tno}" class="pull-right text-muted" data-widget="remove"> 
+								<p class="remove"><button type="button" id="remove" value="${vo.tno}" class="pull-right text-muted"> 
 									<span class="glyphicon glyphicon-trash"></span>
-								</button>           
-								<button type="button" id="modify" value="${vo.tno}" class="pull-right text-muted" data-widget="modify"> 
+								</button></p>           
+								<p class="modify"><button type="button" id="modify" value="${vo.tno}" class="pull-right text-muted"> 
 									<span class="glyphicon glyphicon-erase"></span>
-								</button>           
+								</button></p>           
 							</div>
 						</div>
 						<!-- .box-header END-->
@@ -323,20 +323,22 @@ input#content{
 
 		});
 		
-		$("#remove").on("click", function(event) {
 		
+		$(".remove button").on("click", function(event) {
+			console.log(event);
+			
 			if(!confirm("정말 삭제하시겠습니까?"))
 				{
 			return
 				}
 			else
+				
 				formObj.attr("action", "timeline/delete");
 				formObj.submit();
 			
 		});
 		
-		
-		$("#modify").on("click", function(event) {
+		$(".modify button").on("click", function(event) {
 			
 			  $('#myModal').toggle();
 			
