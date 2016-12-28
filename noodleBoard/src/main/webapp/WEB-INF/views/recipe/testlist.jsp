@@ -33,6 +33,14 @@
 	rel='stylesheet' type='text/css'>
 
 <link href="../resources/css/agency.min.css" rel="stylesheet">
+ 
+<style>
+.img-responsive {
+	width: 100%;
+    max-height: 100%;
+    height: 360px;
+}
+</style>
 
 </head>
 <body id="page-top" class="index">
