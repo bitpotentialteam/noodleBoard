@@ -13,4 +13,10 @@ public interface RecipeBoardDAO {
 	public void delete(int bno)throws Exception;
 	public List<RecipeBoardVO> listAll()throws Exception;
 	public List<RecipeBoardVO> search(Criteria cri)throws Exception;
+	
+	public void addViewCount() throws Exception;
+	public void addLikeCount() throws Exception;
+	public void minusLikeCount() throws Exception;
+	public void addReplyCount() throws Exception;
+	public void minusReplyCount() throws Exception;
 }

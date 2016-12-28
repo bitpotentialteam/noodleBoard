@@ -47,4 +47,36 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 		return session.selectList(namespace + ".saerch", cri);
 	}
 
+	@Override
+	public void addViewCount() throws Exception {
+
+		session.update(namespace + ".addViewCount");
+	}
+
+	@Override
+	public void addLikeCount() throws Exception {
+
+		session.update(namespace + ".addLikeCount");
+	}
+
+	@Override
+	public void minusLikeCount() throws Exception {
+
+		session.update(namespace + ".minusLikeCount");
+	}
+
+	@Override
+	public void addReplyCount() throws Exception {
+
+		session.update(namespace + ".addReplyCount");
+	}
+
+	@Override
+	public void minusReplyCount() throws Exception {
+
+		session.update(namespace + ".minusReplyCount");
+	}
+
+	
+
 }
