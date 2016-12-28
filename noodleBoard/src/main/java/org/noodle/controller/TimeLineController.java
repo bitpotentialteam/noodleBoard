@@ -23,7 +23,7 @@ public class TimeLineController {
 
 	private static final Logger logger = LoggerFactory.getLogger(TimeLineController.class);
 
-	@GetMapping("/")
+	@GetMapping("")
 	public String timeLine(Model model) throws Exception {
 
 		logger.info("getTIMELINE.....");
@@ -60,7 +60,7 @@ public class TimeLineController {
 		
 		service.remove(tno);
 
-		return "redirect:/timeline/";
+		return "redirect:/timeline";
 	
 	}
 	
@@ -71,7 +71,7 @@ public class TimeLineController {
 		model.addAttribute("vo",vo);
 		System.out.println(vo);
 
-		return "redirect:/timeline/"; 
+		return "redirect:/timeline"; 
 	}
 
 }
