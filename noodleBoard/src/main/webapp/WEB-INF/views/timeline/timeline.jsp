@@ -59,6 +59,20 @@
 	resize: none;
 }
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
@@ -66,6 +80,38 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* The Close Button */
+
+/* mod button */
+
+.mod {
+    color: aqua;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.mod:hover,
+.mod:focus {
+    color: red;
+   
+    cursor: pointer;
 }
 
 
@@ -132,6 +178,7 @@
 						<form id='form' method='post' action="regist">
 
 							<input type='hidden' name='tno' value='${vo.tno}'>
+							<input type='hidden' name='content' value='${vo.content}'>
 
 						</form>
 
@@ -208,6 +255,30 @@
 									<input type="text" class="form-control input-sm"
 										placeholder="Press enter to post comment">
 								</div>
+								
+							<!-- The Modal -->
+								<div id="myModal" class="modal">
+
+									<!-- Modal content -->
+									<div class="modal-content">
+										<div class="modal-header">
+											<span class="close">&times;</span>
+													<span class="mod">&times;</span>
+											<h2>수정할 내용 입력</h2>
+										</div>
+										<div class="modal-body">
+									
+											<input value="${vo.content}" id="content">
+											
+										</div>
+										<div class="modal-footer">
+											<h3>뿌터~!</h3>
+										</div>
+									</div>
+
+								</div>
+								<!-- modal 끝 -->
+
 							</form>
 
 						</div>
@@ -218,16 +289,8 @@
 		</div>
 
 	</div>
-	
-	<div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
 
-</div>
 
 	</section>
 	
@@ -263,11 +326,25 @@
 			  $('#myModal').toggle();
 			
 			
-				formObj.attr("action", "modify");
-				formObj.submit();
+				//formObj.attr("action", "modify");
+				//formObj.submit();
 			
 		});
 		
+		$(".close").on("click", function(event){
+		
+	
+		    $("#myModal").toggle(); 
+		
+		});
+		
+		
+		$(".mod").on("click", function(event){
+			
+			formObj.attr("action", "modify");
+			formObj.submit();
+		
+		});
 	</script>
 	
 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import oracle.net.aso.r;
 
 @Controller
 @RequestMapping("/timeline/*")
@@ -61,7 +60,7 @@ public class TimeLineController {
 		
 		service.remove(tno);
 
-		return "redirect:/timeline";
+		return "redirect:/timeline/";
 	
 	}
 	
@@ -70,8 +69,9 @@ public class TimeLineController {
 		
 		service.modify(vo);
 		model.addAttribute("vo",vo);
+		System.out.println(vo);
 
-		return "redirect:/timeline";
+		return "redirect:/timeline/"; 
 	}
 
 }
