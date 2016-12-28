@@ -6,14 +6,15 @@ import javax.inject.Inject;
 
 import org.noodle.domain.Criteria;
 import org.noodle.domain.RecipeBoardVO;
-import org.noodle.persistence.RecipeBoardDAOImpl;
+import org.noodle.persistence.RecipeBoardDAO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RecipeBoardServiceImpl implements RecipeBoardService {
 
 	@Inject
-	private RecipeBoardDAOImpl dao;
+	private RecipeBoardDAO dao;
 	
 	@Override
 	public void regist(RecipeBoardVO vo) throws Exception {
@@ -21,7 +22,11 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	}
 
 	@Override
+	@Transactional
 	public RecipeBoardVO view(int bno) throws Exception {
+		
+		dao.addViewCount(bno);
+		
 		return dao.read(bno);
 	}
 
@@ -45,11 +50,7 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 		return dao.search(cri);
 	}
 
-	@Override
-	public void addViewCount(Integer bno) throws Exception {
 
-		dao.addViewCount(bno);
-	}
 
 	@Override
 	public void addLikeCount(Integer bno) throws Exception {
@@ -63,16 +64,6 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 		dao.minusLikeCount(bno);
 	}
 
-	@Override
-	public void addReplyCount(Integer bno) throws Exception {
 
-		dao.addReplyCount(bno);
-	}
-
-	@Override
-	public void minusReplyCount(Integer bno) throws Exception {
-
-		dao.minusReplyCount(bno);
-	}
 
 }

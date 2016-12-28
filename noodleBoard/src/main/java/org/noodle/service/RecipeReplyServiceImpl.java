@@ -2,20 +2,27 @@ package org.noodle.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.noodle.domain.RecipeReplyVO;
-import org.noodle.persistence.RecipeReplyDAOImpl;
+import org.noodle.persistence.RecipeBoardDAO;
+import org.noodle.persistence.RecipeReplyDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RecipeReplyServiceImpl implements RecipeReplyService {
 	
-	@Inject
-	private RecipeReplyDAOImpl dao;
+	@Autowired
+	private RecipeReplyDAO dao;
 
+	@Autowired
+	private RecipeBoardDAO bdao;
+	
 	@Override
+	@Transactional
 	public void regist(RecipeReplyVO vo) throws Exception {
+
+		bdao.addReplyCount(vo.getBno());
 		dao.create(vo);
 	}
 

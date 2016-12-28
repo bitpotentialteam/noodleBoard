@@ -13,9 +13,6 @@ public interface RecipeBoardService {
 	public List<RecipeBoardVO> listAll()throws Exception;
 	public List<RecipeBoardVO> search(Criteria cri)throws Exception;
 
-	public void addViewCount(Integer bno) throws Exception;
 	public void addLikeCount(Integer bno) throws Exception;
 	public void minusLikeCount(Integer bno) throws Exception;
-	public void addReplyCount(Integer bno) throws Exception;
-	public void minusReplyCount(Integer bno) throws Exception;
 }
