@@ -33,11 +33,11 @@
 	</delete>
 
 	<update id="create_client">
-		update tbl_user set client_ID = #{UUID_ID}, Client_PW = #{UUID_PW} where mno=#{mno};
+		update tbl_user set client_ID = #{UUID_ID}, Client_PW = #{UUID_PW} where mno=#{mno}
 	</update>
 
 	<update id="delete_client">
-		update tbl_user set client_ID = null, Client_PW = null where mno=#{mno};
+		update tbl_user set client_ID = null, Client_PW = null where mno=#{mno}
 	</update>
 
 </mapper>
