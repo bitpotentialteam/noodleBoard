@@ -4,7 +4,6 @@ import javax.inject.Inject;
 
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.service.RecipeBoardService;
-import org.noodle.service.RecipeBoardServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -41,6 +40,15 @@ public class RecipeController {
 		logger.info("listAll.............");
 	}
 	
+	
+	@GetMapping("/testlist")
+	public void listAll(Model model) throws Exception {
+		System.out.println("listAll callll..........");
+		model.addAttribute("list", service.listAll());
+		System.out.println("listAll callll.........."+ service.listAll().toString() );
+		
+	
+	}
 	
 
 }

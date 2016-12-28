@@ -27,6 +27,18 @@
 		delete tbl_recipeboard where bno = #{bno}
 	</delete>
 
+<<<<<<< HEAD
+	<select id="list" resultType="RecipeBoardVO">
+		select * from tbl_recipeboard
+	</select>
+	
+	<select id="listAll" parameterType="int" resultType="RecipeBoardVO">
+		select tbl_recipeimage.image, tbl_recipeboard.title, tbl_recipeboard.content
+			from tbl_recipeboard
+		join tbl_recipeimage
+		 on tbl_recipeimage.ino = tbl_recipeboard.ino
+	</select>
+=======
 	<select id="listAll" resultType="RecipeBoardVO">
 		select * from tbl_recipeboard
 	</select>
@@ -50,5 +62,6 @@
 	<update id="minusReplyCount">
 		update tbl_recipeBoard set replyCnt = replyCnt -1 where bno =#{bno};
 	</update>
+>>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 
 </mapper>
