@@ -43,27 +43,27 @@
 
 			<form action="register" method="post" >
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" placeholder="ID"> <span
+					<input type="text" id="userid" name="userid" class="form-control" placeholder="ID"> <span
 						class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" class="form-control" placeholder="Password">
+					<input type="password" id="userpw" name="userpw" class="form-control" placeholder="Password">
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" placeholder="Username">
+					<input type="text" id="username" name="username" class="form-control" placeholder="Username">
 					<span class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" placeholder="NickName">
+					<input type="text" id="nickname" name="nickname" class="form-control" placeholder="NickName">
 					<span class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="email" class="form-control" placeholder="Email">
+					<input type="email" id="email" name="email" class="form-control" placeholder="Email">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback" >
-					<div class="form-control" id="fileDrop">
+					<div class="form-control" id="fileDrop" name="picture">
 					Picture Drop Here
 					</div>
 				</div>
