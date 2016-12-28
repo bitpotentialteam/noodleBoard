@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/recipeboard/*")
+@RequestMapping("/recipe/*")
 public class RecipeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RecipeController.class);
@@ -25,15 +25,15 @@ public class RecipeController {
 	
 	
 	//테스트
-	@GetMapping("/reciperegister")
+	@GetMapping("/register")
 	public void registerGET(RecipeBoardVO vo, Model model)throws Exception{
 		logger.info("register GET.................");
 	}
 	
-	@PostMapping("/reciperegister")
+	@PostMapping("/register")
 	public String registerPOST(RecipeBoardVO vo, RedirectAttributes rttr) throws Exception {
 		service.regist(vo);
-		return "redirect:/recipeboard/list";
+		return "redirect:/recipe/list";
 	}
 	
 	@GetMapping("/list")
