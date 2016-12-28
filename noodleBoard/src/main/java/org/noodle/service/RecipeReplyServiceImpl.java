@@ -32,8 +32,11 @@ public class RecipeReplyServiceImpl implements RecipeReplyService {
 	}
 
 	@Override
-	public void remove(int rno) throws Exception {
-		dao.delete(rno);
+	@Transactional
+	public void remove(RecipeReplyVO vo) throws Exception {
+		
+		bdao.delete(vo.getBno());
+		dao.delete(vo.getRno());
 	}
 
 	@Override
