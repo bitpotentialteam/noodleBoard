@@ -30,6 +30,13 @@ public class MemberController {
 		logger.info("login page called.....");
 		
 	}
+	@RequestMapping(value = "/user/login", method=RequestMethod.POST)
+	public String loginPOST()throws Exception{
+		
+		logger.info("login...");
+		
+		return "redirect:../";
+	}
 	
 	@RequestMapping(value = "user/register", method = RequestMethod.GET)
 	public void registerGET(MemberVO vo, Model model) throws Exception {

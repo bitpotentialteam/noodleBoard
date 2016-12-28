@@ -88,13 +88,13 @@
 		<div class="login-box-body">
 			<p class="login-box-msg">정보를 기입하세요</p>
 
-			<form action="#" method="post">
+			<form action="login" method="post">
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" placeholder="ID">
+					<input type="text" name="userid" class="form-control" placeholder="ID">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" class="form-control" placeholder="Password">
+					<input type="password" name="userpw" class="form-control" placeholder="Password">
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">
