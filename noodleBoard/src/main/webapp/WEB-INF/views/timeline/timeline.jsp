@@ -305,7 +305,7 @@ input#content{
 
 		$("#create").on("click", function(event) {
 
-			formObj.attr("action", "register");
+			formObj.attr("action", "timeline/register");
 			formObj.attr("method", "post");
 			formObj.submit();
 
@@ -318,7 +318,7 @@ input#content{
 			return
 				}
 			else
-				formObj.attr("action", "delete");
+				formObj.attr("action", "timeline/delete");
 				formObj.submit();
 			
 		});
