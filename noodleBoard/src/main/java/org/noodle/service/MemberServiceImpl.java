@@ -36,5 +36,17 @@ public class MemberServiceImpl implements MemberService {
 		dao.delete(mno);
 	}
 
+	@Override
+	public void regist_client(Integer mno) throws Exception {
+
+		dao.create_client(mno);
+	}
+
+	@Override
+	public void remove_client(Integer mno) throws Exception {
+
+		dao.delete_client(mno);
+	}
+
 }
  
