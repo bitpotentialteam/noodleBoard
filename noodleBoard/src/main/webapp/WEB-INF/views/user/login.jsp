@@ -60,7 +60,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="/index">Noodles.com</a>
+                <a class="navbar-brand page-scroll" href="/">Noodles.com</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -68,7 +68,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden"><a href="#page-top"></a></li>
 					<li><a class="page-scroll" href="#">Noodle-Wiki</a></li>
-					<li><a class="page-scroll" href="/recipeBoard/demo">Recipe</a></li>
+					<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
 					<li><a class="page-scroll" href="/timeline/timeline">Community</a></li>
 					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
 					<li><a class="page-scroll" href="/user/login">LOGIN</a></li>
