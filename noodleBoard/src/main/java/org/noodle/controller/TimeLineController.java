@@ -13,35 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-<<<<<<< HEAD
-@Controller
-@RequestMapping("/")
-=======
-
 @Controller
 @RequestMapping("/timeline/*")
->>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 public class TimeLineController {
 
 	@Inject
 	TimeLineService service;
 
 	private static final Logger logger = LoggerFactory.getLogger(TimeLineController.class);
-<<<<<<< HEAD
-
-	@GetMapping("/timeline")
-	public String timeLine(Model model) throws Exception {
-
-		logger.info("getTIMELINE.....");
-
-		model.addAttribute("list", service.listView());
-
-		return "timeline/timeline";
-	}
-	
-
-=======
->>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 
 	@PostMapping("/regist")
 	public String registerPost(TimeLineVO vo) throws Exception {
@@ -53,11 +32,6 @@ public class TimeLineController {
 		
 		System.out.println(vo);
 		System.out.println(vo.getTno());
-
-<<<<<<< HEAD
-		return "redirect:/timeline";
-=======
->>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 
 		return "redirect:/timeline";
 
@@ -86,18 +60,18 @@ public class TimeLineController {
 		return "redirect:/timeline"; 
 	}
 	
-	@PostMapping("/delete")
-	public String delete(Integer tno, RedirectAttributes rttr, Model model)throws Exception{
-		
-		TimeLineVO vo = new TimeLineVO();
-		
-		service.remove(tno);
-		
-		model.addAttribute("tno", vo.getTno());
-		
-		return "redirect:/timeline";
-
-		
-	}
+//	@PostMapping("/delete")
+//	public String delete(Integer tno, RedirectAttributes rttr, Model model)throws Exception{
+//		
+//		TimeLineVO vo = new TimeLineVO();
+//		
+//		service.remove(tno);
+//		
+//		model.addAttribute("tno", vo.getTno());
+//		
+//		return "redirect:/timeline";
+//
+//		
+//	}
 
 }
