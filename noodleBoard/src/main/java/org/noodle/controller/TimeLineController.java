@@ -55,7 +55,7 @@ public class TimeLineController {
 		
 		service.modify(vo);
 		model.addAttribute("vo",vo);
-		System.out.println(vo);
+		logger.info("Modify vo" + vo);
 
 		return "redirect:/timeline"; 
 	}

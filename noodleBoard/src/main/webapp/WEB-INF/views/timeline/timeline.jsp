@@ -74,6 +74,17 @@ body {
 	resize: none;
 }
 
+#content2 {
+	width: 50%;
+	height: 150px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	resize: none;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -269,7 +280,7 @@ input#content{
 										</div>
 										<div class="modal-body">
 									
-											<input value="${vo.content}" name="content" id="content">
+											<input value="${vo.content}" name="content" id="content2">
 											
 										</div>
 										<div class="modal-footer">
