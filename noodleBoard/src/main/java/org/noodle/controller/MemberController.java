@@ -22,25 +22,20 @@ public class MemberController {
 	@Inject
 	private MemberService service;
 	//seungwoo pratice
-	@GetMapping("/user/login")
-	public String login() throws Exception{
+	@GetMapping("user/login")
+	public void login() throws Exception{
+		
 		logger.info("login page called.....");
 		
-		return "user/login";
 	}
 	
-	@GetMapping("/user/register")
-	public String register() throws Exception{
-		logger.info("register page...");
-		return "user/register";
-	}
-	
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	@RequestMapping(value = "user/register", method = RequestMethod.GET)
 	public void registerGET(MemberVO vo, Model model) throws Exception {
 
 		logger.info("register...");
 	}
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+
+	@RequestMapping(value = "user/register", method = RequestMethod.POST)
 	public String registPOST(MemberVO vo, RedirectAttributes rttr) throws Exception {
 
 		logger.info("regist post....");
@@ -53,4 +48,6 @@ public class MemberController {
 		// return "/board/success";
 		return "redirect:index";
 	}
+	
+	
 }

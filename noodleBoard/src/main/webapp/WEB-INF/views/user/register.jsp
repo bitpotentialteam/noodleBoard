@@ -41,7 +41,7 @@
 		<div class="register-box-body">
 			<p class="login-box-msg">Register a new membership</p>
 
-			<form action="register" method="post">
+			<form action="register" method="post" >
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" placeholder="ID"> <span
 						class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -140,7 +140,7 @@
 				console.log(formData);
 
 				$.ajax({
-					url : "uploadFile",
+					url : "../uploadFile",
 					data : formData, //기본이 멀티파트   
 					dataType : 'text',
 					type : "post",
