@@ -39,4 +39,16 @@ public class MemberDAOImpl implements MemberDAO {
 		session.delete(namespace+".delete",mno);
 	}
 
+	@Override
+	public void create_client(Integer mno) throws Exception {
+
+		session.insert(namespace + ".create_client", mno);
+	}
+
+	@Override
+	public void delete_client(Integer mno) throws Exception {
+
+		session.delete(namespace + ".delete_client", mno);
+	}
+
 }
