@@ -190,7 +190,7 @@ input#content{
 			<!-- .box-header END-->
 			<!-- .box-body START -->
 				<div class="box-body">
-					<form action='regist' method='post'>
+					<form action='timeline/regist' method='post'>
 						<input id="content" name="content" type="text" class="form-control input-md"
 							placeholder="Press enter to post comment">							
 							<input type="hidden" name="mno" placeholder="mno" value="5">
