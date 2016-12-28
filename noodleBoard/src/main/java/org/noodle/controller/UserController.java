@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
+@RequestMapping("/user/*")
 public class UserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -24,13 +25,13 @@ public class UserController {
 	
 	
 	
-	@GetMapping("user/login")
+	@GetMapping("/login")
 	public void login() throws Exception{
 		
 		logger.info("login page called.....");
 		
 	}
-	@RequestMapping(value = "/user/login", method=RequestMethod.POST)
+	@RequestMapping(value = "/login", method=RequestMethod.POST)
 	public String loginPOST()throws Exception{
 		
 		logger.info("login...");
@@ -38,13 +39,13 @@ public class UserController {
 		return "redirect:../";
 	}
 	 
-	@RequestMapping(value = "user/register", method = RequestMethod.GET)
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET(MemberVO vo, Model model) throws Exception {
 
 		logger.info("register...");
 	}
 
-	@RequestMapping(value = "user/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registPOST(MemberVO vo) throws Exception {
 
 		logger.info("regist post....");
