@@ -48,5 +48,11 @@ public class MemberServiceImpl implements MemberService {
 		dao.delete_client(mno);
 	}
 
+	@Override
+	public MemberVO login(MemberVO vo) throws Exception {
+		
+		return dao.login(vo);
+	}
+
 }
  

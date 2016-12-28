@@ -61,4 +61,10 @@ public class MemberDAOImpl implements MemberDAO {
 		session.delete(namespace + ".delete_client", mno);
 	}
 
+	@Override
+	public MemberVO login(MemberVO vo) throws Exception {
+	
+		return session.selectOne(namespace + ".login",vo);
+	}
+
 }
