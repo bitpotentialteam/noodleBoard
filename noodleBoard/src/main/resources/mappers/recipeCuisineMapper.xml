@@ -33,7 +33,7 @@
 			bno = #{bno}
 	</delete>	
 	
-	<select id="readStep">
+	<select id="readStep" resultType="RecipeCuisineVO">
 		select * from tbl_recipeCuisine where bno = #{bno} and step = #{step}
 	</select>
 	

@@ -20,7 +20,7 @@
 		delete tbl_recipeImage where ino = #{ino}
 	</delete>	
 	
-	<select id="readStep">
+	<select id="readStep" resultType="RecipeImageVO">
 		select * from tbl_recipeImage where bno = #{bno} and step = #{step}
 	</select>
 	
