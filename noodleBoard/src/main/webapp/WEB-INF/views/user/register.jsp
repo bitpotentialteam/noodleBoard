@@ -150,7 +150,7 @@
 						console.log(data);
 						//alert(data);
 						uploadedList.html("<img src=show?name=" + data + ">");
-						$("#thumbnail").val(data);
+						$("#picture").val(data);
 					}
 				});
 			});

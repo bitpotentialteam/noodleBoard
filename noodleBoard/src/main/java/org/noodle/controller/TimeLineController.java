@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/")
 public class TimeLineController {
 
 	@Inject
@@ -31,13 +33,13 @@ public class TimeLineController {
 
 
 	@PostMapping("/regist")
-	public String registerPost(TimeLineVO vo, Model model) throws Exception {
+	public String registerPost(TimeLineVO vo) throws Exception {
 
 		logger.info("VO:" + vo);
 
 		service.regist(vo);
 
-		return "timeline/timeline";
+		return "redirect:/timeline";
 
 	}
 
