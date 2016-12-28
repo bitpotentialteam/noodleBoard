@@ -14,26 +14,26 @@ public class RecipeReplyDAOImpl implements RecipeReplyDAO {
 	@Inject
 	private SqlSession session;
 	
-	private static final String NAME = "org.noodle.mapper.RecipeReplyMapper";
+	private static final String NAME = "org.noodle.RecipeReplyMapper.";
 
 	@Override
 	public void create(RecipeReplyVO vo) throws Exception {
-		session.insert(NAME + ".create", vo);
+		session.insert(NAME + "create", vo);
 	}
 
 	@Override
 	public void update(RecipeReplyVO vo) throws Exception {
-		session.update(NAME + ".update", vo);
+		session.update(NAME + "update", vo);
 	}
 
 	@Override
-	public void delete(int rno) throws Exception {
-		session.delete(NAME + ".delete", rno); 
+	public void delete(Integer rno) throws Exception {
+		session.delete(NAME + "delete", rno); 
 	}
 
 	@Override
 	public List<RecipeReplyVO> listAll() throws Exception {
-		return session.selectList(NAME + ".listAll");
+		return session.selectList(NAME + "listAll");
 	}
 
 }
