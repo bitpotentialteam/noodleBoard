@@ -15,7 +15,7 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	@Inject
 	private SqlSession session;
 	
-	private static final String namespace = "org.noodle.mapper.RecipeMapper"; 
+	private static final String namespace = "org.noodle.mapper.RecipeBoardMapper"; 
 	
 	@Override
 	public void create(RecipeBoardVO vo) throws Exception {
