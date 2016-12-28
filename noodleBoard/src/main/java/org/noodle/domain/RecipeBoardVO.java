@@ -4,34 +4,37 @@ import java.util.Date;
 
 public class RecipeBoardVO {
 	
-	private int mno;
-	private int bno;
-	private int ino;
+	
+	private Integer mno;
+	private Integer bno;
+	private Integer ino;
 	private String title;
 	private String content;
 	private String materialContent;
 	private String image;
-	private int viewCnt;
-	private int likeCnt;
-	private int replyCnt;
+	private Integer viewCnt;
+	private Integer likeCnt;
+	private Integer replyCnt;
 	private Date regdate;
 	private Date updatedate;
-	public int getMno() {
+	
+	
+	public Integer getMno() {
 		return mno;
 	}
-	public void setMno(int mno) {
+	public void setMno(Integer mno) {
 		this.mno = mno;
 	}
-	public int getBno() {
+	public Integer getBno() {
 		return bno;
 	}
-	public void setBno(int bno) {
+	public void setBno(Integer bno) {
 		this.bno = bno;
 	}
-	public int getIno() {
+	public Integer getIno() {
 		return ino;
 	}
-	public void setIno(int ino) {
+	public void setIno(Integer ino) {
 		this.ino = ino;
 	}
 	public String getTitle() {
@@ -58,22 +61,22 @@ public class RecipeBoardVO {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public int getViewCnt() {
+	public Integer getViewCnt() {
 		return viewCnt;
 	}
-	public void setViewCnt(int viewCnt) {
+	public void setViewCnt(Integer viewCnt) {
 		this.viewCnt = viewCnt;
 	}
-	public int getLikeCnt() {
+	public Integer getLikeCnt() {
 		return likeCnt;
 	}
-	public void setLikeCnt(int likeCnt) {
+	public void setLikeCnt(Integer likeCnt) {
 		this.likeCnt = likeCnt;
 	}
-	public int getReplyCnt() {
+	public Integer getReplyCnt() {
 		return replyCnt;
 	}
-	public void setReplyCnt(int replyCnt) {
+	public void setReplyCnt(Integer replyCnt) {
 		this.replyCnt = replyCnt;
 	}
 	public Date getRegdate() {
@@ -95,7 +98,5 @@ public class RecipeBoardVO {
 				+ ", likeCnt=" + likeCnt + ", replyCnt=" + replyCnt + ", regdate=" + regdate + ", updatedate="
 				+ updatedate + "]";
 	}
-	
-	
 
 }

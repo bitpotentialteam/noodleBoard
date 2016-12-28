@@ -4,12 +4,14 @@ import java.util.Date;
 
 public class RecipeReplyVO {
 	
+	
 	private Integer mno;
 	private Integer bno;
 	private Integer rno;
 	private String content;
 	private Date regdate;
 	private Date updatedate;
+	
 	
 	public Integer getMno() {
 		return mno;
