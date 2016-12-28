@@ -162,7 +162,7 @@ input#content{
 			<ul class="nav navbar-nav navbar-right">
 				<li class="hidden"><a href="#page-top"></a></li>
 				<li><a class="page-scroll" href="#">Noodle-Wiki</a></li>
-				<li><a class="page-scroll" href="/recipeBoard/demo">Recipe</a></li>
+				<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
 				<li><a class="page-scroll" href="/timeline">Community</a></li>
 				<li><a class="page-scroll" href="/developer/api">Developer</a></li>
 				<li><a class="page-scroll" href="/user/login">LOGIN</a></li>

@@ -74,8 +74,10 @@
                     <h3 class="section-subheading text-muted">나만의 특별한 레시피를 공유하세요</h3>
                 </div>
             </div>
-            <c:forEach items="${list}" var="vo">
+            <!-- list div START -->
             <div class="row">
+            <!-- items START -->
+            <c:forEach items="${list}" var="vo">
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="/view" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -90,8 +92,8 @@
                         <p class="text-muted">${vo.content}</p>
                     </div>
                 </div>
-            </div>
-            </c:forEach>
+            </c:forEach>  <!-- items END -->
+            </div> <!-- list div END -->
         </div>
     </section>
 
