@@ -45,4 +45,34 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 		return dao.search(cri);
 	}
 
+	@Override
+	public void addViewCount(Integer bno) throws Exception {
+
+		dao.addViewCount(bno);
+	}
+
+	@Override
+	public void addLikeCount(Integer bno) throws Exception {
+
+		dao.addLikeCount(bno);
+	}
+
+	@Override
+	public void minusLikeCount(Integer bno) throws Exception {
+
+		dao.minusLikeCount(bno);
+	}
+
+	@Override
+	public void addReplyCount(Integer bno) throws Exception {
+
+		dao.addReplyCount(bno);
+	}
+
+	@Override
+	public void minusReplyCount(Integer bno) throws Exception {
+
+		dao.minusReplyCount(bno);
+	}
+
 }

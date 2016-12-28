@@ -1,9 +1,13 @@
 package org.noodle.persistence;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.noodle.domain.MemberVO;
+import org.noodle.util.ClientUtils;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -37,6 +41,24 @@ public class MemberDAOImpl implements MemberDAO {
 	public void delete(int mno) throws Exception {
 
 		session.delete(namespace+".delete",mno);
+	}
+
+	@Override
+	public void create_client(Integer mno) throws Exception {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("Client_ID", ClientUtils.INSTANCE.addUUID(mno));
+		map.put("Client_PW", ClientUtils.INSTANCE.addUUID(mno));
+		map.put("mno", mno);
+		
+		session.insert(namespace + ".create_client", map);
+	}
+
+	@Override
+	public void delete_client(Integer mno) throws Exception {
+
+		session.delete(namespace + ".delete_client", mno);
 	}
 
 }

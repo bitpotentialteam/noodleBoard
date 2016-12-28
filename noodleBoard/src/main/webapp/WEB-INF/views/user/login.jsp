@@ -60,7 +60,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="/index">Noodles.com</a>
+                <a class="navbar-brand page-scroll" href="/">Noodles.com</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -68,8 +68,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden"><a href="#page-top"></a></li>
 					<li><a class="page-scroll" href="#">Noodle-Wiki</a></li>
-					<li><a class="page-scroll" href="/recipeBoard/demo">Recipe</a></li>
-					<li><a class="page-scroll" href="/timeline/timeline">Community</a></li>
+					<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
+					<li><a class="page-scroll" href="/timeline">Community</a></li>
 					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
 					<li><a class="page-scroll" href="/user/login">LOGIN</a></li>
 					<li><a class="page-scroll" href="/user/register">SING-IN</a></li>
@@ -88,13 +88,13 @@
 		<div class="login-box-body">
 			<p class="login-box-msg">정보를 기입하세요</p>
 
-			<form action="#" method="post">
+			<form action="login" method="post">
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" placeholder="ID">
+					<input type="text" name="userid" class="form-control" placeholder="ID">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" class="form-control" placeholder="Password">
+					<input type="password" name="userpw" class="form-control" placeholder="Password">
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">

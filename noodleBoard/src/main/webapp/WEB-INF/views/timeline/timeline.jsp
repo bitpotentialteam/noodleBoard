@@ -12,22 +12,37 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
+	
 <!-- Bootstrap 3.3.6 -->
 <link rel="stylesheet"
 	href="../resources/vendor/bootstrap/css/bootstrap.min.css">
+
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="../resources/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+	
 <!-- Ionicons -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
 <!-- Theme style -->
 <link rel="stylesheet" href="../resources/css/AdminLTE.min.css">
+<link href="../resources/css/agency.min.css" rel="stylesheet">
+
 <!-- iCheck -->
 <link rel="stylesheet" href="../resources/css/blue.css">
-
-<!-- Theme CSS -->
-<link href="../resources/css/agency.min.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,14 +51,23 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+<<<<<<< HEAD
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 	
 </head>
 <body>
+=======
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
-	<style>
+<style>
+body {
+	background-color: #222;
+}
+>>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
+
 .header {
 	background-color: pink;
 }
@@ -58,6 +82,7 @@
 	background-color: #f8f8f8;
 	resize: none;
 }
+<<<<<<< HEAD
 </style>
 
 	<form id='form' method='post' action="regist">
@@ -67,7 +92,77 @@
 	</form>
 	
 	
+=======
+>>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* The Close Button */
+
+/* mod button */
+
+.mod {
+    color: aqua;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.mod:hover,
+.mod:focus {
+    color: red;
+   
+    cursor: pointer;
+}
+
+div#temp{
+	border: 1px solid black;
+}
+
+input#content{
+	width:100%;
+} 
+
+
+</style>
+	
+</head>
+<body>
 	<!-- Navigation -->
 	<nav id="mainNav"
 		class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -97,11 +192,14 @@
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
-	<!-- /.container-fluid --> </nav>
+	<!-- /.container-fluid -->
+	</nav>
+	<!-- Navigation END -->
 
 	<section>
 	<div class="container">
 		<div class="row">
+<<<<<<< HEAD
 
 			<div class="box box-widget">
 
@@ -117,16 +215,42 @@
 							<button type="submit" id="create" > submit! </button>
 					</form>
 
+=======
+		<!-- INPUT START -->
+			<div class="box" id="temp">
+			<!-- .box-header START -->
+				<div class="box-header with-border">
+					<div class="user-block">
+						<img class="img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
+						<span class="username"><a href="#"> 로그인한 사람 이름</a></span>   
+					</div>
+>>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 				</div>
-
-
-
-
-				<ul>
+			<!-- .box-header END-->
+			<!-- .box-body START -->
+				<div class="box-body">
+					<form action='regist' method='post'>
+						<input id="content" name="content" type="text" class="form-control input-md"
+							placeholder="Press enter to post comment">							
+							<input type="hidden" name="mno" placeholder="mno" value="5">
+							<button type="submit" id="create" class="pull-right" > submit! </button>
+					</form>
+				</div>
+			<!-- .box-body END -->				
+			</div>
+			<!-- INPUT END -->
+					
+					<!-- data START -->
 					<c:forEach items="${list}" var="vo">
-
+				<div class="box" id="temp">
+						<form id='form' method='post' action="regist">
+							<input type='hidden' name='tno' value='${vo.tno}'>
+							<input type='hidden' name='content' value='${vo.content}'>
+						</form>
+						<!-- .box-header START -->
 						<div class="box-header with-border">
 							<div class="user-block">
+<<<<<<< HEAD
 								<img class="img-circle"
 									src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg"
 									alt="User Image"> <span class="username"><a
@@ -140,19 +264,33 @@
 							</button>
 									
 									
+=======
+								<img class="img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
+								<span class="username"><a href="#"> ${vo.nickname}</a></span>
+								<span class="description"> ${vo.regDate} </span>
+								<button type="button" id="remove" value="${vo.tno}" class="pull-right text-muted" data-widget="remove"> 
+									<i class="fa fa-times"></i>
+								</button>           
+								<button type="button" id="modify" value="${vo.tno}" class="pull-right text-muted" data-widget="modify"> 
+									<span class="glyphicon glyphicon-erase"></span>
+								</button>           
+>>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 							</div>
+<<<<<<< HEAD
 							
 							
 
+=======
+>>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 						</div>
-						<!-- /.box-header -->
+						<!-- .box-header END-->
+						<!-- .box-body START -->
 						<div class="box-body">
 							<!-- post text -->
 							<p>${vo.content}</p>
-
 							<!-- Social sharing buttons -->
-
 							<button type="button" class="btn btn-default btn-xs">
+<<<<<<< HEAD
 								<i class="fa fa-thumbs-o-up"></i> Like
 							</button>
 					
@@ -160,28 +298,24 @@
 
 							<span class="pull-right text-muted">${vo.likeCnt} likes -
 								${vo.replyCnt} comments</span>
+=======
+								<i class="fa fa-thumbs-o-up"></i> Like </button>
+							<span class="pull-right text-muted">${vo.likeCnt} likes - ${vo.replyCnt} comments</span>
+>>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 						</div>
-						<!-- /.box-body -->
+						<!-- .box-body END -->
+						<!-- .box-footer START -->
 						<div class="box-footer box-comments">
 							<div class="box-comment">
 								<!-- User image -->
-								<img class="img-circle img-sm"
-									src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg"
-									alt="User Image">
-
+								<img class="img-circle img-sm" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg" alt="User Image">
 								<div class="comment-text">
-									<span class="username"> 댓글쓴이!!!!!!!!!!!!!! <span
-										class="text-muted pull-right"> 댓글쓴애 시간 </span>
-									</span>
-									<!-- /.username -->
+									<span class="username"> 댓글쓴이!!!!!!!!!!!!!! <span class="text-muted pull-right"> 댓글쓴애 시간 </span></span>	<!-- /.username -->
 									댓글내용이구여!!!!!!!!!!!!!!!!!!!!!!!!!!
-								</div>
-								<!-- /.comment-text -->
-							</div>
-							<!-- /.box-comment -->
-
+								</div> <!-- /.comment-text -->
+							</div> <!-- /.box-comment -->
 						</div>
-						<!-- /.box-footer -->
+						<!-- .box-footer END-->
 						<div class="box-footer">
 							<form action="#" method="post">
 								<img class="img-responsive img-circle img-sm"
@@ -192,20 +326,50 @@
 									<input type="text" class="form-control input-sm"
 										placeholder="Press enter to post comment">
 								</div>
+								
+								
+							<!-- Modify Modal -->
+								<div id="myModal" class="modal">
+
+									<!-- Modal content -->
+									<div class="modal-content">
+										<div class="modal-header">
+											<span class="close">&times;</span>
+											<h2>수정할 내용 입력</h2>
+										</div>
+										<div class="modal-body">
+									
+											<input value="${vo.content}" id="content">
+											
+										</div>
+										<div class="modal-footer">
+											<span class="mod glyphicon glyphicon-erase"></span>
+										</div>
+									</div>
+
+								</div>
+								<!-- modal 끝 -->
+
 							</form>
 
 						</div>
 						<!-- /.box-footer -->
+				</div><!-- big div -->
 					</c:forEach>
-				</ul>
-			</div>
+					<!-- data END -->
+					
+				
+			
 		</div>
 
 	</div>
 
+
+
 	</section>
 	
 	<script>
+<<<<<<< HEAD
 	
 		var formObj = $("#form");
 
@@ -232,6 +396,59 @@
 			
 		});
 		
+=======
+	$( document ).ready(function() {
+		var formObj = $("#form");
+
+		console.log(formObj);
+
+		$("#create").on("click", function(event) {
+
+			formObj.attr("action", "register");
+			formObj.attr("method", "post");
+			formObj.submit();
+
+		});
+		
+		$("#remove").on("click", function(event) {
+		
+			if(!confirm("정말 삭제하시겠습니까?"))
+				{
+			return
+				}
+			else
+				formObj.attr("action", "delete");
+				formObj.submit();
+			
+		});
+		
+		
+		$("#modify").on("click", function(event) {
+			
+			  $('#myModal').toggle();
+			
+			
+				//formObj.attr("action", "modify");
+				//formObj.submit();
+			
+		});
+		
+		$(".close").on("click", function(event){
+		
+	
+		    $("#myModal").toggle(); 
+		
+		});
+		
+		
+		$(".mod").on("click", function(event){
+			
+			formObj.attr("action", "modify");
+			formObj.submit();
+		
+		});
+	});
+>>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 	</script>
 	
 
