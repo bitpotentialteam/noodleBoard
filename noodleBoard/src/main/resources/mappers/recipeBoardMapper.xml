@@ -40,10 +40,6 @@
 		 on tbl_recipeimage.ino = tbl_recipeboard.ino
 	</select>
 
-	<select id="listAll" resultType="RecipeBoardVO">
-		select * from tbl_recipeboard
-	</select>
-
 	<update id="addViewCount">
 		update tbl_recipeBoard set viewCnt = viewCnt +1 where bno =#{bno};
 	</update>
