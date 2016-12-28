@@ -15,7 +15,7 @@
 	
 	<select id="listView" resultType="TimeLineVO">
 	
-		select tbl_user.nickname, tbl_user.picture,
+		select tbl_user.nickname, tbl_user.picture, tbl_timeline.tno,
 				tbl_timeline.content, tbl_timeline.likecnt, tbl_timeline.replycnt, tbl_timeline.regdate
 			from tbl_timeline
 		join tbl_user
