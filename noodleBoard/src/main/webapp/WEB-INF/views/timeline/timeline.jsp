@@ -58,15 +58,19 @@
 	background-color: #f8f8f8;
 	resize: none;
 }
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+
 </style>
 
-	<form id='form' method='post' action="regist">
-
-		<input type='hidden' name='tno' value='${timeLineVO.bno}'>
-
-	</form>
-	
-	
 
 	<!-- Navigation -->
 	<nav id="mainNav"
@@ -125,19 +129,31 @@
 				<ul>
 					<c:forEach items="${list}" var="vo">
 
+						<form id='form' method='post' action="regist">
+
+							<input type='hidden' name='tno' value='${vo.tno}'>
+
+						</form>
+
 						<div class="box-header with-border">
 							<div class="user-block">
 								<img class="img-circle"
 									src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg"
 									alt="User Image"> <span class="username"><a
-									href="#"> ${vo.nickname} </a></span> <span class="description">
+									href="#"> ${vo.nickname}</a></span> <span class="description">
 									${vo.regDate} </span>
 									
-										<button type="button" id="remove" class="pull-right text-muted"
-								data-widget="remove">
-								
+										<button type="button" id="remove" value="${vo.tno}" class="pull-right text-muted"
+								data-widget="remove"> 
+								                             
 								<i class="fa fa-times"></i>
-							</button>
+							</button>           
+									
+									<button type="button" id="modify" value="${vo.tno}" class="pull-right text-muted"
+								data-widget="modify"> 
+								                             
+								<i class="fa fa-heart"></i>
+							</button>           
 									
 									
 							</div>
@@ -202,6 +218,16 @@
 		</div>
 
 	</div>
+	
+	<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
 
 	</section>
 	
@@ -227,7 +253,17 @@
 				}
 			else
 				formObj.attr("action", "delete");
-				formObj.attr("method", "post");
+				formObj.submit();
+			
+		});
+		
+		
+		$("#modify").on("click", function(event) {
+			
+			  $('#myModal').toggle();
+			
+			
+				formObj.attr("action", "modify");
 				formObj.submit();
 			
 		});

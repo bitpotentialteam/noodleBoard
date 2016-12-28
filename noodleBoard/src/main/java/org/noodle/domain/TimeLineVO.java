@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TimeLineVO {
 
-	private int tno;
+	private Integer tno;
 	private int mno;
 	private String content;
 	private String nickname;
@@ -21,11 +21,11 @@ public class TimeLineVO {
 				+ ", updateDate=" + updateDate + "]";
 	}
 
-	public int getTno() {
+	public Integer getTno() {
 		return tno;
 	}
 
-	public void setTno(int tno) {
+	public void setTno(Integer tno) {
 		this.tno = tno;
 	}
 
