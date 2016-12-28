@@ -62,10 +62,10 @@
 					<input type="email" id="email" name="email" class="form-control" placeholder="Email">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
-				<div class="form-group has-feedback" >
-					<div class="form-control" id="fileDrop" name="picture">
-					Picture Drop Here
-					</div>
+				<div class="form-group has-feedback" id="fileDrop" >
+					
+					<input type="text" id="picture" name="picture" class="form-control" placeholder="Picture">
+					
 				</div>
 				<div class="form-group has-feedback" >
 					<div class="form-control" id="uploadedList">
@@ -77,10 +77,7 @@
 
 				<div class="row">
 					<div class="col-xs-8">
-						<div class="checkbox icheck">
-							<label> <input type="checkbox"> I agree to the terms
-							</label>
-						</div>
+						
 					</div>
 					<!-- /.col -->
 					<div class="col-xs-4">
