@@ -30,6 +30,11 @@
   where mno = #{mno}
   </delete>
   
+  	<select id="login" parameterType="MemberVO" resultType="MemberVO">
+		select * from tbl_user
+		where userid=#{userid} and userpw=#{userpw}
+	</select>
+  
   
   
   </mapper>

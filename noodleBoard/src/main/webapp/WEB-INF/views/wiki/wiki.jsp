@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>À§³¢À§³¢</title>
+
+
+
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -57,6 +62,16 @@ body {
 	background-color: #222;
 }
 
+.box p {
+	margin-bottom: 0.8em;	
+}
+
+.box {
+	padding: 3% 5%;
+}
+
+
+
 </style>
 
 </head>
@@ -81,7 +96,7 @@ body {
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="hidden"><a href="#page-top"></a></li>
-				<li><a class="page-scroll" href="#">Noodle-Wiki</a></li>
+				<li><a class="page-scroll" href="/wiki">Noodle-Wiki</a></li>
 				<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
 				<li><a class="page-scroll" href="/timeline">Community</a></li>
 				<li><a class="page-scroll" href="/developer/api">Developer</a></li>
@@ -94,5 +109,72 @@ body {
 	<!-- /.container-fluid -->
 	</nav>
 	<!-- Navigation END -->
+	
+	<!-- Three -->
+	<div class="container">
+	<section>
+		<div class="box">
+			<h2>¶ó¸é°Ë»ö¿Õ</h2>
+			<div class='groupType'>
+				<p>search type</p>
+				<div class="brandTypeCheckbox">
+					<span id='nongsim'><input type="checkbox" name='brandType'><label>³ó½É</label></span>
+					<span id='samyang'><input type="checkbox" name='brandType'><label>»ï¾ç</label></span>
+					<span id='paldo'><input type="checkbox" name='brandType'><label>ÆÈµµ</label></span>
+					<span id='ottogi'><input type="checkbox" name='brandType'><label>¿À¶Ñ±â</label></span>
+					<span id='pulmuone'><input type="checkbox" name='brandType'><label>Ç®¹«¿ø</label></span>
+					<span id='brandEtc'><input type="checkbox" name='brandType'><label>±âÅ¸</label></span>
+				</div>
+				<div class="kindsCheckbox">
+					<span id='nomal'><input type="checkbox" name='kinds'><label>ÀÏ¹Ý</label></span>
+					<span id='jjajang'><input type="checkbox" name='kinds'><label>Â¥Àå</label></span>
+					<span id='jjamppong'><input type="checkbox" name='kinds'><label>Â«»Í</label></span>
+					<span id='spicy'><input type="checkbox" name='kinds'><label>ºñºö¸é</label></span>
+					<span id='kalguksu'><input type="checkbox" name='kinds'><label>Ä®±¹¼ö</label></span>
+					<span id='typeEtc'><input type="checkbox" name='kinds'><label>±âÅ¸</label></span>
+				</div>
+				<div class="noodleTypeCheckbox">
+					<span id='dry'><input type="checkbox" name=noodleTypeCheckbox><label>°Ç¸é</label></span>
+					<span id='raw'><input type="checkbox" name=noodleTypeCheckbox><label>»ý¸é</label></span>
+					<span id='oil'><input type="checkbox" name=noodleTypeCheckbox><label>À¯ÅÁ¸é</label></span>
+				</div>
+			</div>
+			<div class='groupType'>
+				<p>data type</p>
+				<div class="outputTypeCheckbox">
+					<span id='noodle'><input type="checkbox"><label>noodle</label></span>
+					<span id='nutrition'><input type="checkbox"><label>nutrition</label></span>
+					<span id='material'><input type="checkbox"><label>material</label></span>
+					<span id='component'><input type="checkbox"><label>component</label></span>
+					<span id='rank'><input type="checkbox"><label>rank</label></span>
+				</div>
+			</div>
+			<div class='groupType'>
+				<p>order type</p>
+				<div class="orderTypeCheckbox">
+					<span id='popular'><input type="button" value="popular"></span>
+					<span id='calories'><input type="button" value="calories"></span>
+					<span id='release'><input type="button" value="release"></span>
+				</div>
+			</div>
+			<div class="split style1">
+				<section>
+				<form method="post" action="#">
+					<div class="field half first">
+						<label for="name">Search</label> <input type="text" name="name"
+							id="name" />
+					</div>
+					<div class="field half first">
+						<label for="submit"><br></label> <input type="button"
+							name="submit" id="submit" value="submit" />
+					</div>
+	
+				</form>
+				</section>
+			</div>
+		</div>
+	</section>
+	</div>
+
 </body>
 </html>
