@@ -27,6 +27,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
 
 
@@ -44,10 +45,12 @@
             </div>
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                <li><a href="#">${vo.userid} </a></li>
-                <li><a href="#">Tasks </a></li>
-                <li><a href="#">Completed Projects </a></li>
-                <li><a href="#">Followers </a></li>
+                <li><input type="text" name="userid" id="userid">${MemberVO.userid}</li>
+                <li><input type="text" name="userid" id="userid">${MemberVO.username}</a></li>
+                <li><input type="text" name="userid" id="userid">${MemberVO.nickname}</a></li>
+                <li><input type="text" name="userid" id="userid">${MemberVO.email}</a></li>
+                <li><input type="text" name="userid" id="userid">${MemberVO.picture}</a></li>
+
               </ul>
             </div>
           </div>
