@@ -37,7 +37,7 @@ public class MemberController {
 		
 		return "redirect:../";
 	}
-	
+	 
 	@RequestMapping(value = "user/register", method = RequestMethod.GET)
 	public void registerGET(MemberVO vo, Model model) throws Exception {
 
