@@ -182,9 +182,9 @@ body {
 	
 	function checkboxArr() {
 		var checkArr = new Array;
-		$("input[name=brandType]:checked").each(function(i){
+		$("input[name=brandType]:checked").each(function(){
 			
-			checkArr.push($(this.val());
+			checkArr.push($(this).val());
 			console.log(checkArr);
 		});
 	}

@@ -40,7 +40,6 @@
 	
 	<context:component-scan base-package="org.noodle.persistence"></context:component-scan>
 	<context:component-scan base-package="org.noodle.service"></context:component-scan>
-	<context:component-scan base-package="org.noodle.aop"></context:component-scan>
 	
 	<aop:config>
 	</aop:config>

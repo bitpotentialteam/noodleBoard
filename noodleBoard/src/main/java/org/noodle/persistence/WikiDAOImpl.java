@@ -2,17 +2,16 @@ package org.noodle.persistence;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
 import org.noodle.domain.Criteria;
 import org.noodle.domain.NoodleVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class WikiDAOImpl implements WikiDAO {
 	 
-	@Inject 
+	@Autowired 
 	SqlSession session;
 	
 	private static final String namespace = "org.noodle.mapper.WikiMapper";

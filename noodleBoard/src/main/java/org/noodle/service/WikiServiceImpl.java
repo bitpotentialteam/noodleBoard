@@ -2,17 +2,16 @@ package org.noodle.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.noodle.domain.Criteria;
 import org.noodle.domain.NoodleVO;
 import org.noodle.persistence.WikiDAOImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class WikiServiceImpl implements WikiServcie {
 
-	@Inject
+	@Autowired
 	WikiDAOImpl dao;
 	
 	@Override
