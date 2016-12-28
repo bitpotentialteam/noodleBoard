@@ -2,6 +2,9 @@ package org.noodle.util;
 
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public enum ClientUtils {
 	
 	INSTANCE;
