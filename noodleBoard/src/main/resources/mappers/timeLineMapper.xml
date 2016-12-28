@@ -28,8 +28,8 @@
 	<update id="update">
 	
 		update tbl_timeline
-		set content = #{content}, updatedate = sysdate
-		where tno = #{tno}
+		set content = #{content, jdbcType=VARCHAR}, updatedate = sysdate
+		where tno = #{tno, jdbcType=INTEGER}
 	
 	</update>
 	
@@ -37,7 +37,7 @@
 	<delete id="delete">
 	
 		delete from tbl_timeline
-		where tno = #{tno}
+		where tno = #{tno, jdbcType=INTEGER}
 	
 	</delete>
 

@@ -9,6 +9,6 @@ public interface TimeLineService {
 	public void regist(TimeLineVO vo)throws Exception;
 	public List<TimeLineVO> listView()throws Exception;
 	public void modify(TimeLineVO vo)throws Exception;
-	public void remove(int tno)throws Exception;
+	public void remove(Integer tno)throws Exception;
 
 }
