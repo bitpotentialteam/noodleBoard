@@ -60,18 +60,4 @@ public class TimeLineController {
 		return "redirect:/timeline"; 
 	}
 	
-//	@PostMapping("/delete")
-//	public String delete(Integer tno, RedirectAttributes rttr, Model model)throws Exception{
-//		
-//		TimeLineVO vo = new TimeLineVO();
-//		
-//		service.remove(tno);
-//		
-//		model.addAttribute("tno", vo.getTno());
-//		
-//		return "redirect:/timeline";
-//
-//		
-//	}
-
 }
