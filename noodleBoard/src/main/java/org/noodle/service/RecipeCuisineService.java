@@ -6,7 +6,9 @@ public interface RecipeCuisineService {
 
 	
 	public void regist(RecipeCuisineVO vo) throws Exception;
-	public RecipeCuisineVO view(int bno)throws Exception;
+	public RecipeCuisineVO view(Integer bno)throws Exception;
 	public void modify(RecipeCuisineVO vo)throws Exception;
-	public void remove(int bno)throws Exception;
+	public void remove(Integer bno)throws Exception;
+	
+	public RecipeCuisineVO viewSteps(RecipeCuisineVO vo) throws Exception;
 }

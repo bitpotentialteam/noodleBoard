@@ -29,4 +29,10 @@ public class RecipeImageServiceImpl implements RecipeImageService {
 		dao.delete(ino);
 	}
 
+	@Override
+	public RecipeImageVO viewSteps(RecipeImageVO vo) throws Exception {
+
+		return dao.readStep(vo);
+	}
+
 }

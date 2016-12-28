@@ -8,4 +8,6 @@ public interface RecipeImageService {
 	public void regist(RecipeImageVO vo) throws Exception;
 	public RecipeImageVO view(Integer ino)throws Exception;
 	public void remove(Integer ino)throws Exception;
+	
+	public RecipeImageVO viewSteps(RecipeImageVO vo) throws Exception;
 }

@@ -18,7 +18,7 @@ public class RecipeCuisineServiceImpl implements RecipeCuisineService {
 	}
 
 	@Override
-	public RecipeCuisineVO view(int bno) throws Exception {
+	public RecipeCuisineVO view(Integer bno) throws Exception {
 
 		return dao.read(bno);
 	}
@@ -30,9 +30,16 @@ public class RecipeCuisineServiceImpl implements RecipeCuisineService {
 	}
 
 	@Override
-	public void remove(int bno) throws Exception {
+	public void remove(Integer bno) throws Exception {
 
 		dao.delete(bno);
+	}
+
+
+	@Override
+	public RecipeCuisineVO viewSteps(RecipeCuisineVO vo) throws Exception {
+
+		return dao.readStep(vo);
 	}
 
 }
