@@ -44,4 +44,11 @@
 		bno = #{bno} and step = #{step}
 	</select>
 	
+	<delete id="bnoDelete">
+		delete
+			tbl_recipeImage
+		where
+			bno=#{bno}
+	</delete>
+	
 </mapper>

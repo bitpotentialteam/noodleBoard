@@ -11,4 +11,5 @@ public interface RecipeCuisineDAO {
 	public void delete(Integer bno)throws Exception;
 	
 	public RecipeCuisineVO readStep(RecipeCuisineVO vo) throws Exception;
+	public void bnoDelete(Integer bno) throws Exception;
 }

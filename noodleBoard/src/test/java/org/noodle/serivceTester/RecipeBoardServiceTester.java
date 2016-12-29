@@ -1,6 +1,5 @@
 package org.noodle.serivceTester;
 
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,8 +27,8 @@ public class RecipeBoardServiceTester {
 	@Test
 	public void testRegist() throws Exception{
 
-		vo.setMno(3);
-		vo.setIno(3);
+		vo.setMno(123);
+		vo.setIno(123);
 		vo.setTitle("ST");
 		vo.setContent("ST");
 		vo.setMaterialContent("ST");
@@ -38,9 +37,30 @@ public class RecipeBoardServiceTester {
 	}
 	
 	@Test
-	public void testRead() throws Exception{
+	public void testView() throws Exception{
 		
 		System.out.println(service.view(3));
+	}
+	
+	@Test
+	public void testModify() throws Exception{
+		
+		vo.setMno(123);
+		vo.setIno(123);
+		vo.setTitle("25TEST");
+		vo.setContent("25TEST");
+		vo.setMaterialContent("25TEST");
+		vo.setBno(22);
+		
+		service.modify(vo);
+	}
+	
+	@Test
+	public void testRemove() throws Exception{
+		
+		vo.setBno(22);
+
+		service.remove(vo);
 	}
 
 }

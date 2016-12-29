@@ -22,8 +22,8 @@ public class RecipeReplyServiceImpl implements RecipeReplyService {
 	@Transactional
 	public void regist(RecipeReplyVO vo) throws Exception {
 
-		bdao.addReplyCount(vo.getBno());
 		dao.create(vo);
+		bdao.addReplyCount(vo.getBno());
 	}
 
 	@Override
@@ -35,8 +35,8 @@ public class RecipeReplyServiceImpl implements RecipeReplyService {
 	@Transactional
 	public void remove(RecipeReplyVO vo) throws Exception {
 		
-		bdao.delete(vo.getBno());
 		dao.delete(vo.getRno());
+		bdao.minusReplyCount(vo.getBno());
 	}
 
 	@Override

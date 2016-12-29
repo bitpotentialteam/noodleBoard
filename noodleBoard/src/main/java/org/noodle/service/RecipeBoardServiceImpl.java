@@ -5,6 +5,8 @@ import java.util.List;
 import org.noodle.domain.Criteria;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.persistence.RecipeBoardDAO;
+import org.noodle.persistence.RecipeCuisineDAO;
+import org.noodle.persistence.RecipeImageDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,12 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 
 	@Autowired
 	private RecipeBoardDAO dao;
+	
+	@Autowired
+	private RecipeImageDAO idao;
+	
+	@Autowired
+	private RecipeCuisineDAO cdao;
 	
 	@Override
 	public void regist(RecipeBoardVO vo) throws Exception {
@@ -37,9 +45,12 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	}
 
 	@Override
-	public void remove(Integer bno) throws Exception {
+	@Transactional
+	public void remove(RecipeBoardVO vo) throws Exception {
 		
-		dao.delete(bno);
+		dao.delete(vo.getBno());
+		idao.bnoDelete(vo.getBno());
+		cdao.bnoDelete(vo.getBno());
 	}
 
 	@Override

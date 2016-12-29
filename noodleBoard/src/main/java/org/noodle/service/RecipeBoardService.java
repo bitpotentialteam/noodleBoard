@@ -9,7 +9,7 @@ public interface RecipeBoardService {
 	public void regist(RecipeBoardVO vo) throws Exception;
 	public RecipeBoardVO view(Integer bno)throws Exception;
 	public void modify(RecipeBoardVO vo)throws Exception;
-	public void remove(Integer bno)throws Exception;
+	public void remove(RecipeBoardVO vo)throws Exception;
 	public List<RecipeBoardVO> listAll()throws Exception;
 	public List<RecipeBoardVO> search(Criteria cri)throws Exception;
 
