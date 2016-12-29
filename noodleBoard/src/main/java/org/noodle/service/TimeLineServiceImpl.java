@@ -39,4 +39,10 @@ public class TimeLineServiceImpl implements TimeLineService {
 
 	}
 
+	@Override
+	public void likeCnt(Integer tno) throws Exception {
+		dao.likeCnt(tno);
+		
+	}
+
 }

@@ -33,6 +33,12 @@
 
 <link href="../resources/css/agency.min.css" rel="stylesheet">
 
+<style>
+.navbar-custom  {
+	background-color: #222;
+}
+</style>
+
 </head>
 <body id="page-top" class="index">
 
@@ -54,22 +60,22 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../index">NOODLE-WIKI</a>
+                        <a class="page-scroll" href="/wiki">NOODLE-WIKI</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../recipe/list">RECIPE</a>
+                        <a class="page-scroll" href="/recipe/list">RECIPE</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../timeline/timeline">COMMUNITY</a>
+                        <a class="page-scroll" href="/timeline">COMMUNITY</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../developer/api">DEVELOPER</a>
+                        <a class="page-scroll" href="/developer/api">DEVELOPER</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../user/login">LOGIN</a>
+                        <a class="page-scroll" href="/user/login">LOGIN</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="../user/register">SING-IN</a>
+                        <a class="page-scroll" href="/user/register">SING-IN</a>
                     </li>
                 </ul>
             </div>

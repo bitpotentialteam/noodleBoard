@@ -41,4 +41,10 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 
 	}
 
+	@Override
+	public void likeCnt(Integer tno) throws Exception {
+		
+		session.update(namespace + ".like",tno);
+	}
+
 }

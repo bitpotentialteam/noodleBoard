@@ -201,22 +201,17 @@ input#content{
 			<!-- .box-header END-->
 			<!-- .box-body START -->
 				<div class="box-body">
-					<form action='timeline/regist' method='post'>
+					<form id="createForm" action='timeline/regist' method='post'>
 						<input id="content" name="content" type="text" class="form-control input-md"
 							placeholder="Press enter to post comment">							
 							<input type="hidden" name="mno" placeholder="mno" value="5">
-							<button type="submit" id="create" class="pull-right" > submit! </button>
+							<button type="submit" id="createBtn" class="pull-right" > submit! </button>
 					</form>
 				</div>
 			<!-- .box-body END -->				
 			</div>
 			<!-- INPUT END -->
 					
-						<form id='form' method='post' action="regist">
-							<input type='hidden' name='tno' value='${vo.tno}'>
-							<input type='hidden' name='mno' value='${vo.mno}'>
-							<input type='hidden' name='content' value='${vo.content}'>
-						</form>
 					<!-- data START -->
 					<c:forEach items="${list}" var="vo">
 				<div class="box" id="temp">
@@ -226,12 +221,12 @@ input#content{
 								<img class="img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
 								<span class="username"><a href="#"> ${vo.nickname}</a></span>
 								<span class="description"> ${vo.regDate} </span>
-								<p class="remove"><button type="button" id="remove" value="${vo.tno}" class="pull-right text-muted"> 
+								<button type="button" value="${vo.tno}" id="removeBtn" class="pull-right text-muted"> 
 									<span class="glyphicon glyphicon-trash"></span>
-								</button></p>           
-								<p class="modify"><button type="button" id="modify" value="${vo.tno}" class="pull-right text-muted"> 
-									<span class="glyphicon glyphicon-erase"></span>
-								</button></p>           
+								</button>           
+								<button type="button" value="${vo.tno}" id="modifyBtn" class="modify pull-right text-muted"> 
+									<span class="glyphicon glyphicon-erase"></span>								
+								</button>           
 							</div>
 						</div>
 						<!-- .box-header END-->
@@ -240,7 +235,7 @@ input#content{
 							<!-- post text -->
 							<p>${vo.content}</p>
 							<!-- Social sharing buttons -->
-							<button type="button" class="btn btn-default btn-xs">
+							<button type="button" id="likeBtn" class="btn btn-default btn-xs">
 								<i class="fa fa-thumbs-o-up"></i> Like </button>
 							<span class="pull-right text-muted">${vo.likeCnt} likes - ${vo.replyCnt} comments</span>
 						</div>
@@ -264,43 +259,39 @@ input#content{
 									alt="Alt Text">
 								<!-- .img-push is used to add margin to elements next to floating images -->
 								<div class="img-push">
-									<input type="text" class="form-control input-sm"
-										placeholder="Press enter to post comment">
+									<input type="text" id="replyContent" class="form-control input-sm" placeholder="Press enter to post comment!">
 								</div>
-								
-								
-							<!-- Modify Modal -->
+							</form>
+							
+									<!-- Modify Modal -->
 								<div id="myModal" class="modal">
-
 									<!-- Modal content -->
 									<div class="modal-content">
 										<div class="modal-header">
 											<span class="close">&times;</span>
 											<h2>수정할 내용을 입력해주세요!</h2>
 										</div>
+										
 										<div class="modal-body">
-									
-											<input value="${vo.content}" name="content" id="content2">
-											
+											<input value="${vo.content}" name="content" id="modContent">
 										</div>
+										
 										<div class="modal-footer">
-											<span class="mod glyphicon glyphicon-erase" id="mod"></span>
+											<button type="button" id="modBtn" value="${vo.tno}"><span class="mod glyphicon glyphicon-erase" ></span></button>
 										</div>
 									</div>
-
-								</div>
-								<!-- modal 끝 -->
-
-							</form>
-
-						</div>
-						<!-- /.box-footer -->
+								</div><!-- modal 끝 -->
+						</div><!-- /.box-footer -->
 				</div><!-- big div -->
 					</c:forEach>
 					<!-- data END -->
-					
-				
-			
+	
+						<form id='form' method='post' action="regist">
+							<input type='hidden' name='tno' id='ftno' value='${vo.tno}'>
+							<input type='hidden' name='mno' id='fmno' value='5'>
+							<input type='hidden' name='content' id='fcontent' value='${vo.content}'>
+							<input type='hidden' name='likeCnt' id='likeCnt' value='${vo.likeCnt}'>
+						</form>
 		</div>
 
 	</div>
@@ -315,54 +306,74 @@ input#content{
 
 		console.log(formObj);
 
+<!--		
 		$("#create").on("click", function(event) {
-
-			formObj.attr("action", "/timeline/register");
+			//event.preventDefault();
+			
+			formObj.attr("action", "/timeline/regist");
 			formObj.attr("method", "post");
 			formObj.submit();
 
 		});
+-->	
 		
 		
-		$(".remove button").on("click", function(event) {
+		$("#removeBtn").on("click", function(event) {
+			event.preventDefault();
 			console.log(event);
 			
-			if(!confirm("정말 삭제하시겠습니까?"))
-				{
-			return
-				}
-			else
+			if(!confirm("정말 삭제하시겠습니까?")){
+				return;
+			}else{
 				
+				var tno = $(this).val();
+				$('#ftno').val(tno);
 				formObj.attr("action", "timeline/delete");
 				formObj.submit();
+			}
 			
 		});
 		
-		$(".modify button").on("click", function(event) {
-			
-			  $('#myModal').toggle();
-			
-			
-				//formObj.attr("action", "modify");
-				//formObj.submit();
+		$("#modifyBtn").on("click", function(event) {
+	       
+			$('#myModal').toggle();
 			
 		});
 		
 		$(".close").on("click", function(event){
-		
-	
+			event.preventDefault();
 		    $("#myModal").toggle(); 
 		
 		});
 		
 		
-		$("#mod").on("click", function(event){
+		$("#modBtn").on("click", function(event){
+			event.preventDefault();
+			
+			var tno = $(this).val();
+			$('#ftno').val(tno);
+			
+			var content = $('#modContent').val();
+			$('#fcontent').val(content);
 			
 			formObj.attr("action", "timeline/modify");
+			formObj.attr("method", "post");
 			formObj.submit();
 		
 		});
+	
+	$("#likeBtn").on("click", function(event){
+		event.preventDefault();
+		
+		
+		formObj.attr("action", "timeline/like");
+		formObj.attr("method", "post");
+	
 	});
+	
+	});
+	
+	
 	</script>
 	
 

@@ -60,4 +60,15 @@ public class TimeLineController {
 		return "redirect:/timeline"; 
 	}
 	
+	@PostMapping("/like")
+	public String likePost(Integer tno, Model model) throws Exception{
+		
+		service.likeCnt(tno);
+	
+		logger.info("like" + tno);
+
+		return "redirect:/timeline"; 
+	}
+	
+	
 }
