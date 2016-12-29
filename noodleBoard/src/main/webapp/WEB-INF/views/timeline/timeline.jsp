@@ -148,6 +148,11 @@ input#content{
 	width:100%;
 } 
 
+div .replyDiv{
+	display : none;
+}
+
+
 
 </style>
 	
@@ -203,7 +208,7 @@ input#content{
 				<div class="box-body">
 					<form id="createForm" action='timeline/regist' method='post'>
 						<input id="content" name="content" type="text" class="form-control input-md"
-							placeholder="Press enter to post comment">							
+							placeholder="안녕하새오 뿌잉뿌잉 'ㅅ'">							
 							<input type="hidden" name="mno" placeholder="mno" value="5">
 							<button type="submit" id="createBtn" class="pull-right" > submit! </button>
 					</form>
@@ -250,25 +255,33 @@ input#content{
 						</div>
 						<!-- .box-header END-->
 						<!-- .box-body START -->
+						
 						<div class="box-body">
 							<!-- post text -->
 							<p>${vo.content}</p>
 							<!-- Social sharing buttons -->
-							<button type="button" id="likeBtn" class="btn btn-default btn-xs">
+							<button type="button" id="likeBtn" value="${vo.tno}" class="btn btn-default btn-xs">
 								<i class="fa fa-thumbs-o-up"></i> Like </button>
+								
+								<button type="button" id="replyBtn" value="${vo.tno}" class="btn btn-default btn-xs">
+								<i class="fa fa-heert"></i> 댓글보기 </button>
+								
 							<span class="pull-right text-muted">${vo.likeCnt} likes - ${vo.replyCnt} comments</span>
 						</div>
 						<!-- .box-body END -->
 						<!-- .box-footer START -->
 			
+						<!-- reply start -->
+						<div class = "replyDiv">
 						<div class="box-footer box-comments">
 							<div class="box-comment">
 								<!-- User image -->
 								<img class="img-circle img-sm" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg" alt="User Image">
 								<div class="comment-text">
-
-									<span class="username"> 유저닉네임   <span class="text-muted pull-right"> 작성시간  </span></span>	<!-- /.username -->
+								
+							<span class="username"> 유저닉네임   <span class="text-muted pull-right"> 작성시간  </span></span>	<!-- /.username -->
 									내용
+								
 
 								</div> <!-- /.comment-text -->
 							</div> <!-- /.box-comment -->
@@ -276,18 +289,21 @@ input#content{
 				
 						<!-- .box-footer END-->
 						<div class="box-footer">
-							<form action="#" method="post">
+				
 								<img class="img-responsive img-circle img-sm"
 									src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user4-128x128.jpg"
 									alt="Alt Text">
 								<!-- .img-push is used to add margin to elements next to floating images -->
 								<div class="img-push">
+								<input name="tno" type="hidden" value="${vo.tno}" id="replytno">
+								<input name="mno" type="hidden" value="5" id="replymno">
 									<input type="text" id="replyContent" class="form-control input-sm" placeholder="Press enter to post comment!">
 								</div>
-							</form>
+						
 							
-								
 						</div><!-- /.box-footer -->
+						
+					</div>	
 				</div><!-- big div -->
 					</c:forEach>
 					<!-- data END -->
@@ -387,17 +403,91 @@ input#content{
 			formObj.submit();
 					
 		});
-	
-	$("#likeBtn").on("click", function(event){
-		event.preventDefault();
 		
 		
-		formObj.attr("action", "timeline/like");
-		formObj.attr("method", "post");
+		$(document).on("click","#likeBtn", function(event){
+			event.preventDefault();
+			
+			var tno = $(this).val();
+			$('#ftno').val(tno);
+			
+			console.log(tno);
+			
+			formObj.attr("action", "timeline/addlikeCnt");
+			formObj.attr("method", "get");
+			formObj.submit();
+					
+		});
+		
+		$(document).on("click","#replyBtn", function(event){
+			event.preventDefault();
+			
+			var tno = $(this).val();
+			var content = $()
+			$('#ftno').val(tno);
+			console.log(tno);
+			
+			$(this).parents('#timelineBox').find('.replyDiv').toggle();
+
+		});
+		
+		//댓글!
+		$(document).on("keypress","#replyContent", function(event){
+			
+			if (event.which == 13) {/* 13 == enter key@ascii */
+			
+			event.preventDefault();
+			
+			var tno = $(this).parents('.img-push').find('#replytno').val();
+			
+			var mno = $(this).parents('.img-push').find('#replymno').val();
+			
+			var replyContent = $(this).val();
 	
+			
+			console.log(tno);
+			console.log(mno);
+			console.log(replyContent);
+			
+			  replyMannager.addReply(
+					  {tno:tno,mno:mno,content:replyContent}, //4.입력값
+			      function (result) { alert("댓글이등록되어씀니다.");//5. 콜백함수 결과가 나오면 알럿을 띄어주세용!
+			       });
+
+		}
+	});
+		
 	});
 	
-	});
+	
+	 var replyMannager = (function () {
+	      //여기서 Ajax를 날림
+	      var addReply = function (data, fn) {//1. data와 콜백함수를 넘겨받음
+	         
+	    		
+	    		$.ajax({
+	    			type : 'post',
+	    			url : '/timeline/registReply',
+	    			headers : {
+	    				"Content-Type" : "application/json",
+	    				"X-HTTP-Method-Override" : "POST"
+	    			},
+	    			dataType : 'text',
+	    			data : data,
+	    			
+	    			success : function(result) {
+
+	    				if (result == 'success') {
+	    					alert("등록되었습니다.");
+
+	    				}
+	    			}
+	    		});
+	    		
+	      }; //  URL, data, 콜백함수(결과값을 여기다 넘기는 )
+	      return {addReply: addReply};
+	      //키가 addReply 값이 함수
+	  })();
 	
 	
 	</script>

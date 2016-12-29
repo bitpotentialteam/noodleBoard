@@ -60,7 +60,7 @@ public class TimeLineController {
 		return "redirect:/timeline"; 
 	}
 	
-	@PostMapping("/addlikeCnt")
+	@GetMapping("/addlikeCnt")
 	public String likePost(Integer tno, Model model) throws Exception{
 		
 		service.addLikeCnt(tno);
