@@ -177,7 +177,7 @@ input#content{
 				<li><a class="page-scroll" href="/timeline">Community</a></li>
 				<li><a class="page-scroll" href="/developer/api">Developer</a></li>
 				<li><a class="page-scroll" href="/user/login">LOGIN</a></li>
-				<li><a class="page-scroll" href="/user/register">SING-IN</a></li>
+				<li><a class="page-scroll" href="/user/register">SIGN-UP</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -260,16 +260,20 @@ input#content{
 						</div>
 						<!-- .box-body END -->
 						<!-- .box-footer START -->
+			
 						<div class="box-footer box-comments">
 							<div class="box-comment">
 								<!-- User image -->
 								<img class="img-circle img-sm" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg" alt="User Image">
 								<div class="comment-text">
-									<span class="username"> 댓글쓴이!!!!!!!!!!!!!! <span class="text-muted pull-right"> 댓글쓴애 시간 </span></span>	<!-- /.username -->
-									댓글내용이구여!!!!!!!!!!!!!!!!!!!!!!!!!!
+<%-- 									<c:forEach items="${relist}" var="re"> --%>
+									<span class="username"> 유저닉네임   <span class="text-muted pull-right"> 작성시간  </span></span>	<!-- /.username -->
+									내용
+<%-- 										</c:forEach> --%>
 								</div> <!-- /.comment-text -->
 							</div> <!-- /.box-comment -->
 						</div>
+				
 						<!-- .box-footer END-->
 						<div class="box-footer">
 							<form action="#" method="post">

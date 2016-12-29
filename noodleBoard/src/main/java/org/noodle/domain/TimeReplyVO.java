@@ -8,13 +8,14 @@ public class TimeReplyVO {
 	private int mno;
 	private int tno;
 	private String content;
+	private String nickname;
 	private Date regDate;
 	private Date updateDate;
 
 	@Override
 	public String toString() {
-		return "TimeReplyVO [trno=" + trno + ", mno=" + mno + ", tno=" + tno + ", content=" + content + ", regDate="
-				+ regDate + ", updateDate=" + updateDate + "]";
+		return "TimeReplyVO [trno=" + trno + ", mno=" + mno + ", tno=" + tno + ", content=" + content + ", nickname="
+				+ nickname + ", regDate=" + regDate + ", updateDate=" + updateDate + "]";
 	}
 
 	public int getTrno() {
@@ -47,6 +48,14 @@ public class TimeReplyVO {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public Date getRegDate() {

@@ -36,9 +36,9 @@ public class TimeReplyDAOImpl implements TimeReplyDAO {
 	}
 
 	@Override
-	public List<TimeReplyVO> listReply(Integer tno) throws Exception {
+	public List<TimeReplyVO> listReply() throws Exception {
 		
-		return session.selectList(namespace + ".listReply", tno);
+		return session.selectList(namespace + ".listReply");
 	}
 
 	@Override

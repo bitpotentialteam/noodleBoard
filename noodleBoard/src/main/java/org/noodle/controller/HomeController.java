@@ -1,10 +1,11 @@
 package org.noodle.controller;
 
-import javax.inject.Inject;
-
+import org.noodle.domain.TimeReplyVO;
 import org.noodle.service.TimeLineService;
+import org.noodle.service.TimeReplyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,11 @@ public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@Inject
+	@Autowired
 	TimeLineService service;
 
+	@Autowired
+	TimeReplyService tservice;
 
 	@GetMapping("/")
 	public String home()throws Exception{
@@ -30,7 +33,9 @@ public class HomeController {
 
 		logger.info("getTIMELINE.....");
 
+		TimeReplyVO vo = new TimeReplyVO();
 		model.addAttribute("list", service.listView());
+
 
 		return "timeline/timeline";
 	}

@@ -16,8 +16,13 @@
 	
 	<select id="listReply" resultType="TimeReplyVO">
 	
-		select * from tbl_timereply
+		select tbl_timereply.content,tbl_timereply.tno, tbl_timereply.trno, tbl_timereply.regdate, tbl_user.nickname
+		from tbl_timereply
+		join tbl_user on tbl_user.mno = tbl_timereply.mno
 		where tno = #{tno, jdbcType=INTEGER}
+	
+	</select>
+	
 	
 	</select>
 	
