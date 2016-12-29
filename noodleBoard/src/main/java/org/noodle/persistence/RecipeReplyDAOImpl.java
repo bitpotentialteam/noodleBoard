@@ -2,16 +2,15 @@ package org.noodle.persistence;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
 import org.noodle.domain.RecipeReplyVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class RecipeReplyDAOImpl implements RecipeReplyDAO {
 	
-	@Inject
+	@Autowired
 	private SqlSession session;
 	
 	private static final String NAME = "org.noodle.RecipeReplyMapper.";
