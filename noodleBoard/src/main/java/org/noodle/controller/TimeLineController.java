@@ -64,8 +64,9 @@ public class TimeLineController {
 	public String likePost(Integer tno, Model model) throws Exception{
 		
 		service.addLikeCnt(tno);
+
 	
-		logger.info("like" + tno);
+		logger.info("addlikeCnt" + tno);
 
 		return "redirect:/timeline"; 
 	}

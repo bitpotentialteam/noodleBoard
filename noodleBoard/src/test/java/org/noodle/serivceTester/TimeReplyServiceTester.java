@@ -63,7 +63,9 @@ public class TimeReplyServiceTester {
 	@Test
 	public void deleteTest()throws Exception{
 		
-		service.remove(44);
+		TimeReplyVO vo = new TimeReplyVO();
+		vo.setTrno(1);
+		service.remove(vo);
 	}
 
 }

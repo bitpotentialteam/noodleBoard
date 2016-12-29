@@ -9,7 +9,7 @@ public interface TimeReplyService {
 	
 	public void regist(TimeReplyVO vo)throws Exception;
 	public void modify(TimeReplyVO vo)throws Exception;
-	public void remove (Integer trno)throws Exception;
+	public void remove (TimeReplyVO vo)throws Exception;
 	public List<TimeReplyVO> listReply(Integer tno)throws Exception;
 
 	//댓글번호로 댓글 하나 읽어오기

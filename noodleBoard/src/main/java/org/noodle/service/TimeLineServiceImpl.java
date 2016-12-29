@@ -57,16 +57,4 @@ public class TimeLineServiceImpl implements TimeLineService {
 		
 	}
 
-	@Override
-	public TimeLineVO readReplyCnt(Integer tno) throws Exception {
-		
-		return dao.readReplyCnt(tno);
-	}
-
-	@Override
-	public TimeLineVO readLikeCnt(Integer tno) throws Exception {
-		
-		return dao.readLikeCnt(tno);
-	}
-
 }
