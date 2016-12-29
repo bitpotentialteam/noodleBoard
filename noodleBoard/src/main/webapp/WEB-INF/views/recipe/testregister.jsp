@@ -92,28 +92,31 @@ small {
 
 
  <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container-fluid">
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    Menu <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="list">Go Back</a>
+                <a class="navbar-brand page-scroll" href="#page-top">Noodles.com</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="list">Home</a>
-                    </li>
+                    <li class="hidden"><a href="#page-top"></a></li>
+					<li><a class="page-scroll" href="/wiki">Noodle-Wiki</a></li>
+					<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
+					<li><a class="page-scroll" href="/timeline">Community</a></li>
+					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
+					<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
+					<li><a class="page-scroll" href="/user/register" id="register">SING-IN</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
+        <!-- /.container-fluid -->
     </nav>
 
     <!-- Page Header -->
@@ -136,72 +139,47 @@ small {
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p><h1>이쁜 사진을 올려주세요!</h1></p>
+                <p><h1>자기만의 특별한 레시피를 올려주세요!</h1></p>
                 <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
                 <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
                 <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
-                <form role="form" method="post" name="sentMessage" id="contactForm" novalidate>
+                <form role="form" method="post" name="register" id="contactForm" novalidate>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Title</label>
+                            <label>메뉴명</label>
                             <input type="text" class="form-control" placeholder="Title" name="title" id="title" required data-validation-required-message="Please enter title.">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Name</label>
-                            <input type="text" class="form-control" placeholder="Name" name="writer" id="writer" required data-validation-required-message="Please enter your name.">
+                            <label>재료</label>
+                            <input type="text" class="form-control" placeholder="Material Content" name="material" id="material" required data-validation-required-message="Please enter material.">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
+                            <label>조리순서</label>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Password</label>
-                            <input type="password" class="form-control" placeholder="Password" name="pw" id="pw" required data-validation-required-message="Please enter your password.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Content</label>
-                            <textarea rows="5" class="form-control" placeholder="Message" name="content" id="content" required data-validation-required-message="Please enter a message."></textarea>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                     <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Tags</label>
-                            <input type="text" class="form-control" placeholder="Tags" id="tags" required data-validation-required-message="Please enter tags for photos.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                    <label for="fileDrop">File DROP Here</label>
+                        <div class="form-group">
                     <div class="form-control" id="fileDrop"></div>
                     <div class="uploadedList"></div>
-                    
-                 	
 
-
-			
                     
-                    <br>
-                    <div id="success"></div>
-                    <div class="row">
-                        <div class="form-group col-xs-12">
-                            <button type="submit" class="btn btn-default">Send</button>
+                    </div>
+                             <textarea rows="5" class="form-control" placeholder="Message" name="content" id="content" required data-validation-required-message="Please enter a message.">
+                            </textarea>
+                            <p class="help-block text-danger"></p>
                         </div>
                     </div>
-                    
+                    <div id="success"></div>
+					<div class="-right row">
+                        <div class="form-group col-md-4">
+                            <button type="submit" class="btn btn-default-right">등 록</button>
+                            <a href="list"><input type="button" class="btn btn-default-right" value="취 소">
+                        	</a>
+                        </div>
                     </div>
-                    <form id='form1' action="uploadForm" method="post"
-					enctype="multipart/form-data" target="zeroFrame">
-					<input type='file' name='file'>
-					</form>
-
-					<iframe name="zeroFrame"></iframe>
                 </form>
             </div>
         </div>
@@ -240,7 +218,7 @@ small {
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+                    <p class="copyright text-muted">Copyright &copy; Noodle Website 2017</p>
                 </div>
             </div>
         </div>
@@ -293,7 +271,7 @@ small {
 			formData.append("file", file);
 			
 			$.ajax({
-				  url: '/gallery/uploadAjax',
+				  url: '/recipe/uploadAjax',
 				  data: formData,
 				  dataType:'text',
 				  processData: false,

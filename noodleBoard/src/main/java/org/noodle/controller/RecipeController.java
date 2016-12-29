@@ -23,7 +23,6 @@ public class RecipeController {
 	private RecipeBoardService service;
 	
 	
-	//테스트
 	@GetMapping("/register")
 	public void registerGET(RecipeBoardVO vo, Model model)throws Exception{
 		logger.info("register GET.................");
@@ -33,6 +32,11 @@ public class RecipeController {
 	public String registerPOST(RecipeBoardVO vo, RedirectAttributes rttr) throws Exception {
 		service.regist(vo);
 		return "redirect:/recipe/list";
+	}
+	
+	@GetMapping("/testregister")
+	public void testRegisterGET(RecipeBoardVO vo, Model model)throws Exception{
+		logger.info("register GET.................");
 	}
 	
 	@GetMapping("/list")
@@ -47,8 +51,16 @@ public class RecipeController {
 		model.addAttribute("list", service.listAll());
 		System.out.println("listAll callll.........."+ service.listAll().toString() );
 		
-	
 	}
 	
+	@GetMapping("/view")
+	public void view() throws Exception {
+		logger.info("view.............");
+	}
+	
+	@GetMapping("/testview")
+	public void testView() throws Exception {
+		logger.info("testview.............");
+	}
 
 }
