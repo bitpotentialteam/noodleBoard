@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>À§³¢À§³¢</title>
+<title>ìœ„ë¼ìœ„ë¼</title>
 
 
 
@@ -108,122 +108,142 @@ body {
 	<!-- Navigation END -->
 
 	<!-- Three -->
-		<section>
+	<section>
 	<div class="container">
 		<div class="box">
-			<h2>¶ó¸é°Ë»ö¿Õ</h2>
+			<h2>ë¼ë©´ê²€ìƒ‰ì™•</h2>
 			<div class='groupType'>
 				<h4>SEARCH TYPE</h4>
 				<div class="brandFilterCheckbox">
-					<span id='nongsim'><input type="checkbox" name='brandFilter'
-						value="³ó½É" ><label>³ó½É</label></span> <span id='samyang'><input
-						type="checkbox" name='brandFilter' value="»ï¾ç"><label>»ï¾ç</label></span>
-					<span id='paldo'><input type="checkbox" name='brandFilter'
-						value="ÆÈµµ"><label>ÆÈµµ</label></span> <span id='ottogi'><input
-						type="checkbox" name='brandFilter' value="¿À¶Ñ±â"><label>¿À¶Ñ±â</label></span>
-					<span id='pulmuone'><input type="checkbox" name='brandFilter'
-						value="Ç®¹«¿ø"><label>Ç®¹«¿ø</label></span> <span id='brandEtc'><input
-						type="checkbox" name='brandFilter' value="±âÅ¸"><label>±âÅ¸</label></span>
+					<span><input type="checkbox" name='brandFilter'><label>ë†ì‹¬</label></span>
+					<span><input type="checkbox" name='brandFilter'><label>ì‚¼ì–‘</label></span>
+					<span><input type="checkbox" name='brandFilter'><label>íŒ”ë„</label></span>
+					<span><input type="checkbox" name='brandFilter'><label>ì˜¤ëšœê¸°</label></span>
+					<span><input type="checkbox" name='brandFilter'><label>í’€ë¬´ì›</label></span>
+					<span><input type="checkbox" name='brandFilter'><label>ê¸°íƒ€</label></span>
 				</div>
-				<div class="kindsCheckbox">
-					<span id='normal'><input type="checkbox" name='kinds'><label>ÀÏ¹İ</label></span>
-					<span id='jjajang'><input type="checkbox" name='kinds'><label>Â¥Àå</label></span>
-					<span id='jjamppong'><input type="checkbox" name='kinds'><label>Â«»Í</label></span>
-					<span id='spicy'><input type="checkbox" name='kinds'><label>ºñºö¸é</label></span>
-					<span id='kalguksu'><input type="checkbox" name='kinds'><label>Ä®±¹¼ö</label></span>
-					<span id='typeEtc'><input type="checkbox" name='kinds'><label>±âÅ¸</label></span>
+				<div class="kindFilterCheckbox">
+					<span><input type="checkbox" name='kindFilter'><label>ì¼ë°˜</label></span>
+					<span><input type="checkbox" name='kindFilter'><label>ì§œì¥</label></span>
+					<span><input type="checkbox" name='kindFilter'><label>ì§¬ë½•</label></span>
+					<span><input type="checkbox" name='kindFilter'><label>ë¹„ë¹”ë©´</label></span>
+					<span><input type="checkbox" name='kindFilter'><label>ì¹¼êµ­ìˆ˜</label></span>
+					<span><input type="checkbox" name='kindFilter'><label>ê¸°íƒ€</label></span>
 				</div>
-				<div class="noodleTypeCheckbox">
-					<span id='dry'><input type="checkbox"
-						name=noodleTypeCheckbox><label>°Ç¸é</label></span> <span id='raw'><input
-						type="checkbox" name=noodleTypeCheckbox><label>»ı¸é</label></span>
-					<span id='oil'><input type="checkbox"
-						name=noodleTypeCheckbox><label>À¯ÅÁ¸é</label></span>
+				<div class="noodleFilterCheckbox">
+					<span><input type="checkbox" name='noodleFilter'><label>ê±´ë©´</label></span>
+					<span><input type="checkbox" name='noodleFilter'><label>ìƒë©´</label></span>
+					<span><input type="checkbox" name='noodleFilter'><label>ìœ íƒ•ë©´</label></span>
 				</div>
 			</div>
 			<div class='groupType'>
 				<h4>DATA TYPE</h4>
 				<div class="outputTypeCheckbox">
-					<span id='noodle'><input type="checkbox"><label>noodle</label></span>
-					<span id='nutrition'><input type="checkbox"><label>nutrition</label></span>
-					<span id='material'><input type="checkbox"><label>material</label></span>
-					<span id='component'><input type="checkbox"><label>component</label></span>
-					<span id='rank'><input type="checkbox"><label>rank</label></span>
+					<span><input type="checkbox"><label>noodle</label></span>
+					<span><input type="checkbox"><label>nutrition</label></span>
+					<span><input type="checkbox"><label>material</label></span>
+					<span><input type="checkbox"><label>component</label></span>
+					<span><input type="checkbox"><label>rank</label></span>
 				</div>
 			</div>
 			<div class='groupType'>
 				<h4>ORDER TYPE</h4>
 				<div class="orderTypeCheckbox">
-					<span id='popular'><input type="button" value="popular"></span>
-					<span id='calories'><input type="button" value="calories"></span>
-					<span id='release'><input type="button" value="release"></span>
+					<span><input type="checkbox" value="popular" name="orderType"><label>popular</label></span>
+					<span><input type="checkbox" value="calories" name="orderType"><label>calories</label></span>
+					<span><input type="checkbox" value="release" name="orderType"><label>release</label></span>
 				</div>
 			</div>
-			<div class="split style1">
-			
-				<section>
+			<div class='search'>
 				<form method="post" action="list">
 					<div class="field half first">
-						<label for="name">Search</label> <input type="text" name="name"
-							id="name" />
-					</div>
-					<div class="field half first">
-						<label for="submit"><br></label> <input type="button"
-							name="submit" id="submit" value="submit" />
+						<input type="text" name="name" id="name">
+						<input type="hidden" name="brandFilter" value="">
+						<input type="hidden" name="kindFilter" value="">
+						<input type="hidden" name="noodleFilter" value="">
+						<input type="hidden" name="orderType" value="">
+						<label for="searchBtn">Search<input type="button" name="submit" id="searchBtn" class="btn btn-xl"></label> 
 					</div>
 
 				</form>
-				</section>
-	<!-- °á°úÈ­¸éÃâ·Â -->
-
-	<h1>Results HERE</h1>
-		<c:forEach items="${list}" var="vo">
-		<h1> ${vo.brand}</h1>
-		<h1> ${vo.name}</h1>
-		
-		</c:forEach>
 			</div>
+			<!-- ê²°ê³¼í™”ë©´ì¶œë ¥ -->
+			<div>
+				<h1>Results HERE</h1>
+			</div>	
 		</div>
 	</div>
-		</section>
-	
-	
+	</section>
+
+
+
 
 	<!-- Bootstrap Core JavaScript -->
-    <script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<!-- Plugin JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="resources/js/jqBootstrapValidation.js"></script>
+	<!-- Contact Form JavaScript -->
+	<script src="resources/js/jqBootstrapValidation.js"></script>
 
-    <!-- Theme JavaScript -->
-    <script src="resources/js/agency.min.js"></script>
-    
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<!-- Theme JavaScript -->
+	<script src="resources/js/agency.min.js"></script>
+
+	<!-- jQuery -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 	<script>
-		
-		$("#submit").click(function() {
-			
-				var arr = [];
-			$("input[name=brandFilter]:checked").each(function() {
-				
-				arr.push($(this).val());
-				console.log(arr);
+		$(".orderTypeCheckbox input").on("click",function(){
+			console.log($(this));
+			if($(this).is(":checked")){
+				$('.orderTypeCheckbox input').prop('checked', false);
+				$(this).prop("checked", true);
+			};
+		});
+	
+		$("#searchBtn").on("click",function() {
+
+			var brandArr = [];
+			var kindArr = [];
+			var noodleArr = [];
+			var orderType;
+
+			$("input[name='brandFilter']:checked").each(function() {
+				brandArr.push($(this).parent().find('label').html());
 			});
 			
-			$.ajax({
+			console.log(brandArr);
+			
+			$("input[name='kindFilter']:checked").each(function() {
+				kindArr.push($(this).parent().find('label').html());
+			});
+				console.log(kindArr);
+			
+			$("input[name='noodleFilter']:checked").each(function() {
+				noodleArr.push($(this).parent().find('label').html());
+			});
+				console.log(noodleArr);
+			
+			orderType = $("input[name='orderType']:checked");
+			console.log(orderType);
+			
+			var filters = {brandFilter:brandArr,kindFilter:kindArr,noodleFilter:noodleArr,orderType:orderType };
 
-				url : 'wiki/list',
-				type : 'post',
-				dataType : 'text',
-				data : {
-					brandFilter : arr
-				}
-			})
+			$.ajax({
+					url : 'wiki/list',
+					type : 'post',
+					dataType : 'text',
+					data : filters,
+					success: function(result){
+						
+					}
+			});
+		
+			
+			
 		});
 	</script>
 
