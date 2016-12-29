@@ -42,9 +42,34 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 	}
 
 	@Override
-	public void likeCnt(Integer tno) throws Exception {
+	public void addLikeCnt(Integer tno) throws Exception {
+		session.update(namespace + ".addLikeCnt", tno);
 		
-		session.update(namespace + ".like",tno);
 	}
+
+	@Override
+	public void addReplyCnt(Integer tno) throws Exception {
+		session.update(namespace + ".addReplyCnt", tno);
+		
+	}
+
+	@Override
+	public void minReplyCnt(Integer tno) throws Exception {
+		session.update(namespace + ".minReplyCnt", tno);
+		
+	}
+
+	@Override
+	public TimeLineVO readReplyCnt(Integer tno) throws Exception {
+		
+		return session.selectOne(namespace + ".readReplyCnt", tno);
+	}
+
+	@Override
+	public TimeLineVO readLikeCnt(Integer tno) throws Exception {
+		
+		return session.selectOne(namespace + ".readLikeCnt", tno);
+	}
+
 
 }

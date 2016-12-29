@@ -41,14 +41,44 @@
 	
 	</delete>
 	
-	<update id="like">
+	<update id="addLikeCnt">
 	
 		update tbl_timeline
-		set likecnt =+1
-		where tno = #{tno, jdbcType=INTEGER};
+		set likecnt = likecnt + 1
+		where tno = #{tno, jdbcType=INTEGER}
 	
 	
 	</update>
+	
+	<update id="addReplyCnt">
+	
+		update tbl_timeline
+		set replycnt = replycnt = replycnt + 1
+		where tno = #{tno, jdbcType=INTEGER}
+			
+	</update>
+	
+	<update id="minReplyCnt">
+	
+		update tbl_timeline
+		set replycnt = replycnt = replycnt - 1
+		where tno = #{tno, jdbcType=INTEGER}
+			
+	</update>
+	
+	
+	<select id="readReplyCnt">
+	
+	select replycnt from tbl_timeline
+		where tno = #{tno, jdbcType=INTEGER}
+	
+	</select>
+	
+		<select id="readLikeCnt">
+		select likecnt from tbl_timeline
+		where tno = #{tno, jdbcType=INTEGER}
+	
+	</select>
 
 
 

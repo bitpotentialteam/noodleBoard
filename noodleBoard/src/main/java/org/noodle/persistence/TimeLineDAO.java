@@ -10,6 +10,10 @@ public interface TimeLineDAO {
 	public List<TimeLineVO> listView() throws Exception;
 	public void update(TimeLineVO vo)throws Exception;
 	public void delete(Integer tno)throws Exception;
-	public void likeCnt(Integer tno)throws Exception;
 	
+	public void addLikeCnt(Integer tno) throws Exception;
+	public void addReplyCnt(Integer tno) throws Exception;
+	public void minReplyCnt(Integer tno) throws Exception; 
+	public TimeLineVO readReplyCnt(Integer tno)throws Exception;
+	public TimeLineVO readLikeCnt(Integer tno)throws Exception;
 }

@@ -40,9 +40,33 @@ public class TimeLineServiceImpl implements TimeLineService {
 	}
 
 	@Override
-	public void likeCnt(Integer tno) throws Exception {
-		dao.likeCnt(tno);
+	public void addLikeCnt(Integer tno) throws Exception {
+		dao.addLikeCnt(tno);
 		
+	}
+
+	@Override
+	public void addReplyCnt(Integer tno) throws Exception {
+		dao.addReplyCnt(tno);
+		
+	}
+
+	@Override
+	public void minReplyCnt(Integer tno) throws Exception {
+		dao.minReplyCnt(tno);
+		
+	}
+
+	@Override
+	public TimeLineVO readReplyCnt(Integer tno) throws Exception {
+		
+		return dao.readReplyCnt(tno);
+	}
+
+	@Override
+	public TimeLineVO readLikeCnt(Integer tno) throws Exception {
+		
+		return dao.readLikeCnt(tno);
 	}
 
 }

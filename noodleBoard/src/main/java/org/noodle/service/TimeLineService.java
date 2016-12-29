@@ -10,6 +10,11 @@ public interface TimeLineService {
 	public List<TimeLineVO> listView()throws Exception;
 	public void modify(TimeLineVO vo)throws Exception;
 	public void remove(Integer tno)throws Exception;
-	public void likeCnt(Integer tno)throws Exception;
+	
+	public void addLikeCnt(Integer tno) throws Exception;
+	public void addReplyCnt(Integer tno) throws Exception;
+	public void minReplyCnt(Integer tno) throws Exception; 
+	public TimeLineVO readReplyCnt(Integer tno)throws Exception;
+	public TimeLineVO readLikeCnt(Integer tno)throws Exception;
 	
 }
