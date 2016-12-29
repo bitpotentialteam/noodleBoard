@@ -1,10 +1,11 @@
 package org.noodle.serivceTester;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.noodle.controller.RecipeController;
 import org.noodle.domain.TimeReplyVO;
 import org.noodle.service.TimeReplyServiceImpl;
 import org.slf4j.Logger;
@@ -32,8 +33,37 @@ public class TimeReplyServiceTester {
 		vo.setTno(3);
 		
 		service.regist(vo);
+
+	}
+	
+	@Test
+	public void updateTest()throws Exception{
 		
-		logger.info("vo" + vo);
+		TimeReplyVO vo = new TimeReplyVO();
+		vo.setContent("수정수정 야호수정");
+		vo.setTrno(44);
+		
+		service.modify(vo);
+	}
+	
+	@Test
+	public void listTest()throws Exception{
+		
+		List<TimeReplyVO> list = service.listReply(3);
+		System.out.println(list);
+	}
+	
+	@Test
+	
+	public void readTest()throws Exception{
+		
+		System.out.println(service.read(44));
+	}
+	
+	@Test
+	public void deleteTest()throws Exception{
+		
+		service.remove(44);
 	}
 
 }

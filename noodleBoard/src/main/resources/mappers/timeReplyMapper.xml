@@ -8,7 +8,7 @@
 	<insert id="create" parameterType="TimeReplyVO">
 	
 	  insert into tbl_timereply(trno, mno, tno, content)
-  		values (seq_trno.nextval,#{trno, jdbcType=INTEGER},#{mno, jdbcType=INTEGER},#{tno, jdbcType=INTEGER},#{content, jdbcType=VARCHAR})
+  		values (seq_trno.nextval, #{mno, jdbcType=INTEGER},#{tno, jdbcType=INTEGER},#{content, jdbcType=VARCHAR})
 
 
 	</insert>
@@ -25,7 +25,7 @@
 	<select id="read" resultType="TimeReplyVO">
 	
 		select * from tbl_timereply
-		where tno = #{trno, jdbcType=INTEGER}
+		where trno = #{trno, jdbcType=INTEGER}
 	
 	</select>
 	
