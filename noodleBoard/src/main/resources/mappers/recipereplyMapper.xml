@@ -5,7 +5,7 @@
 
 <mapper namespace="org.noodle.RecipeReplyMapper">
 
-	<insert id="create">
+	<insert id="create" parameterType="RecipeReplyVO">
 		insert into 
 			tbl_recipereply(mno, bno, rno, content)
 		values

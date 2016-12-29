@@ -1,6 +1,5 @@
 package org.noodle.daoTester;
 
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,8 +27,8 @@ public class RecipeCuisineDAOTester {
 	@Test
 	public void testCreate() throws Exception{
 
-		vo.setBno(1);
-		vo.setStep(2);
+		vo.setBno(2);
+		vo.setStep(3);
 		vo.setContent("TEST CONTENT");
 		
 		dao.create(vo);
@@ -57,4 +56,12 @@ public class RecipeCuisineDAOTester {
 		dao.delete(1);
 	}
 	
+	@Test 
+	public void testReadStep() throws Exception{
+		
+		vo.setBno(1);
+		vo.setStep(2);
+		
+		System.out.println(dao.readStep(vo));
+	}
 }

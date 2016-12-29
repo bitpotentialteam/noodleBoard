@@ -46,5 +46,12 @@ public class RecipeImageDAOTester {
 		dao.delete(1);
 	}
 	
-	
+	@Test
+	public void testReadStep() throws Exception{
+		
+		vo.setBno(1);
+		vo.setStep(3);
+		
+		System.out.println(dao.readStep(vo));
+	}
 }
