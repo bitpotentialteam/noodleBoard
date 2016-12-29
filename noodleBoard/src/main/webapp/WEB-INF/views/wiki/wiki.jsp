@@ -108,12 +108,12 @@ body {
 	<!-- Navigation END -->
 
 	<!-- Three -->
-	<div class="container">
 		<section>
+	<div class="container">
 		<div class="box">
 			<h2>라면검색왕</h2>
 			<div class='groupType'>
-				<p>search type</p>
+				<h4>SEARCH TYPE</h4>
 				<div class="brandFilterCheckbox">
 					<span id='nongsim'><input type="checkbox" name='brandFilter'
 						value="농심" ><label>농심</label></span> <span id='samyang'><input
@@ -126,7 +126,7 @@ body {
 						type="checkbox" name='brandFilter' value="기타"><label>기타</label></span>
 				</div>
 				<div class="kindsCheckbox">
-					<span id='nomal'><input type="checkbox" name='kinds'><label>일반</label></span>
+					<span id='normal'><input type="checkbox" name='kinds'><label>일반</label></span>
 					<span id='jjajang'><input type="checkbox" name='kinds'><label>짜장</label></span>
 					<span id='jjamppong'><input type="checkbox" name='kinds'><label>짬뽕</label></span>
 					<span id='spicy'><input type="checkbox" name='kinds'><label>비빔면</label></span>
@@ -142,7 +142,7 @@ body {
 				</div>
 			</div>
 			<div class='groupType'>
-				<p>data type</p>
+				<h4>DATA TYPE</h4>
 				<div class="outputTypeCheckbox">
 					<span id='noodle'><input type="checkbox"><label>noodle</label></span>
 					<span id='nutrition'><input type="checkbox"><label>nutrition</label></span>
@@ -152,7 +152,7 @@ body {
 				</div>
 			</div>
 			<div class='groupType'>
-				<p>order type</p>
+				<h4>ORDER TYPE</h4>
 				<div class="orderTypeCheckbox">
 					<span id='popular'><input type="button" value="popular"></span>
 					<span id='calories'><input type="button" value="calories"></span>
@@ -160,6 +160,7 @@ body {
 				</div>
 			</div>
 			<div class="split style1">
+			
 				<section>
 				<form method="post" action="list">
 					<div class="field half first">
@@ -175,7 +176,7 @@ body {
 				</section>
 	<!-- 결과화면출력 -->
 
-	<h1> 우에에에엥 결과결과</h1>
+	<h1>Results HERE</h1>
 		<c:forEach items="${list}" var="vo">
 		<h1> ${vo.brand}</h1>
 		<h1> ${vo.name}</h1>
@@ -183,10 +184,10 @@ body {
 		</c:forEach>
 			</div>
 		</div>
+	</div>
 		</section>
 	
 	
-	</div>
 
 	<!-- Bootstrap Core JavaScript -->
     <script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
