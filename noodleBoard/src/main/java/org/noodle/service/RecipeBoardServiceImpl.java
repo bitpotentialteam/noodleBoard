@@ -2,18 +2,17 @@ package org.noodle.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.noodle.domain.Criteria;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.persistence.RecipeBoardDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RecipeBoardServiceImpl implements RecipeBoardService {
 
-	@Inject
+	@Autowired
 	private RecipeBoardDAO dao;
 	
 	@Override
@@ -22,9 +21,9 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 		dao.create(vo);
 	}
 
+	//@Transactional
 	@Override
-	@Transactional
-	public RecipeBoardVO view(int bno) throws Exception {
+	public RecipeBoardVO view(Integer bno) throws Exception {
 		
 		dao.addViewCount(bno);
 		
@@ -38,7 +37,7 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	}
 
 	@Override
-	public void remove(int bno) throws Exception {
+	public void remove(Integer bno) throws Exception {
 		
 		dao.delete(bno);
 	}
