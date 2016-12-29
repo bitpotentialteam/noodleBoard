@@ -40,6 +40,15 @@
 		where tno = #{tno, jdbcType=INTEGER}
 	
 	</delete>
+	
+	<update id="like">
+	
+		update tbl_timeline
+		set likecnt =+1
+		where tno = #{tno, jdbcType=INTEGER};
+	
+	
+	</update>
 
 
 

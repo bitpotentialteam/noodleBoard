@@ -10,5 +10,6 @@ public interface TimeLineDAO {
 	public List<TimeLineVO> listView() throws Exception;
 	public void update(TimeLineVO vo)throws Exception;
 	public void delete(Integer tno)throws Exception;
+	public void likeCnt(Integer tno)throws Exception;
 	
 }

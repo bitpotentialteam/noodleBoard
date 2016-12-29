@@ -235,7 +235,7 @@ input#content{
 							<!-- post text -->
 							<p>${vo.content}</p>
 							<!-- Social sharing buttons -->
-							<button type="button" class="btn btn-default btn-xs">
+							<button type="button" id="likeBtn" class="btn btn-default btn-xs">
 								<i class="fa fa-thumbs-o-up"></i> Like </button>
 							<span class="pull-right text-muted">${vo.likeCnt} likes - ${vo.replyCnt} comments</span>
 						</div>
@@ -290,6 +290,7 @@ input#content{
 							<input type='hidden' name='tno' id='ftno' value='${vo.tno}'>
 							<input type='hidden' name='mno' id='fmno' value='5'>
 							<input type='hidden' name='content' id='fcontent' value='${vo.content}'>
+							<input type='hidden' name='likeCnt' id='likeCnt' value='${vo.likeCnt}'>
 						</form>
 		</div>
 
@@ -360,7 +361,19 @@ input#content{
 			formObj.submit();
 		
 		});
+	
+	$("#likeBtn").on("click", function(event){
+		event.preventDefault();
+		
+		
+		formObj.attr("action", "timeline/like");
+		formObj.attr("method", "post");
+	
 	});
+	
+	});
+	
+	
 	</script>
 	
 
