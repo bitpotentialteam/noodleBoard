@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- 
+	pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +15,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-	
+
 <!-- Bootstrap 3.3.6 -->
 <link rel="stylesheet"
 	href="../resources/vendor/bootstrap/css/bootstrap.min.css">
@@ -35,7 +35,7 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
 	rel='stylesheet' type='text/css'>
-	
+
 <!-- Ionicons -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -54,7 +54,8 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
 <style>
@@ -63,21 +64,18 @@ body {
 }
 
 .box p {
-	margin-bottom: 0.8em;	
+	margin-bottom: 0.8em;
 }
 
 .box {
 	padding: 3% 5%;
 }
-
-
-
 </style>
 
 </head>
 <body>
 
-<!-- Navigation -->
+	<!-- Navigation -->
 	<nav id="mainNav"
 		class="navbar navbar-default navbar-custom navbar-fixed-top">
 	<div class="container">
@@ -106,24 +104,26 @@ body {
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
-	<!-- /.container-fluid -->
-	</nav>
+	<!-- /.container-fluid --> </nav>
 	<!-- Navigation END -->
-	
+
 	<!-- Three -->
 	<div class="container">
-	<section>
+		<section>
 		<div class="box">
 			<h2>¶ó¸é°Ë»ö¿Õ</h2>
 			<div class='groupType'>
 				<p>search type</p>
-				<div class="brandTypeCheckbox">
-					<span id='nongsim'><input type="checkbox" name='brandType' value="³ó½É"><label>³ó½É</label></span>
-					<span id='samyang'><input type="checkbox" name='brandType' value="»ï¾ç"><label>»ï¾ç</label></span>
-					<span id='paldo'><input type="checkbox" name='brandType' value="ÆÈµµ"><label>ÆÈµµ</label></span>
-					<span id='ottogi'><input type="checkbox" name='brandType' value="¿À¶Ñ±â"><label>¿À¶Ñ±â</label></span>
-					<span id='pulmuone'><input type="checkbox" name='brandType' value="Ç®¹«¿ø"><label>Ç®¹«¿ø</label></span>
-					<span id='brandEtc'><input type="checkbox" name='brandType' value="±âÅ¸"><label>±âÅ¸</label></span>
+				<div class="brandFilterCheckbox">
+					<span id='nongsim'><input type="checkbox" name='brandFilter'
+						value="³ó½É" ><label>³ó½É</label></span> <span id='samyang'><input
+						type="checkbox" name='brandFilter' value="»ï¾ç"><label>»ï¾ç</label></span>
+					<span id='paldo'><input type="checkbox" name='brandFilter'
+						value="ÆÈµµ"><label>ÆÈµµ</label></span> <span id='ottogi'><input
+						type="checkbox" name='brandFilter' value="¿À¶Ñ±â"><label>¿À¶Ñ±â</label></span>
+					<span id='pulmuone'><input type="checkbox" name='brandFilter'
+						value="Ç®¹«¿ø"><label>Ç®¹«¿ø</label></span> <span id='brandEtc'><input
+						type="checkbox" name='brandFilter' value="±âÅ¸"><label>±âÅ¸</label></span>
 				</div>
 				<div class="kindsCheckbox">
 					<span id='nomal'><input type="checkbox" name='kinds'><label>ÀÏ¹Ý</label></span>
@@ -134,9 +134,11 @@ body {
 					<span id='typeEtc'><input type="checkbox" name='kinds'><label>±âÅ¸</label></span>
 				</div>
 				<div class="noodleTypeCheckbox">
-					<span id='dry'><input type="checkbox" name=noodleTypeCheckbox><label>°Ç¸é</label></span>
-					<span id='raw'><input type="checkbox" name=noodleTypeCheckbox><label>»ý¸é</label></span>
-					<span id='oil'><input type="checkbox" name=noodleTypeCheckbox><label>À¯ÅÁ¸é</label></span>
+					<span id='dry'><input type="checkbox"
+						name=noodleTypeCheckbox><label>°Ç¸é</label></span> <span id='raw'><input
+						type="checkbox" name=noodleTypeCheckbox><label>»ý¸é</label></span>
+					<span id='oil'><input type="checkbox"
+						name=noodleTypeCheckbox><label>À¯ÅÁ¸é</label></span>
 				</div>
 			</div>
 			<div class='groupType'>
@@ -159,7 +161,7 @@ body {
 			</div>
 			<div class="split style1">
 				<section>
-				<form method="post" action="#">
+				<form method="post" action="list">
 					<div class="field half first">
 						<label for="name">Search</label> <input type="text" name="name"
 							id="name" />
@@ -168,38 +170,48 @@ body {
 						<label for="submit"><br></label> <input type="button"
 							name="submit" id="submit" value="submit" />
 					</div>
-	
+
 				</form>
 				</section>
+	<!-- °á°úÈ­¸éÃâ·Â -->
+
+	<h1> ¿ì¿¡¿¡¿¡¿¨ °á°ú°á°ú</h1>
+		<c:forEach items="${list}" var="vo">
+		<h1> ${vo.brand}</h1>
+		<h1> ${vo.name}</h1>
+		
+		</c:forEach>
 			</div>
 		</div>
-	</section>
+		</section>
+	
+	
 	</div>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	
-	<script> 
-	
-	function checkboxArr() {
-		var checkArr = new Array;
-		$("input[name=brandType]:checked").each(function(){
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+	<script>
+		
+		$("#submit").click(function() {
 			
-			checkArr.push($(this).val());
-			console.log(checkArr);
+				var arr = [];
+			$("input[name=brandFilter]:checked").each(function() {
+				
+				arr.push($(this).val());
+				console.log(arr);
+			});
+			
+			$.ajax({
+
+				url : 'wiki/list',
+				type : 'post',
+				dataType : 'text',
+				data : {
+					brandFilter : arr
+				}
+			})
 		});
-	}
-	
-	$.ajax({
-		
-		url:'../list'
-		,type:'post'
-		,dataType:'text'
-		,data:{
-			valueArrTest : checkArr
-		}
-		
-	});
-	
 	</script>
 
 </body>
