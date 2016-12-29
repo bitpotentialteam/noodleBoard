@@ -2,8 +2,6 @@ package org.noodle.dbTester;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.noodle.domain.Criteria;
@@ -12,7 +10,7 @@ import org.noodle.domain.TimeLineVO;
 import org.noodle.persistence.TimeLineDAO;
 import org.noodle.persistence.TimeReplyDAO;
 import org.noodle.persistence.WikiDAO;
-import org.noodle.serivceTester.TimeReplyServiceTester;
+import org.noodle.service.TimeReplyServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +22,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 public class TimeLineTest {
 
-	@Inject
+	@Autowired
 	TimeLineDAO dao;
-	@Inject
+	@Autowired
 	WikiDAO wiki;
+	@Autowired
+	TimeReplyServiceImpl service;
 	
 	@Autowired
 	TimeReplyDAO tdao;
@@ -109,6 +109,12 @@ public class TimeLineTest {
 	public void daoTest()throws Exception{
 		
 		System.out.println(tdao.listReply(5));
+	}
+	
+	@Test
+	public void serviceTest()throws Exception{
+
+		System.out.println(service.listReply(5));
 	}
 
 }

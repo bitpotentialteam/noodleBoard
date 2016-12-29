@@ -69,7 +69,7 @@ public class TimeReplyServiceTester {
 	public void deleteTest()throws Exception{
 		
 		TimeReplyVO vo = new TimeReplyVO();
-		vo.setTrno(1);
+		vo.setTrno(42);
 		service.remove(vo);
 	}
 	
