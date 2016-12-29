@@ -55,7 +55,7 @@
 <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
 <style>
-body {
+.navbar-custom  {
 	background-color: #222;
 }
 
@@ -74,8 +74,8 @@ body {
 	resize: none;
 }
 
-#content2 {
-	width: 50%;
+#modContent {
+	width: 100%;
 	height: 150px;
 	padding: 12px 20px;
 	box-sizing: border-box;
@@ -140,8 +140,8 @@ body {
     cursor: pointer;
 }
 
-div#temp{
-	border: 1px solid black;
+div.box{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 input#content{
@@ -172,7 +172,7 @@ input#content{
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="hidden"><a href="#page-top"></a></li>
-				<li><a class="page-scroll" href="#">Noodle-Wiki</a></li>
+				<li><a class="page-scroll" href="/wiki">Noodle-Wiki</a></li>
 				<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
 				<li><a class="page-scroll" href="/timeline">Community</a></li>
 				<li><a class="page-scroll" href="/developer/api">Developer</a></li>
@@ -186,11 +186,11 @@ input#content{
 	</nav>
 	<!-- Navigation END -->
 
-	<section>
+	<section class="bg-light-gray">
 	<div class="container">
 		<div class="row">
 		<!-- INPUT START -->
-			<div class="box" id="temp">
+			<div class="box box-solid box-warning">
 			<!-- .box-header START -->
 				<div class="box-header with-border">
 					<div class="user-block">
@@ -214,7 +214,7 @@ input#content{
 					
 					<!-- data START -->
 					<c:forEach items="${list}" var="vo">
-				<div class="box" id="temp">
+				<div class="box box-solid" id="timelineBox">
 						<!-- .box-header START -->
 						<div class="box-header with-border">
 							<div class="user-block">
@@ -226,7 +226,26 @@ input#content{
 								</button>           
 								<button type="button" value="${vo.tno}" id="modifyBtn" class="modify pull-right text-muted"> 
 									<span class="glyphicon glyphicon-erase"></span>								
-								</button>           
+								</button>
+								
+									<!-- Modify Modal -->
+								<div id="myModal" class="modal">
+									<!-- Modal content -->
+									<div class="modal-content">
+										<div class="modal-header">
+											<span class="close" id="closeBtn">&times;</span>
+											<h2>수정할 내용을 입력해주세요!</h2>
+										</div>
+										
+										<div class="modal-body">
+											<input value="${vo.content}" name="content" id="modContent">
+										</div>
+										
+										<div class="modal-footer">
+											<button type="button" id="modBtn" value="${vo.tno}"><span class="mod glyphicon glyphicon-erase" ></span></button>
+										</div>
+									</div>
+								</div><!-- modal 끝 -->           
 							</div>
 						</div>
 						<!-- .box-header END-->
@@ -263,24 +282,7 @@ input#content{
 								</div>
 							</form>
 							
-									<!-- Modify Modal -->
-								<div id="myModal" class="modal">
-									<!-- Modal content -->
-									<div class="modal-content">
-										<div class="modal-header">
-											<span class="close">&times;</span>
-											<h2>수정할 내용을 입력해주세요!</h2>
-										</div>
-										
-										<div class="modal-body">
-											<input value="${vo.content}" name="content" id="modContent">
-										</div>
-										
-										<div class="modal-footer">
-											<button type="button" id="modBtn" value="${vo.tno}"><span class="mod glyphicon glyphicon-erase" ></span></button>
-										</div>
-									</div>
-								</div><!-- modal 끝 -->
+								
 						</div><!-- /.box-footer -->
 				</div><!-- big div -->
 					</c:forEach>
@@ -290,8 +292,12 @@ input#content{
 							<input type='hidden' name='tno' id='ftno' value='${vo.tno}'>
 							<input type='hidden' name='mno' id='fmno' value='5'>
 							<input type='hidden' name='content' id='fcontent' value='${vo.content}'>
-							<input type='hidden' name='likeCnt' id='likeCnt' value='${vo.likeCnt}'>
-						</form>
+						</form> 
+						<form id='likeform' method='post' action="regist">
+							<input type='hidden' name='tno' id='ftno' value='${vo.tno}'>
+							<input type='hidden' name='mno' id='fmno' value='5'>
+							<input type='hidden' name='likeCnt' id='likeCnt' value='0'>
+						</form> 
 		</div>
 
 	</div>
@@ -318,7 +324,7 @@ input#content{
 -->	
 		
 		
-		$("#removeBtn").on("click", function(event) {
+		$(document).on("click","#removeBtn", function(event) {
 			event.preventDefault();
 			console.log(event);
 			
@@ -334,32 +340,32 @@ input#content{
 			
 		});
 		
-		$("#modifyBtn").on("click", function(event) {
-	       
-			$('#myModal').toggle();
+		$(document).on("click","#modifyBtn", function(event) {
+			var $modalPop = $(this).parent().find('#myModal'); 
+			$modalPop.toggle();
 			
 		});
 		
-		$(".close").on("click", function(event){
-			event.preventDefault();
-		    $("#myModal").toggle(); 
-		
+		$(document).on("click","#closeBtn", function(event){
+			var $modalPop = $(this).parents("#myModal"); 
+			$modalPop.toggle(); 
+	
 		});
 		
 		
-		$("#modBtn").on("click", function(event){
+		$(document).on("click","#modBtn", function(event){
 			event.preventDefault();
 			
 			var tno = $(this).val();
 			$('#ftno').val(tno);
 			
-			var content = $('#modContent').val();
+			var content = $(this).parents('.modal-content').find('#modContent').val();
 			$('#fcontent').val(content);
 			
 			formObj.attr("action", "timeline/modify");
 			formObj.attr("method", "post");
 			formObj.submit();
-		
+					
 		});
 	
 	$("#likeBtn").on("click", function(event){
