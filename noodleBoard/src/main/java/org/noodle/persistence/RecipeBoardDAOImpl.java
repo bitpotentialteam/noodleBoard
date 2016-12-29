@@ -1,11 +1,15 @@
 package org.noodle.persistence;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.noodle.domain.Criteria;
 import org.noodle.domain.RecipeBoardVO;
+import org.noodle.domain.RecipeCuisineVO;
+import org.noodle.domain.RecipeImageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,8 +27,15 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	}
 
 	@Override
-	public RecipeBoardVO read(int bno) throws Exception {
-		return session.selectOne(namespace + "read", bno);
+	public RecipeBoardVO read(Integer bno) throws Exception {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("RecipeBoardVO", new RecipeBoardVO());
+		map.put("RecipeImageVO", new RecipeImageVO());
+		map.put("RecipeCuisineVO", new RecipeCuisineVO());
+		
+		return session.selectOne(namespace + "read", map);
 	}
 
 	@Override
@@ -33,7 +44,7 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	}
 
 	@Override
-	public void delete(int bno) throws Exception {
+	public void delete(Integer bno) throws Exception {
 		session.delete(namespace + "delete", bno);
 	}
 

@@ -9,9 +9,9 @@ public interface RecipeBoardDAO {
 
 	
 	public void create(RecipeBoardVO vo) throws Exception;
-	public RecipeBoardVO read(int bno)throws Exception;
+	public RecipeBoardVO read(Integer bno)throws Exception;
 	public void update(RecipeBoardVO vo)throws Exception;
-	public void delete(int bno)throws Exception;
+	public void delete(Integer bno)throws Exception;
 	public List<RecipeBoardVO> listAll()throws Exception;
 	public List<RecipeBoardVO> search(Criteria cri)throws Exception;
 	
