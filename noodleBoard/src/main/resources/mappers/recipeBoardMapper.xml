@@ -13,8 +13,15 @@
 			(#{mno}, seq_bno.nextval, #{ino}, #{title}, #{content}, #{materialContent})
 	</insert>
 
-	<select id="read" resultMap="hashmap">
+	<select id="read" resultType="RecipeBoardVO">
 		select
+			*
+		from
+			tbl_recipeBoard
+		where
+			bno = #{bno}
+	
+		<!-- select
 			tbl_recipeboard.mno, tbl_recipeboard.bno, tbl_recipeboard.title, tbl_recipeboard.content, tbl_recipeboard.materialContent,
 			tbl_recipeboard.viewCnt, tbl_recipeboard.replyCnt, tbl_recipeboard.regdate, tbl_recipeboard.updatedate,  
 			tbl_recipeImage.thumbnail,
@@ -30,7 +37,7 @@
     	on 
     		tbl_recipeBoard.bno = tbl_recipeCuisine.bno
     	where 
-    		tbl_recipeBoard.bno = #{bno}
+    		tbl_recipeBoard.bno = #{bno} -->
 	</select>
 
 	<update id="update">

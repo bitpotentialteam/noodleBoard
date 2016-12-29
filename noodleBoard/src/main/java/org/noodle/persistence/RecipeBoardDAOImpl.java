@@ -29,13 +29,13 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	@Override
 	public RecipeBoardVO read(Integer bno) throws Exception {
 		
-		Map<String, Object> map = new HashMap<String, Object>();
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		
+//		map.put("RecipeBoardVO", new RecipeBoardVO());
+//		map.put("RecipeImageVO", new RecipeImageVO());
+//		map.put("RecipeCuisineVO", new RecipeCuisineVO());
 		
-		map.put("RecipeBoardVO", new RecipeBoardVO());
-		map.put("RecipeImageVO", new RecipeImageVO());
-		map.put("RecipeCuisineVO", new RecipeCuisineVO());
-		
-		return session.selectOne(namespace + "read", map);
+		return session.selectOne(namespace + "read", bno);
 	}
 
 	@Override
