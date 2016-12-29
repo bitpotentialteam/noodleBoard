@@ -6,8 +6,8 @@
 <mapper namespace="org.noodle.RecipeCuisineMapper">
 
 	<insert id="create">
-		insert 
-			into tbl_recipeCuisine (bno, step, content)
+		insert into 
+			tbl_recipeCuisine (bno, step, content)
 		values 
 			(#{bno}, #{step}, #{content})
 	</insert>
@@ -20,7 +20,9 @@
 	</select>
 	
 	<update id="update">
-		update tbl_recipeCuisine set
+		update 
+			tbl_recipeCuisine 
+		set
 			step = #{step}, content = #{content}, updatedate = sysdate 
  		where 
  			bno = #{bno}
@@ -34,7 +36,12 @@
 	</delete>	
 	
 	<select id="readStep" resultType="RecipeCuisineVO">
-		select * from tbl_recipeCuisine where bno = #{bno} and step = #{step}
+		select 
+			* 
+		from 
+			tbl_recipeCuisine 
+		where 
+		bno = #{bno} and step = #{step}
 	</select>
 	
 </mapper>

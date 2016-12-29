@@ -13,15 +13,26 @@
 	</insert>
 	
 	<select id="read" resultType="RecipeImageVO">
-		select * from tbl_recipeImage where ino =#{ino}
+		select 
+			* 
+		from 
+			tbl_recipeImage where ino =#{ino}
 	</select>
 
 	<delete id="delete">
-		delete tbl_recipeImage where ino = #{ino}
+		delete 
+			tbl_recipeImage 
+		where 
+			ino = #{ino}
 	</delete>	
 	
 	<select id="readStep" resultType="RecipeImageVO">
-		select * from tbl_recipeImage where bno = #{bno} and step = #{step}
+		select 
+			* 
+		from 
+			tbl_recipeImage 
+		where 
+		bno = #{bno} and step = #{step}
 	</select>
 	
 </mapper>

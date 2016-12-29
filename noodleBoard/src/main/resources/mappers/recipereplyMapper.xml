@@ -6,27 +6,43 @@
 <mapper namespace="org.noodle.RecipeReplyMapper">
 
 	<insert id="create">
-		insert into tbl_recipereply(mno, bno, rno, content)
-		values(#{mno}, #{bno}, seq_recipeReply.nextval, #{content})
-
+		insert into 
+			tbl_recipereply(mno, bno, rno, content)
+		values
+			(#{mno}, #{bno}, seq_recipeReply.nextval, #{content})
 	</insert>
 
 	<select id="read" resultType="RecipeReplyVO">
-		select * from tbl_recipereply where rno = #{rno}
+		select 
+			* 
+		from 
+			tbl_recipereply 
+		where 
+			rno = #{rno}
 	</select>
 
 	<update id="update">
-		update tbl_recipereply set bno = #{bno}, content = #{content}, updatedate =
-		sysdate
-		where rno = #{rno}
+		update 
+			tbl_recipereply 
+		set 
+			bno = #{bno}, content = #{content}, updatedate = sysdate
+		where 
+			rno = #{rno}
 	</update>
 
 	<delete id="delete">
-		delete tbl_recipereply where rno = #{rno}
+		delete 
+			tbl_recipereply 
+		where 
+			rno = #{rno}
 	</delete>
 
 	<select id="listAll" resultType="RecipeReplyVO">
-		select * from tbl_recipereply order by rno desc
+		select 
+			* 
+		from 
+			tbl_recipereply 
+		order by rno desc
 	</select>
 
 </mapper>
