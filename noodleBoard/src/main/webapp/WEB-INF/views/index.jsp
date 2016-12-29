@@ -74,8 +74,15 @@
 					<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
 					<li><a class="page-scroll" href="/timeline">Community</a></li>
 					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
+					
+					<c:if test='${sessionScope.LOGIN eq success}'>
 					<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
 					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
+					</c:if>
+					<c:if test='${sessionScope.LOGIN ne success}'>
+					<li><a class="page-scroll" href="/user/login" id="login">LOGOUT</a></li>
+					<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
+					</c:if>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -371,21 +378,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
  
  
-    <c:if test='${sessionScope.LOGIN.userid ne null}'>
-   		 <script>
 
-    $("#login").attr('href','../');
-    $("#login").html('LOGOUT');
-    $("#login").on("click",function(event){
-    	
-    	alert("로그아웃하셔씀다");
-    })
-    
-    $("#register").attr('href','/user/myPage');
-    $("#register").html('MY PAGE');
-    
-   		 </script>
-    </c:if>
     
 </body>
 </html>

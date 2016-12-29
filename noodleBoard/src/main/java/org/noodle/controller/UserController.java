@@ -23,30 +23,40 @@ public class UserController {
 	@Inject
 	private MemberService service;
 
+//	@GetMapping("/login")
+//	public void login() throws Exception {
+//
+//		logger.info("login page called.....");
+//
+//	}
+//
+//	@PostMapping("/login")
+//	public String postLogin(MemberVO vo, Model model, HttpSession session) throws Exception {
+//
+//		MemberVO login = service.login(vo);
+//
+//		if (login != null) {
+//			model.addAttribute("value", vo);
+//			session.setAttribute("LOGIN", vo);
+//
+//			return "redirect:../";
+//
+//		} else {
+//			return "redirect:../user/login";
+//		}
+//
+//	}
+
 	@GetMapping("/login")
-	public void login() throws Exception {
-
-		logger.info("login page called.....");
-
+	public void loginGET(HttpSession session)throws Exception{
+		logger.info("login get...");
+		session.setAttribute("LOGIN", "success");
+		
 	}
-
-	@PostMapping("/login")
-	public String postLogin(MemberVO vo, Model model, HttpSession session) throws Exception {
-
-		MemberVO login = service.login(vo);
-
-		if (login != null) {
-			model.addAttribute("value", vo);
-			session.setAttribute("LOGIN", vo);
-
-			return "redirect:../";
-
-		} else {
-			return "redirect:../user/login";
-		}
-
-	}
-
+	
+	
+	
+	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET(MemberVO vo, Model model) throws Exception {
 

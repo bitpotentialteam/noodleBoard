@@ -88,7 +88,7 @@
 		<div class="login-box-body">
 			<p class="login-box-msg">정보를 기입하세요</p>
 
-			<form action="login" method="post">
+			<form action="loginAction" method="post">
 				<div class="form-group has-feedback">
 					<input type="text" name="userid" class="form-control" placeholder="ID">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
