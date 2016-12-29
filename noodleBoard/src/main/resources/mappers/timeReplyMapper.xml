@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.noodle.mapper.TimeReplyMapper">
+
+	<insert id="create" parameterType="TimeReplyVO">
+	
+	  insert into tbl_timereply(trno, mno, tno, content)
+  		values (seq_trno.nextval,#{trno, jdbcType=INTEGER},#{mno, jdbcType=INTEGER},#{tno, jdbcType=INTEGER},#{content, jdbcType=VARCHAR})
+
+
+	</insert>
+	
+	
+	<select id="listReply" resultType="TimeReplyVO">
+	
+		select * from tbl_timereply
+		where tno = #{tno, jdbcType=INTEGER}
+	
+	</select>
+	
+	
+	<select id="read" resultType="TimeReplyVO">
+	
+		select * from tbl_timereply
+		where tno = #{trno, jdbcType=INTEGER}
+	
+	</select>
+	
+	
+	<update id="update">
+	
+		update tbl_timereply
+		set content = #{content, jdbcType=VARCHAR} , updatedate = sysdate
+		where trno = #{trno, jdbcType=INTEGER}
+
+	</update>
+	
+	
+	<delete id="delete">
+	
+	delete from tbl_timereply
+	where trno = #{trno, jdbcType=INTEGER}
+	
+	</delete>
+	
+
+
+</mapper>
