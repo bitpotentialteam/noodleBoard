@@ -75,7 +75,7 @@
 					<li><a class="page-scroll" href="/timeline">Community</a></li>
 					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
 					<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
-					<li><a class="page-scroll" href="/user/register" id="register">SING-IN</a></li>
+					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
