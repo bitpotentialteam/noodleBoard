@@ -34,11 +34,6 @@ public class RecipeController {
 		return "redirect:/recipe/list";
 	}
 	
-	@GetMapping("/testregister")
-	public void testRegisterGET(RecipeBoardVO vo, Model model)throws Exception{
-		logger.info("register GET.................");
-	}
-	
 	@GetMapping("/list")
 	public void listAll() throws Exception {
 		logger.info("listAll.............");
@@ -57,10 +52,6 @@ public class RecipeController {
 	public void view() throws Exception {
 		logger.info("view.............");
 	}
-	
-	@GetMapping("/testview")
-	public void testView() throws Exception {
-		logger.info("testview.............");
-	}
+
 
 }
