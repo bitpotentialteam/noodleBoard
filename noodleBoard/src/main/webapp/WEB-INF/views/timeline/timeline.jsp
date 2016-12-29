@@ -274,20 +274,21 @@ div .replyDiv{
 			
 						<!-- reply start -->
 						<div class = "replyDiv">
-						<div class="box-footer box-comments">
+						
+					<div class="box-footer box-comments">
 							<div class="box-comment">
-								<!-- User image -->
-								<img class="img-circle img-sm" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg" alt="User Image">
-								<div class="comment-text">
+<!-- 								User image -->
+<!-- 								<img class="img-circle img-sm" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg" alt="User Image"> -->
+<!-- 								<div class="comment-text"> -->
 								
-								<span class="username"> ${reply.nickname}   <span class="text-muted pull-right">  ${reply.regDate}  </span></span>	<!-- /.username -->
- 								${reply.content} 
+<%-- 								<span class="username"> ${reply.nickname}   <span class="text-muted pull-right">  ${reply.regDate}  </span></span>	<!-- /.username --> --%>
+<%--  								${reply.content}  --%>
 								
 								
 								
-								</div> <!-- /.comment-text -->
+<!-- 								</div> /.comment-text -->
 							</div> <!-- /.box-comment -->
-						</div>
+						</div>						
 				
 						<!-- .box-footer END-->
 						<div class="box-footer">
@@ -425,9 +426,23 @@ div .replyDiv{
 			    	function (result){
 						
 						var str = "";
+						
+						
+						
+						str = 
+						"<c:forEach items='${reply}' var='reply'>"	
+						"<img class='img-circle img-sm' src=" + ${reply.thumnail} + 
+						"alt='User Image'> <div class='comment-text'> <span class='username'>" +
+						${reply.nickname}  + 
+						" <span class='text-muted pull-right'> " + 
+						${reply.regDate} + 
+						"</span></span>" +
+						 ${reply.content} + "</div>" + "</c:forEach>";
+					
+					$(".box-comment").html(str);
+					
 					console.log(result);
-						
-						
+
 			    	}
 				);
 			

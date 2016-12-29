@@ -29,10 +29,11 @@ public class TimeReplyController {
 	
 	@GetMapping("/reply")
 	@ResponseBody
-	public List<TimeReplyVO> reply(@RequestParam("tno")Integer tno) throws Exception {
+	public List<TimeReplyVO> reply(@RequestParam("tno")Integer tno, Model model) throws Exception {
 
 		logger.info("Reply called.....");
 		
+		model.addAttribute("reply",service.listReply(tno));
 
 		return service.listReply(tno);
 
