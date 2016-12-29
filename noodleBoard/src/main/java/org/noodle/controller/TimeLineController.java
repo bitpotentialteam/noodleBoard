@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.noodle.domain.TimeLineVO;
 import org.noodle.service.TimeLineService;
+import org.noodle.service.TimeReplyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ public class TimeLineController {
 
 	@Inject
 	TimeLineService service;
+
 
 	private static final Logger logger = LoggerFactory.getLogger(TimeLineController.class);
 

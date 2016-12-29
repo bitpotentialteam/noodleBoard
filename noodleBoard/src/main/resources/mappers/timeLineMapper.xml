@@ -53,7 +53,7 @@
 	<update id="addReplyCnt">
 	
 		update tbl_timeline
-		set replycnt = replycnt = replycnt + 1
+		set replycnt = replycnt + 1
 		where tno = #{tno, jdbcType=INTEGER}
 			
 	</update>

@@ -263,6 +263,7 @@ div .replyDiv{
 							<button type="button" id="likeBtn" value="${vo.tno}" class="btn btn-default btn-xs">
 								<i class="fa fa-thumbs-o-up"></i> Like </button>
 								
+								
 								<button type="button" id="replyBtn" value="${vo.tno}" class="btn btn-default btn-xs">
 								<i class="fa fa-heert"></i> 댓글보기 </button>
 								
@@ -279,10 +280,11 @@ div .replyDiv{
 								<img class="img-circle img-sm" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg" alt="User Image">
 								<div class="comment-text">
 								
-							<span class="username"> 유저닉네임   <span class="text-muted pull-right"> 작성시간  </span></span>	<!-- /.username -->
-									내용
+								<span class="username"> ${reply.nickname}   <span class="text-muted pull-right">  ${reply.regDate}  </span></span>	<!-- /.username -->
+ 								${reply.content} 
 								
-
+								
+								
 								</div> <!-- /.comment-text -->
 							</div> <!-- /.box-comment -->
 						</div>
@@ -348,17 +350,6 @@ div .replyDiv{
 
 		console.log(formObj);
 
-<!--		
-		$("#create").on("click", function(event) {
-			//event.preventDefault();
-			
-			formObj.attr("action", "/timeline/regist");
-			formObj.attr("method", "post");
-			formObj.submit();
-
-		});
--->	
-		
 		
 		$(document).on("click","#removeBtn", function(event) {
 			event.preventDefault();
@@ -428,6 +419,22 @@ div .replyDiv{
 			console.log(tno);
 			
 			$(this).parents('#timelineBox').find('.replyDiv').toggle();
+			
+			  replyMannager.listReply(	  
+					{tno:tno}, 
+			    	function (result){
+						
+						var str = "";
+					console.log(result);
+						
+						
+			    	}
+				);
+			
+			$(".comment-text").html();
+
+			
+			
 
 		});
 		
@@ -439,12 +446,9 @@ div .replyDiv{
 			event.preventDefault();
 			
 			var tno = $(this).parents('.img-push').find('#replytno').val();
-			
 			var mno = $(this).parents('.img-push').find('#replymno').val();
-			
 			var replyContent = $(this).val();
 	
-			
 			console.log(tno);
 			console.log(mno);
 			console.log(replyContent);
@@ -469,23 +473,49 @@ div .replyDiv{
 	    			type : 'post',
 	    			url : '/timeline/registReply',
 	    			headers : {
-	    				"Content-Type" : "application/json",
+	    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
 	    				"X-HTTP-Method-Override" : "POST"
 	    			},
 	    			dataType : 'text',
+	    			
 	    			data : data,
 	    			
 	    			success : function(result) {
 
-	    				if (result == 'success') {
 	    					alert("등록되었습니다.");
 
-	    				}
 	    			}
 	    		});
+	      
 	    		
 	      }; //  URL, data, 콜백함수(결과값을 여기다 넘기는 )
-	      return {addReply: addReply};
+	      
+	      
+	      
+	      var listReply = (function( data, fn){
+
+	  		$.ajax({
+    			type : 'get',
+    			url : '/timeline/reply',
+    			headers : {
+    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+    				"X-HTTP-Method-Override" : "POST"
+    			},
+    			dataType : 'text',
+    			
+    			data : data,
+    			
+    			success : function(result) {
+					fn = result;
+					
+					console.log(result);
+    			}
+    		});
+	    	  
+	      });
+	      
+
+	      return {addReply: addReply, listReply:listReply};
 	      //키가 addReply 값이 함수
 	  })();
 	

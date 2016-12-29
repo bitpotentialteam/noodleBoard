@@ -30,11 +30,12 @@ public class HomeController {
 	
 	@GetMapping("/timeline")
 	public String timeLine(Model model) throws Exception {
+		
+		TimeReplyVO vo = new TimeReplyVO();
 
 		logger.info("TIMELINE called.....");
 
 		model.addAttribute("list", service.listView());
-
 
 		return "timeline/timeline";
 		

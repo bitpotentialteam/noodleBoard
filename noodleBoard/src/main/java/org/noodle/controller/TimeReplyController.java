@@ -1,5 +1,7 @@
 package org.noodle.controller;
 
+import java.util.List;
+
 import org.noodle.domain.TimeReplyVO;
 import org.noodle.service.TimeReplyService;
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -25,29 +28,28 @@ public class TimeReplyController {
 	
 	
 	@GetMapping("/reply")
-	public String reply(Integer tno,Model model) throws Exception {
+	@ResponseBody
+	public List<TimeReplyVO> reply(@RequestParam("tno")Integer tno) throws Exception {
 
 		logger.info("Reply called.....");
+		
 
-		model.addAttribute("reply", service.listReply(tno));
+		return service.listReply(tno);
 
-
-		return "timeline/timeline";
 	}
 	
 	
 
 
 	@PostMapping("/registReply")
-	public void registerPost(@RequestParam("param") String param) throws Exception {
+	public String registerPost(TimeReplyVO vo) throws Exception {
 
-		TimeReplyVO vo = new TimeReplyVO();
-		
-	
 		
 		logger.info("VO:" + vo);
 
 		service.regist(vo);
+		
+		return "timeline/timeline";
 
 	}
 	
