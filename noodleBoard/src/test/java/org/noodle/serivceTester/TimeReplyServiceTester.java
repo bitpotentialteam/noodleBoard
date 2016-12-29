@@ -49,7 +49,7 @@ public class TimeReplyServiceTester {
 	@Test
 	public void listTest()throws Exception{
 		
-		List<TimeReplyVO> list = service.listReply();
+		List<TimeReplyVO> list = service.listReply(3);
 		System.out.println(list);
 	}
 	
