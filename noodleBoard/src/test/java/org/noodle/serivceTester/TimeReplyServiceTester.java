@@ -7,9 +7,11 @@ import javax.inject.Inject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.noodle.domain.TimeReplyVO;
+import org.noodle.persistence.TimeReplyDAO;
 import org.noodle.service.TimeReplyServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -18,8 +20,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 public class TimeReplyServiceTester {
 
-	@Inject
+	@Autowired
 	TimeReplyServiceImpl service;
+	
+	@Autowired
+	TimeReplyDAO dao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(TimeReplyServiceTester.class);
 	
@@ -50,7 +55,7 @@ public class TimeReplyServiceTester {
 	public void listTest()throws Exception{
 		
 		List<TimeReplyVO> list = service.listReply(3);
-		System.out.println(list);
+		logger.info("list" + list);
 	}
 	
 	@Test
@@ -66,6 +71,12 @@ public class TimeReplyServiceTester {
 		TimeReplyVO vo = new TimeReplyVO();
 		vo.setTrno(1);
 		service.remove(vo);
+	}
+	
+	@Test
+	public void daoTest()throws Exception{
+		
+		System.out.println(dao.listReply(5));
 	}
 
 }

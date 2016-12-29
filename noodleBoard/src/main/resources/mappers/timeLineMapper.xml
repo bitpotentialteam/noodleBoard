@@ -29,7 +29,7 @@
 	
 		update tbl_timeline
 		set content = #{content, jdbcType=VARCHAR}, updatedate = sysdate
-		where trno = #{trno, jdbcType=INTEGER}
+		where tno = #{tno, jdbcType=INTEGER}
 	
 	</update>
 	

@@ -10,7 +10,12 @@ import org.noodle.domain.Criteria;
 import org.noodle.domain.NoodleVO;
 import org.noodle.domain.TimeLineVO;
 import org.noodle.persistence.TimeLineDAO;
+import org.noodle.persistence.TimeReplyDAO;
 import org.noodle.persistence.WikiDAO;
+import org.noodle.serivceTester.TimeReplyServiceTester;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,6 +28,11 @@ public class TimeLineTest {
 	TimeLineDAO dao;
 	@Inject
 	WikiDAO wiki;
+	
+	@Autowired
+	TimeReplyDAO tdao;
+	
+	private static final Logger logger = LoggerFactory.getLogger(TimeLineTest.class);
 	
 	@Test
 	public void createTest() throws Exception {
@@ -39,7 +49,7 @@ public class TimeLineTest {
 	public void viewTest()throws Exception{
 		
 		List<TimeLineVO> list = dao.listView();
-		System.out.println(list);
+		logger.info("list" + list);
 		
 	}
 	
@@ -93,6 +103,12 @@ public class TimeLineTest {
 		List<NoodleVO> result = wiki.listWiki(cri);
 		System.out.println(result);
 		
+	}
+	
+	@Test
+	public void daoTest()throws Exception{
+		
+		System.out.println(tdao.listReply(5));
 	}
 
 }
