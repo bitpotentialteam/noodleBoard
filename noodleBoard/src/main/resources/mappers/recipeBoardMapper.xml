@@ -10,16 +10,16 @@
 		insert into 
 			tbl_recipeboard(mno, bno, ino, title, content, materialContent)
 		values 
-			(#{mno}, seq_bno.nextval, #{ino}, #{title}, #{content}, #{materialContent})
+			(#{mno}, seq_bno.nextval, #{ino}, #{title , jdbcType=VARCHAR}, #{content , jdbcType=VARCHAR}, #{materialContent , jdbcType=VARCHAR})
 	</insert>
 
-	<select id="read" resultType="RecipeBoardVO">
+	<select id="read" parameterType="Integer" resultType="RecipeBoardVO">
 		select
 			*
 		from
 			tbl_recipeBoard
 		where
-			bno = #{bno}
+			bno = #{bno, jdbcType=INTEGER}
 	
 		<!-- select
 			tbl_recipeboard.mno, tbl_recipeboard.bno, tbl_recipeboard.title, tbl_recipeboard.content, tbl_recipeboard.materialContent,
@@ -78,23 +78,23 @@
 	</select>
 
 	<update id="addViewCount">
-		update tbl_recipeBoard set viewCnt = viewCnt +1 where bno =#{bno};
+		 update tbl_recipeBoard set viewCnt = viewCnt +1 where bno =#{bno}
 	</update>
 	
 	<update id="addLikeCount">
-		update tbl_recipeBoard set likeCnt = likeCnt +1 where bno =#{bno};
+		update tbl_recipeBoard set likeCnt = likeCnt +1 where bno =#{bno}
 	</update>
 	
 	<update id="minusLikeCount">
-		update tbl_recipeBoard set likeCnt = likeCnt -1 where bno =#{bno};
+		update tbl_recipeBoard set likeCnt = likeCnt -1 where bno =#{bno}
 	</update>
 	
 	<update id="addReplyCount">
-		update tbl_recipeBoard set replyCnt = replyCnt +1 where bno =#{bno};
+		update tbl_recipeBoard set replyCnt = replyCnt +1 where bno =#{bno}
 	</update>
 	
 	<update id="minusReplyCount">
-		update tbl_recipeBoard set replyCnt = replyCnt -1 where bno =#{bno};
+		update tbl_recipeBoard set replyCnt = replyCnt -1 where bno =#{bno}
 	</update>
 
 </mapper>

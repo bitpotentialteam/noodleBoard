@@ -41,6 +41,11 @@ public class RecipeBoardDAOTester {
 	public void testRead() throws Exception {
 		System.out.println(dao.read(10));
 	}
+	@Test
+	public void testAddViewCount() throws Exception{
+		dao.addViewCount(3);
+	}
+	
 
 	@Test
 	public void testUpdate() throws Exception {
