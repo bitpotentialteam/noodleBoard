@@ -266,10 +266,10 @@ input#content{
 								<!-- User image -->
 								<img class="img-circle img-sm" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg" alt="User Image">
 								<div class="comment-text">
-<%-- 									<c:forEach items="${relist}" var="re"> --%>
+
 									<span class="username"> 유저닉네임   <span class="text-muted pull-right"> 작성시간  </span></span>	<!-- /.username -->
 									내용
-<%-- 										</c:forEach> --%>
+
 								</div> <!-- /.comment-text -->
 							</div> <!-- /.box-comment -->
 						</div>

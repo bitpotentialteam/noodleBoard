@@ -19,7 +19,7 @@ public class HomeController {
 	TimeLineService service;
 
 	@Autowired
-	TimeReplyService tservice;
+	TimeReplyService rservice;
 
 	@GetMapping("/")
 	public String home()throws Exception{
@@ -33,12 +33,16 @@ public class HomeController {
 
 		logger.info("TIMELINE called.....");
 
-		TimeReplyVO vo = new TimeReplyVO();
 		model.addAttribute("list", service.listView());
 
 
 		return "timeline/timeline";
+		
+		
+		
+		
 	}
+	
 	
 	@GetMapping("/wiki")
 	public String wiki(Model model) throws Exception {
