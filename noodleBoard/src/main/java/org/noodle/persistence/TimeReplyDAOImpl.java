@@ -30,8 +30,8 @@ public class TimeReplyDAOImpl implements TimeReplyDAO {
 	}
 
 	@Override
-	public void delete(Integer trno) throws Exception {
-		session.delete(namespace + ".delete", trno); 
+	public void delete(TimeReplyVO vo) throws Exception {
+		session.delete(namespace + ".delete", vo); 
 
 	}
 

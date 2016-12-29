@@ -2,21 +2,27 @@ package org.noodle.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.noodle.domain.TimeReplyVO;
+import org.noodle.persistence.TimeLineDAOImpl;
 import org.noodle.persistence.TimeReplyDAOImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TimeReplyServiceImpl implements TimeReplyService {
 
-	@Inject
+	@Autowired
 	TimeReplyDAOImpl dao;
+	@Autowired
+	TimeLineDAOImpl tdao;
 	
+	@Transactional
 	@Override
 	public void regist(TimeReplyVO vo) throws Exception {
+		
 		dao.create(vo);
+		tdao.addReplyCnt(vo.getTno());
 
 	}
 
@@ -25,10 +31,12 @@ public class TimeReplyServiceImpl implements TimeReplyService {
 		dao.update(vo);
 
 	}
-
+	
+	@Transactional
 	@Override
-	public void remove(Integer trno) throws Exception {
-		dao.delete(trno);
+	public void remove(TimeReplyVO vo) throws Exception {
+		dao.delete(vo);
+		tdao.delete(vo.getTno());
 
 	}
 

@@ -59,17 +59,5 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 		
 	}
 
-	@Override
-	public TimeLineVO readReplyCnt(Integer tno) throws Exception {
-		
-		return session.selectOne(namespace + ".readReplyCnt", tno);
-	}
-
-	@Override
-	public TimeLineVO readLikeCnt(Integer tno) throws Exception {
-		
-		return session.selectOne(namespace + ".readLikeCnt", tno);
-	}
-
 
 }
