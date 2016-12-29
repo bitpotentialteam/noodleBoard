@@ -31,7 +31,7 @@ public class HomeController {
 	@GetMapping("/timeline")
 	public String timeLine(Model model) throws Exception {
 
-		logger.info("getTIMELINE.....");
+		logger.info("TIMELINE called.....");
 
 		TimeReplyVO vo = new TimeReplyVO();
 		model.addAttribute("list", service.listView());
@@ -43,8 +43,17 @@ public class HomeController {
 	@GetMapping("/wiki")
 	public String wiki(Model model) throws Exception {
 
-		logger.info("getWIKI.....");
+		logger.info("WIKI called.....");
 
 		return "wiki/wiki";
 	}
+	
+	@GetMapping("/developer/api")
+	public String api()throws Exception{
+		
+		logger.info("api called.....");
+		
+		return "developer/api" ;
+	}
+	
 }
