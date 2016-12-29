@@ -223,7 +223,7 @@ div .replyDiv{
 						<!-- .box-header START -->
 						<div class="box-header with-border">
 							<div class="user-block">
-								<img class="img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
+								<img class="img-circle" src="${vo.picture}" alt="User Image">
 								<span class="username"><a href="#"> ${vo.nickname}</a></span>
 								<span class="description"> ${vo.regDate} </span>
 								<button type="button" value="${vo.tno}" id="removeBtn" class="pull-right text-muted"> 
@@ -276,7 +276,7 @@ div .replyDiv{
 						<div class = "replyDiv">
 						
 					<div class="box-footer box-comments">
-							<div class="box-comment">
+<!-- 							<div class="box-comment"> -->
 <!-- 								User image -->
 <!-- 								<img class="img-circle img-sm" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg" alt="User Image"> -->
 <!-- 								<div class="comment-text"> -->
@@ -287,14 +287,14 @@ div .replyDiv{
 								
 								
 <!-- 								</div> /.comment-text -->
-							</div> <!-- /.box-comment -->
+<!-- 							</div> /.box-comment -->
 						</div>						
 				
 						<!-- .box-footer END-->
 						<div class="box-footer">
 				
 								<img class="img-responsive img-circle img-sm"
-									src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user4-128x128.jpg"
+									src="${vo.picture}"
 									alt="Alt Text">
 								<!-- .img-push is used to add margin to elements next to floating images -->
 								<div class="img-push">
@@ -427,29 +427,44 @@ div .replyDiv{
 						
 						var str = "";
 						
+// 						for(var i= 0; i < result.length-1;i++){
+							
+// 							var item = result[i];
+							
+// 							str += 	
+// 								"<img class='img-circle img-sm' src=" + ${reply.thumnail} + 
+// 								"alt='User Image'> <div class='comment-text'> <span class='username'>" +
+// 								${reply.nickname}  + 
+// 								" <span class='text-muted pull-right'> " + 
+// 								${reply.regDate} + 
+// 								"</span></span>" +
+// 								 ${reply.content} + "</div>" ;
+								 
+// 								 console.log(item);
+								 
+// 						}
 						
-						
-						str = 
-						"<c:forEach items='${reply}' var='reply'>"	
-						"<img class='img-circle img-sm' src=" + ${reply.thumnail} + 
-						"alt='User Image'> <div class='comment-text'> <span class='username'>" +
-						${reply.nickname}  + 
-						" <span class='text-muted pull-right'> " + 
-						${reply.regDate} + 
-						"</span></span>" +
-						 ${reply.content} + "</div>" + "</c:forEach>";
+				       $.each(result, function(i,item) {
+			
+				        	str += 
+				        		"<div class='box-comment'>" +
+								"<img class='img-circle img-sm' src=" + ${reply.thumnail} + 
+								"alt='User Image'> <div class='comment-text'> <span class='username'>" +
+								${reply.nickname}  + 
+								" <span class='text-muted pull-right'> " + 
+								${reply.regDate} + 
+								"</span></span>" +
+								 ${reply.content} + "</div> </div>" ;
+		
+								 console.log(result[i]);
+				        	
+				        });
+		
 					
-					$(".box-comment").html(str);
-					
-					console.log(result);
+					$(".box-footer box-comments").html(str);
 
 			    	}
 				);
-			
-			$(".comment-text").html();
-
-			
-			
 
 		});
 		
