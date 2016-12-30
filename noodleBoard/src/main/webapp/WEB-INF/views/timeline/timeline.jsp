@@ -432,24 +432,10 @@ div .replyDiv{
 			replyMannager.listReply (	
 					{tno:tno}, 
 			    	function (result){
-						
-						var str = "";
-						
-				    //   $.each(result, function(i,item) {
-			
-					str = "<div class='box-comment'>" + 
-					"<img class='img-circle img-sm' "+
-					"src='https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg' alt='User Image'>" +
-					"<div class='comment-text'> " +
-					"<span class='username'> 유저 닉네임!   <span class='text-muted pull-right'>" +
-					"날짜날짜 ㅇㅅㅇ  </span></span> 내용내용! </div> </div>";
-				        	
-				     //   });
-				       
-					$("#commentsbox").HTML(str);
 
 			    	}
 				);
+			$(this).parents('#timelineBox').find('.replyDiv').find('#commentsbox').html(replyStr);
 		});
 		
 		//엔터 이벤트입니당
@@ -481,6 +467,7 @@ div .replyDiv{
 		
 	});
 	
+	var replyStr = "";
 	
 	//replyMannager 만들어놓앗읍니다.
 	 var replyMannager = (function () {
@@ -516,47 +503,51 @@ div .replyDiv{
     				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
     				"X-HTTP-Method-Override" : "GET"
     			},
-    			dataType : 'text',
+    			dataType : 'json',
     			data : data,
     			//fn에 result 넣어요 ㅇㅅㅇ그거시 콜백함수.
     			success : function(result) {
-					fn = result;
+				//	fn = result;
 		
 					var str = "";
 					
-				      $.each(JSON.parse(result), function(i,value) {
+// 					var arr = result.size();
+// 					console.log("arr"+arr);
+
+					
+				//	$.each((result), function(index,value) {
+				    
+
+					
+					 for(var i = 0; i < result.length; i++){
+						console.log("LELGLELGE" + result.length);
+				    	var nick = result[i].nickname;
+				    	var content = result[i].content;
+				    	var regDate = result[i].regDate;
+				    	
+				    	console.log("닉" + nick);
+				    	console.log("날짜" + result[i].regDate);
+				    	console.log("ㅋㅋㅋㅋㅇㅁㅇㄹ내용 "+result[i].content);
+	
+
+				    	
 				    	  
-				//	 for(var i = 0; result.length; i++){
-					 
-				    	console.log(this.nickname);
-				    	console.log(this.regDate);
-				    	console.log(this.content);
-				    	console.log(this);
-				    	console.log("index"+i);
-				    	console.log("value"+value);
-				    	
-				    	
-				    	var nick = this.nickname;
-				    	var content = this.content;
-				    	var regDate = this.regDate;
-				    	
-				    	  
-					str = "<div class='box-comment'>" + 
+					str += "<div class='box-comment'>" + 
 					"<img class='img-circle img-sm' "+
 					"src='https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg' alt='User Image'>" +
 					"<div class='comment-text'> " +
 					"<span class='username'>" + nick + " <span class='text-muted pull-right'>" +
 					regDate + " </span></span> " + content + "</div> </div>";
 				        	
-					// };
-				       });
-				       
-					$('#commentsbox').html(str);
+				    
+				 };
+					
 				    
 				    
 					
-				    console.log(result);
+				  
 
+				 replyStr = str;
 
     			}
     		});
