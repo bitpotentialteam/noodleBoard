@@ -73,7 +73,7 @@ public class RecipeBoardDAOTester {
 	@Test
 	public void testListAll() throws Exception{
 		
-		pvo.setPage(6);
+		pvo.setPage(1);
 		
 		System.out.println(dao.listAll(pvo));
 	}

@@ -7,6 +7,14 @@ public class PageVO {
 	private Integer pageUnit, page;
 	
 	
+	public Integer getStartPage(){
+		return (this.page -1) * pageUnit;
+	}
+	
+	public Integer getEndPage(){
+		return (this.page)* pageUnit;
+	}
+	
 	public PageVO(){
 		this.pageUnit = 10;
 		this.page = 1;
