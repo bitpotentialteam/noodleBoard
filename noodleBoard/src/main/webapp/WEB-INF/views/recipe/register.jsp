@@ -14,8 +14,6 @@
 <link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
-<!-- Theme CSS -->
-<link href="../resources/css/clean-blog.min.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link href="../resources/vendor/font-awesome/css/font-awesome.min.css"
@@ -27,14 +25,8 @@
 	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
 	rel='stylesheet' type='text/css'>
 
-<script type="text/javascript"
-	src="../editor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 	<script src="../resources/js/upload.js" type="text/javascript"></script>
-<!-- list CSS -->
-<link href="../resources/css/list-demo.css" rel="stylesheet">
-<link href="../resources/css/list-style.css" rel="stylesheet">
-<!-- hash tags CSS -->
-<link href="../resources/css/jquery.hashtags.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -112,9 +104,16 @@ small {
 				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
 				</p>
 
-				<form class="input" action="register" method="post">
-					
-					<div class="row control-group">
+					<div class="row control-group" id="board">
+						<div
+							class="form-group col-xs-12 floating-label-form-group controls">
+							<label>MNO임시 테스트용</label> <input type="text" class="form-control"
+								placeholder="Mno" name="mno" id="mno" required
+								data-validation-required-message="Please enter title.">
+							<p class="help-block text-danger"></p>
+						</div>
+					</div>
+					<div class="row control-group" id="board">
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
 							<label>메뉴명</label> <input type="text" class="form-control"
@@ -126,7 +125,7 @@ small {
 					<label>설명</label>
 					<textarea name="content" id="content" rows="10" cols="100"></textarea>
 							<p class="help-block text-danger"></p>
-					<div class="row control-group">
+					<div class="row control-group" id="materialContent">
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
 							<label>재료</label> <input type="text" class="form-control"
@@ -144,8 +143,6 @@ small {
 							<div class="form-group">
 								<div class="form-control" name="content" id="fileDrop"></div>
 								<div class="uploadedList"></div>
-								<div id="success"></div>
-
 							</div>
 							
 						</div>
@@ -157,7 +154,7 @@ small {
 								class="btn btn-default-right" value="취 소"> </a>
 						</div>
 					</div>
-				</form>
+
 			</div>
 		</div>
 	</div>
@@ -200,26 +197,15 @@ small {
 	<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 	<!-- Contact Form JavaScript -->
-	<script src="../resources/jsjqBootstrapValidation.js"></script>
-	<script src="../resources/jscontact_me.js"></script>
+	<script src="../resources/js/jqBootstrapValidation.js"></script>
+	<script src="../resources/js/contact_me.js"></script>
 
-	<!-- Theme JavaScript -->
-	<script src="../resources/jsclean-blog.min.js"></script>
-
-	<!-- list JavaScript -->
-	<script src="../resources/jslist-jquery.catslider.js"></script>
-	<script src="../resources/jslist-modernizr.custom.63321.js"></script>
-
-	<!-- hash tags JavaScript -->
-	<script src="../resources/js/jquery.autosize.js" type="text/javascript"></script>
-	<script src="../resources/js/jquery.hashtags.js" type="text/javascript"></script>
-	`
 	<script src="../resources/js/upload.js" type="text/javascript"></script>
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	
 	<script>
 	$("#registerBtn").on("click", function(event){
-		alert("등록 완료!")
+		alert("등록 완료!");
 		formObj.submit();
 	
 	});
@@ -229,6 +215,8 @@ small {
 		event.preventDefault();
 	});
 
+	var i = 0;
+	
 	$("#fileDrop").on("drop", function(event) {
 		event.preventDefault();
 		var files = event.originalEvent.dataTransfer.files;
@@ -251,21 +239,47 @@ small {
 			success : function(data) {
 				console.log(data);
 				var str="";
-				
+				i++;
 				if(checkImageType(data)){
 					
 					str = "<div><div><img src='/displayFile?fileName="+data+"'/></div>"
-							+"<input type='text' id='icontent'></div>";
+							+"<div id='image'>"+getOriginalName(data)+"</div>"
+							+"<div id='step' name='step'>"+i+"</div>"+"<input type='text' id='icontent'></div>";
 				}else{
 					str = "<div>"+getOriginalName(data)+"</div>";
 				}
 				alert("이미지가 등록되었습니다헤헿");
 				$(".uploadedList").append(str);
-
 			}
+			
 		});
-
 	});
+	
+	
+	
+		$.ajax({
+			url : '/uploadAjax',
+			data : formData,
+			dataType : 'text',
+			processData : false,
+			contentType : false,
+			method : 'POST',
+			success : function(data) {
+				console.log(data);
+				var str="";
+				i++;
+				if(checkImageType(data)){
+					
+					str = "<div><div><img src='/displayFile?fileName="+data+"'/></div>"
+							+"<div id='image'>"+getOriginalName(data)+"</div>"
+							+"<div id='step' name='step'>"+i+"</div>"+"<input type='text' id='icontent'></div>";
+				}else{
+					str = "<div>"+getOriginalName(data)+"</div>";
+				}
+				alert("이미지가 등록되었습니다헤헿");
+				$(".uploadedList").append(str);
+			}
+		
 
 	$("#regBtn").submit(function(event) {
 		event.preventDefault();

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.noodle.domain.Criteria;
 import org.noodle.domain.RecipeBoardVO;
+import org.noodle.domain.RecipeCuisineVO;
+import org.noodle.domain.RecipeImageVO;
 import org.noodle.persistence.RecipeBoardDAO;
 import org.noodle.persistence.RecipeCuisineDAO;
 import org.noodle.persistence.RecipeImageDAO;
@@ -27,6 +29,8 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	public void regist(RecipeBoardVO vo) throws Exception {
 		
 		dao.create(vo);
+
+		
 	}
 
 	//@Transactional
@@ -80,5 +84,12 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	}
 
 
+	@Override
+	@Transactional
+	public void register(RecipeBoardVO vo, RecipeImageVO vo1, RecipeCuisineVO vo2) throws Exception {
+		dao.create(vo);
+		idao.create(vo1);
+		cdao.create(vo2);		
+	}
 
 }
