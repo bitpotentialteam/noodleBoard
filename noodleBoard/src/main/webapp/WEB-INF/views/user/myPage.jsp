@@ -136,13 +136,13 @@ body {
 							<ul class="list-group">
 								<li class="list-group-item"><h4>ID</h4>${sessionScope.VO.userid}</li>
 								<li class="list-group-item"><h4>NAME</h4>${sessionScope.VO.username}</li>
-								<li class="list-group-item"><h4>NICK</h4>${sessionScope.VO.nickname}</li>
-								<li class="list-group-item"><h4>EMAIL</h4>${sessionScope.VO.email}</li>
+								<li class="list-group-item"><h4>NICKNAME</h4>${sessionScope.VO.nickname}</li>
+								<li class="list-group-item"><h4>E-MAIL</h4>${sessionScope.VO.email}</li>
 							</ul>
 						</div>
 					</form>
-					<button type="submit" class="btn btn-primary" id="goListBtn">BACK</button>
-					<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY</button>
+					<button type="submit" class="btn btn-primary" id="goListBtn">MAIN</button>
+					<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY PAGE</button>
 				</div>
 				<!-- /.widget-user -->
 			</div>
