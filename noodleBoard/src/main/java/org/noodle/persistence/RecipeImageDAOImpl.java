@@ -16,8 +16,9 @@ public class RecipeImageDAOImpl implements RecipeImageDAO {
 	
 	@Override
 	public void create(RecipeImageVO vo) throws Exception {
-
-		session.insert(namespace + "create", vo);
+		
+			session.insert(namespace + "create", vo);
+		
 	}
 
 	@Override

@@ -28,11 +28,11 @@ public class RecipeImageServiceTester {
 	public void testRegist() throws Exception{
 
 
-		vo.setBno(4);
-		vo.setStep(4);
-		vo.setStep(4);
-		vo.setImage("퇴ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ근");
-		vo.setThumbnail("퇴ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ근");
+//		vo.setBno(4);
+//		vo.setStep(4);
+//		vo.setStep(4);
+//		vo.setImage("퇴ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ근");
+//		vo.setThumbnail("퇴ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ근");
 		
 		service.regist(vo);
 	}
@@ -53,7 +53,7 @@ public class RecipeImageServiceTester {
 	public void testViewSteps() throws Exception{
 		
 		vo.setBno(4);
-		vo.setStep(4);
+//		vo.setStep(4);
 		
 		System.out.println(service.viewSteps(vo));
 	}

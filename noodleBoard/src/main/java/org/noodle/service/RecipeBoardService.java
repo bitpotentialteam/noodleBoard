@@ -17,5 +17,5 @@ public interface RecipeBoardService {
 
 	public void addLikeCount(Integer bno) throws Exception;
 	public void minusLikeCount(Integer bno) throws Exception;
-	public void register(RecipeBoardVO vo, RecipeImageVO vo1, RecipeCuisineVO vo2) throws Exception;
+	public void register(RecipeBoardVO vo, List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception;
 }
