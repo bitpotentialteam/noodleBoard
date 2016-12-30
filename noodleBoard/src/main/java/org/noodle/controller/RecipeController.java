@@ -43,7 +43,7 @@ public class RecipeController {
 		RecipeImageVO ivo = new RecipeImageVO();
 		
 		vo.setIno(ivo.getIno());
-		service.register(vo, vo1, vo2);
+//		service.register(vo, vo1, vo2);
 		return "redirect:/recipe/list";
 	}
 	
