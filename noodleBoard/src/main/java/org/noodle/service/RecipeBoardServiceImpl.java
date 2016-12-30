@@ -3,6 +3,7 @@ package org.noodle.service;
 import java.util.List;
 
 import org.noodle.domain.Criteria;
+import org.noodle.domain.PageVO;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.domain.RecipeImageVO;
@@ -58,10 +59,9 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	}
 
 	@Override
-	public List<RecipeBoardVO> listAll() throws Exception {
+	public List<RecipeBoardVO> listAll(PageVO vo) throws Exception {
 		
-//		return dao.listAll();
-		return null;
+		return dao.listAll(vo);
 	}
 
 	@Override
