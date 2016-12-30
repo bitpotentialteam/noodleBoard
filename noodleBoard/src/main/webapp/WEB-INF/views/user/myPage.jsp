@@ -37,19 +37,19 @@
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-yellow">
               <div class="widget-user-image">
-                <img class="img-circle" src="show?name=${vo.picture}" alt="User Avatar">
+                <img class="img-circle" src="#" alt="User Avatar">
               </div>
               <!-- /.widget-user-image -->
-              <h3 class="widget-user-username">${vo.username}</h3>
-              <h5 class="widget-user-desc">${vo.nickname}</h5>
+              <h3 class="widget-user-username">${sessionScope.VO.username}</h3>
+              <h5 class="widget-user-desc">${sessionScope.VO.nickname}</h5>
             </div>
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
               
-                <li>ID:<input type="text" name="userid" id="userid" value="${vo.userid}"></li>
-                <li>NAME:<input type="text" name="username" id="username" value="${vo.username}"></li>
-                <li>NICK:<input type="text" name="nickname" id="nickname" value="${vo.nickname}"></li>
-                <li>EMAIL:<input type="text" name="email" id="email" value="${vo.email}"></li>
+                <li>ID:<input type="text" name="userid" id="userid" value="${sessionScope.VO.userid}"></li>
+                <li>NAME:<input type="text" name="username" id="username" value="${sessionScope.VO.username}"></li>
+                <li>NICK:<input type="text" name="nickname" id="nickname" value="${sessionScope.VO.nickname}"></li>
+                <li>EMAIL:<input type="text" name="email" id="email" value="${sessionScope.VO.email}"></li>
                 
                 
 

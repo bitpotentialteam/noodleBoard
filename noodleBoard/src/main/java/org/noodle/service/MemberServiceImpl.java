@@ -55,5 +55,11 @@ public class MemberServiceImpl implements MemberService {
 		return dao.login(vo);
 	}
 
+	@Override
+	public MemberVO read1(String userid) throws Exception {
+
+		return dao.read1(userid);
+	}
+
 }
  

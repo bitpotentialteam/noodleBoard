@@ -9,6 +9,8 @@ public interface MemberDAO {
 	public void update(MemberVO vo)throws Exception;
 	public void delete(int mno)throws Exception;
 	
+	public MemberVO read1(String userid)throws Exception;
+	
 	public MemberVO login(MemberVO vo)throws Exception;
 	
 	public void create_client(Integer mno) throws Exception;

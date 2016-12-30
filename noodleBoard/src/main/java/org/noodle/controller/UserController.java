@@ -7,10 +7,11 @@ import org.noodle.domain.MemberVO;
 import org.noodle.service.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -48,48 +49,41 @@ public class UserController {
 //	}
 
 	@GetMapping("/login")
-	public void loginGET(HttpSession session)throws Exception{
+	public void loginGET(HttpSession session,MemberVO vo)throws Exception{
 		logger.info("login get...");
-		session.setAttribute("LOGIN", "success");
 		
+		session.setAttribute("LOGIN", "success");	
 	}
 	
-	
-	
+	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
+	public void readGET(Model model, HttpSession session) throws Exception {
+
+		
+		logger.info("myPage page...");
+		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
+		logger.info(user.toString());
+		service.read1(user.toString());
+		MemberVO vo = service.read1(user.toString());
+		
+		session.setAttribute("VO", vo);
+		
+	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET(MemberVO vo, Model model) throws Exception {
-
+		
 		logger.info("register...");
 	}
-
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registPOST(MemberVO vo) throws Exception {
-
+		
 		logger.info("regist post....");
 		logger.info(vo.toString());
-
+		
 		service.regist(vo);
-
+		
 		return "redirect:/user/login";
-	}
-
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public void modifyGET(Model model) throws Exception {
-
-		logger.info("myPage page...");
-		
-		model.addAttribute("vo", service.read(27));
-		
-	}
-	
-	@RequestMapping(value = "/myPage", method = RequestMethod.POST)
-	public String modifyPOST(MemberVO vo) throws Exception{
-		
-		logger.info("myPage POST...");
-		
-		service.modify(vo);
-		return "redirect:../";
 	}
 
 }

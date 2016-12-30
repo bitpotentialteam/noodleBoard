@@ -9,6 +9,8 @@ public interface MemberService {
 	public void modify(MemberVO vo)throws Exception;
 	public void remove(int mno)throws Exception;
 	
+	public MemberVO read1(String userid)throws Exception;
+	
 	public MemberVO login(MemberVO vo)throws Exception;
 	
 	public void regist_client(Integer mno) throws Exception;
