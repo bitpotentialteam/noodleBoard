@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,17 +13,35 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
+	
 <!-- Bootstrap 3.3.6 -->
 <link rel="stylesheet"
 	href="../resources/bootstrap/css/bootstrap.min.css">
+	
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="../resources/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+
+
 <!-- Ionicons -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="../resources/dist/css/AdminLTE.min.css">
+<link href="../resources/css/agency.min.css" rel="stylesheet">
+
 <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet"
@@ -33,43 +53,102 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-</head>
+
+<style>
+.navbar-custom  {
+	background-color: #222;
+}
+
+.box p {
+	margin-bottom: 0.8em;
+}
+
+.box {
+	padding: 3% 5%;
+}
+
+body {
+    background: #222;
+}
+</style>  
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
+
+</head>
+
 <body class="hold-transition skin-blue sidebar-mini">
+	
+	<!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Noodles.com</a>
+            </div>
 
-
-	<div class="col-md-4">
-		<!-- Widget: user widget style 1 -->
-		<div class="box box-widget widget-user-2">
-			<!-- Add the bg color to the header using any of the bg-* classes -->
-			<div class="widget-user-header bg-yellow">
-				<div class="widget-user-image">
-					<img class="img-circle" src="show?name=${sessionScope.VO.picture}"
-						alt="User Avatar">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden"><a href="#page-top"></a></li>
+					<li><a class="page-scroll" href="/wiki">Noodle-Wiki</a></li>
+					<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
+					<li><a class="page-scroll" href="/timeline">Community</a></li>
+					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
+					
+					<c:if test='${sessionScope.LOGIN eq success}'>
+					<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
+					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
+					</c:if>
+					<c:if test='${sessionScope.LOGIN ne success}'>
+					<li><a class="page-scroll" href="/user/login" id="login">LOGOUT</a></li>
+					<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
+					</c:if>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md">
+				<!-- Widget: user widget style 1 -->
+				<div class="box box-widget widget-user-2">
+					<!-- Add the bg color to the header using any of the bg-* classes -->
+					<div class="widget-user-header bg-yellow">
+						<div class="widget-user-image">
+							<img class="img-circle" src="show?name=${sessionScope.VO.picture}"
+								alt="User Avatar">
+						</div>
+						<!-- /.widget-user-image -->
+						<h3 class="widget-user-username">${sessionScope.VO.username}</h3>
+						<h5 class="widget-user-desc">${sessionScope.VO.nickname}</h5>
+					</div>
+					<form id="form">
+						<div class="box-footer no-padding">
+						
+							<ul class="list-group">
+								<li class="list-group-item"><h4>ID</h4>${sessionScope.VO.userid}</li>
+								<li class="list-group-item"><h4>NAME</h4>${sessionScope.VO.username}</li>
+								<li class="list-group-item"><h4>NICK</h4>${sessionScope.VO.nickname}</li>
+								<li class="list-group-item"><h4>EMAIL</h4>${sessionScope.VO.email}</li>
+							</ul>
+						</div>
+					</form>
+					<button type="submit" class="btn btn-primary" id="goListBtn">BACK</button>
+					<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY</button>
 				</div>
-				<!-- /.widget-user-image -->
-				<h3 class="widget-user-username">${sessionScope.VO.username}</h3>
-				<h5 class="widget-user-desc">${sessionScope.VO.nickname}</h5>
+				<!-- /.widget-user -->
 			</div>
-			<form id="form">
-			<div class="box-footer no-padding">
-				<ul class="nav nav-stacked">
-					<li>ID : ${sessionScope.VO.userid}</li>
-					<li>NAME : ${sessionScope.VO.username}</li>
-					<li>NICK : ${sessionScope.VO.nickname}</li>
-					<li>EMAIL : ${sessionScope.VO.email}</li>
-
-				</ul>
-			</div>
-			</form>
 		</div>
-		<!-- /.widget-user -->
-		<button type="submit" class="btn btn-primary" id="goListBtn">BACK</button>
-		<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY</button>
 	</div>
-
+</section>
 
 	<!-- jQuery 2.2.3 -->
 	<script src="../resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
