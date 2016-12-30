@@ -58,10 +58,10 @@
 			
 	</update>
 	
-	<update id="minReplyCnt">
+	<update id="minReplyCnt" parameterType="Integer">
 	
 		update tbl_timeline
-		set replycnt = replycnt = replycnt - 1
+		set replycnt = replycnt - 1
 		where tno = #{tno, jdbcType=INTEGER}
 			
 	</update>

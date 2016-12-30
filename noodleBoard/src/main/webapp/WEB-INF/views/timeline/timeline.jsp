@@ -14,7 +14,7 @@
 	name="viewport">
 	
 <!-- Bootstrap 3.3.6 -->
-<link rel="stylesheet"
+<link rel="stylesheet"`
 	href="../resources/vendor/bootstrap/css/bootstrap.min.css">
 
 <!-- Font Awesome -->
@@ -293,7 +293,7 @@ div .replyDiv{
 								<!-- .img-push is used to add margin to elements next to floating images -->
 								<div class="img-push">
 								<input name="tno" type="hidden" value="${vo.tno}" id="replytno">
-								<input name="mno" type="hidden" value="5" id="replymno">
+								<input name="mno" type="hidden" value="${sessionScope.VO.mno}" id="replymno">
 									<input type="text" id="replyContent" class="form-control input-sm" placeholder="Press enter to post comment!">
 								</div>
 						
@@ -477,7 +477,7 @@ div .replyDiv{
 			//addreply 실행!ㅇㅅㅇ!
 			  replyManager.removeReply(
 					  //얘네가 data임. 위에서 밸류값 채집한 애들 보내는것
-					  {trno:trno}, //4.입력값
+					  {trno:trno, tno:tno}, //4.입력값
 			      function (result) {
 						  alert("댓글이 삭제되었다~!");
 						  replyManager.listReply({tno:tno},
@@ -562,6 +562,7 @@ div .replyDiv{
 				    	console.log("날짜" + result[i].regDate);
 				    	console.log("ㅋㅋㅋㅋㅇㅁㅇㄹ내용 "+result[i].content);
 				    	console.log("티알엔오" + trno);
+				    	console.log(result);
 
 					str += "<div class='box-comment'>" + 
 					"<img class='img-circle img-sm' "+

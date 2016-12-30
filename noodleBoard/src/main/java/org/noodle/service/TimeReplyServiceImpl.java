@@ -47,7 +47,7 @@ public class TimeReplyServiceImpl implements TimeReplyService {
 	@Override
 	public void remove(TimeReplyVO vo) throws Exception {
 		dao.delete(vo);
-		tdao.delete(vo.getTno());
+		tdao.minReplyCnt(vo.getTno());
 
 	}
 
