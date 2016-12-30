@@ -4,9 +4,9 @@ package org.noodle.persistence;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.noodle.domain.Criteria;
 import org.noodle.domain.PageVO;
 import org.noodle.domain.RecipeBoardVO;
+import org.noodle.domain.SearchVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -51,8 +51,8 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	}
 
 	@Override
-	public List<RecipeBoardVO> listSearch(Criteria cri) throws Exception {
-		return session.selectList(namespace + "listSaerch", cri);
+	public List<RecipeBoardVO> listSearch(SearchVO vo) throws Exception {
+		return session.selectList(namespace + "listSaerch", vo);
 	}
 
 	@Override

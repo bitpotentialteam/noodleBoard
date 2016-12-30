@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.noodle.domain.PageVO;
 import org.noodle.domain.RecipeBoardVO;
+import org.noodle.domain.SearchVO;
 import org.noodle.persistence.RecipeBoardDAO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,11 +21,13 @@ public class RecipeBoardDAOTester {
 	
 	private RecipeBoardVO vo;
 	private PageVO pvo;
+	private SearchVO svo;
 	
 	@Before
 	public void setup() throws Exception{
 		vo = new RecipeBoardVO();
 		pvo = new PageVO();
+		svo = new SearchVO();
 	}
 
 	
@@ -73,9 +76,17 @@ public class RecipeBoardDAOTester {
 	@Test
 	public void testListAll() throws Exception{
 		
-		pvo.setPage(1);
+		pvo.setPage(6);
 		
 		System.out.println(dao.listAll(pvo));
 	}
 
+	@Test
+	public void testListSearch() throws Exception{
+		
+		svo.setKeyword("Test");
+		svo.setSearchType("t");
+		svo.setPage(6);
+		System.out.println(dao.listSearch(svo));
+	}
 }
