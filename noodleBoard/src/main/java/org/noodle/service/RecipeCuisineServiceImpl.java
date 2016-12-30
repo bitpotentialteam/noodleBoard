@@ -1,5 +1,7 @@
 package org.noodle.service;
 
+import java.util.List;
+
 import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.persistence.RecipeCuisineDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,11 @@ public class RecipeCuisineServiceImpl implements RecipeCuisineService {
 	private RecipeCuisineDAO dao;
 	
 	@Override
-	public void regist(RecipeCuisineVO vo) throws Exception {
-
-		dao.create(vo);
+	public void regist(List<RecipeCuisineVO> list) throws Exception {
+		for (RecipeCuisineVO recipeCuisineVO : list) {
+			dao.create(list);
+			
+		}
 	}
 
 	@Override

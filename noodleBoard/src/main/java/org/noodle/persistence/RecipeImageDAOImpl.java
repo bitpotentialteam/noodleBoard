@@ -1,5 +1,7 @@
 package org.noodle.persistence;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.noodle.domain.RecipeImageVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,9 @@ public class RecipeImageDAOImpl implements RecipeImageDAO {
 	
 	
 	@Override
-	public void create(RecipeImageVO vo) throws Exception {
+	public void create(List<RecipeImageVO> list) throws Exception {
 		
-			session.insert(namespace + "create", vo);
+			session.insert(namespace + "create", list);
 		
 	}
 

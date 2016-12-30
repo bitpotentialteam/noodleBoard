@@ -85,17 +85,10 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 
 
 	@Override
-	@Transactional
 	public void register(RecipeBoardVO vo, List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception {
 		
 		dao.create(vo);
-		
-		for (RecipeCuisineVO recipeCuisineVO : clist) {
-			cdao.create(recipeCuisineVO);	
-		}
-		for (RecipeImageVO recipeImageVO : ilist) {
-			idao.create(recipeImageVO);
-		}
+
 		
 	}
 

@@ -1,5 +1,7 @@
 package org.noodle.persistence;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.noodle.domain.RecipeCuisineVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,9 @@ public class RecipeCuisineDAOImpl implements RecipeCuisineDAO {
 	private static final String namespace = "org.noodle.RecipeCuisineMapper.";
 	
 	@Override
-	public void create(RecipeCuisineVO vo) throws Exception {
+	public void create(List<RecipeCuisineVO> list) throws Exception {
 
-		session.insert(namespace + "create", vo);
+		session.insert(namespace + "create", list);
 	}
 
 	@Override

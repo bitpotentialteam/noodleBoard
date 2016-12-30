@@ -1,5 +1,7 @@
 package org.noodle.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.noodle.domain.RecipeBoardVO;
@@ -48,13 +50,13 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/image/register")
-	public void imgaeRegisterPOST(RecipeImageVO vo, RedirectAttributes rttr) throws Exception {
-		iservice.regist(vo);
+	public void imgaeRegisterPOST(List<RecipeImageVO> list, RedirectAttributes rttr) throws Exception {
+		iservice.regist(list);
 	}
 	
 	@PostMapping("/cuisine/register")
-	public String cuisineRegisterPOST(RecipeCuisineVO vo, RedirectAttributes rttr) throws Exception {
-		cservice.regist(vo);
+	public String cuisineRegisterPOST(List<RecipeCuisineVO> list, RedirectAttributes rttr) throws Exception {
+		cservice.regist(list);
 		return "redirect:/recipe/list";
 	}
 	
