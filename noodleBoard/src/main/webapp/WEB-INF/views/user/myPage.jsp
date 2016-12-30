@@ -37,7 +37,7 @@
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-yellow">
               <div class="widget-user-image">
-                <img class="img-circle" src="#" alt="User Avatar">
+                <img class="img-circle" src="show?name=${sessionScope.VO.picture}" alt="User Avatar">
               </div>
               <!-- /.widget-user-image -->
               <h3 class="widget-user-username">${sessionScope.VO.username}</h3>
@@ -46,10 +46,11 @@
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
               
-                <li>ID:<input type="text" name="userid" id="userid" value="${sessionScope.VO.userid}"></li>
-                <li>NAME:<input type="text" name="username" id="username" value="${sessionScope.VO.username}"></li>
-                <li>NICK:<input type="text" name="nickname" id="nickname" value="${sessionScope.VO.nickname}"></li>
-                <li>EMAIL:<input type="text" name="email" id="email" value="${sessionScope.VO.email}"></li>
+                
+                <li>ID : ${sessionScope.VO.userid}</li>
+                <li>NAME : ${sessionScope.VO.username}</li>
+                <li>NICK : ${sessionScope.VO.nickname}</li>
+                <li>EMAIL : ${sessionScope.VO.email}</li>
                 
                 
 
