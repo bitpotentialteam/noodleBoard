@@ -1,6 +1,5 @@
 package org.noodle.domain;
 
-import java.util.Arrays;
 
 public class RecipeImageVO {
 	
