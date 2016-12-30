@@ -424,25 +424,25 @@ div .replyDiv{
 			
 			$(this).parents('#timelineBox').find('.replyDiv').toggle();
 			
-			console.log("여기는 실행이 됩니까 된다.");
-			
-			console.log("왜?????????");
-			
+			var addComment = $(this).parents('#timelineBox').find('.replyDiv').find('#commentsbox');
+		//	console.log("comment" + addComment);
+
 			//replyMannager.listReply 함수 시작!ㅇㅅㅇ!
 			replyMannager.listReply (	
 					{tno:tno}, 
 			    	function (result){
 
+			addComment.html(result);
+					console.log("result"+result);
+					console.log(this);
 			    	}
 				);
-			$(this).parents('#timelineBox').find('.replyDiv').find('#commentsbox').html(replyStr);
 		});
 		
 		//엔터 이벤트입니당
 		$(document).on("keypress","#replyContent", function(event){
 			
 			if (event.which == 13) {/* 13 == enter key@ascii */
-			
 			event.preventDefault();
 			
 			//tno mno replycontent 밸류값 채집함.
@@ -459,15 +459,12 @@ div .replyDiv{
 					  //얘네가 data임. 위에서 밸류값 채집한 애들 보내는것
 					  {tno:tno,mno:mno,content:replyContent}, //4.입력값
 			      function (result) {
-
+							  
 			       });
-
 		}
 	});
 		
 	});
-	
-	var replyStr = "";
 	
 	//replyMannager 만들어놓앗읍니다.
 	 var replyMannager = (function () {
@@ -490,8 +487,7 @@ div .replyDiv{
 	    			}
 	    		});
 	    		
-	      }; //  URL, data, 콜백함수(결과값을 여기다 넘기는 )
-	      
+	      };
 	      
 	      //얘는 reply 목록 가져오는건데, data는 위에 지정해놓은대로 tno만 받아옴.
 	      var listReply = function( data, fn){
@@ -507,18 +503,9 @@ div .replyDiv{
     			data : data,
     			//fn에 result 넣어요 ㅇㅅㅇ그거시 콜백함수.
     			success : function(result) {
-				//	fn = result;
-		
+
 					var str = "";
-					
-// 					var arr = result.size();
-// 					console.log("arr"+arr);
 
-					
-				//	$.each((result), function(index,value) {
-				    
-
-					
 					 for(var i = 0; i < result.length; i++){
 						console.log("LELGLELGE" + result.length);
 				    	var nick = result[i].nickname;
@@ -528,26 +515,17 @@ div .replyDiv{
 				    	console.log("닉" + nick);
 				    	console.log("날짜" + result[i].regDate);
 				    	console.log("ㅋㅋㅋㅋㅇㅁㅇㄹ내용 "+result[i].content);
-	
 
-				    	
-				    	  
 					str += "<div class='box-comment'>" + 
 					"<img class='img-circle img-sm' "+
 					"src='https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg' alt='User Image'>" +
 					"<div class='comment-text'> " +
 					"<span class='username'>" + nick + " <span class='text-muted pull-right'>" +
 					regDate + " </span></span> " + content + "</div> </div>";
-				        	
-				    
-				 };
-					
-				    
-				    
-					
-				  
 
-				 replyStr = str;
+				 };
+
+				 fn(str);
 
     			}
     		});
