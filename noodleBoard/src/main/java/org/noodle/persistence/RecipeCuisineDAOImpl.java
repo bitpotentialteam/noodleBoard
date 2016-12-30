@@ -16,9 +16,9 @@ public class RecipeCuisineDAOImpl implements RecipeCuisineDAO {
 	private static final String namespace = "org.noodle.RecipeCuisineMapper.";
 	
 	@Override
-	public void create(List<RecipeCuisineVO> list) throws Exception {
+	public void create(RecipeCuisineVO vo) throws Exception {
 
-		session.insert(namespace + "create", list);
+		session.insert(namespace + "create", vo);
 	}
 
 	@Override

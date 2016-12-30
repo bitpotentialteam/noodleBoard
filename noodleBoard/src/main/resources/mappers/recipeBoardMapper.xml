@@ -75,6 +75,10 @@
 		 ]]>
 	</select>
 	
+	<select id="testlist" resultType="RecipeBoardVO">
+	select * from tbl_recipeboard
+	</select>
+	
 	<select id="listSearch" resultType="RecipeBoardVO">
 		select 
 			* 

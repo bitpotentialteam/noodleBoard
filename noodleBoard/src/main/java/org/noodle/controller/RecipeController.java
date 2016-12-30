@@ -51,12 +51,12 @@ public class RecipeController {
 	
 	@PostMapping("/image/register")
 	public void imgaeRegisterPOST(List<RecipeImageVO> list, RedirectAttributes rttr) throws Exception {
-		iservice.regist(list);
+//		iservice.regist(list);
 	}
 	
 	@PostMapping("/cuisine/register")
 	public String cuisineRegisterPOST(List<RecipeCuisineVO> list, RedirectAttributes rttr) throws Exception {
-		cservice.regist(list);
+//		cservice.regist(list);
 		return "redirect:/recipe/list";
 	}
 	
@@ -68,9 +68,9 @@ public class RecipeController {
 	
 	@GetMapping("/testlist")
 	public void listAll(Model model) throws Exception {
-		System.out.println("listAll callll..........");
-		model.addAttribute("list", service.listAll());
-		System.out.println("listAll callll.........."+ service.listAll().toString() );
+		System.out.println("testList callll..........");
+		model.addAttribute("list", service.testList());
+		System.out.println("listAll callll.........."+ service.testList().toString() );
 		
 	}
 	
