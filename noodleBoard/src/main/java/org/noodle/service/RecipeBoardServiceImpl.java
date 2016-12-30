@@ -60,13 +60,15 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	@Override
 	public List<RecipeBoardVO> listAll() throws Exception {
 		
-		return dao.listAll();
+//		return dao.listAll();
+		return null;
 	}
 
 	@Override
 	public List<RecipeBoardVO> search(Criteria cri) throws Exception {
 		
-		return dao.search(cri);
+//		return dao.search(cri);
+		return null;
 	}
 
 
