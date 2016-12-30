@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -103,8 +104,8 @@ small {
 				<p>
 				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
 				</p>
-
-					<div class="row control-group" id="board">
+				<form action="register" method="post">
+					<div class="row control-group" name="mno">
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
 							<label>MNO임시 테스트용</label> <input type="text" class="form-control"
@@ -113,7 +114,7 @@ small {
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>
-					<div class="row control-group" id="board">
+					<div class="row control-group" name="title">
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
 							<label>메뉴명</label> <input type="text" class="form-control"
@@ -141,7 +142,7 @@ small {
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
 							<div class="form-group">
-								<div class="form-control" name="content" id="fileDrop"></div>
+								<div class="form-control" id="fileDrop"></div>
 								<div class="uploadedList"></div>
 							</div>
 							
@@ -154,7 +155,7 @@ small {
 								class="btn btn-default-right" value="취 소"> </a>
 						</div>
 					</div>
-
+				</form>
 			</div>
 		</div>
 	</div>
@@ -205,8 +206,8 @@ small {
 	
 	<script>
 	$("#registerBtn").on("click", function(event){
-		alert("등록 완료!");
 		formObj.submit();
+		alert("등록 완료!");
 	
 	});
 		
@@ -216,6 +217,7 @@ small {
 	});
 
 	var i = 0;
+	var j = 0;
 	
 	$("#fileDrop").on("drop", function(event) {
 		event.preventDefault();
@@ -242,9 +244,14 @@ small {
 				i++;
 				if(checkImageType(data)){
 					
+					//var ilist = new Array();
+					//var clist = new Array();
+					
 					str = "<div><div><img src='/displayFile?fileName="+data+"'/></div>"
-							+"<div id='image'>"+getOriginalName(data)+"</div>"
-							+"<div id='step' name='step'>"+i+"</div>"+"<input type='text' id='icontent'></div>";
+							+"<div name='ilist["+j+"].thumbnail'>"+getOriginalName(data)+"</div>"
+							+"<div id='step' name='clist["+j+"].step'>"+i+"</div>"+"<input type='text' name='clist["+j+"].content'></div>";
+				
+							j++;
 				}else{
 					str = "<div>"+getOriginalName(data)+"</div>";
 				}
@@ -254,32 +261,7 @@ small {
 			
 		});
 	});
-	
-	
-	
-		$.ajax({
-			url : '/uploadAjax',
-			data : formData,
-			dataType : 'text',
-			processData : false,
-			contentType : false,
-			method : 'POST',
-			success : function(data) {
-				console.log(data);
-				var str="";
-				i++;
-				if(checkImageType(data)){
-					
-					str = "<div><div><img src='/displayFile?fileName="+data+"'/></div>"
-							+"<div id='image'>"+getOriginalName(data)+"</div>"
-							+"<div id='step' name='step'>"+i+"</div>"+"<input type='text' id='icontent'></div>";
-				}else{
-					str = "<div>"+getOriginalName(data)+"</div>";
-				}
-				alert("이미지가 등록되었습니다헤헿");
-				$(".uploadedList").append(str);
-			}
-		
+
 
 	$("#regBtn").submit(function(event) {
 		event.preventDefault();
