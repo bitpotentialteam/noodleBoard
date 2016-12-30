@@ -26,11 +26,11 @@ public class RecipeImageDAOTester {
 	@Test
 	public void testCreate() throws Exception{
 		
-		vo.setBno(1);
-		vo.setStep(2);
-		vo.setImage("TEST IMAGE");
-		vo.setThumbnail("TEST THUMBNAIL");
-		
+//		vo.setBno(1);
+//		vo.setStep(2);
+//		vo.setImage("TEST IMAGE");
+//		vo.setThumbnail("TEST THUMBNAIL");
+//		
 		dao.create(vo);
 	}
 
@@ -50,7 +50,7 @@ public class RecipeImageDAOTester {
 	public void testReadStep() throws Exception{
 		
 		vo.setBno(1);
-		vo.setStep(3);
+//		vo.setStep(3);
 		
 		System.out.println(dao.readStep(vo));
 	}
