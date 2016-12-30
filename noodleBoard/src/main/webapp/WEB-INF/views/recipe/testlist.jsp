@@ -93,10 +93,10 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="../resources/img/noodle/${vo.image}.jpg" class="img-responsive" alt="image of ${vo.title}">
+                        <img src="../resources/img/noodle/${vo.title}.jpg" class="img-responsive" alt="image of ${vo.title}">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>${vo.title}</h4>
+                        <h4>${vo.materialContent}</h4>
                         <p class="text-muted">${vo.content}</p>
                     </div>
                 </div>
