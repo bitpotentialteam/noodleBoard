@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.noodle.domain.Criteria;
+import org.noodle.domain.PageVO;
 import org.noodle.domain.RecipeBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -45,13 +46,13 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	}
 
 	@Override
-	public List<RecipeBoardVO> listAll() throws Exception {
-		return session.selectList(namespace + "listAll");
+	public List<RecipeBoardVO> listAll(PageVO vo) throws Exception {
+		return session.selectList(namespace + "listAll", vo);
 	}
 
 	@Override
-	public List<RecipeBoardVO> search(Criteria cri) throws Exception {
-		return session.selectList(namespace + "saerch", cri);
+	public List<RecipeBoardVO> listSearch(Criteria cri) throws Exception {
+		return session.selectList(namespace + "listSaerch", cri);
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package org.noodle.persistence;
 import java.util.List;
 
 import org.noodle.domain.Criteria;
+import org.noodle.domain.PageVO;
 import org.noodle.domain.RecipeBoardVO;
 
 public interface RecipeBoardDAO {
@@ -12,8 +13,8 @@ public interface RecipeBoardDAO {
 	public RecipeBoardVO read(Integer bno)throws Exception;
 	public void update(RecipeBoardVO vo)throws Exception;
 	public void delete(Integer bno)throws Exception;
-	public List<RecipeBoardVO> listAll()throws Exception;
-	public List<RecipeBoardVO> search(Criteria cri)throws Exception;
+	public List<RecipeBoardVO> listAll(PageVO vo)throws Exception;
+	public List<RecipeBoardVO> listSearch(Criteria cri)throws Exception;
 	
 	
 	public void addViewCount(Integer bno) throws Exception;

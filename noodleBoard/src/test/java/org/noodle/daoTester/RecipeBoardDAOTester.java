@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.noodle.domain.PageVO;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.persistence.RecipeBoardDAO;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,10 +19,12 @@ public class RecipeBoardDAOTester {
 	private RecipeBoardDAO dao;
 	
 	private RecipeBoardVO vo;
+	private PageVO pvo;
 	
 	@Before
 	public void setup() throws Exception{
 		vo = new RecipeBoardVO();
+		pvo = new PageVO();
 	}
 
 	
@@ -63,7 +66,16 @@ public class RecipeBoardDAOTester {
 
 	@Test
 	public void testDelete() throws Exception {
+		
 		dao.delete(10);
+	}
+	
+	@Test
+	public void testListAll() throws Exception{
+		
+		pvo.setPage(6);
+		
+		System.out.println(dao.listAll(pvo));
 	}
 
 }

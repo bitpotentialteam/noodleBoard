@@ -61,20 +61,25 @@
 			bno = #{bno}
 	</delete>
 
-	<select id="list" resultType="RecipeBoardVO">
+	<select id="listAll" resultType="RecipeBoardVO">
+		<![CDATA[
+		select 
+			* 
+		from 
+			tbl_recipeBoard 
+		where 
+			#{startPage, jdbcType=INTEGER} < bno 
+		and 
+			bno <= #{endPage, jdbcType=INTEGER} 
+		order by bno desc
+		 ]]>
+	</select>
+	
+	<select id="listSearch" resultType="RecipeBoardVO">
 		select 
 			* 
 		from 
 			tbl_recipeboard
-	</select>
-	
-	<select id="listAll" parameterType="int" resultType="RecipeBoardVO">
-		select 
-			* 
-		from 
-			tbl_recipeboard 
-		where 
-			bno = #{bno}
 	</select>
 
 	<update id="addViewCount">
