@@ -32,6 +32,7 @@ public class TimeReplyController {
 	public List<TimeReplyVO> reply(@RequestParam("tno")Integer tno, Model model) throws Exception {
 
 		logger.info("Reply called.....");
+		logger.info("잘 읽어오는중임니다.");
 		
 		model.addAttribute("reply",service.listReply(tno));
 
