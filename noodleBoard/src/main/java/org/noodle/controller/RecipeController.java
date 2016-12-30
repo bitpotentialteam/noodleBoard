@@ -3,7 +3,11 @@ package org.noodle.controller;
 import javax.inject.Inject;
 
 import org.noodle.domain.RecipeBoardVO;
+import org.noodle.domain.RecipeCuisineVO;
+import org.noodle.domain.RecipeImageVO;
 import org.noodle.service.RecipeBoardService;
+import org.noodle.service.RecipeCuisineService;
+import org.noodle.service.RecipeImageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,6 +26,12 @@ public class RecipeController {
 	@Inject
 	private RecipeBoardService service;
 	
+	@Inject
+	private RecipeImageService iservice;
+	
+	@Inject
+	private RecipeCuisineService cservice;
+	
 	
 	@GetMapping("/register")
 	public void registerGET(RecipeBoardVO vo, Model model)throws Exception{
@@ -29,8 +39,22 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/register")
-	public String registerPOST(RecipeBoardVO vo, RedirectAttributes rttr) throws Exception {
-		service.regist(vo);
+	public String registerPOST(RecipeBoardVO vo, RecipeImageVO vo1, RecipeCuisineVO vo2, RedirectAttributes rttr) throws Exception {
+		RecipeImageVO ivo = new RecipeImageVO();
+		
+		vo.setIno(ivo.getIno());
+		service.register(vo, vo1, vo2);
+		return "redirect:/recipe/list";
+	}
+	
+	@PostMapping("/image/register")
+	public void imgaeRegisterPOST(RecipeImageVO vo, RedirectAttributes rttr) throws Exception {
+		iservice.regist(vo);
+	}
+	
+	@PostMapping("/cuisine/register")
+	public String cuisineRegisterPOST(RecipeCuisineVO vo, RedirectAttributes rttr) throws Exception {
+		cservice.regist(vo);
 		return "redirect:/recipe/list";
 	}
 	

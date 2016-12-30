@@ -9,7 +9,7 @@
 		insert into 
 			tbl_recipeCuisine (bno, step, content)
 		values 
-			(#{bno}, #{step}, #{content})
+			(seq_recipeBoard.currval, #{step}, #{content})
 	</insert>
 	
 	<select id="read" resultType="RecipeCuisineVO">

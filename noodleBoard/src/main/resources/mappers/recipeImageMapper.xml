@@ -9,7 +9,7 @@
 		insert 
 			into tbl_recipeImage (bno, ino, step, image, thumbnail)
 		values 
-			(#{bno}, seq_recipeImage.nextval, #{step}, #{image}, #{thumbnail})
+			(seq_recipeBoard.currval, seq_recipeImage.nextval, #{step}, #{image,jdbcType=VARCHAR}, #{thumbnail,jdbcType=VARCHAR})
 	</insert>
 	
 	<select id="read" resultType="RecipeImageVO">

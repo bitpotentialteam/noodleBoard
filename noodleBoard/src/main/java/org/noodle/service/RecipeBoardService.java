@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.noodle.domain.Criteria;
 import org.noodle.domain.RecipeBoardVO;
+import org.noodle.domain.RecipeCuisineVO;
+import org.noodle.domain.RecipeImageVO;
 
 public interface RecipeBoardService {
 	public void regist(RecipeBoardVO vo) throws Exception;
@@ -15,4 +17,5 @@ public interface RecipeBoardService {
 
 	public void addLikeCount(Integer bno) throws Exception;
 	public void minusLikeCount(Integer bno) throws Exception;
+	public void register(RecipeBoardVO vo, RecipeImageVO vo1, RecipeCuisineVO vo2) throws Exception;
 }
