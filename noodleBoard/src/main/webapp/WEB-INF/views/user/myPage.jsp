@@ -86,7 +86,7 @@ body {
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation Menu <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Noodles.com</a>
             </div>
@@ -141,6 +141,7 @@ body {
 							</ul>
 						</div>
 					</form>
+					<div class="box-footer">
 					<button type="submit" class="btn btn-primary" id="goListBtn">MAIN</button>
 					<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY PAGE</button>
 				</div>
@@ -149,6 +150,8 @@ body {
 		</div>
 	</div>
 </section>
+
+
 
 	<!-- jQuery 2.2.3 -->
 	<script src="../resources/plugins/jQuery/jquery-2.2.3.min.js"></script>

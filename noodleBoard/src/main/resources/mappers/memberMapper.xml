@@ -21,8 +21,8 @@
   <update id="update">
   update tbl_user
   set 
-  userpw = #{userpw}, username = #{username}, nickname = #{nickname}, email = #{email}, picture = #{picture}
-  where mno = #{mno}
+  userpw = #{userpw, jdbcType=VARCHAR}, username = #{username, jdbcType=VARCHAR}, nickname = #{nickname, jdbcType=VARCHAR}, email = #{email, jdbcType=VARCHAR}
+  where mno = #{mno, jdbcType=INTEGER}
   </update>
   
   <delete id="delete">

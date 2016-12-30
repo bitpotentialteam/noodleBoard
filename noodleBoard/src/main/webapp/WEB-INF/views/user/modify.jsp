@@ -130,26 +130,41 @@ body {
 						<h3 class="widget-user-username">${sessionScope.VO.username}</h3>
 						<h5 class="widget-user-desc">${sessionScope.VO.nickname}</h5>
 					</div>
-					<form id="form">
+					<form id="form" role="formModify" action="modify" method="post">
 						<div class="box-footer no-padding">
 						
 							<ul class="list-group">
-								<li class="list-group-item"><h4>ID</h4>${sessionScope.VO.userid}</li>
-								<li class="list-group-item"><h4>PASSWORD</h4><input type="password" name="password" value="${sessionScope.VO.userpw}"></li>
+								<li class="list-group-item"><h4>ID</h4><input  name="userid" value="${sessionScope.VO.userid}"></li>
+								<li class="list-group-item"><h4>PASSWORD</h4><input type="password" name="userpw" value="${sessionScope.VO.userpw}"></li>
 								<li class="list-group-item"><h4>NAME</h4><input type="text" name="username" value="${sessionScope.VO.username}"></li>
-								<li class="list-group-item"><h4>NICKNAME</h4><input type="text" name="nick" value="${sessionScope.VO.nickname}"></li>
+								<li class="list-group-item"><h4>NICKNAME</h4><input type="text" name="nickname" value="${sessionScope.VO.nickname}"></li>
 								<li class="list-group-item"><h4>E-MAIL</h4><input type="text" name="email" value="${sessionScope.VO.email}"></li>
 							</ul>
 						</div>
 					</form>
-					<button type="submit" class="btn btn-primary" id="goListBtn">MY PAGE</button>
-					<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY</button>
+					<div class="box-footer">
+					<button type="submit" class="btn btn-warning">MYPAGE</button>
+					<button type="submit" class="btn btn-primary">SAVE</button>
+				</div>
 				</div>
 				<!-- /.widget-user -->
 			</div>
 		</div>
 	</div>
 </section>
+
+<script>
+					$(document).ready(function() {
+						var formObj = $("form[role='formModify']");
+						console.log(formObj);
+						$(".btn-warning").on("click", function() {
+							self.location = "/user/myPage";
+						});
+						$(".btn-primary").on("click", function() {
+							formObj.submit();
+						});
+					});
+				</script>
 
 	<!-- jQuery 2.2.3 -->
 	<script src="../resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -164,28 +179,7 @@ body {
 	<!-- AdminLTE for demo purposes -->
 	<script src="../resources/dist/js/demo.js"></script>
 	
-	<script>
-		$(document).ready(function() {
 
-			var formObj = $("#form");
-
-			console.log(formObj);
-
-			$("#modifyBtn").on("click", function() {
-				formObj.attr("action", "/user/modify");
-				formObj.attr("method", "get");
-				formObj.submit();
-			});
-
-			$("#goListBtn").on("click", function() {
-				formObj.attr("method", "get");
-				formObj.attr("action", "/user/myPage");
-				formObj.submit();
-
-			});
-
-		});
-	</script>
 	
 </body>
 </html>
