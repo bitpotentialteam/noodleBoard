@@ -101,10 +101,4 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 		
 	}
 
-
-	@Override
-	public List<RecipeBoardVO> testList() throws Exception {
-		return dao.testList();
-	}
-
 }

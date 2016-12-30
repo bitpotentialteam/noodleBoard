@@ -15,7 +15,6 @@ public interface RecipeBoardService {
 	public void remove(RecipeBoardVO vo)throws Exception;
 	public List<RecipeBoardVO> listAll(PageVO vo)throws Exception;
 	public List<RecipeBoardVO> search(SearchVO vo)throws Exception;
-	public List<RecipeBoardVO> testList() throws Exception;
 
 	public void addLikeCount(Integer bno) throws Exception;
 	public void minusLikeCount(Integer bno) throws Exception;
