@@ -47,13 +47,23 @@ public class UserController {
 //		}
 //
 //	}
-
-	@GetMapping("/login")
-	public void loginGET(HttpSession session,MemberVO vo)throws Exception{
-		logger.info("login get...");
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void modifyGET(Model model, HttpSession session)throws Exception{
+		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
+		service.read1(user.toString());
+		MemberVO vo = service.read1(user.toString());
 		
-		session.setAttribute("LOGIN", "success");	
+		session.setAttribute("VO", vo);
 	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modifyPOST(Model model)throws Exception{
+		
+		
+		return "redirect:/user/modify";
+	}
+
 	
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
 	public void readGET(Model model, HttpSession session) throws Exception {
@@ -68,6 +78,14 @@ public class UserController {
 		session.setAttribute("VO", vo);
 		
 	}
+	
+	@GetMapping("/login")
+	public void loginGET(HttpSession session,MemberVO vo)throws Exception{
+		logger.info("login get...");
+		
+		session.setAttribute("LOGIN", "success");	
+	}
+	
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET(MemberVO vo, Model model) throws Exception {
