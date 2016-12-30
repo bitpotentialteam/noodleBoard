@@ -31,7 +31,7 @@ public class RecipeImageDAOTester {
 //		vo.setImage("TEST IMAGE");
 //		vo.setThumbnail("TEST THUMBNAIL");
 //		
-		dao.create(vo);
+//		dao.create(vo);
 	}
 
 	@Test

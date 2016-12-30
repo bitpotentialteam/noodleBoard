@@ -31,7 +31,7 @@ public class RecipeCuisineDAOTester {
 		vo.setStep(3);
 		vo.setContent("TEST CONTENT");
 		
-		dao.create(vo);
+//		dao.create(vo);
 	}
 	
 	@Test

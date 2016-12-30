@@ -79,5 +79,4 @@ public class RecipeController {
 		logger.info("view.............");
 	}
 
-
 }
