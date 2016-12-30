@@ -34,7 +34,7 @@ public class RecipeImageServiceTester {
 //		vo.setImage("퇴ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ근");
 //		vo.setThumbnail("퇴ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ근");
 		
-		service.regist(vo);
+//		service.regist(vo);
 	}
 
 	@Test

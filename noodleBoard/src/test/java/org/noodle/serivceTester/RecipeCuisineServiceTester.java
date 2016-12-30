@@ -31,7 +31,7 @@ public class RecipeCuisineServiceTester {
 		vo.setStep(4);
 		vo.setContent("TEST CONTENT");
 		
-		service.regist(vo);
+//		service.regist(vo);
 	}
 	
 	@Test
