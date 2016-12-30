@@ -59,7 +59,7 @@
 <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
 <style>
-body {
+.navbar-custom  {
 	background-color: #222;
 }
 
@@ -107,10 +107,9 @@ body {
 	<!-- /.container-fluid --> </nav>
 	<!-- Navigation END -->
 
-	<!-- Three -->
 	<section>
 	<div class="container">
-		<div class="box">
+		<div class="row">
 			<h2>라면검색왕</h2>
 			<div class='groupType'>
 				<h4>SEARCH TYPE</h4>
@@ -130,10 +129,10 @@ body {
 					<span><input type="checkbox" name='kindFilter'><label>칼국수</label></span>
 					<span><input type="checkbox" name='kindFilter'><label>기타</label></span>
 				</div>
-				<div class="noodleFilterCheckbox">
-					<span><input type="checkbox" name='noodleFilter'><label>건면</label></span>
-					<span><input type="checkbox" name='noodleFilter'><label>생면</label></span>
-					<span><input type="checkbox" name='noodleFilter'><label>유탕면</label></span>
+				<div class="noodleTypeFilterCheckbox">
+					<span><input type="checkbox" name='noodleTypeFilter'><label>건면</label></span>
+					<span><input type="checkbox" name='noodleTypeFilter'><label>생면</label></span>
+					<span><input type="checkbox" name='noodleTypeFilter'><label>유탕</label></span>
 				</div>
 			</div>
 			<div class='groupType'>
@@ -149,9 +148,13 @@ body {
 			<div class='groupType'>
 				<h4>ORDER TYPE</h4>
 				<div class="orderTypeCheckbox">
-					<span><input type="checkbox" value="popular" name="orderType"><label>popular</label></span>
-					<span><input type="checkbox" value="calories" name="orderType"><label>calories</label></span>
-					<span><input type="checkbox" value="release" name="orderType"><label>release</label></span>
+					<span><input type="checkbox" name="orderType"><label>popular</label></span>
+					<span><input type="checkbox" name="orderType"><label>calories</label></span>
+					<span><input type="checkbox" name="orderType"><label>release</label></span>
+					<span><input type="checkbox" name="orderType"><label>new</label></span>
+					<span><input type="checkbox" name="orderType"><label>old</label></span>
+					<span><input type="checkbox" name="orderType"><label>lkcal</label></span>
+					<span><input type="checkbox" name="orderType"><label>hkcal</label></span>
 				</div>
 			</div>
 			<div class='search'>
@@ -208,43 +211,72 @@ body {
 
 			var brandArr = [];
 			var kindArr = [];
-			var noodleArr = [];
-			var orderType;
+			var noodleTypeArr = [];
+			var orderType = "";
 
 			$("input[name='brandFilter']:checked").each(function() {
 				brandArr.push($(this).parent().find('label').html());
 			});
 			
-			console.log(brandArr);
+			console.log("brandArr: " + brandArr);
 			
 			$("input[name='kindFilter']:checked").each(function() {
 				kindArr.push($(this).parent().find('label').html());
 			});
-				console.log(kindArr);
+				console.log("kindArr: " + kindArr);
 			
-			$("input[name='noodleFilter']:checked").each(function() {
-				noodleArr.push($(this).parent().find('label').html());
+			$("input[name='noodleTypeFilter']:checked").each(function() {
+				noodleTypeArr.push($(this).parent().find('label').html());
 			});
-				console.log(noodleArr);
+				console.log("noodleTypeArr: " + noodleTypeArr);
 			
-			orderType = $("input[name='orderType']:checked");
-			console.log(orderType);
+			orderType = $("input[name='orderType']:checked").parent().find('label').html();
+			console.log("orderType: " + orderType);
 			
-			var filters = {brandFilter:brandArr,kindFilter:kindArr,noodleFilter:noodleArr,orderType:orderType };
-
-			$.ajax({
-					url : 'wiki/list',
-					type : 'post',
-					dataType : 'text',
-					data : filters,
-					success: function(result){
-						
-					}
-			});
+			var filters = {brandFilter:brandArr,kindFilter:kindArr,noodleTypeFilter:noodleTypeArr,orderType:orderType };
+			console.log(filters);
+			
+			apiManager.search(
+				filters, //4.입력값
+				function (result) { alert("댓글이등록되어씀니다.");}
+			);
+			
 		
 			
 			
 		});
+		
+		
+		var apiManager = (function () {
+		      //여기서 Ajax를 날림
+		      var search = function (data, fn) {//1. data와 콜백함수를 넘겨받음
+		         
+		    		
+		    		$.ajax({
+		    			type : 'get',
+		    			url : '/web/api/noodles/search',
+		    			headers : {
+		    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+		    				"X-HTTP-Method-Override" : "POST"
+		    			},
+		    			dataType : 'text',
+		    			
+		    			data : data,
+		    			
+		    			success : function(result) {
+
+		    					alert("result");
+
+		    			}
+		    		});
+		      
+		    		
+		      }; //  URL, data, 콜백함수(결과값을 여기다 넘기는 )
+		     
+		      
+
+		      return {search: search};
+		  })();
 	</script>
 
 </body>
