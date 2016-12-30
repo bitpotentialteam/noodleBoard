@@ -58,10 +58,15 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPOST(Model model)throws Exception{
+	public String modifyPOST(Model model,MemberVO vo)throws Exception{
 		
+		logger.info("mofify post....");
+		int mno = service.read1(vo.getUserid()).getMno();
 		
-		return "redirect:/user/modify";
+		vo.setMno(mno);
+		service.modify(vo);
+		
+		return "redirect:/";
 	}
 
 	

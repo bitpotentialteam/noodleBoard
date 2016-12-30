@@ -141,6 +141,7 @@ body {
 							</ul>
 						</div>
 					</form>
+					<div class="box-footer">
 					<button type="submit" class="btn btn-primary" id="goListBtn">MAIN</button>
 					<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY PAGE</button>
 				</div>
@@ -149,6 +150,8 @@ body {
 		</div>
 	</div>
 </section>
+
+
 
 	<!-- jQuery 2.2.3 -->
 	<script src="../resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
