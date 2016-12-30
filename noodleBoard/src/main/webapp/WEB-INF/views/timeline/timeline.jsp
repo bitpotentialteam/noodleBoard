@@ -181,8 +181,14 @@ div .replyDiv{
 				<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
 				<li><a class="page-scroll" href="/timeline">Community</a></li>
 				<li><a class="page-scroll" href="/developer/api">Developer</a></li>
-				<li><a class="page-scroll" href="/user/login">LOGIN</a></li>
-				<li><a class="page-scroll" href="/user/register">SIGN-UP</a></li>
+				<c:if test='${sessionScope.LOGIN eq success}'>
+					<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
+					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
+					</c:if>
+					<c:if test='${sessionScope.LOGIN ne success}'>
+					<li><a class="page-scroll" href="/user/login" id="login">LOGOUT</a></li>
+					<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
+					</c:if>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -199,8 +205,8 @@ div .replyDiv{
 			<!-- .box-header START -->
 				<div class="box-header with-border">
 					<div class="user-block">
-						<img class="img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
-						<span class="username"><a href="#"> 로그인한 사람 이름</a></span>   
+						<img class="img-circle" src="show?name=${sessionScope.VO.picture}" alt="User Image">
+						<span class="username"><a href="#"> ${sessionScope.VO.nickname}</a></span>   
 					</div>
 				</div>
 			<!-- .box-header END-->
@@ -209,7 +215,7 @@ div .replyDiv{
 					<form id="createForm" action='timeline/regist' method='post'>
 						<input id="content" name="content" type="text" class="form-control input-md"
 							placeholder="안녕하새오 뿌잉뿌잉 'ㅅ'">							
-							<input type="hidden" name="mno" placeholder="mno" value="5">
+							<input type="hidden" name="mno" placeholder="mno" value="${sessionScope.VO.mno}">
 							<button type="submit" id="createBtn" class="pull-right" > submit! </button>
 					</form>
 				</div>
