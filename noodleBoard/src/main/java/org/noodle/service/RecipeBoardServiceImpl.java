@@ -2,11 +2,11 @@ package org.noodle.service;
 
 import java.util.List;
 
-import org.noodle.domain.Criteria;
 import org.noodle.domain.PageVO;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.domain.RecipeImageVO;
+import org.noodle.domain.SearchVO;
 import org.noodle.persistence.RecipeBoardDAO;
 import org.noodle.persistence.RecipeCuisineDAO;
 import org.noodle.persistence.RecipeImageDAO;
@@ -59,15 +59,15 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	}
 
 	@Override
-	public List<RecipeBoardVO> listAll() throws Exception {
+	public List<RecipeBoardVO> listAll(PageVO vo) throws Exception {
 		
-		return dao.listAll();
+		return dao.listAll(vo);
 	}
 
 	@Override
-	public List<RecipeBoardVO> search(Criteria cri) throws Exception {
+	public List<RecipeBoardVO> search(SearchVO vo) throws Exception {
 		
-		return dao.search(cri);
+		return dao.listSearch(vo);
 	}
 
 
@@ -99,12 +99,6 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 		}
 
 		
-	}
-
-
-	@Override
-	public List<RecipeBoardVO> testList() throws Exception {
-		return dao.testList();
 	}
 
 }

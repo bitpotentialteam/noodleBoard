@@ -4,7 +4,7 @@ public class SearchVO extends PageVO {
 	
 	
 	private String searchType, keyword;
-	private Integer page, total;
+	private Integer total;
 	
 	
 	public String getSearchType() {
@@ -19,12 +19,6 @@ public class SearchVO extends PageVO {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	public Integer getPage() {
-		return page;
-	}
-	public void setPage(Integer page) {
-		this.page = page;
-	}
 	public Integer getTotal() {
 		return total;
 	}
@@ -33,8 +27,8 @@ public class SearchVO extends PageVO {
 	}
 	@Override
 	public String toString() {
-		return "SearchVO [searchType=" + searchType + ", keyword=" + keyword + ", page=" + page + ", total=" + total
-				+ "]";
+		return "SearchVO [searchType=" + searchType + ", keyword=" + keyword + ", total=" + total + "]";
 	}
+	
 	
 }

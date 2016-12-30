@@ -56,7 +56,7 @@ public class TimeReplyController {
 	}
 	
 
-	@PostMapping("/deleteReply")
+	@PostMapping("/removeReply")
 	public String delete(TimeReplyVO vo, RedirectAttributes rttr,Model model)throws Exception{
 	
 		logger.info("REMOVE" + vo);

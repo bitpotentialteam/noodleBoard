@@ -279,25 +279,10 @@ div .replyDiv{
 						<!-- .box-footer START -->
 			
 						<!-- reply start -->
-						<div class = "replyDiv">
-						
-					<div class="box-footer box-comments" id="commentsbox">
-					
-					
-					<!-- 코멘트 창 시작입니당~~!  -->
-<!-- 							<div class='box-comment'> -->
-						
-<!-- 								<img class='img-circle img-sm' src='https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg' alt='User Image'> -->
-<!-- 								<div class='comment-text'> -->
-<!-- 								<span class='username'> 유저 닉네임!   <span class='text-muted pull-right'>  날짜날짜 ㅇㅅㅇ  </span></span>	/.username -->
-<!--  								내용내용!  -->
-		
-								
-<!-- 								</div>  -->
-<!-- 							</div> -->
-
-<!-- 코멘트 창 끝ㅇㅅㅇ!! -->
-						</div>						
+						<div class = "replyDiv" name="${vo.tno}">
+							<!-- reply list -->
+							<div class="box-footer box-comments" id="commentsbox">
+							</div>						
 				
 						<!-- .box-footer END-->
 						<div class="box-footer">
@@ -433,14 +418,13 @@ div .replyDiv{
 			var addComment = $(this).parents('#timelineBox').find('.replyDiv').find('#commentsbox');
 		//	console.log("comment" + addComment);
 
-			//replyMannager.listReply 함수 시작!ㅇㅅㅇ!
-			replyMannager.listReply (	
+			//replyManager.listReply 함수 시작!ㅇㅅㅇ!
+			replyManager.listReply (	
 					{tno:tno}, 
 			    	function (result){
-
-			addComment.html(result);
-					console.log("result"+result);
-					console.log(this);
+						
+						addComment.html(result);
+						console.log("result"+result);
 			    	}
 				);
 		});
@@ -451,29 +435,64 @@ div .replyDiv{
 			if (event.which == 13) {/* 13 == enter key@ascii */
 			event.preventDefault();
 			
+			var $this = $(this);
+			
 			//tno mno replycontent 밸류값 채집함.
-			var tno = $(this).parents('.img-push').find('#replytno').val();
-			var mno = $(this).parents('.img-push').find('#replymno').val();
-			var replyContent = $(this).val();
+			var tno = $this.parents('.img-push').find('#replytno').val();
+			var mno = $this.parents('.img-push').find('#replymno').val();
+			var replyContent = $this.val();
+			var updateList = $this.parents('.replyDiv').find('.box-comments');
 	
 			console.log(tno);
 			console.log(mno);
 			console.log(replyContent);
+			console.log(updateList);
 			
 			//addreply 실행!ㅇㅅㅇ!
-			  replyMannager.addReply(
+			  replyManager.addReply(
 					  //얘네가 data임. 위에서 밸류값 채집한 애들 보내는것
 					  {tno:tno,mno:mno,content:replyContent}, //4.입력값
 			      function (result) {
-							  
+						  alert("댓글이 등록되어씀다~!");
+						  replyManager.listReply({tno:tno},
+								  function(str){
+							  updateList.html(str);
+							 
+						  });
 			       });
 		}
 	});
 		
+		
+	$(document).on("click","#removeReply", function(event){
+
+		console.log("삭제버튼클릭됨");	
+			var $this = $(this);
+			//tno mno replycontent 밸류값 채집함.
+			var trno = $this.val();
+			var tno = $this.parents('.replyDiv').attr("name");
+			var updateList = $this.parents('.box-comments') ;
+			console.log("티..알..엔..오.."+trno);
+			
+			//addreply 실행!ㅇㅅㅇ!
+			  replyManager.removeReply(
+					  //얘네가 data임. 위에서 밸류값 채집한 애들 보내는것
+					  {trno:trno}, //4.입력값
+			      function (result) {
+						  alert("댓글이 삭제되었다~!");
+						  replyManager.listReply({tno:tno},
+								  function(str){
+							  updateList.html(str);
+							 
+						  });
+			       });
+
+	});
+		
 	});
 	
-	//replyMannager 만들어놓앗읍니다.
-	 var replyMannager = (function () {
+	//replyManager 만들어놓앗읍니다.
+	 var replyManager = (function () {
 	      //여기서 Ajax를 날림
 	      //얘는 댓글 등록될 때 실행될 함수. 아까 그 3개 data받아와서 fn콜백함수시키는데 콜백은 alert띄우는것!
 	      var addReply = function (data, fn) {//1. data와 콜백함수를 넘겨받음
@@ -488,15 +507,35 @@ div .replyDiv{
 	    			dataType : 'text',
 	    			data : data,
 	    			success : function(result) {
-	    					alert("댓글이 등록되어씀다~!");
-	    					fn = result;
+	    					fn(result);
 	    			}
 	    		});
 	    		
 	      };
 	      
+	      //삭제삭제입니당~
+	          var removeReply = function (data, fn) {//1. data와 콜백함수를 넘겨받음
+	         		
+	    		$.ajax({
+	    			type : 'post',
+	    			url : '/timeline/removeReply',
+	    			headers : {
+	    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+	    				"X-HTTP-Method-Override" : "POST"
+	    			},
+	    			dataType : 'text',
+	    			data : data,
+	    			success : function(result) {
+	    				fn(result);
+	    			}
+	    		});
+	    		
+	      };
+	      
+	      
+	      
 	      //얘는 reply 목록 가져오는건데, data는 위에 지정해놓은대로 tno만 받아옴.
-	      var listReply = function( data, fn){
+	      var listReply = function( data,fn){
 
 	  		$.ajax({
     			type : 'get',
@@ -517,20 +556,22 @@ div .replyDiv{
 				    	var nick = result[i].nickname;
 				    	var content = result[i].content;
 				    	var regDate = result[i].regDate;
+				    	var trno = result[i].trno;
 				    	
 				    	console.log("닉" + nick);
 				    	console.log("날짜" + result[i].regDate);
 				    	console.log("ㅋㅋㅋㅋㅇㅁㅇㄹ내용 "+result[i].content);
+				    	console.log("티알엔오" + trno);
 
 					str += "<div class='box-comment'>" + 
 					"<img class='img-circle img-sm' "+
 					"src='https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg' alt='User Image'>" +
 					"<div class='comment-text'> " +
 					"<span class='username'>" + nick + " <span class='text-muted pull-right'>" +
-					regDate + " </span></span> " + content + "</div> </div>";
+					regDate + " </span></span> " + content + "<button type='submit' id='removeReply' value='" + trno + "'> x </button></div> </div>";
 
 				 };
-
+				
 				 fn(str);
 
     			}
@@ -538,7 +579,7 @@ div .replyDiv{
 	    	  
 	      };
 	     
-	      return {addReply: addReply, listReply: listReply};
+	      return {addReply: addReply, removeReply: removeReply, listReply: listReply};
 	      //키가 addReply 값이 함수
 	  })();
 	

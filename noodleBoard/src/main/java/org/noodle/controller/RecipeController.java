@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.noodle.domain.PageVO;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.domain.RecipeImageVO;
@@ -67,10 +68,10 @@ public class RecipeController {
 	
 	
 	@GetMapping("/testlist")
-	public void listAll(Model model) throws Exception {
+	public void listAll(PageVO vo,Model model) throws Exception {
 		System.out.println("testList callll..........");
-		model.addAttribute("list", service.testList());
-		System.out.println("listAll callll.........."+ service.testList().toString() );
+		model.addAttribute("list", service.listAll(vo));
+		System.out.println("listAll callll.........."+ service.listAll(vo).toString() );
 		
 	}
 	
