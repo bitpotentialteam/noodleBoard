@@ -8,7 +8,7 @@ import org.noodle.domain.RecipeImageVO;
 public interface RecipeImageDAO {
 
 	
-	public void create(List<RecipeImageVO> list) throws Exception;
+	public void create(RecipeImageVO vo) throws Exception;
 	public RecipeImageVO read(Integer ino)throws Exception;
 	public void delete(Integer ino)throws Exception;
 	

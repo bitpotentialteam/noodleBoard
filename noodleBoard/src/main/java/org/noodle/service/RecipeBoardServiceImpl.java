@@ -59,16 +59,15 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	}
 
 	@Override
-	public List<RecipeBoardVO> listAll(PageVO vo) throws Exception {
+	public List<RecipeBoardVO> listAll() throws Exception {
 		
-		return dao.listAll(vo);
+		return dao.listAll();
 	}
 
 	@Override
 	public List<RecipeBoardVO> search(Criteria cri) throws Exception {
 		
-//		return dao.search(cri);
-		return null;
+		return dao.search(cri);
 	}
 
 
@@ -87,11 +86,25 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 
 
 	@Override
+	@Transactional
 	public void register(RecipeBoardVO vo, List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception {
 		
 		dao.create(vo);
+		
+		for (RecipeCuisineVO recipeCuisineVO : clist) {
+			cdao.create(recipeCuisineVO);
+		}
+		for (RecipeImageVO recipeImageVO : ilist) {
+			idao.create(recipeImageVO);
+		}
 
 		
+	}
+
+
+	@Override
+	public List<RecipeBoardVO> testList() throws Exception {
+		return dao.testList();
 	}
 
 }
