@@ -3,43 +3,63 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-  
-  <mapper namespace="org.noodle.mapper.MemberMapper">
-  
-  <insert id="create">
-  insert into tbl_user(mno,userid,userpw,username,nickname,email,picture)
-  values
-  (seq_user.nextval, #{userid},#{userpw},#{username},#{nickname},#{email},#{picture})
-  </insert>
-  
-  <select id="read" resultType="MemberVO">
-  select userid, userpw, username, nickname, email,picture
-  from tbl_user
-  where mno = #{mno} 
-  </select>
-  
-  <update id="update">
-  update tbl_user
-  set 
-  userpw = #{userpw, jdbcType=VARCHAR}, username = #{username, jdbcType=VARCHAR}, nickname = #{nickname, jdbcType=VARCHAR}, email = #{email, jdbcType=VARCHAR}
-  where mno = #{mno, jdbcType=INTEGER}
-  </update>
-  
-  <delete id="delete">
-  delete from tbl_user
-  where mno = #{mno}
-  </delete>
-  
-  	<select id="login" parameterType="MemberVO" resultType="MemberVO">
-		select * from tbl_user
+<mapper namespace="org.noodle.mapper.MemberMapper">
+
+	<insert id="create">
+		insert into tbl_user(mno,userid,userpw,username,nickname,email,picture)
+		values
+		(seq_user.nextval, #{userid},#{userpw},#{username},#{nickname},#{email},#{picture})
+	</insert>
+
+	<select id="read" resultType="MemberVO">
+		select userid, userpw, username, nickname, email,picture
+		from tbl_user
+		where mno = #{mno}
+	</select>
+
+	<update id="update">
+		update tbl_user
+		set
+		userpw = #{userpw, jdbcType=VARCHAR}, username = #{username,
+		jdbcType=VARCHAR}, nickname = #{nickname, jdbcType=VARCHAR}, email =
+		#{email, jdbcType=VARCHAR}
+		where mno = #{mno, jdbcType=INTEGER}
+	</update>
+
+	<delete id="delete">
+		delete from tbl_user
+		where mno = #{mno}
+	</delete>
+
+	<select id="login" parameterType="MemberVO" resultType="MemberVO">
+		select *
+		from tbl_user
 		where userid=#{userid} and userpw=#{userpw}
 	</select>
 	<select id="read1" resultType="MemberVO">
-  select mno, userid, userpw, username, nickname, email,picture
-  from tbl_user
-  where userid = #{userid} 
-  </select>
-  
-  
-  
-  </mapper>
+		select mno, userid, userpw, username, nickname, email,picture
+		from tbl_user
+		where userid = #{userid}
+	</select>
+
+	<update id="create_client" parameterType="hashmap">
+		update 
+			tbl_user
+		set
+			Client_ID=#{Client_ID, jdbcType=VARCHAR},
+			Client_PW=#{Client_PW, jdbcType=VARCHAR}
+		where
+			mno = #{mno, jdbcType=INTEGER}
+	</update>
+	
+	<update id="delete_client">
+		update 
+			tbl_user
+		set
+			Client_ID=null,
+			Client_PW=null
+		where
+			mno = #{mno, jdbcType=INTEGER}
+	</update>
+
+</mapper>

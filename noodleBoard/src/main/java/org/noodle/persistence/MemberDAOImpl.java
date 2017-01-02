@@ -52,7 +52,7 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("Client_PW", ClientUtils.INSTANCE.addUUID(mno));
 		map.put("mno", mno);
 		
-		session.insert(namespace + ".create_client", map);
+		session.update(namespace + ".create_client", map);
 	}
 
 	@Override

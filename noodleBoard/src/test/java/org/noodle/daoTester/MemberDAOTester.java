@@ -62,13 +62,13 @@ public class MemberDAOTester {
 	@Test
 	public void testCreate_client() throws Exception{
 
-		dao.create_client(27);
+		dao.create_client(19);
 
 	}
 	
 	@Test
 	public void testDelete_client() throws Exception{
 		
-		dao.delete_client(18);
+		dao.delete_client(19);
 	}
 }
