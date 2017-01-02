@@ -69,8 +69,10 @@ public class RecipeController {
 	}
 	
 	@GetMapping("/list")
-	public void listAll() throws Exception {
+	public void list(PageVO vo,Model model) throws Exception {
 		logger.info("listAll.............");
+		model.addAttribute("list", service.listAll(vo));
+		System.out.println("listAll callll.........."+ service.listAll(vo).toString() );
 	}
 	
 	
