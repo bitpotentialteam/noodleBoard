@@ -33,6 +33,7 @@ public class TimeReplyController {
 
 		logger.info("Reply called.....");
 		logger.info("잘 읽어오는중임니다.");
+		logger.info("vo" + service.listReply(tno));
 		
 		model.addAttribute("reply",service.listReply(tno));
 

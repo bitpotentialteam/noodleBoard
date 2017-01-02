@@ -557,12 +557,15 @@ div .replyDiv{
 				    	var content = result[i].content;
 				    	var regDate = result[i].regDate;
 				    	var trno = result[i].trno;
+				    	var picture = result[i].picture;
 				    	
 				    	console.log("닉" + nick);
 				    	console.log("날짜" + result[i].regDate);
 				    	console.log("ㅋㅋㅋㅋㅇㅁㅇㄹ내용 "+result[i].content);
 				    	console.log("티알엔오" + trno);
+				    	console.log("픽픽픽쳐" + picture);
 				    	console.log(result);
+				    	
 
 					str += "<div class='box-comment'>" + 
 					"<img class='img-circle img-sm' "+
