@@ -206,7 +206,7 @@ div .replyDiv{
 				<div class="box-header with-border">
 					<div class="user-block">
 						<img class="img-circle" src="show?name=${sessionScope.VO.picture}" alt="User Image">
-						<span class="username"><a href="#"> ${sessionScope.VO.nickname}</a></span>   
+						<span class="username">${sessionScope.VO.nickname}</a></span>   
 					</div>
 				</div>
 			<!-- .box-header END-->
@@ -604,7 +604,7 @@ div .replyDiv{
 
 					if (maxHeight <= currentScroll + 100) {
 						
-						alert("여기에 페이지 끝나면 다시 호출할 페이지를 가지고 오면 되는데 존나 너무 어려워서 어떻게 해야할지 모르겠다.");
+					
 
 	//여기까지임~ 스크롤이 뭐 맨 아래에 닿으면...scroll event 실행ㄱㄱ하면서 밑에 함수들 다 실행함
 	

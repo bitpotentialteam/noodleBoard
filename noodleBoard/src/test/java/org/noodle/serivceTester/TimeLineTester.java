@@ -2,8 +2,11 @@ package org.noodle.serivceTester;
 
 
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.noodle.domain.TimeLineVO;
 import org.noodle.service.TimeLineService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,14 +36,12 @@ public class TimeLineTester {
 	public void firstTest()throws Exception{
 		
 		logger.info("FIRST : " + service.firstListView(60));
-		
 	}
 	
 	@Test
 	public void lastTest()throws Exception{
 		
 		logger.info("LAST" + service.lastListView(70));
-		
 	}
 
 }
