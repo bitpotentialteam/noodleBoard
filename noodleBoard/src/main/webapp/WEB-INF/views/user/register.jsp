@@ -92,12 +92,14 @@
 
 			<form action="register" method="post" >
 				<div class="form-group has-feedback">
-					<input type="text" id="userid" name="userid" class="form-control" placeholder="ID"> <span
-						class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					
+					<input type="text" id="userid" name="userid" class="form-control" placeholder="ID"/>
+					 <i class="glyphicon glyphicon-search" id="checkBtn" style='cursor: pointer;'></i>
+					
 				</div>
 				<div class="form-group has-feedback">
 					<input type="password" id="userpw" name="userpw" class="form-control" placeholder="Password">
-					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+					<span class="glyphicon glyphicon-lock form-control-feedback" id="fa-check-square-o"></span>
 				</div>
 				<div class="form-group has-feedback">
 					<input type="text" id="username" name="username" class="form-control" placeholder="Username">
@@ -197,6 +199,36 @@
 				});
 			});
 		});
+		
+		 // 아이디 중복체크
+		   $("#checkBtn").on("click",function(){
+			   console.log("check");
+		       var userid = $("#userid").val();
+		       var formData = new FormData();
+		        
+		       formData.append("userid", userid);
+		             
+		         $.ajax({
+		            url : "idCheck",
+		            data : formData,
+		            dataType : 'text',
+		            type : "post",
+		            contentType : false,
+		            processData : false,
+		            success : function( result ) {
+
+		               if( result != ""){
+		                  alert("중복된 아이디 입니다 !");
+		                  $("#userid").val("");
+		               } else if ( userid == ""){
+		                  alert("아이디를 입력해주세요 !");
+		               } else {
+		                  alert("사용 가능합니다 !");
+		               }
+		            }// end success
+		      });// end ajax
+		   });
 	</script>
+
 </body>
 </html>

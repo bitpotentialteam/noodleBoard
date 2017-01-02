@@ -61,5 +61,13 @@ public class MemberServiceImpl implements MemberService {
 		return dao.read1(userid);
 	}
 
+	@Override
+	public String checkID(String userid) throws Exception {
+
+		return dao.checkID(userid);
+	}
+
+
+
 }
  

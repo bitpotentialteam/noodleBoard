@@ -12,6 +12,7 @@ public interface MemberService {
 	public MemberVO read1(String userid)throws Exception;
 	
 	public MemberVO login(MemberVO vo)throws Exception;
+	public String checkID(String userid)throws Exception;
 	
 	public void regist_client(Integer mno) throws Exception;
 	public void remove_client(Integer mno) throws Exception; 

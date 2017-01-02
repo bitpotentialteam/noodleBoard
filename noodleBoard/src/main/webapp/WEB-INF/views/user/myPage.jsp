@@ -138,12 +138,15 @@ body {
 								<li class="list-group-item"><h4>NAME</h4>${sessionScope.VO.username}</li>
 								<li class="list-group-item"><h4>NICKNAME</h4>${sessionScope.VO.nickname}</li>
 								<li class="list-group-item"><h4>E-MAIL</h4>${sessionScope.VO.email}</li>
+								<li class="list-group-item"><h4>일회용ID</h4>${sessionScope.VO.client_ID}</li>
+								<li class="list-group-item"><h4>일회용PW</h4>${sessionScope.VO.client_PW}</li>
 							</ul>
 						</div>
 					</form>
 					<div class="box-footer">
 					<button type="submit" class="btn btn-primary" id="goListBtn">MAIN</button>
 					<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY PAGE</button>
+					<button type="submit" class="btn btn-primary" id="updateBtn">발급하기</button>
 				</div>
 				<!-- /.widget-user -->
 			</div>
@@ -185,6 +188,11 @@ body {
 				formObj.submit();
 
 			});
+			
+			$("updateBtn").on("click", function(){
+				
+			});
+			
 
 		});
 	</script>

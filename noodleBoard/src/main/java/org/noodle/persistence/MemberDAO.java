@@ -12,6 +12,7 @@ public interface MemberDAO {
 	public MemberVO read1(String userid)throws Exception;
 	
 	public MemberVO login(MemberVO vo)throws Exception;
+	public String checkID(String userid)throws Exception;
 	
 	public void create_client(Integer mno) throws Exception;
 	public void delete_client(Integer mno) throws Exception; 

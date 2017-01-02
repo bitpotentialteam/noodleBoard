@@ -61,5 +61,9 @@
 		where
 			mno = #{mno, jdbcType=INTEGER}
 	</update>
+	
+	<select id="checkID" resultType="String">
+	 select userid from tbl_user where userid = #{userid}
+	</select>
 
 </mapper>
