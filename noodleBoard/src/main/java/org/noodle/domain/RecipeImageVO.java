@@ -1,5 +1,6 @@
 package org.noodle.domain;
 
+import java.util.List;
 
 public class RecipeImageVO {
 	
@@ -9,6 +10,15 @@ public class RecipeImageVO {
 	private Integer step;
 	private String image;
 	private String thumbnail;
+	
+	private List<RecipeImageVO> ilist;
+	
+	public List<RecipeImageVO> getIlist() {
+		return ilist;
+	}
+	public void setIlist(List<RecipeImageVO> ilist) {
+		this.ilist = ilist;
+	}
 	
 	
 	public Integer getBno() {
@@ -44,7 +54,8 @@ public class RecipeImageVO {
 	@Override
 	public String toString() {
 		return "RecipeImageVO [bno=" + bno + ", ino=" + ino + ", step=" + step + ", image=" + image + ", thumbnail="
-				+ thumbnail + "]";
+				+ thumbnail + ", ilist=" + ilist + "]";
 	}
+	
 		
 }

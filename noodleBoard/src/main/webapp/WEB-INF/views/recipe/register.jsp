@@ -247,11 +247,17 @@ small {
 					//var ilist = new Array();
 					//var clist = new Array();
 					
-					str = "<div><div><img src='/displayFile?fileName="+data+"'/></div>"
-							+"<div name='ilist["+j+"].thumbnail'>"+getOriginalName(data)+"</div>"
-							+"<div id='step' name='clist["+j+"].step'>"+i+"</div>"+"<input type='text' name='clist["+j+"].content'></div>";
+					str = "<div>"
+							+"<div><img src='/displayFile?fileName="+data+"'/></div>"
+							+"<div>"
+								+"<input type= 'hidden' name='ilist["+j+"].thumbnail' value="+getOriginalName(data)+">"+getOriginalName(data)+"</div>"
+							+"<div>"
+								+"<input type='hidden' id='step' name='clist["+j+"].step'>"+i+"</div>"
+							+"<input type='text' name='clist["+j+"].content'></div>";
 				
+							
 							j++;
+							
 				}else{
 					str = "<div>"+getOriginalName(data)+"</div>";
 				}
