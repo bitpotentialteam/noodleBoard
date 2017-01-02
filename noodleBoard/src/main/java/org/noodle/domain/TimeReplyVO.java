@@ -9,13 +9,14 @@ public class TimeReplyVO {
 	private int tno;
 	private String content;
 	private String nickname;
+	private String picture;
 	private Date regDate;
 	private Date updateDate;
 
 	@Override
 	public String toString() {
 		return "TimeReplyVO [trno=" + trno + ", mno=" + mno + ", tno=" + tno + ", content=" + content + ", nickname="
-				+ nickname + ", regDate=" + regDate + ", updateDate=" + updateDate + "]";
+				+ nickname + ", picture=" + picture + ", regDate=" + regDate + ", updateDate=" + updateDate + "]";
 	}
 
 	public int getTrno() {
@@ -56,6 +57,14 @@ public class TimeReplyVO {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	public Date getRegDate() {

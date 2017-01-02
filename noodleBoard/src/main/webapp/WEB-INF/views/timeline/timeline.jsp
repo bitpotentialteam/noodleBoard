@@ -14,7 +14,7 @@
 	name="viewport">
 	
 <!-- Bootstrap 3.3.6 -->
-<link rel="stylesheet"`
+<link rel="stylesheet"
 	href="../resources/vendor/bootstrap/css/bootstrap.min.css">
 
 <!-- Font Awesome -->
@@ -340,6 +340,8 @@ div .replyDiv{
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	
 	<script>
+	
+		
 	$( document ).ready(function() {
 		var formObj = $("#form");
 
@@ -488,12 +490,17 @@ div .replyDiv{
 			       });
 
 	});
+	
 		
 	});
 	
 	//replyManager 만들어놓앗읍니다.
 	 var replyManager = (function () {
 	      //여기서 Ajax를 날림
+	      
+	      
+
+	      
 	      //얘는 댓글 등록될 때 실행될 함수. 아까 그 3개 data받아와서 fn콜백함수시키는데 콜백은 alert띄우는것!
 	      var addReply = function (data, fn) {//1. data와 콜백함수를 넘겨받음
 	         		
@@ -569,7 +576,7 @@ div .replyDiv{
 
 					str += "<div class='box-comment'>" + 
 					"<img class='img-circle img-sm' "+
-					"src='https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg' alt='User Image'>" +
+					"src="+ picture + "alt='User Image'>" +
 					"<div class='comment-text'> " +
 					"<span class='username'>" + nick + " <span class='text-muted pull-right'>" +
 					regDate + " </span></span> " + content + "<button type='submit' id='removeReply' value='" + trno + "'> x </button></div> </div>";
@@ -588,8 +595,28 @@ div .replyDiv{
 	  })();
 	
 	
-	</script>
 	
+     //무한스크롤
+		$(document).ready(function () {
+					$(document).scroll(function() {
+					var maxHeight = $(document).height();
+					var currentScroll = $(window).scrollTop() + $(window).height();
+
+					if (maxHeight <= currentScroll + 100) {
+						
+						alert("여기에 페이지 끝나면 다시 호출할 페이지를 가지고 오면 되는데 존나 너무 어려워서 어떻게 해야할지 모르겠다.");
+
+	//여기까지임~ 스크롤이 뭐 맨 아래에 닿으면...scroll event 실행ㄱㄱ하면서 밑에 함수들 다 실행함
+	
+				}
+					 //위에 스크롤이벤트 if문 끝임!
+					})
+					}); //스크롤이벤트 end!
+	
+	
+	</script>
+
+
 
 
 </body>
