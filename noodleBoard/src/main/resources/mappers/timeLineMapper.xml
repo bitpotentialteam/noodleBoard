@@ -15,13 +15,45 @@
 	
 	<select id="listView" resultType="TimeLineVO">
 	
-		select tbl_user.nickname, tbl_user.picture, tbl_timeline.tno,
+	  <![CDATA[
+		   select tbl_user.nickname, tbl_user.picture, tbl_timeline.tno,
 				tbl_timeline.content, tbl_timeline.likecnt, tbl_timeline.replycnt, tbl_timeline.regdate
 			from tbl_timeline
-		join tbl_user
-		 on tbl_user.mno = tbl_timeline.mno
-		order by regdate desc
+			join tbl_user
+				 on tbl_user.mno = tbl_timeline.mno
+   			 where rownum <= 10
+  			 order by tno desc
+	  ]]>
+	  
+	</select>
 	
+		<select id="lastListView" resultType="TimeLineVO">
+	
+	  <![CDATA[
+		    select tbl_user.nickname, tbl_user.picture, tbl_timeline.tno,
+				tbl_timeline.content, tbl_timeline.likecnt, tbl_timeline.replycnt, tbl_timeline.regdate
+			from tbl_timeline
+			join tbl_user
+		 		on tbl_user.mno = tbl_timeline.mno
+		    where tno < #{tno, jdbcType=INTEGER} and rownum <=10
+		    order by tno desc
+	  ]]>
+	  
+	</select>
+	
+	
+		<select id="firstListView" resultType="TimeLineVO">
+	
+	  <![CDATA[
+		      select tbl_user.nickname, tbl_user.picture, tbl_timeline.tno,
+				tbl_timeline.content, tbl_timeline.likecnt, tbl_timeline.replycnt, tbl_timeline.regdate
+				from tbl_timeline
+					join tbl_user
+				 on tbl_user.mno = tbl_timeline.mno
+			    where tno > #{tno ,jdbcType=INTEGER}
+			    order by tno desc
+	  ]]>
+	  
 	</select>
 	
 	

@@ -8,6 +8,9 @@ public interface TimeLineDAO {
 
 	public void create(TimeLineVO vo)throws Exception;
 	public List<TimeLineVO> listView() throws Exception;
+	public List<TimeLineVO> firstListView(Integer tno) throws Exception;
+	public List<TimeLineVO> lastListView(Integer tno) throws Exception;
+	
 	public void update(TimeLineVO vo)throws Exception;
 	public void delete(Integer tno)throws Exception;
 	

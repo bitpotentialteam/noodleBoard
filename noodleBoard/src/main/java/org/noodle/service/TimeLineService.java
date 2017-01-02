@@ -8,6 +8,9 @@ public interface TimeLineService {
 	
 	public void regist(TimeLineVO vo)throws Exception;
 	public List<TimeLineVO> listView()throws Exception;
+	public List<TimeLineVO> firstListView(Integer tno) throws Exception;
+	public List<TimeLineVO> lastListView(Integer tno) throws Exception;
+	
 	public void modify(TimeLineVO vo)throws Exception;
 	public void remove(Integer tno)throws Exception;
 	

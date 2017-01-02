@@ -57,4 +57,16 @@ public class TimeLineServiceImpl implements TimeLineService {
 		
 	}
 
+	@Override
+	public List<TimeLineVO> firstListView(Integer tno) throws Exception {
+	
+		return dao.firstListView(tno);
+	}
+
+	@Override
+	public List<TimeLineVO> lastListView(Integer tno) throws Exception {
+		
+		return dao.lastListView(tno);
+	}
+
 }

@@ -59,5 +59,17 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 		
 	}
 
+	@Override
+	public List<TimeLineVO> firstListView(Integer tno) throws Exception {
+		
+		return session.selectList(namespace + ".firstListView");
+	}
+
+	@Override
+	public List<TimeLineVO> lastListView(Integer tno) throws Exception {
+		
+		return session.selectList(namespace + ".lastListView");
+	}
+
 
 }
