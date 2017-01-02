@@ -1,24 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ 
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Login Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 
-<!-- Tell the browser to be responsive to screen width -->
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
+<title>라면이 좋아</title>
 
-<!-- Bootstrap 3.3.6 -->
-<link rel="stylesheet"
-	href="../resources/vendor/bootstrap/css/bootstrap.min.css">
+<!-- Bootstrap Core CSS -->
+<link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<!-- Custom Fonts -->
 <link href="../resources/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
@@ -32,16 +32,18 @@
 	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
 	rel='stylesheet' type='text/css'>
 
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link href="../resources/css/agency.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="../resources/dist/css/AdminLTE.min.css">
-<!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-<link rel="stylesheet"
-	href="../resources/dist/css/skins/_all-skins.min.css">
-
+<style>
+.navbar-custom  {
+	background-color: #222;
+}
+.img-responsive {
+	width: 100%;
+    max-height: 100%;
+    height: 360px;
+}
+</style>
 
 </head>
 
@@ -167,195 +169,148 @@ h1 {
 <body class="hold-transition login-page">
 
 	<!-- Navigation -->
-	<nav id="mainNav"
-		class="navbar navbar-default navbar-custom navbar-fixed-top">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div id="menu" class="navbar-header page-scroll">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> Menu <i
-					class="fa fa-bars"></i>
-			</button>
-			<a class="navbar-brand page-scroll" href="/">Noodles.com</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="hidden"><a href="#page-top"></a></li>
-				<li><a class="page-scroll" href="register">Register</a></li>
-				<li><a class="page-scroll" href="modify">Modify</a></li>
-				<li><a class="page-scroll" href="remove">Delete</a></li>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid --> </nav>
-<!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('../resources/img/noodle.jpg')">
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="page-heading">
-                        <h1>레시피 광장</h1>
-                        <hr class="small">
-               
-                    </div>
-                </div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Noodles.com</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden"><a href="#page-top"></a></li>
+					<li><a class="page-scroll" href="/wiki">Noodle-Wiki</a></li>
+					<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
+					<li><a class="page-scroll" href="/timeline">Community</a></li>
+					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
+					
+					<c:if test='${sessionScope.LOGIN eq success}'>
+					<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
+					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
+					</c:if>
+					<c:if test='${sessionScope.LOGIN ne success}'>
+					<li><a class="page-scroll" href="/user/login" id="login">LOGOUT</a></li>
+					<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
+					</c:if>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    
+        <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Welcome To Noodle.com!</div>
+                <div class="intro-heading">Noodels Title</div>
+                <a href="#recipe" class="page-scroll btn btn-xl">Tell Me More</a>
             </div>
         </div>
     </header>
-
-	<section id="portfolio" class="bg-black-gray">
-	<div class="container">
+    
+    
+    
+<section id="recipe">
+<div class="container">
 		<div class="row">
-			<div class="col-lg-12 text-center" id="heading">
-				<h1 class="section-heading">레시피 광장</h1>
-			</div>
-		</div>
-
-
-		<div class="row">
-			<div class="col-md-12">
-				<!-- Widget: user widget style 1 -->
-				<div class="box box-widget widget-user-2">
-					<!-- Add the bg color to the header using any of the bg-* classes -->
-					<center>
-						<div class="widget-user-header bg-">
-							<div class="header">
-								<img src="../resources/img/noodle/sine.jpg">
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<p>
+				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
+				</p>
+				<form action="register" method="post">
+					<div class="row control-group" name="mno">
+						<div
+							class="form-group col-xs-12 floating-label-form-group controls">
+							<label>MNO임시 테스트용</label> <input type="text" class="form-control"
+								placeholder="Mno" name="mno" id="mno" required
+								data-validation-required-message="Please enter title.">
+							<p class="help-block text-danger"></p>
+						</div>
+					</div>
+					<div class="row control-group" name="title">
+						<div
+							class="form-group col-xs-12 floating-label-form-group controls">
+							<label>메뉴명</label> <input type="text" class="form-control"
+								placeholder="Title" name="title" id="title" required
+								data-validation-required-message="Please enter title.">
+							<p class="help-block text-danger"></p>
+						</div>
+					</div>
+					<label>설명</label>
+					<textarea name="content" id="content" rows="10" cols="100"></textarea>
+							<p class="help-block text-danger"></p>
+					<div class="row control-group" id="materialContent">
+						<div
+							class="form-group col-xs-12 floating-label-form-group controls">
+							<label>재료</label> <input type="text" class="form-control"
+								placeholder="Material Content" name="materialContent"
+								id="materialContent" required
+								data-validation-required-message="Please enter material.">
+							<p class="help-block text-danger"></p>
+						</div>
+					</div>
+					
+					<label>조리순서 (image drag&drop)</label>
+					<div class="row control-group">
+						<div
+							class="form-group col-xs-12 floating-label-form-group controls">
+							<div class="form-group">
+								<div class="form-control" id="fileDrop"></div>
+								<div class="uploadedList"></div>
 							</div>
-							<!-- /.widget-user-image -->
-							<h1 data-maxlength="144">신라면의 파격변신</h1>
-							<h3>재 료 : 라면사리, 스프, 후레이크, 파송송, 계란탁</h3>
+							
 						</div>
-					</center>
-					<div class="box-footer no-padding" id="border">
-
-						<img src="../resources/img/noodle/sine.jpg">
-						<span class="center badge bg-red">1</span>
-						<h3>물 500ml 붓고 끓인다.</h3>
-
 					</div>
-					<div class="box-footer no-padding" id="border">
-						<img src="../resources/img/noodle/bibim.jpg">
-						<span class="center badge bg-red">2</span>
-						<h3>물이 끓으면 라면사리와 스프, 후레이크를 넣는다.</h3>
+					<div class="-right row">
+						<div class="form-group col-md-4">
+							<button type="submit" id="registerBtn" class="btn btn-default-right">등 록</button>
+							<a href="list"><input type="button"
+								class="btn btn-default-right" value="취 소"> </a>
+						</div>
 					</div>
-					<div class="box-footer no-padding" id="border">
-						<img src="../resources/img/noodle/jin.jpg">
-						<span class="center badge bg-red">3</span>
-						<h3>대파, 고춧가루, 청양고추, 다진마늘, 졸라매운거 그냥 다 넣는다.</h3>
-					</div>
-					<div class="box-footer no-padding" id="border">
-						<img src="../resources/img/noodle/tumsea.jpg">
-						<span class="center badge bg-red">4</span>
-						<h3>계란을 넣고 반숙으로 쳐묵쳐묵한다.</h3>
-					</div>
-				</div>
-				<!-- /.widget-user -->
+				</form>
 			</div>
 		</div>
-
 	</div>
+</section>
 
-	</section>
-
-	<div class="boxs" id="temp">
-		<!-- .box-header START -->
-		<div class="box-header with-border">
-			<div class="user-block">
-				<img class="img-circle"
-					src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user1-128x128.jpg"
-					alt="User Image"> <span class="username"><a href="#">
-						${vo.nickname}</a></span> <span class="description"> ${vo.regDate} </span>
-				<p class="remove">
-					<button type="button" id="remove" value="${vo.tno}"
-						class="pull-right text-muted">
-						<span class="glyphicon glyphicon-trash"></span>
-					</button>
-				</p>
-				<p class="modify">
-					<button type="button" id="modify" value="${vo.tno}"
-						class="pull-right text-muted">
-						<span class="glyphicon glyphicon-erase"></span>
-					</button>
-				</p>
-			</div>
-		</div>
-		<!-- .box-header END-->
-		<!-- .box-body START -->
-		<div class="box-body">
-			<!-- post text -->
-			<p>${vo.content}</p>
-			<!-- Social sharing buttons -->
-			<button type="button" class="btn btn-default btn-xs">
-				<i class="fa fa-thumbs-o-up"></i> Like
-			</button>
-			<span class="pull-right text-muted">${vo.likeCnt} likes -
-				${vo.replyCnt} comments</span>
-		</div>
-		<!-- .box-body END -->
-		<!-- .box-footer START -->
-		<div class="box-footer box-comments">
-			<div class="box-comment">
-				<!-- User image -->
-				<img class="img-circle img-sm"
-					src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user5-128x128.jpg"
-					alt="User Image">
-				<div class="comment-text">
-					<span class="username"> 댓글쓴이!!!!!!!!!!!!!! <span
-						class="text-muted pull-right"> 댓글쓴애 시간 </span></span>
-					<!-- /.username -->
-					댓글 내용이래여!!!!
-				</div>
-				<!-- /.comment-text -->
-			</div>
-			<!-- /.box-comment -->
-		</div>
-		<!-- .box-footer END-->
-		<div class="box-footer">
-			<form action="#" method="post">
-				<img class="img-responsive img-circle img-sm"
-					src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user4-128x128.jpg"
-					alt="Alt Text">
-				<!-- .img-push is used to add margin to elements next to floating images -->
-				<div class="img-push">
-					<input type="text" class="form-control input-sm"
-						placeholder="Press enter to post comment">
-				</div>
+	<!-- Footer START -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2016</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+	<!-- Footer END -->
 
 
-				<!-- Modify Modal -->
-				<div id="myModal" class="modal">
-
-					<!-- Modal content -->
-					<div class="modal-content">
-						<div class="modal-header">
-							<span class="close">&times;</span>
-							<h2>수정할 내용을 입력해주세요!</h2>
-						</div>
-						<div class="modal-body">
-
-							<input value="${vo.content}" name="content" id="content2">
-
-						</div>
-						<div class="modal-footer">
-							<span class="mod glyphicon glyphicon-erase" id="mod"></span>
-						</div>
-					</div>
-
-				</div>
-				<!-- modal 끝 -->
-
-			</form>
-
-		</div>
-		<!-- /.box-footer -->
-	</div>
-	<!-- big div -->
 
 	<!-- jQuery 2.2.3 -->
 	<script src="../resources/vendor/jquery/jquery-2.2.3.min.js"></script>
