@@ -14,9 +14,9 @@
 		</if>
 		<if test="picture == null">
 		insert into 
-			tbl_user(mno,userid,userpw,username,nickname,email,picture)
+			tbl_user(mno,userid,userpw,username,nickname,email)
 		values
-			(seq_user.nextval, #{userid},#{userpw},#{username},#{nickname},#{email}, 'aaa.png')
+			(seq_user.nextval, #{userid},#{userpw},#{username},#{nickname},#{email})
 		</if>
 	</sql>
 	

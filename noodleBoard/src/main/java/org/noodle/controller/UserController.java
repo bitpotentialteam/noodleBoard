@@ -112,7 +112,11 @@ public class UserController {
 	public String registPOST(MemberVO vo) throws Exception {
 		
 		logger.info("regist post....");
-		logger.info(vo.toString());
+		logger.info("VO: "+vo.toString());
+		
+		if(vo.getPicture().length() == 0){
+			vo.setPicture(null);
+		}
 		
 		service.regist(vo);
 		
