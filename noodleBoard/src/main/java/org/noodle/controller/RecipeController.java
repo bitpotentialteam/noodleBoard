@@ -72,6 +72,7 @@ public class RecipeController {
 		pageMaker.setTotalCount(service.getTotalCount());
 		
 		model.addAttribute("pageMaker", pageMaker);
+
 	}
 	
 	

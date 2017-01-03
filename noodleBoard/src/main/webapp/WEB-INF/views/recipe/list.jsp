@@ -93,7 +93,7 @@
 		<!-- list div START -->
 		<div class="row">
 			<!-- items START -->
-			<c:forEach items="${list}" var="vo">
+			<c:forEach items="${list}" var="boardVO">
 				<div class="col-md-4 col-sm-6 portfolio-item">
 					<div class="portfolio-hover">
 						<div class="portfolio-hover-content">
@@ -101,13 +101,13 @@
 						</div>
 					</div>
 					 <a
-						href="/recipe/view?${pageMaker.makeSearch(pageMaker.vo.page)}&bno=${vo.bno}">
-						<img src="../resources/img/noodle/${vo.ino}.jpg"
-						class="img-responsive" alt="image of ${vo.title}">
+						href="/recipe/view?${pageMaker.makeSearch(pageMaker.pageVO.page)}&bno=${boardVO.bno}">
+						<img src="../resources/img/noodle/${boardVO.ino}.jpg"
+						class="img-responsive" alt="image of ${boardVO.title}">
 					</a> 
 					<div class="portfolio-caption">
-						<h4>${vo.materialContent}</h4>
-						<p class="text-muted">${vo.content}</p>
+						<h4>${boardVO.materialContent}</h4>
+						<p class="text-muted">${boardVO.content}</p>
 					</div>
 				</div>
 			</c:forEach>
@@ -123,7 +123,7 @@
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
 					var="idx">
 					<li
-						<c:out value="${pageMaker.vo.page == idx? 'class = active':''}"/>>
+						<c:out value="${pageMaker.pageVO.page == idx? 'class = active':''}"/>>
 						<a href="${pageMaker.makeQuery(idx)}">${idx}</a>
 					</li>
 				</c:forEach>
@@ -179,12 +179,12 @@
 	</section>
 
 <form id="pageForm">
-	<input type="hidden" name="page" value="${pageMaker.vo.page }">
+	<input type="hidden" name="page" value="${pageMaker.pageVO.page }">
 	<input type="hidden" name="pageUnit"
-		value="${pageMaker.vo.pageUnit }">
+		value="${pageMaker.pageVO.pageUnit }">
 		<input type="hidden"
-		name="searchType" value="${pageMaker.cri.searchType}"> <input
-		type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+		name="searchType" value="${cri.searchType}"> <input
+		type="hidden" name="keyword" value="${cri.keyword}">
 </form>
 
 	<footer>
@@ -208,6 +208,11 @@
 		</div>
 	</div>
 	</footer>
+	
+	<!-- jQuery -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	
 	<script>
 		$(document).ready(
 				function() {

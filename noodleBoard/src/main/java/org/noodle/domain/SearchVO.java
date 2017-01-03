@@ -5,8 +5,10 @@ public class SearchVO extends PageVO {
 	
 	private String searchType, keyword;
 	private Integer total;
-	
-	
+
+	public SearchVO(){
+	}
+
 	public String getSearchType() {
 		return searchType;
 	}

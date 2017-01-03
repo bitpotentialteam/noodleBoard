@@ -9,15 +9,11 @@ public class PageMaker {
 	private Integer totalCount, startPage, endPage;
 	private boolean prev, next;
 	
-	private PageVO vo;
+	private PageVO pageVO;
 	private SearchVO cri;
 	
-	public void setPageVO(PageVO vo){	// ?
-		this.vo = vo;
-	}
-	
-	public void setSearchVO(SearchVO vo){
-		this.cri = vo;
+	public void setCri(SearchVO cri){
+		this.cri = cri;
 	}
 	
 	
@@ -30,11 +26,11 @@ public class PageMaker {
 	
 	private void calcPage(){
 		
-		endPage = (int)(Math.ceil(vo.getPage() / (double) vo.getPageUnit()) * vo.getPageUnit());
+		endPage = (int)(Math.ceil(pageVO.getPage() / (double) pageVO.getPageUnit()) * pageVO.getPageUnit());
 		
-		startPage = (endPage - vo.getPageUnit()) + 1;
+		startPage = (endPage - pageVO.getPageUnit()) + 1;
 		
-		int tempEndPage = (int) (Math.ceil(totalCount / (double)vo.getPageUnit()) * vo.getPageUnit());
+		int tempEndPage = (int) (Math.ceil(totalCount / (double)pageVO.getPageUnit()) * pageVO.getPageUnit());
 		
 		if(endPage < tempEndPage){
 			endPage = tempEndPage;
@@ -42,29 +38,41 @@ public class PageMaker {
 		
 		prev = startPage == 1? false : true;
 		
-		next = endPage * vo.getPageUnit() >= totalCount? false : true; 
+		next = endPage * pageVO.getPageUnit() >= totalCount? false : true; 
 		
 	}
 	
 	public String makeQuery(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
-				.queryParam("perPageNum", vo.getPageUnit())
+				.queryParam("perPageNum", pageVO.getPageUnit())
 				.build();
 		
 		return uriComponents.toUriString();
 	}
-	
+
 	public String makeSearch(int page){
+		System.out.println("PageMaker.makeSearch called....."); 
+		
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
-				.queryParam("perPageNum", vo.getPageUnit())
-				.queryParam("searchType", cri.getSearchType())
-				.queryParam("keyword", cri.getKeyword())
+				.queryParam("perPageNum", ((PageVO)pageVO).getPageUnit())
 				.build();
+		
+		if(cri != null){
+			uriComponents = UriComponentsBuilder.fromUri(uriComponents.toUri())
+			.queryParam("searchType", ((SearchVO)cri).getSearchType())
+			.queryParam("keyword", cri.getKeyword())
+			.build();
+		}
+		
+		
 		return uriComponents.toUriString();
 			
-	}	
+	}
+	
+	
+	
 
 	// makeAllUri, makeSearchUri....
 	
@@ -109,13 +117,13 @@ public class PageMaker {
 	}
 
 
-	public PageVO getVo() {
-		return vo;
+	public PageVO getPageVO() {
+		return pageVO;
 	}
 
 
-	public void setVo(PageVO vo) {
-		this.vo = vo;
+	public void setPageVO(PageVO pageVO) {
+		this.pageVO = pageVO;
 	}
 
 
@@ -127,7 +135,7 @@ public class PageMaker {
 	@Override
 	public String toString() {
 		return "PageMaker [totalCount=" + totalCount + ", startPage=" + startPage + ", endPage=" + endPage + ", prev="
-				+ prev + ", next=" + next + ", vo=" + vo + "]";
+				+ prev + ", next=" + next + ", vo=" + pageVO + "]";
 	}
 	
 	
