@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -50,7 +51,16 @@ public class UserController {
 //
 //	}
 	
+	@GetMapping(value = "/create_client")
+	public void create_client(MemberVO vo)throws Exception{
+		
+		int mno = service.read1(vo.getUserid()).getMno();
+		
+		vo.setMno(mno);
+		service.regist_client(mno);
+		
 	
+	}
 	
 	@PostMapping(value = "/idCheck")
 	public @ResponseBody String checkID(String userid)throws Exception{

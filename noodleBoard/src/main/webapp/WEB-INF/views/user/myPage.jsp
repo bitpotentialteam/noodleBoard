@@ -13,11 +13,11 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-	
+
 <!-- Bootstrap 3.3.6 -->
 <link rel="stylesheet"
 	href="../resources/bootstrap/css/bootstrap.min.css">
-	
+
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -55,7 +55,7 @@
   <![endif]-->
 
 <style>
-.navbar-custom  {
+.navbar-custom {
 	background-color: #222;
 }
 
@@ -68,53 +68,57 @@
 }
 
 body {
-    background: #222;
+	background: #222;
 }
-</style>  
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</style>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
 
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
-	
-	<!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Noodles.com</a>
-            </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden"><a href="#page-top"></a></li>
-					<li><a class="page-scroll" href="/wiki">Noodle-Wiki</a></li>
-					<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
-					<li><a class="page-scroll" href="/timeline">Community</a></li>
-					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
-					
-					<c:if test='${sessionScope.LOGIN eq success}'>
+	<!-- Navigation -->
+	<nav id="mainNav"
+		class="navbar navbar-default navbar-custom navbar-fixed-top">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header page-scroll">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> Menu <i
+					class="fa fa-bars"></i>
+			</button>
+			<a class="navbar-brand page-scroll" href="#page-top">Noodles.com</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="hidden"><a href="#page-top"></a></li>
+				<li><a class="page-scroll" href="/wiki">Noodle-Wiki</a></li>
+				<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
+				<li><a class="page-scroll" href="/timeline">Community</a></li>
+				<li><a class="page-scroll" href="/developer/api">Developer</a></li>
+
+				<c:if test='${sessionScope.LOGIN eq success}'>
 					<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
 					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
-					</c:if>
-					<c:if test='${sessionScope.LOGIN ne success}'>
+				</c:if>
+				<c:if test='${sessionScope.LOGIN ne success}'>
 					<li><a class="page-scroll" href="/user/login" id="login">LOGOUT</a></li>
 					<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
-					</c:if>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-<section>
+				</c:if>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container-fluid --> </nav>
+	<section>
 	<div class="container">
 		<div class="row">
 			<div class="col-md">
@@ -123,8 +127,8 @@ body {
 					<!-- Add the bg color to the header using any of the bg-* classes -->
 					<div class="widget-user-header bg-yellow">
 						<div class="widget-user-image">
-							<img class="img-circle" src="show?name=${sessionScope.VO.picture}"
-								alt="User Avatar">
+							<img class="img-circle"
+								src="show?name=${sessionScope.VO.picture}" alt="User Avatar">
 						</div>
 						<!-- /.widget-user-image -->
 						<h3 class="widget-user-username">${sessionScope.VO.username}</h3>
@@ -132,27 +136,37 @@ body {
 					</div>
 					<form id="form">
 						<div class="box-footer no-padding">
-						
+
 							<ul class="list-group">
 								<li class="list-group-item"><h4>ID</h4>${sessionScope.VO.userid}</li>
 								<li class="list-group-item"><h4>NAME</h4>${sessionScope.VO.username}</li>
 								<li class="list-group-item"><h4>NICKNAME</h4>${sessionScope.VO.nickname}</li>
 								<li class="list-group-item"><h4>E-MAIL</h4>${sessionScope.VO.email}</li>
-								<li class="list-group-item"><h4>일회용ID</h4>${sessionScope.VO.client_ID}</li>
-								<li class="list-group-item"><h4>일회용PW</h4>${sessionScope.VO.client_PW}</li>
 							</ul>
 						</div>
 					</form>
 					<div class="box-footer">
-					<button type="submit" class="btn btn-primary" id="goListBtn">MAIN</button>
-					<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY PAGE</button>
-					<button type="submit" class="btn btn-primary" id="makeBtn">발급하기</button>
+						<button type="submit" class="btn btn-primary" id="goListBtn">MAIN</button>
+						<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY
+							PAGE</button>
+					</div>
+					<form action="create_client">
+						<div class="box-footer no-padding">
+							<ul>
+								<li class="list-group-item" id="client_ID"><h4>일회용ID</h4>${sessionScope.VO.client_ID}</li>
+								<li class="list-group-item" id="client_PW"><h4>일회용PW</h4>${sessionScope.VO.client_PW}</li>
+							</ul>
+						</div>
+					</form>
+					<div class="box-footer">
+						<button type="submit" class="btn btn-primary" id="makeBtn">발급하기</button>
+					</div>
+					<!-- /.widget-user -->
 				</div>
-				<!-- /.widget-user -->
 			</div>
 		</div>
 	</div>
-</section>
+	</section>
 
 
 
@@ -168,7 +182,7 @@ body {
 	<script src="../resources/dist/js/app.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="../resources/dist/js/demo.js"></script>
-	
+
 	<script>
 		$(document).ready(function() {
 
@@ -186,16 +200,30 @@ body {
 				formObj.attr("method", "get");
 				formObj.attr("action", "../");
 				formObj.submit();
-
 			});
-			
-			$("makeBtn").on("click", function(){
-				
-			});
-			
 
+			$("#makeBtn").on("click",function(){
+				   console.log("check");
+			       var client_ID = $("#client_ID").val();
+			       var formData = new FormData();
+			        
+			       formData.append("client_ID", client_ID);
+			             
+			         $.ajax({
+			            url : "create_client",
+			            data : formData,
+			            dataType : 'text',
+			            type : "get",
+			            contentType : false,
+			            processData : false,
+			            success : function() {
+
+			               
+			            }// end success
+			      });// end ajax
+			   });
 		});
 	</script>
-	
+
 </body>
 </html>
