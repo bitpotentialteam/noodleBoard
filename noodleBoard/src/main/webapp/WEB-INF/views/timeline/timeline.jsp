@@ -320,9 +320,9 @@ div .replyDiv{
 		</div>
 
 	</div>
-
-
-
+<div>
+<button id="up"> 올라가라 올라가라 올라가라 </button>
+</div>
 	</section>
 	
 	<!-- Bootstrap Core JavaScript -->
@@ -345,6 +345,16 @@ div .replyDiv{
 	
 		
 	$( document ).ready(function() {
+		
+		
+		//맨 위로 올라가기!
+			$(document).on("click","#up", function(event) {
+			$("body").scrollTop(0);
+		});
+		
+		
+		
+		
 		var formObj = $("#form");
 
 		console.log(formObj);
@@ -568,6 +578,10 @@ div .replyDiv{
 				    	var trno = result[i].trno;
 				    	var picture = result[i].picture;
 				    	
+				    	var d = new Date();
+						regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
+						d.getHours() + ":" + d.getMinutes();
+				    	
 				    	console.log("닉" + nick);
 				    	console.log("날짜" + result[i].regDate);
 				    	console.log("ㅋㅋㅋㅋㅇㅁㅇㄹ내용 "+result[i].content);
@@ -606,7 +620,7 @@ div .replyDiv{
 					$(document).scroll(function() {
 						var maxHeight = $(document).height();
 						var currentScroll = $(window).scrollTop() + $(window).height();
-						
+			
 	
 						if (maxHeight <= currentScroll + 1) {
 
@@ -649,7 +663,7 @@ div .replyDiv{
 										regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
 										d.getHours() + ":" + d.getMinutes();
 										
-										if(result != null){
+										if(result != ""){
 							
 														
 				    				console.log(result[j].nickname);
@@ -686,29 +700,105 @@ div .replyDiv{
 								  });
 								  
 								 };
-								
-				
-								 
-								 
-// 								  replyManager.listReply({tno:tno},
-// 										  function(str){
-// 									  updateList.html(str);
-									 
-// 								  });
+
 
 				    			}
 				    		});
-	
-	
-				}
+							
+					} else if($(window).scrollTop() <= 0) {
+						
+						var tno = $("#timelinebigbox").children(":first").find("#removeBtn").val();
+						var timelinebigbox = $("#timelinebigbox");
+						var updateList = $('.replyDiv').find('.box-comments');
+						
+						
+						console.log(tno);
+
+						
+						$.ajax({
+			    			type : 'get',
+			    			url : '/timeline/firstListView',
+			    			headers : {
+			    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+			    				"X-HTTP-Method-Override" : "GET"
+			    			},
+			    			dataType : 'json',
+			    			data : {"tno" : tno},
+			    			
+			    			success : function(result) {
+			    				
+			    				console.log(result);
+			    				
+								var lastStr = "";
+
+								for(var j = 0; j< result.length; j++){
+									
+									var nickname = result[j].nickname;
+									var content = result[j].content;
+									var picture = result[j].picture;
+									var regDate = result[j].regDate;
+									var tno = result[j].tno;
+									var likeCnt = result[j].likeCnt;
+									var replyCnt = result[j].replyCnt;
+									
+									var d = new Date();
+									regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
+									d.getHours() + ":" + d.getMinutes();
+									
+									if(result != ""){
+						
+													
+			    				console.log(result[j].nickname);
+									 
+								fistlist = "<div class='box box-solid' id='timelineBox'> 	<!-- .box-header START --> "+
+								"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='show?name=${vo.picture}' alt='User Image'>" +
+								" <span class='username'><a href='#'>"+ nickname +"</a></span> <span class='description'> "+ regDate +" </span> "+ 
+								" <button type='button' value='${vo.tno}' id='removeBtn' class='pull-right text-muted'> <span class='glyphicon glyphicon-trash'></span>"+
+								" </button>  <button type='button' value='${vo.tno}' id='modifyBtn' class='modify pull-right text-muted'> "+
+								" <span class='glyphicon glyphicon-erase'></span> </button> <!-- Modify Modal --> <div id='myModal' class='modal'>"+
+								" <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> <span class='close' id='closeBtn'>&times;</span> "+
+								" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='${vo.content}' name='content' id='modContent'> "+
+								"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='${vo.tno}'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
+								"</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"+
+								"<div class='box-body'><!-- post text --> <p>"+content+"</p> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
+								" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='"+ tno +"' class='btn btn-default btn-xs'>"+
+								"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +" likes - "+ replyCnt +" comments</span> </div>"+
+								"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list -->"+
+								" <div class='box-footer box-comments' id='commentsbox'> </div>	<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'"+
+								"src='${vo.picture}' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
+								" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='Press enter to post comment!'>"+
+								"</div> </div><!-- /.box-footer --> /div> </div><!-- big div --> ";
+								
+							 
+									}else{
+										return;
+									}
+							 $("#timelinebigbox").prepend(fistlist);
+							 
+							  replyManager.listReply({"tno":tno},
+									  function(str){
+								  updateList.html(str);
+								 
+							  });
+							  
+							 };
+
+
+			    			}
+			    		});
+						
+					}
 					 //위에 스크롤이벤트 if문 끝임!
-					})
-					}); //스크롤이벤트 end!
+					});
+					
+					
+					
+					
+					
+					}); //DOCUMENT end!
 	
 	
 	</script>
-
-
 
 
 </body>

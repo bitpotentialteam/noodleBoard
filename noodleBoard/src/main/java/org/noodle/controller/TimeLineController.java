@@ -77,9 +77,12 @@ public class TimeLineController {
 	}
 	
 	@GetMapping("/firstListView")
-	public List<TimeLineVO> firstListView(Integer tno) throws Exception {
+	@ResponseBody
+	public List<TimeLineVO> firstListView(@RequestParam("tno") Integer tno) throws Exception {
 
 		logger.info("firstListView called.....");
+		logger.info("tno" + tno);
+		logger.info("vo" + service.firstListView(tno));
 		service.firstListView(tno);
 
 		return service.firstListView(tno);
@@ -92,7 +95,7 @@ public class TimeLineController {
 
 		logger.info("lastListView called.....");
 		logger.info("tno" + tno);
-		 logger.info("vo" + service.lastListView(tno));
+		logger.info("vo" + service.lastListView(tno));
 		service.lastListView(tno);
 
 		return service.lastListView(tno);

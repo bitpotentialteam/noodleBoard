@@ -54,7 +54,7 @@
 					join tbl_user
 				 on tbl_user.mno = tbl_timeline.mno
 			    where tno > #{tno, jdbcType=INTEGER}
-			    order by tno desc ]]>
+			    order by tno asc ]]>
 	  
 	</select>
 	
