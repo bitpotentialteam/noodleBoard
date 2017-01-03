@@ -1,21 +1,20 @@
 package org.noodle.controller;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
-import org.noodle.domain.MemberVO;
+import javax.inject.Inject;
+
 import org.noodle.domain.TimeLineVO;
-import org.noodle.domain.TimeReplyVO;
 import org.noodle.service.TimeLineService;
-import org.noodle.service.TimeReplyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -78,22 +77,25 @@ public class TimeLineController {
 	}
 	
 	@GetMapping("/firstListView")
-	public String firstListView(Integer tno) throws Exception {
+	public List<TimeLineVO> firstListView(Integer tno) throws Exception {
 
 		logger.info("firstListView called.....");
 		service.firstListView(tno);
 
-		return "timeline/timeline";
+		return service.firstListView(tno);
 	
 	}	
 	
 	@GetMapping("/lastListView")
-	public String lastListView(Integer tno) throws Exception {
+	@ResponseBody
+	public List<TimeLineVO> lastListView(@RequestParam("tno") Integer tno) throws Exception {
 
 		logger.info("lastListView called.....");
+		logger.info("tno" + tno);
+		 logger.info("vo" + service.lastListView(tno));
 		service.lastListView(tno);
 
-		return "timeline/timeline";
+		return service.lastListView(tno);
 		
 	}
 }

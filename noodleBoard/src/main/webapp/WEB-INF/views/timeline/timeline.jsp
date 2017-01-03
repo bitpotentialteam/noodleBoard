@@ -224,12 +224,13 @@ div .replyDiv{
 			<!-- INPUT END -->
 					
 					<!-- data START -->
+					<div id="timelinebigbox"> 
 					<c:forEach items="${list}" var="vo">
 				<div class="box box-solid" id="timelineBox">
 						<!-- .box-header START -->
 						<div class="box-header with-border">
 							<div class="user-block">
-								<img class="img-circle" src="${vo.picture}" alt="User Image">
+								<img class="img-circle" src="show?name=${vo.picture}" alt="User Image">
 								<span class="username"><a href="#"> ${vo.nickname}</a></span>
 								<span class="description"> ${vo.regDate} </span>
 								<button type="button" value="${vo.tno}" id="removeBtn" class="pull-right text-muted"> 
@@ -303,6 +304,7 @@ div .replyDiv{
 					</div>	
 				</div><!-- big div -->
 					</c:forEach>
+					</div>
 					<!-- data END -->
 	
 						<form id='form' method='post' action="regist">
@@ -576,7 +578,7 @@ div .replyDiv{
 
 					str += "<div class='box-comment'>" + 
 					"<img class='img-circle img-sm' "+
-					"src="+ picture + "alt='User Image'>" +
+					"src=show?name="+ picture + "alt='User Image'>" +
 					"<div class='comment-text'> " +
 					"<span class='username'>" + nick + " <span class='text-muted pull-right'>" +
 					regDate + " </span></span> " + content + "<button type='submit' id='removeReply' value='" + trno + "'> x </button></div> </div>";
@@ -598,15 +600,91 @@ div .replyDiv{
 	
      //무한스크롤
 		$(document).ready(function () {
+			
+			event.preventDefault();
+			
 					$(document).scroll(function() {
-					var maxHeight = $(document).height();
-					var currentScroll = $(window).scrollTop() + $(window).height();
-
-					if (maxHeight <= currentScroll + 100) {
+						var maxHeight = $(document).height();
+						var currentScroll = $(window).scrollTop() + $(window).height();
 						
-					
+	
+						if (maxHeight <= currentScroll + 10) {
 
 	//여기까지임~ 스크롤이 뭐 맨 아래에 닿으면...scroll event 실행ㄱㄱ하면서 밑에 함수들 다 실행함
+							var tno = $("#timelinebigbox").children(":last").find("#removeBtn").val();
+							var timelinebigbox = $("#timelinebigbox");
+							
+							console.log(tno);
+
+							
+							$.ajax({
+				    			type : 'get',
+				    			url : '/timeline/lastListView',
+				    			headers : {
+				    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+				    				"X-HTTP-Method-Override" : "GET"
+				    			},
+				    			dataType : 'json',
+				    			data : {"tno" : tno},
+				    			
+				    			success : function(result) {
+				    				
+				    				console.log(result);
+				    				
+									var lastStr = "";
+
+									for(var j = 0; j< result.length; j++){
+										
+										var nickname = result[j].nickname;
+										var content = result[j].content;
+										var picture = result[j].picture;
+										var regDate = result[j].regDate;
+										var tno = result[j].tno;
+										var likeCnt = result[j].likeCnt;
+										var replyCnt = result[j].replyCnt;
+										
+										var d = new Date();
+										regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
+										d.getHours() + ":" + d.getMinutes();
+										
+										if(result != null){
+							
+														
+				    				console.log(result[j].nickname);
+										 
+									lastStr += "<div class='box box-solid' id='timelineBox'> 	<!-- .box-header START --> "+
+									"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='show?name=${vo.picture}' alt='User Image'>" +
+									" <span class='username'><a href='#'>"+ nickname +"</a></span> <span class='description'> "+ regDate +" </span> "+ 
+									" <button type='button' value='${vo.tno}' id='removeBtn' class='pull-right text-muted'> <span class='glyphicon glyphicon-trash'></span>"+
+									" </button>  <button type='button' value='${vo.tno}' id='modifyBtn' class='modify pull-right text-muted'> "+
+									" <span class='glyphicon glyphicon-erase'></span> </button> <!-- Modify Modal --> <div id='myModal' class='modal'>"+
+									" <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> <span class='close' id='closeBtn'>&times;</span> "+
+									" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='${vo.content}' name='content' id='modContent'> "+
+									"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='${vo.tno}'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
+									"</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"+
+									"<div class='box-body'><!-- post text --> <p>"+content+"</p> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='${vo.tno}' class='btn btn-default btn-xs'>"+
+									" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='${vo.tno}' class='btn btn-default btn-xs'>"+
+									"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +"likes - "+ replyCnt +" comments</span> </div>"+
+									"<!-- .box-body END --> <!-- .box-footer START -->";
+									
+										}else{
+											return;
+										}
+								 };
+								
+				
+								 
+								 $("#timelinebigbox").append(lastStr);
+								 
+								  replyManager.listReply({tno:tno},
+										  function(str){
+									  updateList.html(str);
+									 
+								  });
+
+				    			}
+				    		});
+	
 	
 				}
 					 //위에 스크롤이벤트 if문 끝임!
