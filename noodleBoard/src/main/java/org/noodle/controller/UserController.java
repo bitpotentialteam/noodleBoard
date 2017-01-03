@@ -53,11 +53,16 @@ public class UserController {
 	
 	@GetMapping(value = "/create_client")
 	public void create_client(MemberVO vo)throws Exception{
+		logger.info("Create_client called.....");
 		
-		int mno = service.read1(vo.getUserid()).getMno();
+		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		Integer mno = service.read1(user.toString()).getMno();
 		
 		vo.setMno(mno);
-		service.regist_client(mno);
+		
+		String checkMsg = service.regist_client(mno);
+		logger.info(checkMsg);
 		
 	
 	}

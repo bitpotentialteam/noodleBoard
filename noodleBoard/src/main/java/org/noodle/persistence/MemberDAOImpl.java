@@ -51,7 +51,7 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("Client_ID", ClientUtils.INSTANCE.addUUID(mno));
 		map.put("Client_PW", ClientUtils.INSTANCE.addUUID(mno));
 		map.put("mno", mno);
-		
+
 		session.update(namespace + ".create_client", map);
 	}
 

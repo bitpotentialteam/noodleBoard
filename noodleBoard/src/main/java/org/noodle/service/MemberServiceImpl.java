@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.noodle.domain.MemberVO;
 import org.noodle.persistence.MemberDAO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -38,15 +39,33 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void regist_client(Integer mno) throws Exception {
+	@Transactional
+	public String regist_client(Integer mno) throws Exception {
 
-		dao.create_client(mno);
+		if(dao.read(mno).getClient_ID() == null && dao.read(mno).getClient_PW() == null){
+			dao.create_client(mno);
+			
+			return "success";
+			
+		}else{
+			return "fail";
+		}
+		
+		
 	}
 
 	@Override
-	public void remove_client(Integer mno) throws Exception {
+	@Transactional
+	public String remove_client(Integer mno) throws Exception {
 
-		dao.delete_client(mno);
+		if(dao.read(mno).getClient_ID() != null && dao.read(mno).getClient_PW() != null){
+			dao.delete_client(mno);
+			
+			return "success";
+		}else{
+			return "fail";
+		}
+		
 	}
 
 	@Override

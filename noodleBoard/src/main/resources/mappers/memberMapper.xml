@@ -61,7 +61,7 @@
 		set
 			Client_ID=#{Client_ID, jdbcType=VARCHAR},
 			Client_PW=#{Client_PW, jdbcType=VARCHAR},
-			
+			keycreatedate = sysdate
 		where
 			mno = #{mno, jdbcType=INTEGER}
 	</update>
