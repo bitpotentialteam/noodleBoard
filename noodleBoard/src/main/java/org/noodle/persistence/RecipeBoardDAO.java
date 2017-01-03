@@ -15,7 +15,7 @@ public interface RecipeBoardDAO {
 	public void delete(Integer bno)throws Exception;
 	public List<RecipeBoardVO> listAll(PageVO vo)throws Exception;
 	public List<RecipeBoardVO> listSearch(SearchVO vo)throws Exception;
-	
+	public int totalCount(PageVO vo) throws Exception;
 	
 	public void addViewCount(Integer bno) throws Exception;
 	public void addLikeCount(Integer bno) throws Exception;

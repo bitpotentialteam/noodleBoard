@@ -13,6 +13,10 @@
 			(#{mno, jdbcType=INTEGER}, seq_bno.nextval, seq_ino.nextval, #{title , jdbcType=VARCHAR}, 
 			#{content , jdbcType=VARCHAR}, #{materialContent , jdbcType=VARCHAR})
 	</insert>
+	
+	<select id="totalCount" resultType="RecipeBoardVO">
+	select count(*) from tbl_recipeboard
+	</select>
 
 	<select id="read" parameterType="Integer" resultType="RecipeBoardVO">
 		select

@@ -1,10 +1,8 @@
 package org.noodle.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
 
+import org.noodle.domain.PageMaker;
 import org.noodle.domain.PageVO;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.domain.RecipeCuisineVO;
@@ -17,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -57,22 +56,16 @@ public class RecipeController {
 		return "redirect:/recipe/list";
 	}
 	
-	@PostMapping("/image/register")
-	public void imgaeRegisterPOST(List<RecipeImageVO> list, RedirectAttributes rttr) throws Exception {
-//		iservice.regist(list);
-	}
-	
-	@PostMapping("/cuisine/register")
-	public String cuisineRegisterPOST(List<RecipeCuisineVO> list, RedirectAttributes rttr) throws Exception {
-//		cservice.regist(list);
-		return "redirect:/recipe/list";
-	}
 	
 	@GetMapping("/list")
-	public void list(PageVO vo,Model model) throws Exception {
+	public void list(@ModelAttribute("vo") PageVO vo,Model model) throws Exception {
 		logger.info("listAll.............");
 		model.addAttribute("list", service.listAll(vo));
-		System.out.println("listAll callll.........."+ service.listAll(vo).toString() );
+		logger.info("listAll callll.........."+ service.listAll(vo).toString() );
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setPageVO(vo);
+		pageMaker.setTotalCount(service.getTotalCount(vo));
+		model.addAttribute("pageMaker", pageMaker);
 	}
 	
 	

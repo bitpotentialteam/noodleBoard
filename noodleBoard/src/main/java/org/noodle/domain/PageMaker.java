@@ -1,5 +1,7 @@
 package org.noodle.domain;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMaker {
 	
@@ -8,7 +10,7 @@ public class PageMaker {
 	private boolean prev, next;
 	
 	private PageVO vo;
-	
+	private Criteria cri;
 	
 	public void setPageVO(PageVO vo){	// ?
 		this.vo = vo;
@@ -39,6 +41,26 @@ public class PageMaker {
 		next = endPage * vo.getPageUnit() >= totalCount? false : true; 
 		
 	}
+	
+	public String makeQuery(int page) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum", vo.getPageUnit())
+				.build();
+		
+		return uriComponents.toUriString();
+	}
+	
+	public String makeSearch(int page){
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum", vo.getPageUnit())
+				.queryParam("searchType", cri.getSearchType())
+				.queryParam("keyword", cri.getKeyword())
+				.build();
+		return uriComponents.toUriString();
+			
+	}	
 
 	// makeAllUri, makeSearchUri....
 	
