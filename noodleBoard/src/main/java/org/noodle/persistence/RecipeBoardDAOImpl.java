@@ -86,8 +86,8 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	}
 
 	@Override
-	public int totalCount(SearchVO cri) throws Exception {
-		return session.selectOne(namespace + "totalCount", cri);
+	public int totalCount() throws Exception {
+		return session.selectOne(namespace + "totalCount");
 	}
 	
 

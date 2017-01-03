@@ -100,11 +100,11 @@
 							<i class="fa fa-plus fa-3x"></i>
 						</div>
 					</div>
-					<a
+					 <a
 						href="/recipe/view?${pageMaker.makeSearch(pageMaker.vo.page)}&bno=${vo.bno}">
 						<img src="../resources/img/noodle/${vo.ino}.jpg"
 						class="img-responsive" alt="image of ${vo.title}">
-					</a>
+					</a> 
 					<div class="portfolio-caption">
 						<h4>${vo.materialContent}</h4>
 						<p class="text-muted">${vo.content}</p>

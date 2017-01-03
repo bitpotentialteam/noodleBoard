@@ -102,8 +102,8 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	}
 
 	@Override
-	public int getTotalCount(SearchVO cri) throws Exception {
-		return dao.totalCount(cri);
+	public int getTotalCount() throws Exception {
+		return dao.totalCount();
 	}
 
 }

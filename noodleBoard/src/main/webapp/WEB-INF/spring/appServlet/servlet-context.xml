@@ -36,6 +36,14 @@
 	</beans:constructor-arg>
 	</beans:bean>
 	
+	<beans:bean id="keyInterceptor" class="org.noodle.interceptor.KeyInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/keyRegister"/>
+			<beans:ref bean="keyInterceptor"/>
+		</interceptor>
+	</interceptors>
 
 	<context:component-scan base-package="org.noodle.controller" />
 

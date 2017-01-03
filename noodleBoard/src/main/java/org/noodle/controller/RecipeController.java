@@ -60,16 +60,18 @@ public class RecipeController {
 	
 	@GetMapping("/list")
 	public void list(@ModelAttribute("cri")SearchVO cri,Model model) throws Exception {
+		
 		logger.info("listAll.............");
 		model.addAttribute("list", service.listAll(cri));
+		
 		logger.info("listAll callll.........."+ service.listAll(cri).toString() );
 		PageMaker pageMaker = new PageMaker();
+		
 		pageMaker.setPageVO(cri);
-		logger.info("setPage..........");
-		pageMaker.setTotalCount(service.getTotalCount(cri));
-		logger.info("setTotalCount.........");
+		
+		pageMaker.setTotalCount(service.getTotalCount());
+		
 		model.addAttribute("pageMaker", pageMaker);
-		logger.info("pageMaker............");
 	}
 	
 	

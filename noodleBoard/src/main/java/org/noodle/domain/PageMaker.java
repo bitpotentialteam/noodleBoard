@@ -16,6 +16,10 @@ public class PageMaker {
 		this.vo = vo;
 	}
 	
+	public void setSearchVO(SearchVO vo){
+		this.cri = vo;
+	}
+	
 	
 	public void setTotalCount(Integer totalCount){
 		this.totalCount = totalCount;
