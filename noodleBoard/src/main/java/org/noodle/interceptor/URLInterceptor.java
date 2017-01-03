@@ -10,53 +10,45 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class KeyInterceptor extends HandlerInterceptorAdapter {
-	
-	private static final Logger logger = LoggerFactory.getLogger(KeyInterceptor.class);
+public class URLInterceptor extends HandlerInterceptorAdapter {
 
-	
-	
-	
+	private static final Logger logger = LoggerFactory.getLogger(URLInterceptor.class);
+
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 
-		logger.info("KeyInterceptor postHandle called.....");
-		
+		logger.info("URLInterceptor postHandle called.....");
+
 		HttpSession session = request.getSession();
-		
+
 		ModelMap modelMap = modelAndView.getModelMap();
-		
-		Object clientKey = modelMap.get("CLIENTKEY");
-		
-		if(clientKey != null){
-			logger.info("CLIENTKEY not null.....");
-			
-			session.setAttribute("ACCESSKEY", clientKey);
+
+		Object clientKey = modelMap.get("CLIENTURL");
+
+		if (clientKey != null) {
+			logger.info("CLIENTURL not null.....");
+
+			session.setAttribute("ACCESSURL", clientKey);
 		}
-		
-		// Cookie처리 추가 후 Cookie 제어문....
-	
-	}// end postHandle
 
-
+	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		logger.info("KeyInterceptor preHandle called.....");
-		
+		logger.info("URLInterceptor preHandle called.....");
+
 		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("ACCESSKEY") != null){
-			logger.info("Remove ACCESSKEY");
-			
-			session.removeAttribute("ACCESSKEY");
-			
+
+		if (session.getAttribute("ACCESSURL") != null) {
+			logger.info("Remove ACCESSURL");
+
+			session.removeAttribute("ACCESSURL");
+
 		}
 		return true;
-	}// end preHandle
-	
-	
-}// end class
+	}
+
+}
