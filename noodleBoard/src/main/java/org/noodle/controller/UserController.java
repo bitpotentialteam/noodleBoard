@@ -50,13 +50,13 @@ public class UserController {
 //
 //	}
 	
+	
+	
 	@PostMapping(value = "/idCheck")
 	public @ResponseBody String checkID(String userid)throws Exception{
 		
 		return service.checkID(userid);
 	}
-	
-	
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void modifyGET(Model model, HttpSession session)throws Exception{
