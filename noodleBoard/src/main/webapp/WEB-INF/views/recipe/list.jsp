@@ -75,7 +75,7 @@
 				<li><a class="page-scroll" href="/developer/api">DEVELOPER</a>
 				</li>
 				<li><a class="page-scroll" href="/user/login">LOGIN</a></li>
-				<li><a class="page-scroll" href="/user/register">SING-IN</a></li>
+				<li><a class="page-scroll" href="/user/register">SIGN-UP</a></li>
 			</ul>
 		</div>
 	</div>
@@ -178,6 +178,14 @@
 	</div>
 	</section>
 
+<form id="pageForm">
+	<input type="hidden" name="page" value="${pageMaker.vo.page }">
+	<input type="hidden" name="pageUnit"
+		value="${pageMaker.vo.pageUnit }">
+		<input type="hidden"
+		name="searchType" value="${pageMaker.cri.searchType}"> <input
+		type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+</form>
 
 	<footer>
 	<div class="container">

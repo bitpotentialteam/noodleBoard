@@ -15,7 +15,9 @@
 	</insert>
 	
 	<select id="totalCount" resultType="RecipeBoardVO">
-	select count(*) from tbl_recipeboard
+	<![CDATA[
+	select count(bno) from tbl_recipeboard where bno > 0
+	]]>
 	</select>
 
 	<select id="read" parameterType="Integer" resultType="RecipeBoardVO">
@@ -78,10 +80,6 @@
 			bno <= #{endPage, jdbcType=INTEGER} 
 		order by bno desc
 		 ]]>
-	</select>
-	
-	<select id="testlist" resultType="RecipeBoardVO">
-	select * from tbl_recipeboard
 	</select>
 	
 	<sql id="search">

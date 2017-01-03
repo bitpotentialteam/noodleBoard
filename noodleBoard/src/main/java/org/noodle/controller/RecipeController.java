@@ -7,6 +7,7 @@ import org.noodle.domain.PageVO;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.domain.RecipeImageVO;
+import org.noodle.domain.SearchVO;
 import org.noodle.service.RecipeBoardService;
 import org.noodle.service.RecipeCuisineService;
 import org.noodle.service.RecipeImageService;
@@ -58,14 +59,17 @@ public class RecipeController {
 	
 	
 	@GetMapping("/list")
-	public void list(@ModelAttribute("vo") PageVO vo,Model model) throws Exception {
+	public void list(@ModelAttribute("cri")SearchVO cri,Model model) throws Exception {
 		logger.info("listAll.............");
-		model.addAttribute("list", service.listAll(vo));
-		logger.info("listAll callll.........."+ service.listAll(vo).toString() );
+		model.addAttribute("list", service.listAll(cri));
+		logger.info("listAll callll.........."+ service.listAll(cri).toString() );
 		PageMaker pageMaker = new PageMaker();
-		pageMaker.setPageVO(vo);
-		pageMaker.setTotalCount(service.getTotalCount(vo));
+		pageMaker.setPageVO(cri);
+		logger.info("setPage..........");
+		pageMaker.setTotalCount(service.getTotalCount(cri));
+		logger.info("setTotalCount.........");
 		model.addAttribute("pageMaker", pageMaker);
+		logger.info("pageMaker............");
 	}
 	
 	

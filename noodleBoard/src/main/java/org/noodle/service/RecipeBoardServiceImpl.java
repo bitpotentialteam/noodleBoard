@@ -65,9 +65,9 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	}
 
 	@Override
-	public List<RecipeBoardVO> search(SearchVO vo) throws Exception {
+	public List<RecipeBoardVO> search(SearchVO cri) throws Exception {
 		
-		return dao.listSearch(vo);
+		return dao.listSearch(cri);
 	}
 
 
@@ -102,8 +102,8 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	}
 
 	@Override
-	public int getTotalCount(PageVO vo) throws Exception {
-		return dao.totalCount(vo);
+	public int getTotalCount(SearchVO cri) throws Exception {
+		return dao.totalCount(cri);
 	}
 
 }

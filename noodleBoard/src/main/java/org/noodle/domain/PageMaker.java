@@ -10,7 +10,7 @@ public class PageMaker {
 	private boolean prev, next;
 	
 	private PageVO vo;
-	private Criteria cri;
+	private SearchVO cri;
 	
 	public void setPageVO(PageVO vo){	// ?
 		this.vo = vo;
