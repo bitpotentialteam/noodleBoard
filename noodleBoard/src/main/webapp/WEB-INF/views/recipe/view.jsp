@@ -215,23 +215,13 @@ h1 {
     
     
     
-<section id="recipe">
+<form id="recipe">
 <div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 				<p>
 				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
 				</p>
-				<form action="register" method="post">
-					<div class="row control-group" name="mno">
-						<div
-							class="form-group col-xs-12 floating-label-form-group controls">
-							<label>MNO임시 테스트용</label> <input type="text" class="form-control"
-								placeholder="Mno" name="mno" id="mno" required
-								data-validation-required-message="Please enter title.">
-							<p class="help-block text-danger"></p>
-						</div>
-					</div>
 					<div class="row control-group" name="title">
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
@@ -268,16 +258,15 @@ h1 {
 					</div>
 					<div class="-right row">
 						<div class="form-group col-md-4">
-							<button type="submit" id="registerBtn" class="btn btn-default-right">등 록</button>
+							<button type="submit" id="modifyBtn" class="btn btn-default-right">등 록</button>
 							<a href="list"><input type="button"
-								class="btn btn-default-right" value="취 소"> </a>
+								class="btn btn-default-right" value="목록가기"> </a>
 						</div>
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>
-</section>
+</form>
 
 	<!-- Footer START -->
     <footer>
@@ -326,10 +315,24 @@ h1 {
 			});
 		});
 
-		$("#loginBtn").on("click", function(event) {
+		$(document).ready(function(){
+			var formObj = $('#recipe');
+			
+			console.log(formObj);
+			
+			$(".modifyBtn").on("click", function(){
+				formObj.attr("action", "/recipe/modify");
+				formObj.attr("method", "get");
+				formObj.submit();
+			});
+			
+			$(".removeBtn").on("click", function(){
 
-			$("#login").attr("action", "../");
-
+				formObj.attr("action", "/recipe/remove");
+				formObj.submit();
+							
+				alret("삭제 완료");
+			});
 		});
 	</script>
 </body>

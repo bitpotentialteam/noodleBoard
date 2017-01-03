@@ -101,4 +101,9 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 		
 	}
 
+	@Override
+	public int getTotalCount(PageVO vo) throws Exception {
+		return dao.totalCount(vo);
+	}
+
 }

@@ -84,6 +84,11 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 
 		session.update(namespace + "minusReplyCount", bno);
 	}
+
+	@Override
+	public int totalCount(PageVO vo) throws Exception {
+		return session.selectOne(namespace + "totalCount", vo);
+	}
 	
 
 }

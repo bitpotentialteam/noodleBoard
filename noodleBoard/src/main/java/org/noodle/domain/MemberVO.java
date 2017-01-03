@@ -11,10 +11,15 @@ public class MemberVO {
 	private String nickname;
 	private String email;
 	private String picture;
-	private String client_ID;
-	private String client_PW;
 	private Date regdate;
 	private Date updatedate;
+	private String client_ID;
+	private String client_PW;
+	private Integer callCount;
+	private Date keyCreateDate;
+	private Date keyDeleteDate;
+	
+	
 	public Integer getMno() {
 		return mno;
 	}
@@ -57,18 +62,6 @@ public class MemberVO {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	public String getClient_ID() {
-		return client_ID;
-	}
-	public void setClient_ID(String client_ID) {
-		this.client_ID = client_ID;
-	}
-	public String getClient_PW() {
-		return client_PW;
-	}
-	public void setClient_PW(String client_PW) {
-		this.client_PW = client_PW;
-	}
 	public Date getRegdate() {
 		return regdate;
 	}
@@ -81,5 +74,43 @@ public class MemberVO {
 	public void setUpdatedate(Date updatedate) {
 		this.updatedate = updatedate;
 	}
-	
+	public String getClient_ID() {
+		return client_ID;
+	}
+	public void setClient_ID(String client_ID) {
+		this.client_ID = client_ID;
+	}
+	public String getClient_PW() {
+		return client_PW;
+	}
+	public void setClient_PW(String client_PW) {
+		this.client_PW = client_PW;
+	}
+	public Integer getCallCount() {
+		return callCount;
+	}
+	public void setCallCount(Integer callCount) {
+		this.callCount = callCount;
+	}
+	public Date getKeyCreateDate() {
+		return keyCreateDate;
+	}
+	public void setKeyCreateDate(Date keyCreateDate) {
+		this.keyCreateDate = keyCreateDate;
+	}
+	public Date getKeyDeleteDate() {
+		return keyDeleteDate;
+	}
+	public void setKeyDeleteDate(Date keyDeleteDate) {
+		this.keyDeleteDate = keyDeleteDate;
+	}
+	@Override
+	public String toString() {
+		return "MemberVO [mno=" + mno + ", userid=" + userid + ", userpw=" + userpw + ", username=" + username
+				+ ", nickname=" + nickname + ", email=" + email + ", picture=" + picture + ", regdate=" + regdate
+				+ ", updatedate=" + updatedate + ", client_ID=" + client_ID + ", client_PW=" + client_PW
+				+ ", callCount=" + callCount + ", keyCreateDate=" + keyCreateDate + ", keyDeleteDate=" + keyDeleteDate
+				+ "]";
+	}
+
 }

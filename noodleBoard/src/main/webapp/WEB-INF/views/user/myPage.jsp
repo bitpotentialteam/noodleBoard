@@ -146,7 +146,7 @@ body {
 					<div class="box-footer">
 					<button type="submit" class="btn btn-primary" id="goListBtn">MAIN</button>
 					<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY PAGE</button>
-					<button type="submit" class="btn btn-primary" id="updateBtn">발급하기</button>
+					<button type="submit" class="btn btn-primary" id="makeBtn">발급하기</button>
 				</div>
 				<!-- /.widget-user -->
 			</div>
@@ -189,7 +189,7 @@ body {
 
 			});
 			
-			$("updateBtn").on("click", function(){
+			$("makeBtn").on("click", function(){
 				
 			});
 			
