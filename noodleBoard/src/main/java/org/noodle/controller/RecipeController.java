@@ -64,12 +64,12 @@ public class RecipeController {
 		logger.info("listAll.............");
 		model.addAttribute("list", service.listAll(cri));
 		
-		logger.info("listAll callll.........."+ service.listAll(cri).toString() );
+		logger.info("listAll callll.........."+ service.listAll(cri).toString());
 		PageMaker pageMaker = new PageMaker();
 		
 		pageMaker.setPageVO(cri);
-		
-		pageMaker.setTotalCount(service.getTotalCount());
+		pageMaker.setTotalCount(service.getTotalCount(cri));
+		logger.info("endPage.........." + pageMaker.getEndPage());
 		
 		model.addAttribute("pageMaker", pageMaker);
 

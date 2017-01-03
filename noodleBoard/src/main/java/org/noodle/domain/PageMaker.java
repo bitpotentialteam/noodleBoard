@@ -11,7 +11,18 @@ public class PageMaker {
 	
 	private PageVO pageVO;
 	private SearchVO cri;
+	private int displayPageNum = 9;
 	
+	public int getDisplayPageNum() {
+		return displayPageNum;
+	}
+
+
+	public void setDisplayPageNum(int displayPageNum) {
+		this.displayPageNum = displayPageNum;
+	}
+
+
 	public void setCri(SearchVO cri){
 		this.cri = cri;
 	}
@@ -26,11 +37,11 @@ public class PageMaker {
 	
 	private void calcPage(){
 		
-		endPage = (int)(Math.ceil(pageVO.getPage() / (double) pageVO.getPageUnit()) * pageVO.getPageUnit());
+		endPage = (int)(Math.ceil(pageVO.getPage() / (double) displayPageNum) * displayPageNum);
 		
-		startPage = (endPage - pageVO.getPageUnit()) + 1;
+		startPage = (endPage - displayPageNum) + 1;
 		
-		int tempEndPage = (int) (Math.ceil(totalCount / (double)pageVO.getPageUnit()) * pageVO.getPageUnit());
+		int tempEndPage = (int) (Math.ceil(totalCount / (double)displayPageNum) * displayPageNum);
 		
 		if(endPage < tempEndPage){
 			endPage = tempEndPage;
@@ -38,14 +49,14 @@ public class PageMaker {
 		
 		prev = startPage == 1? false : true;
 		
-		next = endPage * pageVO.getPageUnit() >= totalCount? false : true; 
+		next = endPage * displayPageNum >= totalCount? false : true; 
 		
 	}
 	
 	public String makeQuery(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
-				.queryParam("perPageNum", pageVO.getPageUnit())
+				.queryParam("perPageNum", displayPageNum)
 				.build();
 		
 		return uriComponents.toUriString();
@@ -56,7 +67,7 @@ public class PageMaker {
 		
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
-				.queryParam("perPageNum", ((PageVO)pageVO).getPageUnit())
+				.queryParam("perPageNum", displayPageNum)
 				.build();
 		
 		if(cri != null){
@@ -135,7 +146,8 @@ public class PageMaker {
 	@Override
 	public String toString() {
 		return "PageMaker [totalCount=" + totalCount + ", startPage=" + startPage + ", endPage=" + endPage + ", prev="
-				+ prev + ", next=" + next + ", vo=" + pageVO + "]";
+				+ prev + ", next=" + next + ", pageVO=" + pageVO + ", cri=" + cri + ", displayPageNum=" + displayPageNum
+				+ "]";
 	}
 	
 	

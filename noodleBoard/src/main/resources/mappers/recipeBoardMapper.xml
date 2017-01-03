@@ -82,6 +82,7 @@
 		 ]]>
 	</select>
 	
+	
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
@@ -128,6 +129,12 @@
 		order by bno desc
 		]]> 
 		 
+	</select>
+	<select id="listPage" resultType="RecipeBoardVO">
+		<![CDATA[
+	select rownum rn, bno, ,ino, title, materialContent, content, regdate, updatedate from
+(select * from tbl_recipeboard order by bno desc) where rownum<=#{num}*10) where rn>(#{num}-1)*10
+		]]>
 	</select>
 
 	<update id="addViewCount">

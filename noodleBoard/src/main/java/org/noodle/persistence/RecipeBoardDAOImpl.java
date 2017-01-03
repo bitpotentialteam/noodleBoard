@@ -86,8 +86,13 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	}
 
 	@Override
-	public int totalCount() throws Exception {
-		return session.selectOne(namespace + "totalCount");
+	public int totalCount(SearchVO cri) throws Exception {
+		return session.selectOne(namespace + "totalCount", cri);
+	}
+
+	@Override
+	public List<RecipeBoardVO> listPage(int page) throws Exception {
+		return session.selectList(namespace + "listPage");
 	}
 	
 
