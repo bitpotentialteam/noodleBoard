@@ -608,11 +608,13 @@ div .replyDiv{
 						var currentScroll = $(window).scrollTop() + $(window).height();
 						
 	
-						if (maxHeight <= currentScroll + 10) {
+						if (maxHeight <= currentScroll + 1) {
 
 	//여기까지임~ 스크롤이 뭐 맨 아래에 닿으면...scroll event 실행ㄱㄱ하면서 밑에 함수들 다 실행함
 							var tno = $("#timelinebigbox").children(":last").find("#removeBtn").val();
 							var timelinebigbox = $("#timelinebigbox");
+							var updateList = $('.replyDiv').find('.box-comments');
+							
 							
 							console.log(tno);
 
@@ -652,7 +654,7 @@ div .replyDiv{
 														
 				    				console.log(result[j].nickname);
 										 
-									lastStr += "<div class='box box-solid' id='timelineBox'> 	<!-- .box-header START --> "+
+									lastStr = "<div class='box box-solid' id='timelineBox'> 	<!-- .box-header START --> "+
 									"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='show?name=${vo.picture}' alt='User Image'>" +
 									" <span class='username'><a href='#'>"+ nickname +"</a></span> <span class='description'> "+ regDate +" </span> "+ 
 									" <button type='button' value='${vo.tno}' id='removeBtn' class='pull-right text-muted'> <span class='glyphicon glyphicon-trash'></span>"+
@@ -662,25 +664,37 @@ div .replyDiv{
 									" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='${vo.content}' name='content' id='modContent'> "+
 									"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='${vo.tno}'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
 									"</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"+
-									"<div class='box-body'><!-- post text --> <p>"+content+"</p> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='${vo.tno}' class='btn btn-default btn-xs'>"+
-									" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='${vo.tno}' class='btn btn-default btn-xs'>"+
-									"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +"likes - "+ replyCnt +" comments</span> </div>"+
-									"<!-- .box-body END --> <!-- .box-footer START -->";
+									"<div class='box-body'><!-- post text --> <p>"+content+"</p> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
+									" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='"+ tno +"' class='btn btn-default btn-xs'>"+
+									"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +" likes - "+ replyCnt +" comments</span> </div>"+
+									"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list -->"+
+									" <div class='box-footer box-comments' id='commentsbox'> </div>	<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'"+
+									"src='${vo.picture}' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
+									" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='Press enter to post comment!'>"+
+									"</div> </div><!-- /.box-footer --> /div> </div><!-- big div --> ";
 									
+								 
 										}else{
 											return;
 										}
-								 };
-								
-				
-								 
 								 $("#timelinebigbox").append(lastStr);
 								 
-								  replyManager.listReply({tno:tno},
+								  replyManager.listReply({"tno":tno},
 										  function(str){
 									  updateList.html(str);
 									 
 								  });
+								  
+								 };
+								
+				
+								 
+								 
+// 								  replyManager.listReply({tno:tno},
+// 										  function(str){
+// 									  updateList.html(str);
+									 
+// 								  });
 
 				    			}
 				    		});
