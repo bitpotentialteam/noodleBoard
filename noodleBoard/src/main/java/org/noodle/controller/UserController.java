@@ -52,19 +52,22 @@ public class UserController {
 //	}
 	
 	@GetMapping(value = "/create_client")
-	public void create_client(MemberVO vo)throws Exception{
+	public void create_client( Model model)throws Exception{
 		logger.info("Create_client called.....");
 		
 		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
 		
 		Integer mno = service.read1(user.toString()).getMno();
+
+		MemberVO vo = new MemberVO();
 		
 		vo.setMno(mno);
 		
-		String checkMsg = service.regist_client(mno);
-		logger.info(checkMsg);
+		String clientMsg = service.regist_client(mno);
+		logger.info("clientMsg: " + clientMsg);
 		
-	
+		model.addAttribute("CLIENTMSG", clientMsg);
+		
 	}
 	
 	@PostMapping(value = "/idCheck")

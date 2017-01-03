@@ -150,7 +150,7 @@ body {
 						<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY
 							PAGE</button>
 					</div>
-					<form action="create_client">
+					<form action="create_client"  method="POST">
 						<div class="box-footer no-padding">
 							<ul>
 								<li class="list-group-item" id="client_ID"><h4>일회용ID</h4>${sessionScope.VO.client_ID}</li>
@@ -158,9 +158,11 @@ body {
 							</ul>
 						</div>
 					</form>
-					<div class="box-footer">
-						<button type="submit" class="btn btn-primary" id="makeBtn">발급하기</button>
-					</div>
+					<form>
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary" id="makeBtn">발급하기</button>
+						</div>
+					</form>	
 					<!-- /.widget-user -->
 				</div>
 			</div>
@@ -208,19 +210,16 @@ body {
 			       var formData = new FormData();
 			        
 			       formData.append("client_ID", client_ID);
-			             
-			         $.ajax({
-			            url : "create_client",
-			            data : formData,
-			            dataType : 'text',
-			            type : "get",
-			            contentType : false,
-			            processData : false,
-			            success : function() {
-
-			               
-			            }// end success
-			      });// end ajax
+			       
+			       $.get("create_client"); 
+			       
+			      if("${'CLIENTMSG'}" == "success"){
+			    	  alert("등록 성공되었습니다.");
+			    	  window.location.reload();
+			      }
+			      if("${'CLIENTMSG'}" == 'fail'){
+			    	  alert("이미 발급되었습니다.");
+			      }
 			   });
 		});
 	</script>
