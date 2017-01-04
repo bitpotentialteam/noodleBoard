@@ -27,6 +27,19 @@ public class UserController {
 	@Inject
 	private MemberService service;
 
+	
+	@GetMapping("/apiRegister")
+	public void apiRegisterGET() throws Exception{
+		logger.info("apiRegisterGET called.....");
+	}
+	
+	@PostMapping("/apiRegister")
+	public void apiRegisterPOST() throws Exception{
+		logger.info("apiRegisterPOST called.....");
+	}
+	
+	
+	
 //	@GetMapping("/login")
 //	public void login() throws Exception {
 //

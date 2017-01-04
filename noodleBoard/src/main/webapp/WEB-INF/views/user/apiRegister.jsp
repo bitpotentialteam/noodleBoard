@@ -160,7 +160,7 @@ body {
 					</form>
 					<form>
 						<div class="box-footer">
-							<a href="apiRegitster"><button type="submit" class="btn btn-primary" id="apiBtn">발급하기</button></a>
+							<button type="submit" class="btn btn-primary" id="makeBtn">발급하기</button>
 						</div>
 					</form>	
 					<!-- /.widget-user -->
@@ -204,6 +204,23 @@ body {
 				formObj.submit();
 			});
 
+			$("#makeBtn").on("click",function(){
+				   console.log("check");
+			       var client_ID = $("#client_ID").val();
+			       var formData = new FormData();
+			        
+			       formData.append("client_ID", client_ID);
+			       
+			       $.get("create_client"); 
+			       
+			      if("${'CLIENTMSG'}" == "success"){
+			    	  alert("등록 성공되었습니다.");
+			    	  window.location.reload();
+			      }
+			      if("${'CLIENTMSG'}" == 'fail'){
+			    	  alert("이미 발급되었습니다.");
+			      }
+			   });
 		});
 	</script>
 
