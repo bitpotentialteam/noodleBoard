@@ -42,8 +42,8 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 	}
 
 	@Override
-	public void addLikeCnt(Integer tno) throws Exception {
-		session.update(namespace + ".addLikeCnt", tno);
+	public void addLikeCnt(TimeLineVO vo) throws Exception {
+		session.update(namespace + ".addLikeCnt", vo);
 		
 	}
 
@@ -69,6 +69,19 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 	public List<TimeLineVO> lastListView(Integer tno) throws Exception {
 		
 		return session.selectList(namespace + ".lastListView", tno);
+	}
+
+	@Override
+	public String likeHistory(TimeLineVO vo) throws Exception {
+		
+		return session.selectOne(namespace + ".likeHistory", vo);
+	}
+
+	@Override
+	public void updateLike(TimeLineVO vo) throws Exception {
+		
+		session.insert(namespace + ".updateLike", vo);
+		
 	}
 
 

@@ -309,12 +309,12 @@ div .replyDiv{
 	
 						<form id='form' method='post' action="regist">
 							<input type='hidden' name='tno' id='ftno' value='${vo.tno}'>
-							<input type='hidden' name='mno' id='fmno' value='5'>
+							<input type='hidden' name='mno' id='fmno' value='${sessionScope.VO.mno}'>
 							<input type='hidden' name='content' id='fcontent' value='${vo.content}'>
 						</form> 
 						<form id='likeform' method='post' action="regist">
 							<input type='hidden' name='tno' id='ftno' value='${vo.tno}'>
-							<input type='hidden' name='mno' id='fmno' value='5'>
+							<input type='hidden' name='mno' id='fmno' value='${sessionScope.VO.mno}'>
 							<input type='hidden' name='likeCnt' id='likeCnt' value='0'>
 						</form> 
 		</div>
@@ -346,14 +346,10 @@ div .replyDiv{
 		
 	$( document ).ready(function() {
 		
-		
 		//맨 위로 올라가기!
 			$(document).on("click","#up", function(event) {
 			$("body").scrollTop(0);
 		});
-		
-		
-		
 		
 		var formObj = $("#form");
 
@@ -410,12 +406,32 @@ div .replyDiv{
 			
 			var tno = $(this).val();
 			$('#ftno').val(tno);
+			var mno = $(this).parents('#timelineBox').find('#replymno').val();
+			
 			
 			console.log(tno);
+			console.log(mno);
 			
 			formObj.attr("action", "timeline/addlikeCnt");
 			formObj.attr("method", "get");
 			formObj.submit();
+			
+			if 
+
+			
+// 	  		$.ajax({
+//     			type : 'get',
+//     			url : '/timeline/addlikeCnt',
+//     			headers : {
+//     				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+//     				"X-HTTP-Method-Override" : "GET"
+//     			},
+//     			dataType : 'text',
+//     			data : {tno : tno, mno:mno},
+//     			success : function(result) {
+    				
+//     			}
+//     		});
 					
 		});
 		

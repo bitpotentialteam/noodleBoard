@@ -2,8 +2,6 @@ package org.noodle.serivceTester;
 
 
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.noodle.domain.TimeLineVO;
@@ -43,5 +41,25 @@ public class TimeLineTester {
 		
 		logger.info("LAST" + service.lastListView(70));
 	}
+	
+	@Test
+	public void likeTest()throws Exception{
+		
+		TimeLineVO vo = new TimeLineVO();
+		
+		vo.setTno(75);
+		vo.setMno(105);
+		
+		service.addLikeCnt(vo);
+	}
+	
+	@Test
+	public void historyTest()throws Exception{
 
+		TimeLineVO vo = new TimeLineVO();
+		vo.setTno(75);
+		vo.setMno(103);
+		
+		service.likeHistory(vo);
+	}
 }

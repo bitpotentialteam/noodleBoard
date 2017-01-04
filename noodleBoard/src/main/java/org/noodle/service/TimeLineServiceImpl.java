@@ -7,12 +7,14 @@ import javax.inject.Inject;
 import org.noodle.domain.TimeLineVO;
 import org.noodle.persistence.TimeLineDAOImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TimeLineServiceImpl implements TimeLineService {
 	
 	@Inject
 	TimeLineDAOImpl dao;
+	
 
 	@Override
 	public void regist(TimeLineVO vo) throws Exception {
@@ -39,9 +41,15 @@ public class TimeLineServiceImpl implements TimeLineService {
 
 	}
 
+	@Transactional
 	@Override
-	public void addLikeCnt(Integer tno) throws Exception {
-		dao.addLikeCnt(tno);
+	public void addLikeCnt(TimeLineVO vo) throws Exception {
+		
+		//like 카운트 증가
+		dao.addLikeCnt(vo);
+		
+		//insert like history 
+		dao.updateLike(vo);
 		
 	}
 
@@ -67,6 +75,19 @@ public class TimeLineServiceImpl implements TimeLineService {
 	public List<TimeLineVO> lastListView(Integer tno) throws Exception {
 		
 		return dao.lastListView(tno);
+	}
+
+	@Override
+	public String likeHistory(TimeLineVO vo) throws Exception {
+		
+		return dao.likeHistory(vo);
+	}
+
+	@Override
+	public void updateLike(TimeLineVO vo) throws Exception {
+
+		dao.updateLike(vo);
+		
 	}
 
 }

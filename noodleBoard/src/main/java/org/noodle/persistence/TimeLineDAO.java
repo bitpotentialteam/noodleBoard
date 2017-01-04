@@ -14,7 +14,10 @@ public interface TimeLineDAO {
 	public void update(TimeLineVO vo)throws Exception;
 	public void delete(Integer tno)throws Exception;
 	
-	public void addLikeCnt(Integer tno) throws Exception;
+	public void addLikeCnt(TimeLineVO vo) throws Exception;
+	public void updateLike(TimeLineVO vo)throws Exception;
+	public String likeHistory(TimeLineVO vo)throws Exception;
+	
 	public void addReplyCnt(Integer tno) throws Exception;
 	public void minReplyCnt(Integer tno) throws Exception; 
 

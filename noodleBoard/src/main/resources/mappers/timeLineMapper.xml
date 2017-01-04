@@ -84,7 +84,7 @@
 	
 	</update>
 	
-	<update id="addReplyCnt">
+	<update id="addReplyCnt" parameterType="TimeLineVO">
 	
 		update tbl_timeline
 		set replycnt = replycnt + 1
@@ -113,6 +113,19 @@
 		where tno = #{tno, jdbcType=INTEGER}
 	
 	</select>
+	
+	<select id="likeHistory" resultType="String">
+	
+		SELECT * FROM tbl_like WHERE tno = #{tno, jdbcType=INTEGER} AND mno = #{mno, jdbcType=INTEGER}
+	
+	</select>
+	
+	<insert id="updateLike" parameterType="TimeLineVO">
+	
+		insert into tbl_like(tno, mno)
+		values ( #{tno, jdbcType=INTEGER} , #{mno, jdbcType=INTEGER})
+	
+	</insert>
 
 
 

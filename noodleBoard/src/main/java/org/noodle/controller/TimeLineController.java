@@ -66,12 +66,16 @@ public class TimeLineController {
 	}
 	
 	@GetMapping("/addlikeCnt")
-	public String likePost(Integer tno, Model model) throws Exception{
+
+	public String likePost(TimeLineVO vo, Model model) throws Exception{
 		
-		service.addLikeCnt(tno);
+		logger.info("likelikelike....!");
+		
+	//	TimeLineVO vo = new TimeLineVO();
+		service.addLikeCnt(vo);
 
 	
-		logger.info("addlikeCnt" + tno);
+		logger.info("addlikeCnt" + vo);
 
 		return "redirect:/timeline"; 
 	}
