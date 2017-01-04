@@ -124,7 +124,8 @@
 		where 
 			#{startPage, jdbcType=INTEGER} < bno 
 		and 
-			bno <= #{endPage, jdbcType=INTEGER}]]> 
+			bno <= #{endPage, jdbcType=INTEGER}
+			]]> 
 			
 		<include refid="search"></include>
 		
