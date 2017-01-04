@@ -117,12 +117,12 @@
 	
 	<select id="listSaerch" resultType="RecipeBoardVO">
 		<![CDATA[
-	    	   SELECT *
+	       SELECT *
  		 FROM (
-	            select *
-	            from TBL_RECIPEBOARD
-	            order by bno desc
-	            )
+            select *
+            from TBL_RECIPEBOARD
+            order by bno desc
+            )
   		 WHERE rownum>= #{startPage, jdbcType=INTEGER}  
   		 AND rownum <= #{endPage, jdbcType=INTEGER}
 			]]> 
