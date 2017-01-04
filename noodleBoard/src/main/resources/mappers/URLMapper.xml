@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="org.noodle.URLMapper">
+ 	
+ 	<insert id="create">
+ 		insert 
+ 			into tbl_url(mno, uno, url)
+		values 
+			(#{mno}, seq_url.nextval, #{url})
+ 	</insert>
+ 
+ 	<update id="update">
+ 		update 
+ 			tbl_url
+ 		set
+ 			url = #{url}
+ 		where 
+ 			uno = #{uno}
+ 	</update>
+ 	
+ 	<delete id="delete">
+ 		delete 
+ 			tbl_url
+ 		where
+ 			uno = #{uno}
+ 	</delete>
+ 
+ 	<select id="listAll" resultType="URLVO">
+ 		select 
+ 			*
+ 		from 
+ 			tbl_url
+ 		where
+ 			mno = #{mno}
+ 	</select>
+ 	
+ </mapper>
