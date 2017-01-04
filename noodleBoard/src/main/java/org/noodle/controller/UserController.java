@@ -33,6 +33,14 @@ public class UserController {
 	
 	
 	
+	@GetMapping("/listAll")
+	public void listAll(Model model)throws Exception{
+		
+		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
+		Integer mno = service.read1(user.toString()).getMno();
+		
+		model.addAttribute("list",URLService.listAll(mno));
+	}
 	
 	@GetMapping("/apiRegister")
 	public void apiRegisterGET(Model model, HttpSession session) throws Exception {

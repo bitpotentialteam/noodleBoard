@@ -148,19 +148,28 @@ body {
 							<button type="submit" class="btn btn-primary" id="makeBtn">발급하기</button>
 						</div>
 					</form>
-					
-					
-					
-					
-					
-					
-					
+					<br/>
+					<div class="box-footer">
+						<ul>
+							<c:forEach items="${list}" var="URLVO">
+								<li>
+									<h4>${URLVO.url},${urlVO.mno}</h4>
+								</li>
+							</c:forEach>
+						</ul>
+					</div>
+
+
+
+
 					<form action="apiRegister" method="POST">
 						<div class="form-group has-feedback">
-							<input type="text" id="url" name="url" class="form-control" placeholder="URL Address">
+							<input type="text" id="url" name="url" class="form-control"
+								placeholder="URL Address">
 						</div>
 						<div>
-							<button type="submit" class="btn btn-primary btn-flat">URL REGISTER</button>
+							<button type="submit" class="btn btn-primary btn-flat">URL
+								REGISTER</button>
 						</div>
 
 					</form>
