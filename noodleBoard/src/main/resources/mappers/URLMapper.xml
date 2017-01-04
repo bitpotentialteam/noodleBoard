@@ -9,23 +9,23 @@
  		insert 
  			into tbl_url(mno, uno, url)
 		values 
-			(#{mno}, seq_url.nextval, #{url})
+			(#{mno, jdbcType=INTEGER}, seq_url.nextval, #{url, jdbcType=VARCHAR})
  	</insert>
  
  	<update id="update">
  		update 
  			tbl_url
  		set
- 			url = #{url}
+ 			url = #{url, jdbcType=VARCHAR}
  		where 
- 			uno = #{uno}
+ 			uno = #{uno, jdbcType=INTEGER}
  	</update>
  	
  	<delete id="delete">
  		delete 
  			tbl_url
  		where
- 			uno = #{uno}
+ 			uno = #{uno, jdbcType=INTEGER}
  	</delete>
  
  	<select id="listAll" resultType="URLVO">
@@ -34,7 +34,7 @@
  		from 
  			tbl_url
  		where
- 			mno = #{mno}
+ 			mno = #{mno, jdbcType=INTEGER}
  	</select>
  	
  </mapper>

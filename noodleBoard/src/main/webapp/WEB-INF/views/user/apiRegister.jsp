@@ -149,16 +149,19 @@ body {
 						</div>
 					</form>
 					<br/>
+					
+					<form id="listForm">
 						<div class="box-footer">
 							<ul>
 								<c:forEach items="${list}" var="urlVO">
 									<li>
-										<h4>URL: ${urlVO.url}</h4>
+										<h4>URL: ${urlVO.url}</h4><button id="removeURLBtn" value= "${urlVO.uno}" name= "uno"></button>
 									</li>
 								</c:forEach>
 							</ul>
 						</div>
-
+					</form>
+					
 					<form action="apiRegister" method="POST">
 						<div class="form-group has-feedback">
 							<input type="text" id="url" name="url" class="form-control"
@@ -199,7 +202,16 @@ body {
 			var formObj = $("#form");
 
 			console.log(formObj);
-
+			
+			var listForm = $("#listForm");
+			
+			$("#removeURLBtn").on("click", function(){
+				listForm.attr("action", "/user/removeURL");
+				listForm.attr("method", "post");
+				listForm.submit();
+				
+			}); 
+			
 			$("#modifyBtn").on("click", function() {
 				formObj.attr("action", "/user/modify");
 				formObj.attr("method", "get");

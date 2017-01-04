@@ -35,6 +35,8 @@ public class UserController {
 	public void removeURL(Integer uno) throws Exception{
 		logger.info("removeURL");
 		
+		logger.info("uno: " + uno);
+		
 		URLService.remove(uno);
 	}
 	
