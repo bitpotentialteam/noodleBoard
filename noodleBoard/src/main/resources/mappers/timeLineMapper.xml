@@ -116,7 +116,7 @@
 	
 	<select id="likeHistory" resultType="String">
 	
-		SELECT * FROM tbl_like WHERE tno = #{tno, jdbcType=INTEGER} AND mno = #{mno, jdbcType=INTEGER}
+		SELECT tno FROM tbl_like WHERE tno = #{tno, jdbcType=INTEGER} AND mno = #{mno, jdbcType=INTEGER}
 	
 	</select>
 	
