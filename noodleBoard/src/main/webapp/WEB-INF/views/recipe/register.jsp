@@ -43,23 +43,35 @@
 .navbar-custom  {
 	background-color: #222;
 }
-#fileDrop {
+#stepImg {
 	width: 150px;
 	height: 150px;
 	border: 1px dotted gray;
-	background-color: #fed136;
-	background-size: cover;
+    border-radius: 4px;
+	background: #fed136 no-repeat center center;
+	background-size: contain; 
 	margin: auto;
+	text-align:center;
+}
+#noImg {
+	display: inline-block;
+    margin-top: 18%;
 }
 
-#fileDrop div {
-	display:inline;
+#noImg span{
+	font-size: 3em;
 }
 
+#stepImg span.glyphicon-remove-sign{
+	float:right;
+	margin: 3px 3px;
+	font-size: 1.3em;
+}	
 
 textarea {
 	width: 100%;
 	height:125px;
+	resize: none;
 }
 
 button#addStepBtn {
@@ -172,13 +184,25 @@ button#addStepBtn {
 								<!-- START -->
 								<div class="media form-group" id="step">
 									<div class="media-left media-middle">			
-										<div class="form-control" id="fileDrop">
-											<input type='hidden' name='ilistThumbnail' value="">
+										<div id="stepImg">
+											
+											<div id="noImg">
+												<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+												<h5>Drag&Darop HERE!</h5>
+											</div>
+											<input type='hidden' name='ilist[0].thumbnail'>
 										</div>
+											<p id='fileName'></p>
+										<div class='file_input_div'>
+											<input type='button' value='Search files' class='file_input button' />
+											<input type='file' class='file input hidden'/>										
+										</div>
+										
 									</div>
 									 <div class="media-body">
 									 	<h4 class="media-heading">STEP 1</h4>
-										<textarea name='clistContent'></textarea>
+									 	<input type='hidden' id='stepIndex' name='clist[0].step' value='0'>
+										<textarea id='stepContent' name='clist[0].content'></textarea>
 									</div>
 									<div class="media-right media-middle">
 										<span id="delStepBtn" class="glyphicon glyphicon-ok-circle"></span>
@@ -251,22 +275,25 @@ button#addStepBtn {
 	$(document).ready(function(){
 		//Steps START
 		var $steps = $("#steps");
-		
-		var indexOfStep = function(){
+		function indexOfStep(){
 			var $children = $steps.children();
 
 			for(var i =  0; i < $children.length ; i++){
 				var index = i +1; 
-				$children.eq(i).find('h4.media-heading').html("STEP "+ index);	
-				
+				var $child = $children.eq(i);
+				$child.find('h4.media-heading').html("STEP "+ index);
+				$child.find('input#stepIndex').attr('name','clist['+i+'].step').val(index);
+				$child.find('div#stepImg input').attr('name','ilist['+i+'].thumbnail');
+				$child.find('textarea#stepContent').attr('name','clist['+i+'].content');
 				}	
 		};
+		indexOfStep();
 		
 		$("#addStepBtn").on("click", function(event){
 			 
 			var stepStr = "<div class='media form-group' id='step'><div class='media-left media-middle'>"
-			+ "<div class='form-control' id='fileDrop'><input type='hidden' name='ilistThumbnail' value=''></div></div>"
-			+"<div class='media-body'><h4 class='media-heading'>STEP</h4><textarea name='clistContent'></textarea></div>"
+			+ "<div class='form-control' id='stepImg'><input type='hidden' name='ilistThumbnail' value=''></div></div>"
+			+"<div class='media-body'><h4 class='media-heading'>STEP</h4><input type='hidden' id='stepIndex' name='clistStep'><textarea id='stepContent' name='clistContent'></textarea></div>"
 			+"<div class='media-right media-middle'><span id='delStepBtn' class='glyphicon glyphicon-remove-circle'></span></div></div>";
 			
 			$steps.append(stepStr);
@@ -301,89 +328,82 @@ button#addStepBtn {
 			
 		});
 		
-		//Steps END
-		
-		$("#registerBtn").on("click", function(event){
-			formObj.submit();
-			alert("등록 완료!");
-		
+		$(document).on("click","#delImgBtn", function(event){
+			
+			var $this = $(this);
+			var $tihsDiv = $this.parent().parent(".media");
+						
+			$steps.find("#delStepBtn").removeClass("glyphicon glyphicon-remove-circle").addClass("glyphicon glyphicon-ok-circle");
+			
+			
+			
 		});
 		
+		//Steps END
+		
+		
 			
-		$("#fileDrop").on("dragenter dragover", function(event) {
+		$(document).on("dragenter dragover","#stepImg", function(event) {
 			event.preventDefault();
 		});
 
 		
-		$("#fileDrop").on("drop", function(event) {
+		$(document).on("drop","#stepImg", function(event) {
 			event.preventDefault();
 			var $this = $(this);
-			console.log($this);
+			var delImgBtn = "<span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span>";
+			
+			uploadImage(event, function(data){
+				var imgURL = "/displayFile?fileName="+data;
+				//var imgName = getOriginalName(data);
+				alert("이미지가 등록되었습니다");
+				$this.css("background-image","url("+imgURL+")");
+				$this.children("#imgFile").val(data);
+				$this.prepend(delImgBtn).children("#noImg").hide();
+				
+			})
+			
+		});
+
+		
+		
+		function uploadImage(event,fn){
 			var files = event.originalEvent.dataTransfer.files;
 
 			var file = files[0];
-			console.log(file);
 
 			var formData = new FormData();
 
-			formData.append("file", file);
-
-		
-			$.ajax({
-				url : '/uploadAjax',
-				data : formData,
-				dataType : 'text',
-				processData : false,
-				contentType : false,
-				method : 'POST',
-				success : function(data) {
-					console.log(data);
-					var str="";
-
-					if(checkImageType(data)){
-						
-						//var ilist = new Array();
-						//var clist = new Array();
-						var imgURL = "/displayFile?fileName="+data;
-						str = "<div>"
-								+"<div><img src='/displayFile?fileName="+data+"'/></div>"
-								+"<div><input type= 'hidden' name='ilist[j].thumbnail' value="+getOriginalName(data)+">"+getOriginalName(data)+"</div>"
-								+"<div><input type='hidden' id='step' name='clist[j].step'>i</div>"
-								+"<input type='text' name='clist[j].content'>"
-							+"</div>";
-
-								
-					}else{
-						str = "<div>"+getOriginalName(data)+"</div>";
-					}
-					alert("이미지가 등록되었습니다헤헿");
-					$("#fileDrop").css("background","url("+imgURL+") top left no-repeat").css("background-size","contain");
-				}
+			if(checkImageType(file.type)){
 				
-			});
-		});
-
-
-		$("#regBtn").submit(function(event) {
-			event.preventDefault();
-
-		})
-		var that = $(this);
-		var str = "";
-
-		$(".uploadedList .regBtn").each(
-				function(index) {
-					str += "<input type = 'hidden' name='files[" + index
-							+ "]' value='" + $(this).attr("href") + "'>";
-
+				formData.append("file", file);
+	
+				$.ajax({
+					url : '/uploadAjax',
+					data : formData,
+					dataType : 'text',
+					processData : false,
+					contentType : false,
+					method : 'POST',
+					success : function(data) {
+						console.log(data);
+	
+						if(checkImageType(data)){
+							fn(data);
+	
+						}else{
+							alert("이미지 파일로 올려주세요!");;
+						}
+							
+					}
+					
 				});
-
-		that.append(str);
-
-		that.get(0).submit();
-
+			}else{
+				alert("이미지 파일로 올려주세요!");				
+			}
+		}
 		
-		
+      
 		function checkImageType(fileName) {
 			var pattern = /jpg|gif|png|jpeg/i;
 			return fileName.match(pattern);
@@ -432,6 +452,34 @@ button#addStepBtn {
 		}
 		
 		
+		
+		$("#registerBtn").on("click", function(event){
+			formObj.submit();
+			alert("등록 완료!");
+		
+		});
+		
+		<!--
+		$("#regBtn").submit(function(event) {
+			event.preventDefault();
+
+		});
+		
+		var that = $(this);
+		var str = "";
+
+		$(".uploadedList .regBtn").each(
+				function(index) {
+					str += "<input type = 'hidden' name='files[" + index
+							+ "]' value='" + $(this).attr("href") + "'>";
+
+		});
+
+		that.append(str);
+
+		that.get(0).submit();
+
+		-->   
 		
 	});
 
