@@ -20,13 +20,15 @@
 	]]>
 	</select>
 
-	<select id="read" parameterType="Integer" resultType="RecipeBoardVO">
+	<select id="read" parameterType="int" resultType="RecipeBoardVO">
+		<![CDATA[
 		select
 			*
 		from
 			tbl_recipeBoard
 		where
 			bno = #{bno, jdbcType=INTEGER}
+		]]>
 	
 		<!-- select
 			tbl_recipeboard.mno, tbl_recipeboard.bno, tbl_recipeboard.title, tbl_recipeboard.content, tbl_recipeboard.materialContent,

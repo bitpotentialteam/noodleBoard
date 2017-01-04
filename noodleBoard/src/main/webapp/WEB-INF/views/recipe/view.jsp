@@ -100,8 +100,8 @@ textarea {
     <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">${writer}의 맛있는</div>
-                <div class="intro-heading">title ${title}</div>
+                <div class="intro-lead-in">${vo.nickname}의 맛있는</div>
+                <div class="intro-heading">${vo.title}</div>
                 <a href="#recipe" class="page-scroll btn btn-xl">detail</a>
             </div>
         </div>
@@ -113,13 +113,13 @@ textarea {
 	
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 				<p>
-				<h1>title ${title}</h1>
+				<h1>title ${vo.title}</h1>
 				</p>		
-					<div class="row control-group" id="materialContent">
+					<div class="row control-group" id="content">
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>설명</label>
 							<div id="content">
-								<p>내용${content}</p>
+								<p>내용 ${vo.content}</p>
 							</div>
 						</div>
 					</div>								
@@ -128,8 +128,8 @@ textarea {
 					<div class="row control-group" id="materialContent">
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>재료</label>
-							<div id="matrial">
-								<p>재료내용${matrial}</p>
+							<div>
+								<p>${vo.materialContent}</p>
 							</div>
 						</div>
 					</div>
@@ -139,18 +139,18 @@ textarea {
 						<label>조리순서</label>
 							<div id="steps">
 							
-								<c:forEach items="${list}" var="boardVO">
+								<c:forEach items="${clist}" var="vo">
 								<!-- START -->
 								<div class="media form-group" id="step">
 									<div class="media-left media-middle">			
-										<div class="form-control" id="stepImg" background-image="url(/displayFile?fileName=${img})">
+										<div class="form-control" id="thumbnail" background-image="url(/displayFile?fileName=${vo.thumbnail})">
 											<!-- 사진 크게 보기 모달 창 넣기-->
 										</div>
 									</div>
 									 <div class="media-body">
-									 	<h4 class="media-heading">STEP ${step}</h4>
+									 	<h4 class="media-heading">STEP ${vo.step}</h4>
 										<div>
-											<p>${content}</p>
+											<p>${vo.content}</p>
 										</div>
 									</div>
 								</div>

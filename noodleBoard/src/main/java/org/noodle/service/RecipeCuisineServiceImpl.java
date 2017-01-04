@@ -1,5 +1,7 @@
 package org.noodle.service;
 
+import java.util.List;
+
 import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.persistence.RecipeCuisineDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,8 @@ public class RecipeCuisineServiceImpl implements RecipeCuisineService {
 	}
 
 	@Override
-	public RecipeCuisineVO view(Integer bno) throws Exception {
-
+	public List<RecipeCuisineVO> view(Integer bno) throws Exception {
+		
 		return dao.read(bno);
 	}
 

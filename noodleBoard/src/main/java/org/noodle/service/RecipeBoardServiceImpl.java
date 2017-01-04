@@ -34,11 +34,12 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 		
 	}
 
-	//@Transactional
 	@Override
+//	@Transactional
 	public RecipeBoardVO view(Integer bno) throws Exception {
 		
-		dao.addViewCount(bno);
+//		dao.addViewCount(bno);
+//		return dao.read(bno);
 		
 		return dao.read(bno);
 	}
@@ -100,6 +101,7 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 
 		
 	}
+	
 
 	@Override
 	public int getTotalCount(SearchVO cri) throws Exception {

@@ -22,9 +22,9 @@ public class RecipeCuisineDAOImpl implements RecipeCuisineDAO {
 	}
 
 	@Override
-	public RecipeCuisineVO read(Integer bno) throws Exception {
+	public List<RecipeCuisineVO> read(Integer bno) throws Exception {
 
-		return session.selectOne(namespace + "read", bno);
+		return session.selectList(namespace + "read", bno);
 	}
 
 	@Override

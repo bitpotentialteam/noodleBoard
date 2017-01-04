@@ -10,7 +10,6 @@ import org.noodle.domain.SearchVO;
 
 public interface RecipeBoardService {
 	public void regist(RecipeBoardVO vo) throws Exception;
-	public RecipeBoardVO view(Integer bno)throws Exception;
 	public void modify(RecipeBoardVO vo)throws Exception;
 	public void remove(RecipeBoardVO vo)throws Exception;
 	public List<RecipeBoardVO> listAll(PageVO vo)throws Exception;
@@ -21,4 +20,5 @@ public interface RecipeBoardService {
 	public void addLikeCount(Integer bno) throws Exception;
 	public void minusLikeCount(Integer bno) throws Exception;
 	public void register(RecipeBoardVO vo, List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception;
+	public RecipeBoardVO view(Integer bno) throws Exception;
 }

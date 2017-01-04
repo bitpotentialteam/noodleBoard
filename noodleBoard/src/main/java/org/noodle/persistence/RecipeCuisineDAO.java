@@ -8,7 +8,7 @@ public interface RecipeCuisineDAO {
 
 	
 	public void create(RecipeCuisineVO vo) throws Exception;
-	public RecipeCuisineVO read(Integer bno)throws Exception;
+	public List<RecipeCuisineVO> read(Integer bno)throws Exception;
 	public void update(RecipeCuisineVO vo)throws Exception;
 	public void delete(Integer bno)throws Exception;
 	

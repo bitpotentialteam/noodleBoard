@@ -1,5 +1,8 @@
 package org.noodle.service;
 
+import java.util.List;
+
+import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.domain.RecipeImageVO;
 import org.noodle.persistence.RecipeImageDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +20,9 @@ public class RecipeImageServiceImpl implements RecipeImageService {
 	}
 
 	@Override
-	public RecipeImageVO view(Integer ino) throws Exception {
+	public List<RecipeImageVO> view(RecipeImageVO vo) throws Exception {
 
-		return dao.read(ino);
+		return dao.read(vo);
 	}
 
 	@Override

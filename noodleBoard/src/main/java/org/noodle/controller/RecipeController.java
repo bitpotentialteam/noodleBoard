@@ -1,9 +1,10 @@
 package org.noodle.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.noodle.domain.PageMaker;
-import org.noodle.domain.PageVO;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.domain.RecipeImageVO;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -77,8 +79,15 @@ public class RecipeController {
 	
 	
 	@GetMapping("/view")
-	public void view() throws Exception {
+	public void view(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri, Model model) throws Exception {
+
 		logger.info("view.............");
+		model.addAttribute("vo", service.view(bno));
+		model.addAttribute("clist", cservice.view(bno));
+		
+		PageMaker pageMaker = new PageMaker();		
+		pageMaker.setPageVO(cri);
+		model.addAttribute("pageMaker", pageMaker);
 	}
 
 }

@@ -9,7 +9,7 @@
 		insert 
 			into tbl_recipeImage (bno, ino, step, image, thumbnail)
 		values 
-			(seq_recipeBoard.currval, seq_recipeImage.nextval, #{step}, 
+			(seq_recipeBoard.currval, seq_recipeImage.nextval, #{step, jdbcType=INTEGER}, 
 			#{image}, #{thumbnail,jdbcType=VARCHAR})
 	</insert>
 	
@@ -17,7 +17,7 @@
 		select 
 			* 
 		from 
-			tbl_recipeImage where ino =#{ino}
+			tbl_recipeImage where ino =#{ino, jdbcType=INTEGER}
 	</select>
 
 	<delete id="delete">

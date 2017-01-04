@@ -8,6 +8,7 @@ public class RecipeBoardVO {
 	private Integer mno;
 	private Integer bno;
 	private Integer ino;
+	private String nickname;
 	private String title;
 	private String content;
 	private String materialContent;
@@ -33,6 +34,12 @@ public class RecipeBoardVO {
 	}
 	public void setIno(Integer ino) {
 		this.ino = ino;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getTitle() {
 		return title;
@@ -84,9 +91,10 @@ public class RecipeBoardVO {
 	}
 	@Override
 	public String toString() {
-		return "RecipeBoardVO [mno=" + mno + ", bno=" + bno + ", ino=" + ino + ", title=" + title + ", content="
-				+ content + ", materialContent=" + materialContent + ", viewCnt=" + viewCnt + ", likeCnt=" + likeCnt
-				+ ", replyCnt=" + replyCnt + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
+		return "RecipeBoardVO [mno=" + mno + ", bno=" + bno + ", ino=" + ino + ", nickname=" + nickname + ", title="
+				+ title + ", content=" + content + ", materialContent=" + materialContent + ", viewCnt=" + viewCnt
+				+ ", likeCnt=" + likeCnt + ", replyCnt=" + replyCnt + ", regdate=" + regdate + ", updatedate="
+				+ updatedate + "]";
 	}
 	
 }
