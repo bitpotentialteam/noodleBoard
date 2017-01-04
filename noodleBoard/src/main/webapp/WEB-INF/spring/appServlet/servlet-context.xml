@@ -44,7 +44,15 @@
 			<beans:ref bean="keyInterceptor"/>
 		</interceptor>
 	</interceptors>
+	
+	<beans:bean id="URLInterceptor" class="org.noodle.interceptor.URLInterceptor"></beans:bean>
 
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/urlRegister"/>
+			<beans:ref bean="URLInterceptor"/>
+		</interceptor>
+	</interceptors>
 	<context:component-scan base-package="org.noodle.controller" />
 
 
