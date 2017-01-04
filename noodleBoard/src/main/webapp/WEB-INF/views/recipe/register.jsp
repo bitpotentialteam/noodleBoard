@@ -133,8 +133,7 @@ button#addStepBtn {
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
 							<input type="hidden" class="form-control"
-								placeholder="Mno" name="mno" id="mno" required
-								data-validation-required-message="Please enter title.">
+								placeholder="Mno" name="mno" id="mno" value="104">
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>

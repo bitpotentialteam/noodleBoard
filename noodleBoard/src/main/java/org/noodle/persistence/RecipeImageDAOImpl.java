@@ -24,9 +24,9 @@ public class RecipeImageDAOImpl implements RecipeImageDAO {
 	}
 
 	@Override
-	public List<RecipeImageVO> read(RecipeImageVO vo) throws Exception {
+	public RecipeImageVO read(Integer ino) throws Exception {
 
-		return session.selectList(namespace +"read", vo);
+		return session.selectOne(namespace +"read", ino);
 	}
 
 	@Override
