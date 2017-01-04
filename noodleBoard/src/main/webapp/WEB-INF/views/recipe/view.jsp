@@ -302,10 +302,16 @@ h1 {
 
 	<!-- jQuery 2.2.3 -->
 	<script src="../resources/vendor/jquery/jquery-2.2.3.min.js"></script>
+	
 	<!-- Bootstrap 3.3.6 -->
 	<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	
 	<!-- iCheck -->
 	<script src="../resources/vendor/jquery/icheck.min.js"></script>
+	
+	<!-- Theme JavaScript -->
+    <script src="../resources/js/agency.min.js"></script>
+	
 	<script>
 		$(function() {
 			$('input').iCheck({

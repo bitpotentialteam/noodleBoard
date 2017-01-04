@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,69 +40,84 @@
 <body>
 
 <style>
+.navbar-custom  {
+	background-color: #222;
+}
 #fileDrop {
-	width: 80%;
-	height: 300px;
-	border: 1px dotted pink;
-	background-color: lightslategrey;
+	width: 150px;
+	height: 150px;
+	border: 1px dotted gray;
+	background-color: #fed136;
+	background-size: cover;
 	margin: auto;
 }
 
-small {
-	width: 100%;
-	height: 200px;
-	color: pink;
+#fileDrop div {
+	display:inline;
 }
+
+
+textarea {
+	width: 100%;
+	height:125px;
+}
+
+button#addStepBtn {
+	width:100%;
+}
+
+#delStepBtn{
+	font-size: 2em;
+}
+
 </style>
 
 
-	<!-- Navigation -->
-	<nav id="mainNav"
-		class="navbar navbar-default navbar-custom navbar-fixed-top">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header page-scroll">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-3">
-				<span class="sr-only">Toggle navigation</span> Menu <i
-					class="fa fa-bars"></i>
-			</button>
-			<a class="navbar-brand page-scroll" href="#page-top">Noodles.com</a>
-		</div>
+<!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Noodles.com</a>
+            </div>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="hidden"><a href="#page-top"></a></li>
-				<li><a class="page-scroll" href="/wiki">Noodle-Wiki</a></li>
-				<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
-				<li><a class="page-scroll" href="/timeline">Community</a></li>
-				<li><a class="page-scroll" href="/developer/api">Developer</a></li>
-				<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
-				<li><a class="page-scroll" href="/user/register" id="register">SING-IN</a></li>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid --> </nav>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden"><a href="#page-top"></a></li>
+					<li><a class="page-scroll" href="/wiki">Noodle-Wiki</a></li>
+					<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
+					<li><a class="page-scroll" href="/timeline">Community</a></li>
+					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
+					
+					<c:if test='${sessionScope.LOGIN eq success}'>
+					<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
+					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
+					</c:if>
+					<c:if test='${sessionScope.LOGIN ne success}'>
+					<li><a class="page-scroll" href="/user/login" id="login">LOGOUT</a></li>
+					<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
+					</c:if>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
-	<!-- Page Header -->
-	<!-- Set your background image for this header on the line below. -->
-	<header class="intro-header"
-		style="background-image: url('../resources/img/noodle.jpg')">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<div class="page-heading">
-					<h1>Regist</h1>
-					<hr class="small">
-
-				</div>
-			</div>
-		</div>
-	</div>
-	</header>
+        <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Welcome To Noodle.com!</div>
+                <div class="intro-heading">Noodels Title</div>
+                <a href="#recipe" class="page-scroll btn btn-xl">Tell Me More</a>
+            </div>
+        </div>
+    </header>
 
 	<!-- Main Content -->
 	<div class="container">
@@ -111,15 +127,17 @@ small {
 				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
 				</p>
 				<form action="register" method="post">
+					
 					<div class="row control-group" name="mno">
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
-							<label>MNO임시 테스트용</label> <input type="text" class="form-control"
+							<input type="hidden" class="form-control"
 								placeholder="Mno" name="mno" id="mno" required
 								data-validation-required-message="Please enter title.">
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>
+					
 					<div class="row control-group" name="title">
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
@@ -129,29 +147,53 @@ small {
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>
+					
 					<label>설명</label>
-					<textarea name="content" id="content" rows="10" cols="100"></textarea>
+					<textarea name="content" id="content"></textarea>
 							<p class="help-block text-danger"></p>
+					
 					<div class="row control-group" id="materialContent">
-						<div
-							class="form-group col-xs-12 floating-label-form-group controls">
-							<label>재료</label> <input type="text" class="form-control"
-								placeholder="Material Content" name="materialContent"
-								id="materialContent" required
-								data-validation-required-message="Please enter material.">
+						<div class="form-group col-xs-12 floating-label-form-group controls">
+							<label>재료</label>
+							<input type="text" class="form-control"
+							placeholder="Material Content" name="materialContent"
+							id="materialContent" required
+							data-validation-required-message="Please enter material.">
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>
 					
-					<label>조리순서 (image drag&drop)</label>
-					<div class="row control-group">
-						<div
-							class="form-group col-xs-12 floating-label-form-group controls">
-							<div class="form-group">
-								<div class="form-control" id="fileDrop"></div>
-								<div class="uploadedList"></div>
-							</div>
+					<div class="row control-group" >
+						<div class="form-group col-xs-12 floating-label-form-group controls">
+						<label>조리순서 (image drag&drop)</label>
+							<div id="steps">
 							
+								<!-- START -->
+								<div class="media form-group" id="step">
+									<div class="media-left media-middle">			
+										<div class="form-control" id="fileDrop">
+											<input type='hidden' name='ilistThumbnail' value="">
+										</div>
+									</div>
+									 <div class="media-body">
+									 	<h4 class="media-heading">STEP 1</h4>
+										<textarea name='clistContent'></textarea>
+										
+										<!-- after upload -->
+										<div class="uploadedList">
+										
+										</div>
+									</div>
+									<div class="media-right media-middle">
+										<span id="delStepBtn" class="glyphicon glyphicon-ok-circle"></span>
+									</div>	
+								</div>
+								<!-- END -->
+								
+							</div>
+								<button type="button" class="btn btn-default btn-lg" id="addStepBtn">
+								  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+								</button>
 						</div>
 					</div>
 					<div class="-right row">
@@ -205,142 +247,200 @@ small {
 
 	<!-- Contact Form JavaScript -->
 	<script src="../resources/js/jqBootstrapValidation.js"></script>
-	<script src="../resources/js/contact_me.js"></script>
-
-	<script src="../resources/js/upload.js" type="text/javascript"></script>
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	
+	<!-- Theme JavaScript -->
+    <script src="../resources/js/agency.min.js"></script>
 	
 	<script>
-	$("#registerBtn").on("click", function(event){
-		formObj.submit();
-		alert("등록 완료!");
-	
-	});
+	$(document).ready(function(){
+		//Steps START
+		var $steps = $("#steps");
 		
-	$("#fileDrop").on("dragenter dragover", function(event) {
+		var indexOfStep = function(){
+			var $children = $steps.children();
 
-		event.preventDefault();
-	});
-
-	var i = 0;
-	var j = 0;
-	
-	$("#fileDrop").on("drop", function(event) {
-		event.preventDefault();
-		var files = event.originalEvent.dataTransfer.files;
-
-		var file = files[0];
-		console.log(file);
-
-		var formData = new FormData();
-
-		formData.append("file", file);
-
-	
-		$.ajax({
-			url : '/uploadAjax',
-			data : formData,
-			dataType : 'text',
-			processData : false,
-			contentType : false,
-			method : 'POST',
-			success : function(data) {
-				console.log(data);
-				var str="";
-				i++;
-				if(checkImageType(data)){
-					
-					//var ilist = new Array();
-					//var clist = new Array();
-					
-					str = "<div>"
-							+"<div><img src='/displayFile?fileName="+data+"'/></div>"
-							+"<div>"
-								+"<input type= 'hidden' name='ilist["+j+"].thumbnail' value="+getOriginalName(data)+">"+getOriginalName(data)+"</div>"
-							+"<div>"
-								+"<input type='hidden' id='step' name='clist["+j+"].step'>"+i+"</div>"
-							+"<input type='text' name='clist["+j+"].content'></div>";
+			for(var i =  0; i < $children.length ; i++){
+				var index = i +1; 
+				$children.eq(i).find('h4.media-heading').html("STEP "+ index);	
 				
-							
-							j++;
-							
-				}else{
-					str = "<div>"+getOriginalName(data)+"</div>";
-				}
-				alert("이미지가 등록되었습니다헤헿");
-				$(".uploadedList").append(str);
+				}	
+		};
+		
+		$("#addStepBtn").on("click", function(event){
+			 
+			var stepStr = "<div class='media form-group' id='step'><div class='media-left media-middle'>"
+			+ "<div class='form-control' id='fileDrop'><input type='hidden' name='ilistThumbnail' value=''></div></div>"
+			+"<div class='media-body'><h4 class='media-heading'>STEP</h4><textarea name='clistContent'></textarea></div>"
+			+"<div class='media-right media-middle'><span id='delStepBtn' class='glyphicon glyphicon-remove-circle'></span></div></div>";
+			
+			$steps.append(stepStr);
+			
+			var stepCnt = $steps.get(0).childElementCount;
+			
+			if(stepCnt != 1){
+				$steps.find("#delStepBtn").removeClass("glyphicon glyphicon-ok-circle").addClass("glyphicon glyphicon-remove-circle");
 			}
 			
+			indexOfStep();
+			
 		});
+		
+		
+		$(document).on("click","#delStepBtn", function(event){
+			
+			var $this = $(this);
+			var $tihsDiv = $this.parent().parent(".media");
+						
+			var stepCnt = $steps.get(0).childElementCount;
+			if(stepCnt !== 1){
+				$tihsDiv.remove();
+				stepCnt--;
+			}
+	
+			if(stepCnt == 1){
+				$steps.find("#delStepBtn").removeClass("glyphicon glyphicon-remove-circle").addClass("glyphicon glyphicon-ok-circle");
+			}
+			
+			indexOfStep();
+			
+		});
+		
+		//Steps END
+		
+		$("#registerBtn").on("click", function(event){
+			formObj.submit();
+			alert("등록 완료!");
+		
+		});
+		
+			
+		$("#fileDrop").on("dragenter dragover", function(event) {
+			event.preventDefault();
+		});
+
+		
+		$("#fileDrop").on("drop", function(event) {
+			event.preventDefault();
+			var $this = $(this);
+			console.log($this);
+			var files = event.originalEvent.dataTransfer.files;
+
+			var file = files[0];
+			console.log(file);
+
+			var formData = new FormData();
+
+			formData.append("file", file);
+
+		
+			$.ajax({
+				url : '/uploadAjax',
+				data : formData,
+				dataType : 'text',
+				processData : false,
+				contentType : false,
+				method : 'POST',
+				success : function(data) {
+					console.log(data);
+					var str="";
+
+					if(checkImageType(data)){
+						
+						//var ilist = new Array();
+						//var clist = new Array();
+						var imgURL = "/displayFile?fileName="+data;
+						str = "<div>"
+								+"<div><img src='/displayFile?fileName="+data+"'/></div>"
+								+"<div><input type= 'hidden' name='ilist[j].thumbnail' value="+getOriginalName(data)+">"+getOriginalName(data)+"</div>"
+								+"<div><input type='hidden' id='step' name='clist[j].step'>i</div>"
+								+"<input type='text' name='clist[j].content'>"
+							+"</div>";
+
+								
+					}else{
+						str = "<div>"+getOriginalName(data)+"</div>";
+					}
+					alert("이미지가 등록되었습니다헤헿");
+					$("#fileDrop").css("background","url("+imgURL+") top left no-repeat").css("background-size","contain");
+				}
+				
+			});
+		});
+
+
+		$("#regBtn").submit(function(event) {
+			event.preventDefault();
+
+		})
+		var that = $(this);
+		var str = "";
+
+		$(".uploadedList .regBtn").each(
+				function(index) {
+					str += "<input type = 'hidden' name='files[" + index
+							+ "]' value='" + $(this).attr("href") + "'>";
+
+				});
+
+		that.append(str);
+
+		that.get(0).submit();
+
+		
+		
+		function checkImageType(fileName) {
+			var pattern = /jpg|gif|png|jpeg/i;
+			return fileName.match(pattern);
+		}
+
+		function getFileInfo(fullName) {
+
+			var fileName, imgsrc, getLink;
+			var FileLink;
+
+			if (checkImageType(fullName)) {
+				console.log(fullName);
+				imgsrc = "displayFile?fileName=" + fullName;
+				fileLink = fullName.substr(14);
+				console.log(imgsrc);
+				console.log(fileLink);
+
+				var front = fullName.substr(0, 12);
+				var end = fullName.substr(14);
+
+				getLink = "displayFile?fileName=" + front + end;
+			} else {
+				imgsrc = "../resources/bootstrap/img/file.png";
+				fileLink = fullName.substr(12);
+				getLink = "displayFile?fileName=" + fullName;
+			}
+			fileName = fileLink.substr(fileLink.indexOf("_") + 1);
+
+			return {
+				fileName : fileName,
+				imgsrc : imgsrc,
+				getLink : getLink,
+				fullName : fullName
+			};
+
+		}
+		function getOriginalName(fileName) {
+			if(checkImageType(fileName)){
+				var idx = fileName.indexOf("_")+38;
+				return fileName.substr(idx);
+			}
+
+			var idx = fileName.indexOf("_") +1 ;
+			return fileName.substr(idx);
+			
+		}
+		
+		
+		
 	});
 
-
-	$("#regBtn").submit(function(event) {
-		event.preventDefault();
-
-	})
-	var that = $(this);
-	var str = "";
-
-	$(".uploadedList .regBtn").each(
-			function(index) {
-				str += "<input type = 'hidden' name='files[" + index
-						+ "]' value='" + $(this).attr("href") + "'>";
-
-			});
-
-	that.append(str);
-
-	that.get(0).submit();
-
 	
 	
-	function checkImageType(fileName) {
-		var pattern = /jpg|gif|png|jpeg/i;
-		return fileName.match(pattern);
-	}
-
-	function getFileInfo(fullName) {
-
-		var fileName, imgsrc, getLink;
-		var FileLink;
-
-		if (checkImageType(fullName)) {
-			console.log(fullName);
-			imgsrc = "displayFile?fileName=" + fullName;
-			fileLink = fullName.substr(14);
-			console.log(imgsrc);
-			console.log(fileLink);
-
-			var front = fullName.substr(0, 12);
-			var end = fullName.substr(14);
-
-			getLink = "displayFile?fileName=" + front + end;
-		} else {
-			imgsrc = "../resources/bootstrap/img/file.png";
-			fileLink = fullName.substr(12);
-			getLink = "displayFile?fileName=" + fullName;
-		}
-		fileName = fileLink.substr(fileLink.indexOf("_") + 1);
-
-		return {
-			fileName : fileName,
-			imgsrc : imgsrc,
-			getLink : getLink,
-			fullName : fullName
-		};
-
-	}
-	function getOriginalName(fileName) {
-		if(checkImageType(fileName)){
-			var idx = fileName.indexOf("_")+38;
-			return fileName.substr(idx);
-		}
-
-		var idx = fileName.indexOf("_") +1 ;
-		return fileName.substr(idx);
-		
-	}
 	</script>
 </body>
 </html>
