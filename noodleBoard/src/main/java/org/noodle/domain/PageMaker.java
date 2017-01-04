@@ -11,7 +11,7 @@ public class PageMaker {
 	
 	private PageVO pageVO;
 	private SearchVO cri;
-	private int displayPageNum = 9;
+	private int displayPageNum = 10;
 	
 	public int getDisplayPageNum() {
 		return displayPageNum;
@@ -41,33 +41,32 @@ public class PageMaker {
 		
 		startPage = (endPage - displayPageNum) + 1;
 		
-		int tempEndPage = (int) (Math.ceil(totalCount / (double)displayPageNum) * displayPageNum);
+		int tempEndPage = (int) (Math.ceil(totalCount / (double)pageVO.getPageUnit()));
 		
-		if(endPage < tempEndPage){
+		if(endPage > tempEndPage){
 			endPage = tempEndPage;
 		}
 		
 		prev = startPage == 1? false : true;
 		
-		next = endPage * displayPageNum >= totalCount? false : true; 
+		next = endPage * pageVO.getPageUnit() >= totalCount? false : true; 
 		
 	}
 	
 	public String makeQuery(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
-				.queryParam("perPageNum", displayPageNum)
+				.queryParam("perPageNum", pageVO.getPageUnit())
 				.build();
 		
 		return uriComponents.toUriString();
 	}
 
 	public String makeSearch(int page){
-		System.out.println("PageMaker.makeSearch called....."); 
 		
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
-				.queryParam("perPageNum", displayPageNum)
+				.queryParam("perPageNum", pageVO.getPageUnit())
 				.build();
 		
 		if(cri != null){

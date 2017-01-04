@@ -62,9 +62,9 @@ public class RecipeController {
 	public void list(@ModelAttribute("cri")SearchVO cri,Model model) throws Exception {
 		
 		logger.info("listAll.............");
-		model.addAttribute("list", service.listAll(cri));
+		model.addAttribute("list", service.search(cri));
 		
-		logger.info("listAll callll.........."+ service.listAll(cri).toString());
+		logger.info("listAll callll.........."+ service.search(cri).toString());
 		PageMaker pageMaker = new PageMaker();
 		
 		pageMaker.setPageVO(cri);
@@ -75,14 +75,6 @@ public class RecipeController {
 
 	}
 	
-	
-	@GetMapping("/testlist")
-	public void listAll(PageVO vo,Model model) throws Exception {
-		System.out.println("testList callll..........");
-		model.addAttribute("list", service.listAll(vo));
-		System.out.println("listAll callll.........."+ service.listAll(vo).toString() );
-		
-	}
 	
 	@GetMapping("/view")
 	public void view() throws Exception {

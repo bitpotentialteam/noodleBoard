@@ -116,21 +116,21 @@
 		<!-- list div END -->
 
 		<div class="text-center">
-			<ul class=pagination>
-				<c:if test="${pageMaker.prev}">
-					<li><a href="${pageMaker.startPage-1}" style="color: black">&laquo;</a></li>
-				</c:if>
-					<c:forEach begin="${pageMaker.startPage}"
-					end="${pageMaker.endPage }" var="idx">
-					<li <c:out value="${pageMaker.pageVO.page==idx?'class=active':''}"/>>
-						<a href="/recipe/list?=${pageMaker.makeSearch(pageMaker.pageVO.page)}" style="color: black"> ${idx} </a>
-					</li>
-				</c:forEach>
-				<c:if test="${pageMaker.next}">
-					<li><a href="/recipe/list?=${pageMaker.endPage+1}" style="color: black">&raquo;</a></li>
-				</c:if>
-			</ul>
-		</div>
+		<ul class="pagination">
+			<c:if test="${pageMaker.prev}">
+							<li><a href="${pageMaker.makeQuery(pageMaker.startPage-1) }">이전</a></li>
+						</c:if> <c:forEach begin="${pageMaker.startPage}"
+							end="${pageMaker.endPage}" var="idx">
+							<li
+								<c:out value="${pageMaker.pageVO.page == idx? 'class = active':''}"/>>
+								<a href="${pageMaker.makeQuery(idx)}">${idx}</a>
+							</li>
+						</c:forEach> 
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+							<li><a href="${pageMaker.makeQuery(pageMaker.endPage+1)}">다음</a></li>
+						</c:if> 
+		</ul>
+	</div>
 		
 	</div>
 
@@ -142,51 +142,49 @@
 		</div>
 
 
-<!-- 		<div class='box-body'> -->
+		<div class='box-body'>
 
-<!-- 			<select name="searchType"> -->
-<!-- 				<option value="n" -->
-<%-- 					<c:out value="${cri.searchType == null?'selected':''}"/>> --%>
-<!-- 					---</option> -->
-<!-- 				<option value="t" -->
-<%-- 					<c:out value="${cri.searchType eq 't'?'selected':''}"/>> --%>
-<!-- 					제목</option> -->
-<!-- 				<option value="c" -->
-<%-- 					<c:out value="${cri.searchType eq 'c'?'selected':''}"/>> --%>
-<!-- 					내용</option> -->
-<!-- 				<option value="w" -->
-<%-- 					<c:out value="${cri.searchType eq 'w'?'selected':''}"/>> --%>
-<!-- 					작성자</option> -->
-<!-- 				<option value="tc" -->
-<%-- 					<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>> --%>
-<!-- 					제목+내용</option> -->
-<!-- 				<option value="cw" -->
-<%-- 					<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>> --%>
-<!-- 					내용+작성자</option> -->
-<!-- 				<option value="tcw" -->
-<%-- 					<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>> --%>
-<!-- 					제목+내용+작성자</option> -->
-<!-- 			</select> -->
+			<select name="searchType">
+				
+				<option value="t"
+					<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+					제목</option>
+				<option value="c"
+					<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+					내용</option>
+				<option value="w"
+					<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+					작성자</option>
+				<option value="tc"
+					<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+					제목+내용</option>
+				<option value="cw"
+					<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
+					내용+작성자</option>
+				<option value="tcw"
+					<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
+					제목+내용+작성자</option>
+			</select>
 
-<!-- 			<p></p> -->
-<!-- 			<input type="text" name='keyword' id="keywordInput" -->
-<%-- 				value='${cri.keyword}'> --%>
-<!-- 			<p></p> -->
+			<p></p>
+			<input type="text" name='keyword' id="keywordInput"
+				value='${cri.keyword}'>
+			<p></p>
 
-<!-- 			<button id='searchBtn'>Search</button> -->
+			<button id='searchBtn'>Search</button>
 
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- 	</section> -->
+		</div>
+	</div>
+	</section>
 
-<!-- <form id="pageForm"> -->
-<%-- 	<input type="hidden" name="page" value="${pageMaker.pageVO.page }"> --%>
-<!-- 	<input type="hidden" name="pageUnit" -->
-<%-- 		value="${pageMaker.pageVO.pageUnit }"> --%>
-<!-- 		<input type="hidden" -->
-<%-- 		name="searchType" value="${cri.searchType}"> <input --%>
-<%-- 		type="hidden" name="keyword" value="${cri.keyword}"> --%>
-<!-- </form> -->
+<form id="pageForm">
+	<input type="hidden" name="page" value="${pageMaker.pageVO.page }">
+	<input type="hidden" name="pageUnit"
+		value="${pageMaker.pageVO.pageUnit }">
+		<input type="hidden"
+		name="searchType" value="${cri.searchType}"> <input
+		type="hidden" name="keyword" value="${cri.keyword}">
+</form>
 
 	<footer>
 	<div class="container">
@@ -231,6 +229,7 @@
 						self.location = "register";
 					});
 				});
+			
 	</script>
 
 	<!-- jQuery -->
