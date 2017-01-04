@@ -110,7 +110,7 @@ body {
 					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
 				</c:if>
 				<c:if test='${sessionScope.LOGIN ne success}'>
-					<li><a class="page-scroll" href="/user/login" id="login">LOGOUT</a></li>
+					<li><a class="page-scroll" id="login" href="<c:url value="/logout" />">LOGOUT</a></li>
 					<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
 				</c:if>
 			</ul>
