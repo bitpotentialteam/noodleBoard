@@ -205,7 +205,7 @@ div .replyDiv{
 			<!-- .box-header START -->
 				<div class="box-header with-border">
 					<div class="user-block">
-						<img class="img-circle" src="show?name=${sessionScope.VO.picture}" alt="User Image">
+						<img class="img-circle" src="/user/show?name=${sessionScope.VO.picture}">
 						<span class="username">${sessionScope.VO.nickname}</span>   
 					</div>
 				</div>
@@ -230,8 +230,8 @@ div .replyDiv{
 						<!-- .box-header START -->
 						<div class="box-header with-border">
 							<div class="user-block">
-								<img class="img-circle" src="show?name=${vo.picture}" alt="User Image">
-								<span class="username"><a href="#"> ${vo.nickname}</a></span>
+								<img class="img-circle" src="/user/show?name=${vo.picture}" alt="User Image">
+								<span class="username"> ${vo.nickname}</span>
 								<span class="description"> ${vo.regDate} </span>
 								<button type="button" value="${vo.tno}" id="removeBtn" class="pull-right text-muted"> 
 									<span class="glyphicon glyphicon-trash"></span>
@@ -636,7 +636,7 @@ div .replyDiv{
 
 					str += "<div class='box-comment'>" + 
 					"<img class='img-circle img-sm' "+
-					"src=show?name="+ picture + "alt='User Image'>" +
+					"src=/user/show?name="+ picture + "alt='User Image'>" +
 					"<div class='comment-text'> " +
 					"<span class='username'>" + nick + " <span class='text-muted pull-right'>" +
 					regDate + " </span></span> " + content + "<button type='submit' id='removeReply' value='" + trno + "'> x </button></div> </div>";
@@ -713,7 +713,7 @@ div .replyDiv{
 				    				console.log(result[j].nickname);
 										 
 									lastStr = "<div class='box box-solid' id='timelineBox'> 	<!-- .box-header START --> "+
-									"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='show?name=${vo.picture}' alt='User Image'>" +
+									"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='/user/show?name=${vo.picture}' alt='User Image'>" +
 									" <span class='username'><a href='#'>"+ nickname +"</a></span> <span class='description'> "+ regDate +" </span> "+ 
 									" <button type='button' value='${vo.tno}' id='removeBtn' class='pull-right text-muted'> <span class='glyphicon glyphicon-trash'></span>"+
 									" </button>  <button type='button' value='${vo.tno}' id='modifyBtn' class='modify pull-right text-muted'> "+
@@ -795,7 +795,7 @@ div .replyDiv{
 			    				console.log(result[j].nickname);
 									 
 								fistlist = "<div class='box box-solid' id='timelineBox'> 	<!-- .box-header START --> "+
-								"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='show?name=${vo.picture}' alt='User Image'>" +
+								"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='/user/show?name=${vo.picture}' alt='User Image'>" +
 								" <span class='username'><a href='#'>"+ nickname +"</a></span> <span class='description'> "+ regDate +" </span> "+ 
 								" <button type='button' value='${vo.tno}' id='removeBtn' class='pull-right text-muted'> <span class='glyphicon glyphicon-trash'></span>"+
 								" </button>  <button type='button' value='${vo.tno}' id='modifyBtn' class='modify pull-right text-muted'> "+
