@@ -117,14 +117,15 @@
 	
 	<select id="listSaerch" resultType="RecipeBoardVO">
 		<![CDATA[
-		select 
-			* 
-		from 
-			tbl_recipeBoard 
-		where 
-			#{startPage, jdbcType=INTEGER} < bno 
-		and 
-			bno <= #{endPage, jdbcType=INTEGER}]]> 
+	    	   SELECT *
+ 		 FROM (
+	            select *
+	            from TBL_RECIPEBOARD
+	            order by bno desc
+	            )
+  		 WHERE rownum>= #{startPage, jdbcType=INTEGER}  
+  		 AND rownum <= #{endPage, jdbcType=INTEGER}
+			]]> 
 			
 		<include refid="search"></include>
 		
