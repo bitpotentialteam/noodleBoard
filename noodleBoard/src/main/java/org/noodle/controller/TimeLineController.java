@@ -67,7 +67,7 @@ public class TimeLineController {
 	
 	@GetMapping("/addlikeCnt")
 
-	public String likePost(TimeLineVO vo, Model model) throws Exception{
+	public String likecnt(TimeLineVO vo, Model model) throws Exception{
 		
 		logger.info("likelikelike....!");
 		
@@ -78,6 +78,16 @@ public class TimeLineController {
 		logger.info("addlikeCnt" + vo);
 
 		return "redirect:/timeline"; 
+	}
+	
+	@GetMapping("/likeHistory")
+
+	public String likeHistory(TimeLineVO vo) throws Exception{
+		
+		logger.info("like history 추적중ㅋㅋㅋ");
+
+
+		return service.likeHistory(vo); 
 	}
 	
 	@GetMapping("/firstListView")

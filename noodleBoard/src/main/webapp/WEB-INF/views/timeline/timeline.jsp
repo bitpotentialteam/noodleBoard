@@ -402,6 +402,7 @@ div .replyDiv{
 		
 		
 		$(document).on("click","#likeBtn", function(event){
+			
 			event.preventDefault();
 			
 			var tno = $(this).val();
@@ -412,11 +413,14 @@ div .replyDiv{
 			console.log(tno);
 			console.log(mno);
 			
+			
+			
+			
 			formObj.attr("action", "timeline/addlikeCnt");
 			formObj.attr("method", "get");
 			formObj.submit();
 			
-			if 
+			
 
 			
 // 	  		$.ajax({
