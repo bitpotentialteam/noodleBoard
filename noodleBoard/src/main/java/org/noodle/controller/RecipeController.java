@@ -1,5 +1,6 @@
 package org.noodle.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -45,17 +46,17 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/register")
-	public String registerPOST(RecipeBoardVO vo, RecipeImageVO ilist, RecipeCuisineVO clist, RedirectAttributes rttr) throws Exception {
+	public String registerPOST(RecipeBoardVO vo, ArrayList<RecipeImageVO> ilist, ArrayList<RecipeCuisineVO> clist, RedirectAttributes rttr) throws Exception {
 
 		logger.info("RegisterPOST FUCK");
 		
 //		List<RecipeImageVO> tilist = ilist;
 //		List<RecipeCuisineVO> tclist = clist;
-		
+		logger.info("vo : " + vo);
 		logger.info("ilist : "+ilist);
 		logger.info("clist : "+clist);
 		
-//		service.register(vo, ilist, clist);
+		service.register(vo, ilist, clist);
 		return "redirect:/recipe/list";
 	}
 	

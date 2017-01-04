@@ -20,9 +20,9 @@ public class RecipeImageServiceImpl implements RecipeImageService {
 	}
 
 	@Override
-	public List<RecipeImageVO> view(RecipeImageVO vo) throws Exception {
+	public RecipeImageVO view(Integer ino) throws Exception {
 
-		return dao.read(vo);
+		return dao.read(ino);
 	}
 
 	@Override
