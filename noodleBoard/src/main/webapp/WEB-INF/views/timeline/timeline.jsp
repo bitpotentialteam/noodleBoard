@@ -206,7 +206,7 @@ div .replyDiv{
 				<div class="box-header with-border">
 					<div class="user-block">
 						<img class="img-circle" src="show?name=${sessionScope.VO.picture}" alt="User Image">
-						<span class="username">${sessionScope.VO.nickname}</a></span>   
+						<span class="username">${sessionScope.VO.nickname}</span>   
 					</div>
 				</div>
 			<!-- .box-header END-->
@@ -431,6 +431,7 @@ div .replyDiv{
 					formObj.attr("action", "timeline/addlikeCnt");
 					formObj.attr("method", "get");
 					formObj.submit();
+					
     						
     					}else{
     						
