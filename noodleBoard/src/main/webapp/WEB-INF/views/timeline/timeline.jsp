@@ -413,12 +413,35 @@ div .replyDiv{
 			console.log(tno);
 			console.log(mno);
 			
+	 		$.ajax({
+    			type : 'get',
+    			url : '/timeline/likeHistory',
+    			headers : {
+    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+    				"X-HTTP-Method-Override" : "GET"
+    			},
+    			dataType : 'text',
+    			data : {tno : tno, mno:mno},
+    			success : function(result) {
+    				
+    				console.log(result);
+    				
+    					if(!result){
+    						
+					formObj.attr("action", "timeline/addlikeCnt");
+					formObj.attr("method", "get");
+					formObj.submit();
+    						
+    					}else{
+    						
+    						$("#likeBtn").attr('disabled',true);
+    						alert("이미 추천하셧슴니다!!!");
+    				
+    					}
+    			}
+    		});
 			
 			
-			
-			formObj.attr("action", "timeline/addlikeCnt");
-			formObj.attr("method", "get");
-			formObj.submit();
 			
 			
 

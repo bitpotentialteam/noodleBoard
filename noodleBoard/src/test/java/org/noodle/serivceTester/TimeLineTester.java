@@ -2,6 +2,8 @@ package org.noodle.serivceTester;
 
 
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.noodle.domain.TimeLineVO;
@@ -48,7 +50,7 @@ public class TimeLineTester {
 		TimeLineVO vo = new TimeLineVO();
 		
 		vo.setTno(75);
-		vo.setMno(105);
+		vo.setMno(8);
 		
 		service.addLikeCnt(vo);
 	}
@@ -58,8 +60,8 @@ public class TimeLineTester {
 
 		TimeLineVO vo = new TimeLineVO();
 		vo.setTno(75);
-		vo.setMno(103);
+		vo.setMno(9);
 		
-		service.likeHistory(vo);
+		logger.info("history : " + service.likeHistory(vo));
 	}
 }

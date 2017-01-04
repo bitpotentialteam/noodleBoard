@@ -81,12 +81,18 @@ public class TimeLineController {
 	}
 	
 	@GetMapping("/likeHistory")
-
-	public String likeHistory(TimeLineVO vo) throws Exception{
+	@ResponseBody
+	public String likeHistory(@RequestParam("tno") int tno, @RequestParam("mno") int mno) throws Exception{
 		
 		logger.info("like history 추적중ㅋㅋㅋ");
 
-
+		TimeLineVO vo = new TimeLineVO();
+		
+		vo.setMno(mno);
+		vo.setTno(tno);
+		
+		logger.info(vo.toString());
+		
 		return service.likeHistory(vo); 
 	}
 	
