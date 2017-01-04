@@ -31,25 +31,17 @@ public class UserController {
 	private URLService URLService;
 
 	
-	
-	
-	@GetMapping("/listAll")
-	public void listAll(Model model)throws Exception{
-		
-		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
-		Integer mno = service.read1(user.toString()).getMno();
-		
-		model.addAttribute("list",URLService.listAll(mno));
-	}
-	
 	@GetMapping("/apiRegister")
 	public void apiRegisterGET(Model model, HttpSession session) throws Exception {
 		logger.info("apiRegisterGET called.....");
+		
 		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
 		logger.info(user.toString());
+		
 		service.read1(user.toString());
 		MemberVO vo = service.read1(user.toString());
 
+		model.addAttribute("list", URLService.listAll(vo.getMno()));
 		session.setAttribute("VO", vo);
 	}
 

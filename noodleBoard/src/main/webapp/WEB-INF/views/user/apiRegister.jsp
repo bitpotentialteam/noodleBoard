@@ -149,18 +149,15 @@ body {
 						</div>
 					</form>
 					<br/>
-					<div class="box-footer">
-						<ul>
-							<c:forEach items="${list}" var="URLVO">
-								<li>
-									<h4>${URLVO.url},${urlVO.mno}</h4>
-								</li>
-							</c:forEach>
-						</ul>
-					</div>
-
-
-
+						<div class="box-footer">
+							<ul>
+								<c:forEach items="${list}" var="urlVO">
+									<li>
+										<h4>URL: ${urlVO.url}</h4>
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
 
 					<form action="apiRegister" method="POST">
 						<div class="form-group has-feedback">
