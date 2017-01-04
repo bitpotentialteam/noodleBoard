@@ -70,6 +70,11 @@
 body {
 	background: #222;
 }
+#apiBtn {
+	margin-left: 90%;
+	width: 14%;
+	height: 4em;
+}
 </style>
 
 <script
@@ -150,17 +155,9 @@ body {
 						<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY
 							PAGE</button>
 					</div>
-					<form action="create_client"  method="POST">
-						<div class="box-footer no-padding">
-							<ul>
-								<li class="list-group-item" id="client_ID"><h4>일회용ID</h4>${sessionScope.VO.client_ID}</li>
-								<li class="list-group-item" id="client_PW"><h4>일회용PW</h4>${sessionScope.VO.client_PW}</li>
-							</ul>
-						</div>
-					</form>
-					<form>
+					<form id ="apiForm">
 						<div class="box-footer">
-							<a href="apiRegitster"><button type="submit" class="btn btn-primary" id="apiBtn">발급하기</button></a>
+							<button type="submit" class="btn btn-primary" id="apiBtn">Using API</button>
 						</div>
 					</form>	
 					<!-- /.widget-user -->
@@ -202,6 +199,14 @@ body {
 				formObj.attr("method", "get");
 				formObj.attr("action", "../");
 				formObj.submit();
+			});
+			
+			var apiForm = $("#apiForm"); 
+			
+			$("#apiBtn").on("click", function(){
+				apiForm.attr("method", "get");
+				apiForm.attr("action", "/user/apiRegister")
+				apiForm.submit();
 			});
 
 		});
