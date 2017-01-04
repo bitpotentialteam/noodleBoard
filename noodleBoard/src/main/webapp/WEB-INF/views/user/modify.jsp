@@ -123,7 +123,7 @@ body {
 					<!-- Add the bg color to the header using any of the bg-* classes -->
 					<div class="widget-user-header bg-yellow">
 						<div class="widget-user-image">
-							<img class="img-circle" src="show?name=${sessionScope.VO.picture}"
+							<img class="img-circle" id="imageDrop" src="show?name=${sessionScope.VO.picture}"
 								alt="User Avatar">
 						</div>
 						<!-- /.widget-user-image -->
@@ -179,7 +179,43 @@ body {
 	<!-- AdminLTE for demo purposes -->
 	<script src="../resources/dist/js/demo.js"></script>
 	
+	<script>
+	$("#imageDrop").on("dragenter dragover", function(event) {
+		event.preventDefault();
+	});
 
+	
+	$("#imageDrop").on("drop", function(event) {
+		event.preventDefault();
+		var $this = $(this);
+		console.log($this);
+		var files = event.originalEvent.dataTransfer.files;
+
+		var file = files[0];
+		console.log(file);
+
+		var formData = new FormData();
+
+		formData.append("file", file);
+
+	
+		$.ajax({
+			url : '/uploadAjax',
+			data : formData,
+			dataType : 'text',
+			processData : false,
+			contentType : false,
+			method : 'POST',
+			success : function(data) {
+				console.log(data);
+
+				alert("이미지가 등록되었습니다.");
+				$("#imageDrop").css("background","url("+imgURL+") top left no-repeat").css("background-size","contain");
+			}
+			
+		});
+	});
+	</script>
 	
 </body>
 </html>
