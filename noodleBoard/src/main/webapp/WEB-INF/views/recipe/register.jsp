@@ -126,6 +126,7 @@ button#addStepBtn {
 				<p>
 				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
 				</p>
+				
 				<form action="register" method="post">
 					
 					<div class="row control-group" name="mno">
@@ -178,11 +179,6 @@ button#addStepBtn {
 									 <div class="media-body">
 									 	<h4 class="media-heading">STEP 1</h4>
 										<textarea name='clistContent'></textarea>
-										
-										<!-- after upload -->
-										<div class="uploadedList">
-										
-										</div>
 									</div>
 									<div class="media-right media-middle">
 										<span id="delStepBtn" class="glyphicon glyphicon-ok-circle"></span>
@@ -442,5 +438,16 @@ button#addStepBtn {
 	
 	
 	</script>
+<!-- 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#steps" ).sortable({placeholder: "ui-state-highlight",helper:'clone'});
+    $( "#steps" ).disableSelection();
+    
+  } );
+</script>
+-->
+	
 </body>
 </html>

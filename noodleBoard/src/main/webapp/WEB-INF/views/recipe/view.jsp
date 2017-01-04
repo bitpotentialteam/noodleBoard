@@ -42,128 +42,22 @@
     max-height: 100%;
     height: 360px;
 }
+
+textarea {
+	resize: none;
+}
+
+#stepImg {
+	width: 150px;
+	height: 150px;
+	border: 1px dotted gray;
+	background-color: #fed136;
+	background-size: cover;
+	margin: auto;
+}
 </style>
 
 </head>
-
-<style>
-div img {
-	width: 30%;
-	max-height: 30%;
-	height: 360px;
-}
-
-li {
-	list-style: none;
-}
-
-
-.header {
-	border: none;
-}
-
-.header img {
-	width: 50%;
-	max-height: 50%;
-	height: 360px;
-}
-
-#content {
-	width: 50%;
-	height: 150px;
-	padding: 12px 20px;
-	box-sizing: border-box;
-	border: 2px solid #ccc;
-	border-radius: 4px;
-	background-color: #f8f8f8;
-	resize: none;
-}
-
-#content2 {
-	width: 50%;
-	height: 150px;
-	padding: 12px 20px;
-	box-sizing: border-box;
-	border: 2px solid #ccc;
-	border-radius: 4px;
-	background-color: #f8f8f8;
-	resize: none;
-}
-
-/* The Modal (background) */
-.modal {
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0, 0, 0); /* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-	background-color: #fefefe;
-	margin: 15% auto; /* 15% from the top and centered */
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover, .close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-}
-/* The Close Button */
-
-/* mod button */
-.mod {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.mod:hover, .mod:focus {
-	color: black;
-	cursor: pointer;
-}
-
-div#temp {
-	border: 1px solid black;
-}
-
-input#content {
-	width: 100%;
-}
-#border{
-	border: 1px solid orange; 
-}
-
-h3 {
-	text-align:center;
-}
-h1 {
-	color:green;
-}
-
-.section-heading{
-	color:red;
-	data-maxlength:300;
-}
-</style>
 
 <body class="hold-transition login-page">
 
@@ -206,67 +100,79 @@ h1 {
     <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">Welcome To Noodle.com!</div>
-                <div class="intro-heading">Noodels Title</div>
-                <a href="#recipe" class="page-scroll btn btn-xl">Tell Me More</a>
+                <div class="intro-lead-in">${writer}의 맛있는</div>
+                <div class="intro-heading">title ${title}</div>
+                <a href="#recipe" class="page-scroll btn btn-xl">detail</a>
             </div>
         </div>
     </header>
     
     
-    
-<form id="recipe">
-<div class="container">
+<div class="container" id="recipe">
 		<div class="row">
+	
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 				<p>
-				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
-				</p>
-					<div class="row control-group" name="title">
-						<div
-							class="form-group col-xs-12 floating-label-form-group controls">
-							<label>메뉴명</label> <input type="text" class="form-control"
-								placeholder="Title" name="title" id="title" required
-								data-validation-required-message="Please enter title.">
-							<p class="help-block text-danger"></p>
-						</div>
-					</div>
-					<label>설명</label>
-					<textarea name="content" id="content" rows="10" cols="100"></textarea>
-							<p class="help-block text-danger"></p>
+				<h1>title ${title}</h1>
+				</p>		
 					<div class="row control-group" id="materialContent">
-						<div
-							class="form-group col-xs-12 floating-label-form-group controls">
-							<label>재료</label> <input type="text" class="form-control"
-								placeholder="Material Content" name="materialContent"
-								id="materialContent" required
-								data-validation-required-message="Please enter material.">
-							<p class="help-block text-danger"></p>
+						<div class="form-group col-xs-12 floating-label-form-group controls">
+							<label>설명</label>
+							<div id="content">
+								<p>내용${content}</p>
+							</div>
+						</div>
+					</div>								
+					
+					
+					<div class="row control-group" id="materialContent">
+						<div class="form-group col-xs-12 floating-label-form-group controls">
+							<label>재료</label>
+							<div id="matrial">
+								<p>재료내용${matrial}</p>
+							</div>
 						</div>
 					</div>
 					
-					<label>조리순서 (image drag&drop)</label>
-					<div class="row control-group">
-						<div
-							class="form-group col-xs-12 floating-label-form-group controls">
-							<div class="form-group">
-								<div class="form-control" id="fileDrop"></div>
-								<div class="uploadedList"></div>
+					<div class="row control-group" >
+						<div class="form-group col-xs-12 floating-label-form-group controls">
+						<label>조리순서</label>
+							<div id="steps">
+							
+								<c:forEach items="${list}" var="boardVO">
+								<!-- START -->
+								<div class="media form-group" id="step">
+									<div class="media-left media-middle">			
+										<div class="form-control" id="stepImg" background-image="url(/displayFile?fileName=${img})">
+											<!-- 사진 크게 보기 모달 창 넣기-->
+										</div>
+									</div>
+									 <div class="media-body">
+									 	<h4 class="media-heading">STEP ${step}</h4>
+										<div>
+											<p>${content}</p>
+										</div>
+									</div>
+								</div>
+								<!-- END -->
+								</c:forEach>
+								
 							</div>
 							
 						</div>
 					</div>
 					<div class="-right row">
 						<div class="form-group col-md-4">
-							<button type="submit" id="modifyBtn" class="btn btn-default-right">등 록</button>
+							<button type="submit" id="modifyBtn" class="btn btn-default-right">수 정</button>
+							<button type="submit" id="removeBtn" class="btn btn-default-right">삭 제</button>
 							<a href="list"><input type="button"
-								class="btn btn-default-right" value="목록가기"> </a>
+								class="btn btn-default-right" value="목 록"> </a>
 						</div>
 					</div>
 			</div>
+	
 		</div>
 	</div>
-</form>
 
 	<!-- Footer START -->
     <footer>
