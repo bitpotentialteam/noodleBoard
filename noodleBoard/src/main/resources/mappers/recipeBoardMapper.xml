@@ -96,7 +96,7 @@
 				and nickname like ('%'||#{keyword}||'%')
 			</if>
 			<if test="searchType == 'tc'.toString()">
-				and ( title like like ('%'||#{keyword}||'%') OR content like
+				and ( title like ('%'||#{keyword}||'%') OR content like
 				('%'||#{keyword}||'%') )
 			</if>
 			<if test="searchType == 'cw'.toString()">

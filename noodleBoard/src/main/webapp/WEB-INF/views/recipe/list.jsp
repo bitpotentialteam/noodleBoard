@@ -45,6 +45,15 @@
 	max-height: 100%;
 	height: 360px;
 }
+
+#regBtn{
+	position: absolute;
+	left: 300px;
+}
+
+.box{
+	
+}
 </style>
 
 </head>
@@ -95,19 +104,20 @@
 			<!-- items START -->
 			<c:forEach items="${list}" var="boardVO">
 				<div class="col-md-4 col-sm-6 portfolio-item">
-					<div class="portfolio-hover">
-						<div class="portfolio-hover-content">
-							<i class="fa fa-plus fa-3x"></i>
-						</div>
-					</div>
-					 <a
+<!-- 					<div class="portfolio-hover"> -->
+<!-- 						<div class="portfolio-hover-content"> -->
+<!-- 							<i class="fa fa-plus fa-3x"></i> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+					<a
 						href="/recipe/view${pageMaker.makeSearch(pageMaker.pageVO.page)}&bno=${boardVO.bno}">
 						<img src="../resources/img/noodle/${boardVO.ino}.jpg"
 						class="img-responsive" alt="image of ${boardVO.title}">
-					</a> 
+					</a>
 					<div class="portfolio-caption">
-						<h4>${boardVO.materialContent}</h4>
 						<p class="text-muted">${boardVO.content}</p>
+						<h5>닉네임</h5>
+						<h6>${boardVO.regdate}</h6>
 					</div>
 				</div>
 			</c:forEach>
@@ -116,24 +126,29 @@
 		<!-- list div END -->
 
 		<div class="text-center">
-		<ul class="pagination">
-			<c:if test="${pageMaker.prev}">
-							<li><a href="${pageMaker.makeQuery(pageMaker.startPage-1) }">이전</a></li>
-						</c:if> <c:forEach begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}" var="idx">
-							<li
-								<c:out value="${pageMaker.pageVO.page == idx? 'class = active':''}"/>>
-								<a href="${pageMaker.makeQuery(idx)}">${idx}</a>
-							</li>
-						</c:forEach> 
-						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-							<li><a href="${pageMaker.makeQuery(pageMaker.endPage+1)}">다음</a></li>
-						</c:if> 
-		</ul>
-	</div>
-		
+			<ul class="pagination">
+				<c:if test="${pageMaker.prev}">
+					<li><a href="${pageMaker.makeQuery(pageMaker.startPage-1) }">이전</a></li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
+					var="idx">
+					<li
+						<c:out value="${pageMaker.pageVO.page == idx? 'class = active':''}"/>>
+						<a href="${pageMaker.makeQuery(idx)}">${idx}</a>
+					</li>
+				</c:forEach>
+				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					<li><a href="${pageMaker.makeQuery(pageMaker.endPage+1)}">다음</a></li>
+				</c:if>
+			</ul>
+		</div>
+
 	</div>
 
+			<div class="form-group col-md-12" id="regBtn">
+			
+			<button type="submit" id="regBtn" class="btn btn-default-right">글쓰기</button>
+			
 
 
 	<div class='box'>
@@ -144,11 +159,12 @@
 
 		<div class='box-body'>
 
+	</div>
 			<select name="searchType">
-				
+
 				<option value="t"
 					<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
-					제목</option>
+					라면</option>
 				<option value="c"
 					<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
 					내용</option>
@@ -157,13 +173,13 @@
 					작성자</option>
 				<option value="tc"
 					<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-					제목+내용</option>
+					라면+내용</option>
 				<option value="cw"
 					<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
 					내용+작성자</option>
 				<option value="tcw"
 					<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
-					제목+내용+작성자</option>
+					라면+내용+작성자</option>
 			</select>
 
 			<p></p>
@@ -171,20 +187,18 @@
 				value='${cri.keyword}'>
 			<p></p>
 
-			<button id='searchBtn'>Search</button>
-
+			<button id="searchBtn" class="btn btn-primary">검색</button>
 		</div>
 	</div>
 	</section>
 
-<form id="pageForm">
-	<input type="hidden" name="page" value="${pageMaker.pageVO.page }">
-	<input type="hidden" name="pageUnit"
-		value="${pageMaker.pageVO.pageUnit }">
-		<input type="hidden"
-		name="searchType" value="${cri.searchType}"> <input
-		type="hidden" name="keyword" value="${cri.keyword}">
-</form>
+	<form id="pageForm">
+		<input type="hidden" name="page" value="${pageMaker.pageVO.page }">
+		<input type="hidden" name="pageUnit"
+			value="${pageMaker.pageVO.pageUnit }"> <input type="hidden"
+			name="searchType" value="${cri.searchType}"> <input
+			type="hidden" name="keyword" value="${cri.keyword}">
+	</form>
 
 	<footer>
 	<div class="container">
@@ -207,11 +221,11 @@
 		</div>
 	</div>
 	</footer>
-	
+
 	<!-- jQuery -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	
+
 	<script>
 		$(document).ready(
 				function() {
@@ -225,11 +239,10 @@
 										+ "&keyword="
 										+ $('#keywordInput').val();
 							});
-					$('#newBtn').on("click", function(evt) {
+					$('#regBtn').on("click", function(evt) {
 						self.location = "register";
 					});
 				});
-			
 	</script>
 
 	<!-- jQuery -->
@@ -238,8 +251,8 @@
 	<!-- Bootstrap Core JavaScript -->
 	<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-	<!-- Plugin JavaScript --> 
-	<script  
+	<!-- Plugin JavaScript -->
+	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
 	<!-- Contact Form JavaScript -->
