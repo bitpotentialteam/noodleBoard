@@ -31,6 +31,15 @@ public class UserController {
 	private URLService URLService;
 
 	
+	@PostMapping("/removeURL")
+	public void removeURL(Integer uno) throws Exception{
+		logger.info("removeURL");
+		
+		logger.info("uno: " + uno);
+		
+		URLService.remove(uno);
+	}
+	
 	@GetMapping("/apiRegister")
 	public void apiRegisterGET(Model model, HttpSession session) throws Exception {
 		logger.info("apiRegisterGET called.....");
