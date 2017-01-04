@@ -134,24 +134,9 @@ body {
 						<h3 class="widget-user-username">${sessionScope.VO.username}</h3>
 						<h5 class="widget-user-desc">${sessionScope.VO.nickname}</h5>
 					</div>
-					<form id="form">
-						<div class="box-footer no-padding">
 
-							<ul class="list-group">
-								<li class="list-group-item"><h4>ID</h4>${sessionScope.VO.userid}</li>
-								<li class="list-group-item"><h4>NAME</h4>${sessionScope.VO.username}</li>
-								<li class="list-group-item"><h4>NICKNAME</h4>${sessionScope.VO.nickname}</li>
-								<li class="list-group-item"><h4>E-MAIL</h4>${sessionScope.VO.email}</li>
-							</ul>
-						</div>
-					</form>
-					<div class="box-footer">
-						<button type="submit" class="btn btn-primary" id="goListBtn">MAIN</button>
-						<button type="submit" class="btn btn-warning" id="modifyBtn">MODIFY
-							PAGE</button>
-					</div>
-					<form action="create_client"  method="POST">
-						<div class="box-footer no-padding">
+					<form action="create_client" method="POST">
+						<div class="box-footer">
 							<ul>
 								<li class="list-group-item" id="client_ID"><h4>일회용ID</h4>${sessionScope.VO.client_ID}</li>
 								<li class="list-group-item" id="client_PW"><h4>일회용PW</h4>${sessionScope.VO.client_PW}</li>
@@ -162,7 +147,24 @@ body {
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary" id="makeBtn">발급하기</button>
 						</div>
-					</form>	
+					</form>
+					
+					
+					
+					
+					
+					
+					
+					<form action="apiRegister" method="POST">
+						<div class="form-group has-feedback">
+							<input type="text" id="url" name="url" class="form-control" placeholder="URL Address">
+						</div>
+						<div>
+							<button type="submit" class="btn btn-primary btn-flat">URL REGISTER</button>
+						</div>
+
+					</form>
+
 					<!-- /.widget-user -->
 				</div>
 			</div>
@@ -204,23 +206,23 @@ body {
 				formObj.submit();
 			});
 
-			$("#makeBtn").on("click",function(){
-				   console.log("check");
-			       var client_ID = $("#client_ID").val();
-			       var formData = new FormData();
-			        
-			       formData.append("client_ID", client_ID);
-			       
-			       $.get("create_client"); 
-			       
-			      if("${'CLIENTMSG'}" == "success"){
-			    	  alert("등록 성공되었습니다.");
-			    	  window.location.reload();
-			      }
-			      if("${'CLIENTMSG'}" == 'fail'){
-			    	  alert("이미 발급되었습니다.");
-			      }
-			   });
+			$("#makeBtn").on("click", function() {
+				console.log("check");
+				var client_ID = $("#client_ID").val();
+				var formData = new FormData();
+
+				formData.append("client_ID", client_ID);
+
+				$.get("create_client");
+
+				if ("${'CLIENTMSG'}" == "success") {
+					alert("등록 성공되었습니다.");
+					window.location.reload();
+				}
+				if ("${'CLIENTMSG'}" == 'fail') {
+					alert("이미 발급되었습니다.");
+				}
+			});
 		});
 	</script>
 
