@@ -55,6 +55,11 @@ textarea {
 	background-size: cover;
 	margin: auto;
 }
+
+#thumbnail{
+	background-size: contain;
+}
+
 </style>
 
 </head>
@@ -143,7 +148,7 @@ textarea {
 								<!-- START -->
 								<div class="media form-group" id="step">
 									<div class="media-left media-middle">			
-										<div class="form-control" id="thumbnail" background-image="url(/displayFile?fileName=${vo.thumbnail})">
+										<div class="form-control" id="thumbnail" style="background-image:url(../resources/img/noodle/${vo.thumbnail}.jpg)">
 											<!-- 사진 크게 보기 모달 창 넣기-->
 										</div>
 									</div>

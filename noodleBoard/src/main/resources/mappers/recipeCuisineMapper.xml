@@ -13,15 +13,19 @@
 	</insert>
 	
 	<select id="read" parameterType="int" resultType="RecipeCuisineVO">
-	<![CDATA[
-		select tbl_recipecuisine.bno, tbl_recipeimage.ino, tbl_recipecuisine.step, tbl_recipecuisine.ccontent, 
-       tbl_recipeimage.thumbnail, tbl_recipeimage.image
-      from tbl_recipecuisine
+	select board.*
+from( 
+  select tbl_recipecuisine.bno, tbl_recipeimage.ino, tbl_recipecuisine.step, tbl_recipecuisine.content, 
+       tbl_recipeimage.thumbnail, tbl_recipeimage.image, tbl_recipecuisine.regdate, tbl_recipecuisine.updatedate 
+       	 from tbl_recipecuisine
          join
          tbl_recipeimage
          on
-         tbl_recipeimage.bno = tbl_recipecuisine.bno and tbl_recipeimage.step = tbl_recipecuisine.step order by bno desc
-         ]]>
+         tbl_recipeimage.bno = tbl_recipecuisine.bno
+         and
+         tbl_recipeimage.step = tbl_recipecuisine.step
+         ) board
+         where bno = #{bno, jdbcType=INTEGER}
 	</select>
 	
 	<update id="update">

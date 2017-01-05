@@ -51,8 +51,8 @@
 	left: 300px;
 }
 
-.box{
-	
+#ellipsis{
+	text-overflow: ellipsis;
 }
 </style>
 
@@ -114,8 +114,8 @@
 						<img src="../resources/img/noodle/${boardVO.ino}.jpg"
 						class="img-responsive" alt="image of ${boardVO.title}">
 					</a>
-					<div class="portfolio-caption">
-						<p class="text-muted">${boardVO.content}</p>
+					<div class="portfolio-caption" id="ellipsis">
+						<p class="text-muted">${boardVO.title}</p>
 					
 					<c:set var="loop" value="true"></c:set>
 					<c:forEach items="${MemberList}" var="memberVO">
@@ -174,7 +174,7 @@
 
 				<option value="t"
 					<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
-					라면</option>
+					제목</option>
 				<option value="c"
 					<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
 					내용</option>
@@ -183,13 +183,13 @@
 					작성자</option>
 				<option value="tc"
 					<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-					라면+내용</option>
+					제목+내용</option>
 				<option value="cw"
 					<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
 					내용+작성자</option>
 				<option value="tcw"
 					<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
-					라면+내용+작성자</option>
+					제목+내용+작성자</option>
 			</select>
 
 			<p></p>
