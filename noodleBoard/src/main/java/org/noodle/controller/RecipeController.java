@@ -18,6 +18,7 @@ import org.noodle.service.RecipeImageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -105,7 +106,6 @@ public class RecipeController {
 		model.addAttribute("vo", service.view(bno));
 		model.addAttribute("clist", cservice.view(bno));
 		model.addAttribute("ilist", iservice.viewBno(bno));
-		
 		PageMaker pageMaker = new PageMaker();		
 		pageMaker.setPageVO(cri);
 		model.addAttribute("pageMaker", pageMaker);

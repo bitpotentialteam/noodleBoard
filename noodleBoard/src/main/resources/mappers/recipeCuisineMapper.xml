@@ -14,10 +14,10 @@
 	
 	<select id="read" parameterType="int" resultType="RecipeCuisineVO">
 	select board.*
-from( 
-  select tbl_recipecuisine.bno, tbl_recipeimage.ino, tbl_recipecuisine.step, tbl_recipecuisine.content, 
-       tbl_recipeimage.thumbnail, tbl_recipeimage.image, tbl_recipecuisine.regdate, tbl_recipecuisine.updatedate 
-       	 from tbl_recipecuisine
+from ( 
+  		select tbl_recipecuisine.bno, tbl_recipeimage.ino, tbl_recipecuisine.step, tbl_recipecuisine.content, 
+       	tbl_recipeimage.thumbnail, tbl_recipeimage.image, tbl_recipecuisine.regdate, tbl_recipecuisine.updatedate 
+       	from tbl_recipecuisine
          join
          tbl_recipeimage
          on
@@ -25,7 +25,7 @@ from(
          and
          tbl_recipeimage.step = tbl_recipecuisine.step
          ) board
-         where bno = #{bno, jdbcType=INTEGER};
+         where bno = #{bno, jdbcType=INTEGER}
 	</select>
 	
 	<update id="update">

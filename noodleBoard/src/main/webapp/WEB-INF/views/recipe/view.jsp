@@ -105,7 +105,7 @@ textarea {
     <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">${vo.nickname}의 맛있는</div>
+                <div class="intro-lead-in">${memeberVO.nickname}님의 맛있는</div>
                 <div class="intro-heading">${vo.title}</div>
                 <a href="#recipe" class="page-scroll btn btn-xl">detail</a>
             </div>
