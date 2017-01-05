@@ -10,6 +10,7 @@ public interface MemberService {
 	public void remove(int mno)throws Exception;
 	
 	public MemberVO read1(String userid)throws Exception;
+	public MemberVO viewNick(String nickName) throws Exception;
 	
 	public MemberVO login(MemberVO vo)throws Exception;
 	public String checkID(String userid)throws Exception;

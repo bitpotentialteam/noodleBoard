@@ -95,7 +95,7 @@
 				and content like ('%'||#{keyword}||'%')
 			</if>
 			<if test="searchType == 'w'.toString()">
-				and nickname like ('%'||#{keyword}||'%')
+				and mno = to_number(#{keyword})
 			</if>
 			<if test="searchType == 'tc'.toString()">
 				and ( title like ('%'||#{keyword}||'%') OR content like

@@ -40,7 +40,7 @@ public class UserController {
 	@ResponseBody
 	public void removeURL(@RequestParam("uno")Integer uno) throws Exception{
 		
-		logger.info("removeURL");
+		logger.info("removeURLPOST called......");
 		logger.info("uno: " + uno);
 		
 		URLService.remove(uno);

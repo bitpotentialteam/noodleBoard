@@ -85,6 +85,16 @@ public class RecipeController {
 			mlist.add(vo);
 		}
 		model.addAttribute("MemberList", mlist);
+		
+		if(cri.getSearchType() == "w".toString()){
+			String mno = mservice.viewNick(cri.getKeyword()).getMno().toString();
+
+			logger.info("=============================================");
+			logger.info("mno(String): " + mno);
+			logger.info("=============================================");
+			cri.setKeyword(mno);
+			logger.info(cri.getKeyword());
+		}
 
 		
 		logger.info("listAll callll.........."+ service.search(cri).toString());
