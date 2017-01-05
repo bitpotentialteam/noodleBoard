@@ -8,6 +8,7 @@ import org.noodle.domain.TimeLineVO;
 import org.noodle.service.TimeLineService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,9 @@ public class TimeLineController {
 
 		logger.info("VO:" + vo);
 
+		String contents = vo.getContent();
+		contents = contents.replace("\r\n","<br>");
+		vo.setContent(contents);
 		service.regist(vo);
 		
 		
@@ -117,6 +121,7 @@ public class TimeLineController {
 		logger.info("tno" + tno);
 		logger.info("vo" + service.lastListView(tno));
 		service.lastListView(tno);
+		
 
 		return service.lastListView(tno);
 		

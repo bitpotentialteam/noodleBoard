@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -152,6 +153,18 @@ div .replyDiv{
 	display : none;
 }
 
+button {
+
+   background-color: rgba( 255, 255, 255, 0.5 );
+   border : 0;
+   outline : 0;
+
+}
+
+#up{
+	width: 100%;	
+}
+
 
 
 </style>
@@ -216,7 +229,9 @@ div .replyDiv{
 						<textarea id="content" name="content" type="text" class="form-control input-md"
 							placeholder="안녕하새오 뿌잉뿌잉 'ㅅ'"></textarea>			
 							<input type="hidden" id="sessionMno" name="mno" placeholder="mno" value="${sessionScope.VO.mno}">
-							<button type="submit" id="createBtn" class="pull-right" > submit! </button>
+							<button type="submit" class="pull-right" aria-label="Left Align" id="createBtn">
+  					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> </button>
+
 					</form>
 				</div>
 			<!-- .box-body END -->				
@@ -233,7 +248,11 @@ div .replyDiv{
 								<img class="img-circle" src="/user/show?name=${vo.picture}" alt="User Image">
 								<input type="hidden" id="userTno" value="${vo.tno}">
 								<span class="username"> ${vo.nickname}</span>
-								<span class="description"> ${vo.regDate} </span>
+								<span class="description"> <fmt:formatDate value="${vo.regDate}" type="both" dateStyle="medium" timeStyle="short"/> </span>
+
+								
+<%-- 								<fmt:formatDate value="${vo.regDate}" pattern="yyyy-MM-dd"/> --%>
+ 
 								
 								<div id="userBtn">
 <%-- 								<button type="button" value="${vo.tno}" id="removeBtn" class="pull-right text-muted">  --%>
@@ -323,11 +342,12 @@ div .replyDiv{
 							<input type='hidden' name='likeCnt' id='likeCnt' value='0'>
 						</form> 
 		</div>
+				<button type="button" class="btn btn-default btn-lg" id="up">
+								  <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+								</button>
+						
 
 	</div>
-								<div>
-								<button id="up"> 맨우ㅣ로올라감니당 </button>
-								</div>
 	</section>
 	
 	<!-- Bootstrap Core JavaScript -->
@@ -394,7 +414,13 @@ div .replyDiv{
 		
 		//맨 위로 올라가기!
 			$(document).on("click","#up", function(event) {
-			$("body").scrollTop(0);
+				
+				$('body').animate({
+					scrollTop: 0
+				}, 100);
+				return false;
+	
+			//$("body").scrollTop(0);
 		});
 		
 		var formObj = $("#form");
