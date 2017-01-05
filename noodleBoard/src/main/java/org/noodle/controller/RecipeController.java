@@ -73,6 +73,19 @@ public class RecipeController {
 		logger.info("listAll.............");
 		model.addAttribute("list", service.search(cri));
 
+		List<RecipeBoardVO> blist = new ArrayList<RecipeBoardVO>();
+		blist = service.search(cri);
+		
+		List<MemberVO> mlist = new ArrayList<MemberVO>();
+		
+		for(int i = 0; i<blist.size(); i++){
+			MemberVO vo = mservice.read(blist.get(i).getMno());
+			
+			mlist.set(i, vo);
+		}
+		logger.info(mlist.toString());
+		
+		
 		logger.info("listAll callll.........."+ service.search(cri).toString());
 		PageMaker pageMaker = new PageMaker();
 		
