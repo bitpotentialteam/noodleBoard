@@ -513,7 +513,7 @@ button#addStepBtn {
 		
 		
 		$("#registerBtn").on("click", function(event){
-			
+			event.preventDefault();
 			alert("등록 완료!");
 		
 		});
