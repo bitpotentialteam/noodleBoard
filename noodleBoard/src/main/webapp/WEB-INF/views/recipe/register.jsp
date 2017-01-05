@@ -32,7 +32,7 @@
 	rel='stylesheet' type='text/css'>
 	
 <link href="../resources/css/agency.min.css" rel="stylesheet">
-
+<link href="../resources/css/fileInput.css" rel="stylesheet">
 <script src="../resources/js/upload.js" type="text/javascript"></script>
 
 </head>
@@ -83,6 +83,7 @@ button#addStepBtn {
 }
 
 </style>
+
 
 
 <!-- Navigation -->
@@ -189,14 +190,10 @@ button#addStepBtn {
 												<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
 												<h5>Drag&Darop HERE!</h5>
 											</div>
-											<input type='hidden' name='ilist[0].thumbnail'>
+											<input type='hidden' id='imgFile' name='ilist[0].thumbnail'>
 										</div>
-											<p id='fileName'></p>
-										<div class='file_input_div'>
-											<input type='button' value='Search files' class='file_input button' />
-											<input type='file' class='file input hidden'/>										
-										</div>
-										
+											<input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="">
+											<label for="file-1"><span class="glyphicon glyphicon-open" aria-hidden="true">Choose a file…</span></label>
 									</div>
 									 <div class="media-body">
 									 	<h4 class="media-heading">STEP 1</h4>
@@ -215,7 +212,7 @@ button#addStepBtn {
 								</button>
 						</div>
 					</div>
-					<div class="-right row">
+					<div class="right row">
 						<div class="form-group col-md-4">
 							<button type="submit" id="registerBtn" class="btn btn-default-right">등 록</button>
 							<a href="list"><input type="button"
@@ -269,72 +266,84 @@ button#addStepBtn {
 	
 	<!-- Theme JavaScript -->
     <script src="../resources/js/agency.min.js"></script>
+    <script src="../resources/js/fileInput.js"></script>
 	
 	<script>
 	$(document).ready(function(){
+	
 		//Steps START
 		var $steps = $("#steps");
+		var stepCnt = $steps.get(0).childElementCount;
+		
 		function indexOfStep(){
 			var $children = $steps.children();
-
-			for(var i =  0; i < $children.length ; i++){
-				var index = i +1; 
-				var $child = $children.eq(i);
-				$child.find('h4.media-heading').html("STEP "+ index);
-				$child.find('input#stepIndex').attr('name','clist['+i+'].step').val(index);
-				$child.find('div#stepImg input').attr('name','ilist['+i+'].thumbnail');
-				$child.find('textarea#stepContent').attr('name','clist['+i+'].content');
+			console.log(stepCnt);
+			for(var i =  0; i < stepCnt ; i++){
+					var index = i + 1; 
+					var $child = $children.eq(i);
+					$child.find('h4.media-heading').html("STEP "+ index);
+					$child.find('input#stepIndex').attr('name','clist['+i+'].step').val(index);
+					$child.find('div#stepImg input').attr('name','ilist['+i+'].thumbnail');
+					$child.find('textarea#stepContent').attr('name','clist['+i+'].content');
 				}	
 		};
-		indexOfStep();
 		
 		$("#addStepBtn").on("click", function(event){
-			 
-			var stepStr = "<div class='media form-group' id='step'><div class='media-left media-middle'>"
-			+ "<div class='form-control' id='stepImg'><input type='hidden' name='ilistThumbnail' value=''></div></div>"
-			+"<div class='media-body'><h4 class='media-heading'>STEP</h4><input type='hidden' id='stepIndex' name='clistStep'><textarea id='stepContent' name='clistContent'></textarea></div>"
-			+"<div class='media-right media-middle'><span id='delStepBtn' class='glyphicon glyphicon-remove-circle'></span></div></div>";
 			
-			$steps.append(stepStr);
-			
-			var stepCnt = $steps.get(0).childElementCount;
-			
-			if(stepCnt != 1){
-				$steps.find("#delStepBtn").removeClass("glyphicon glyphicon-ok-circle").addClass("glyphicon glyphicon-remove-circle");
+			if(stepCnt == 20){
+				return;
 			}
 			
-			indexOfStep();
+			var index = stepCnt + 1;
+			var stepStr = "<div class='media form-group' id='step'><div class='media-left media-middle'>"
+				+ "<div id='stepImg'><div id='noImg'>"
+				+"<span class='glyphicon glyphicon-open' aria-hidden='true'></span>"
+				+"<h5>Drag&Darop HERE!</h5></div>"
+				+"<input type='hidden' id='imgFile' name='ilist["+index+"].thumbnail' value=''></div></div>"
+				+"<div class='media-body'><h4 class='media-heading'>STEP "+index+"</h4><input type='hidden' id='stepIndex' name='clist["+index+"].step'>"
+				+"<textarea id='stepContent' name='clist["+index+"].content'></textarea></div>"
+				+"<div class='media-right media-middle'><span id='delStepBtn' class='glyphicon glyphicon-remove-circle'></span></div></div>";
+				
+				
+			$steps.append(stepStr);				
+				
+			if(stepCnt == 1){
+				$steps.find("#delStepBtn").removeClass("glyphicon-ok-circle").addClass("glyphicon-remove-circle");
+			}
+				
+			stepCnt ++;
 			
 		});
 		
 		
 		$(document).on("click","#delStepBtn", function(event){
-			
+			if(stepCnt == 1){
+				return;				
+			}
+				
 			var $this = $(this);
 			var $tihsDiv = $this.parent().parent(".media");
-						
-			var stepCnt = $steps.get(0).childElementCount;
-			if(stepCnt !== 1){
-				$tihsDiv.remove();
-				stepCnt--;
-			}
-	
-			if(stepCnt == 1){
-				$steps.find("#delStepBtn").removeClass("glyphicon glyphicon-remove-circle").addClass("glyphicon glyphicon-ok-circle");
-			}
-			
+							
+			$tihsDiv.remove();
+			stepCnt--;
 			indexOfStep();
+		
+			if(stepCnt == 1){
+				$steps.find("#delStepBtn").removeClass("glyphicon-remove-circle").addClass("glyphicon-ok-circle");
+			}
 			
 		});
 		
 		$(document).on("click","#delImgBtn", function(event){
 			
 			var $this = $(this);
-			var $tihsDiv = $this.parent().parent(".media");
-						
-			$steps.find("#delStepBtn").removeClass("glyphicon glyphicon-remove-circle").addClass("glyphicon glyphicon-ok-circle");
+			var $thisDiv = $this.parent("#stepImg");
+			console.log($thisDiv);
 			
-			
+			$thisDiv.css("background-image","");
+			$thisDiv.children("#imgFile").removeAttr('value');
+			$thisDiv.find("#noImg").show();
+			$this.remove("#delImgBtn");
 			
 		});
 		
