@@ -349,19 +349,25 @@ div .replyDiv{
 		
 	$( document ).ready(function() {
 		
-		$(document).on('ready',function(){
-
- 			sessionMno = $("#createForm").find("#sessionMno").val();
- 			mno = $("#writer").val();
-
- 			console.log("세션엠엔오  : " + sessionMno);
- 			console.log("구냥엠엔오  : " + mno);
- 			
-  			if(sessionMno != mno){
-					$("#modifyBtn").toggle();
-					$("#removeBtn").toggle();
- 			 	}
-		});
+	//	$(document).on('ready',function(){
+			var timeLineBox = $('#timelinebigbox').children(); 
+			var sessionMno = $("#createForm").find("#sessionMno").val();
+			
+			timeLineBox.each(function(){
+				var $this =	 $(this);
+				console.log($this);
+	 			var mno = $this.find("#writer").val();
+	
+	 			console.log("세션엠엔오  : " + sessionMno);
+	 			console.log("구냥엠엔오  : " + mno);
+	 			
+	  			if(sessionMno != mno){
+	  				$this.find("#modifyBtn").toggle();
+	  				$this.find("#removeBtn").toggle();
+	 			 }
+			});
+			
+	//	});
 		
 	//엔터키 이벤트 막아버리기	
 		function KeyPress(e) { 
