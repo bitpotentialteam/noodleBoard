@@ -54,6 +54,15 @@
 		from tbl_user
 		where userid = #{userid}
 	</select>
+	
+	<select id="readNick">
+		select
+			*
+		from
+			tbl_user
+		where 
+			nickname = #{nickname}
+	</select>
 
 	<update id="create_client" parameterType="hashmap">
 		update 

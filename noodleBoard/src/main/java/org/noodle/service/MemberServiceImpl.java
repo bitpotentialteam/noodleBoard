@@ -86,6 +86,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.checkID(userid);
 	}
 
+	@Override
+	public MemberVO viewNick(String nickName) throws Exception {
+
+		return dao.readNick(nickName);
+	}
+
 
 
 }

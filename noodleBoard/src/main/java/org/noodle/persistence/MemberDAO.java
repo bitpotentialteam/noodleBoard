@@ -10,6 +10,7 @@ public interface MemberDAO {
 	public void delete(int mno)throws Exception;
 	
 	public MemberVO read1(String userid)throws Exception;
+	public MemberVO readNick(String nickname) throws Exception;
 	
 	public MemberVO login(MemberVO vo)throws Exception;
 	public String checkID(String userid)throws Exception;
