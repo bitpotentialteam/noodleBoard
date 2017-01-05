@@ -3,9 +3,13 @@
 	Available for use under the MIT License
 */
 
+<<<<<<< HEAD
+( function ( document, window, index )
+=======
 'use strict';
  
 ;( function ( document, window, index )
+>>>>>>> branch 'master' of https://github.com/bitpotentialteam/noodleBoard.git
 {
 	var inputs = document.querySelectorAll( '.inputfile' );
 	Array.prototype.forEach.call( inputs, function( input )

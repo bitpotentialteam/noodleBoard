@@ -84,9 +84,9 @@ public class RecipeBoardDAOTester {
 	@Test
 	public void testListSearch() throws Exception{
 		
-		svo.setKeyword("Test");
-		svo.setSearchType("t");
-		svo.setPage(6);
+//		svo.setKeyword("Test");
+//		svo.setSearchType("t");
+		svo.setPage(1);
 		System.out.println(dao.listSearch(svo));
 	}
 }
