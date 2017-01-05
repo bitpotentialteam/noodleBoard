@@ -1,6 +1,5 @@
 package org.noodle.domain;
 
-import java.util.Date;
 import java.util.List;
 
 public class RecipeCuisineVO {
@@ -9,10 +8,6 @@ public class RecipeCuisineVO {
 	private Integer bno;
 	private Integer step;
 	private String content;
-	private String thumbnail;
-	private String image;
-	private Date regdate;
-	private Date updatedate;
 	
 	private List<RecipeCuisineVO> clist;
 	
@@ -22,7 +17,8 @@ public class RecipeCuisineVO {
 	}
 	public void setClist(List<RecipeCuisineVO> clist) {
 		this.clist = clist;
-	}
+	
+}
 	public Integer getBno() {
 		return bno;
 	}
@@ -41,34 +37,10 @@ public class RecipeCuisineVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getThumbnail() {
-		return thumbnail;
-	}
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
-	public Date getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
-	}
-	public Date getUpdatedate() {
-		return updatedate;
-	}
-	public void setUpdatedate(Date updatedate) {
-		this.updatedate = updatedate;
-	}
 	@Override
 	public String toString() {
-		return "RecipeCuisineVO [bno=" + bno + ", step=" + step + ", content=" + content + ", thumbnail=" + thumbnail
-				+ ", image=" + image + ", regdate=" + regdate + ", updatedate=" + updatedate + ", clist=" + clist + "]";
+		return "RecipeCuisineVO [bno=" + bno + ", step=" + step + ", content=" + content + ", clist=" + clist + "]";
 	}
+	
 	
 }

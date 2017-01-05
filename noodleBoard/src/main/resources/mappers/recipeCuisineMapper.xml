@@ -25,7 +25,7 @@ from(
          and
          tbl_recipeimage.step = tbl_recipecuisine.step
          ) board
-         where bno = #{bno, jdbcType=INTEGER}
+         where bno = #{bno, jdbcType=INTEGER};
 	</select>
 	
 	<update id="update">
