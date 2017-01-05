@@ -11,15 +11,6 @@ public class RecipeImageVO {
 	private String image;
 	private String thumbnail;
 	
-	private List<RecipeImageVO> ilist;
-	
-	public List<RecipeImageVO> getIlist() {
-		return ilist;
-	}
-	public void setIlist(List<RecipeImageVO> ilist) {
-		this.ilist = ilist;
-	}
-	
 	
 	public Integer getBno() {
 		return bno;
@@ -54,8 +45,8 @@ public class RecipeImageVO {
 	@Override
 	public String toString() {
 		return "RecipeImageVO [bno=" + bno + ", ino=" + ino + ", step=" + step + ", image=" + image + ", thumbnail="
-				+ thumbnail + ", ilist=" + ilist + "]";
+				+ thumbnail + "]";
 	}
 	
-		
+	
 }

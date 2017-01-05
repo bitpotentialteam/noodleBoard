@@ -5,11 +5,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.noodle.domain.BoardList;
 import org.noodle.domain.MemberVO;
 import org.noodle.domain.PageMaker;
 import org.noodle.domain.RecipeBoardVO;
-import org.noodle.domain.RecipeCuisineVO;
-import org.noodle.domain.RecipeImageVO;
 import org.noodle.domain.SearchVO;
 import org.noodle.service.MemberService;
 import org.noodle.service.RecipeBoardService;
@@ -18,7 +17,6 @@ import org.noodle.service.RecipeImageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,17 +51,15 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/register")
-	public String registerPOST(RecipeBoardVO vo, ArrayList<RecipeImageVO> ilist, ArrayList<RecipeCuisineVO> clist, RedirectAttributes rttr) throws Exception {
+	public String registerPOST(RecipeBoardVO vo, BoardList boardList, RedirectAttributes rttr) throws Exception {
 
 		logger.info("RegisterPOST FUCK");
 		
-//		List<RecipeImageVO> tilist = ilist;
-//		List<RecipeCuisineVO> tclist = clist;
 		logger.info("vo : " + vo);
-		logger.info("ilist : "+ilist);
-		logger.info("clist : "+clist);
+		logger.info("ilist : "+boardList.getIlist());
+		logger.info("clist : "+boardList.getClist());
 		
-		service.register(vo, ilist, clist);
+		service.register(vo, boardList.getIlist(), boardList.getClist());
 		return "redirect:/recipe/list";
 	}
 	
@@ -86,6 +82,8 @@ public class RecipeController {
 		}
 		model.addAttribute("MemberList", mlist);
 		
+		logger.info("SearchType: "+cri.getSearchType());
+		logger.info("keyWord: "+cri.getKeyword());
 		if(cri.getSearchType() == "w".toString()){
 			String mno = mservice.viewNick(cri.getKeyword()).getMno().toString();
 
