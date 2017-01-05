@@ -151,7 +151,7 @@ body {
 					<br/>
 					
 					<form id="listForm">
-						<div class="box-footer">
+						<div class="box-footer" id="urlBox">
 							<ul>
 								<c:forEach items="${list}" var="urlVO">
 									<li>
@@ -164,15 +164,17 @@ body {
 					</form>
 					
 					<form action="apiRegister" method="POST">
-						<div class="form-group has-feedback">
+					<div>
+						<div class="form-group has-feedback" id="urlDiv">
 							<input type="text" id="url" name="url" class="form-control"
-								placeholder="URL Address">
+								placeholder="URL Address"  value="${urlVO.url}">
+								
 						</div>
 						<div>
-							<button type="submit" class="btn btn-primary">URL
+							<button type="submit" class="btn btn-primary" id="urlRegister">URL
 								REGISTER</button>
 						</div>
-
+							</div>
 					</form>
 
 					<!-- /.widget-user -->
@@ -207,6 +209,37 @@ body {
 			var listForm = $("#listForm");
 			
 			console.log("listForm ="+listForm);
+			
+			
+			
+			$("#urlRegister").on("click",function(){
+				
+				event.preventDefault();
+				
+				var url = $(this).parent().parent().find("#url").val();
+				console.log($(this));
+				console.log(url);
+						
+		 		$.ajax({
+	    			type : 'post',
+	    			url : '/user/apiRegister',
+	    			headers : {
+	    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+	    				"X-HTTP-Method-Override" : "post"
+	    			},
+	    			dataType : 'text',
+	    			data : {url : url},
+	    			success : function() {
+	  					alert("등록되어씀ㄴ당");
+	    			}
+	    		});
+						
+			});
+			
+			
+			
+			
+			
 			
 			
 			$(document).on("click", "#removeURLBtn",function(){
