@@ -16,9 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,7 +37,8 @@ public class UserController {
 
 	
 	@PostMapping("/removeURL")
-	public void removeURL(Integer uno) throws Exception{
+	@ResponseBody
+	public void removeURL(@RequestParam("uno")Integer uno) throws Exception{
 		
 		logger.info("removeURL");
 		logger.info("uno: " + uno);

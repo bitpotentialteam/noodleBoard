@@ -212,18 +212,18 @@ body {
 				event.preventDefault();
 				
 				var $this = $(this);
-				var test =$this.val();
+				var uno =$this.val();
 				
-				console.log("uno: "+test);
+				console.log("uno: "+ uno);
 				
 				$.ajax({
 					url : '../user/removeURL',
-					data : test,
+					data : {uno : uno},
 					dataType : 'text',
 					type : "post",
-					success : function(data) {
-						console.log("DATA: "+data);
-						console.log("======================AJAX");
+					success : function(fn) {
+					
+						alert("삭제 ㅇㅋ");
 					}
 					
 				});
