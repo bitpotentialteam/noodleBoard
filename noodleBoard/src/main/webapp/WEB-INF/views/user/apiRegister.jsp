@@ -211,18 +211,7 @@ body {
 				listForm.submit();
 				
 			}); 
-			
-			$("#modifyBtn").on("click", function() {
-				formObj.attr("action", "/user/modify");
-				formObj.attr("method", "get");
-				formObj.submit();
-			});
 
-			$("#goListBtn").on("click", function() {
-				formObj.attr("method", "get");
-				formObj.attr("action", "../");
-				formObj.submit();
-			});
 
 			$("#makeBtn").on("click", function() {
 				console.log("check");

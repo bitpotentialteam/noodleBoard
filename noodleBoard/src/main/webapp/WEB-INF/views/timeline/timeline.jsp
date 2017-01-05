@@ -231,16 +231,18 @@ div .replyDiv{
 						<div class="box-header with-border">
 							<div class="user-block">
 								<img class="img-circle" src="/user/show?name=${vo.picture}" alt="User Image">
+								<input type="hidden" id="userTno" value="${vo.tno}">
 								<span class="username"> ${vo.nickname}</span>
 								<span class="description"> ${vo.regDate} </span>
 								
-								
-								<button type="button" value="${vo.tno}" id="removeBtn" class="pull-right text-muted"> 
-									<span class="glyphicon glyphicon-trash"></span>
-								</button>           
-								<button type="button" value="${vo.tno}" id="modifyBtn" class="modify pull-right text-muted"> 
-									<span class="glyphicon glyphicon-erase"></span>								
-								</button>
+								<div id="userBtn">
+<%-- 								<button type="button" value="${vo.tno}" id="removeBtn" class="pull-right text-muted">  --%>
+<!-- 									<span class="glyphicon glyphicon-trash"></span> -->
+<!-- 								</button>            -->
+<%-- 								<button type="button" value="${vo.tno}" id="modifyBtn" class="modify pull-right text-muted">  --%>
+<!-- 									<span class="glyphicon glyphicon-erase"></span>								 -->
+<!-- 								</button> -->
+								</div>
 								
 									<!-- Modify Modal -->
 								<div id="myModal" class="modal">
@@ -349,30 +351,41 @@ div .replyDiv{
 		
 	$( document ).ready(function() {
 		
-	//	$(document).on('ready',function(){
-			var timeLineBox = $('#timelinebigbox').children(); 
+		
 			var sessionMno = $("#createForm").find("#sessionMno").val();
+	
+			
+			function user(){
+			var timeLineBox = $('#timelinebigbox').children(); 
 			
 			timeLineBox.each(function(){
 				var $this =	 $(this);
-				console.log($this);
+				//console.log($this);
 	 			var mno = $this.find("#writer").val();
-	
-	 			console.log("세션엠엔오  : " + sessionMno);
-	 			console.log("구냥엠엔오  : " + mno);
+	 			var tno = $this.find("#userTno").val();
+	  			var button = '';
 	 			
-	  			if(sessionMno != mno){
-	  				$this.find("#modifyBtn").toggle();
-	  				$this.find("#removeBtn").toggle();
+	  			//로그인한 mno = 글쓴 mno 대조
+	  			if(sessionMno == mno){
+	  				
+	  				button =  "<button type='button' value=' " + tno + "'id='removeBtn' class='pull-right text-muted'>" +
+							"<span class='glyphicon glyphicon-trash'></span></button>"  +         
+					"<button type='button' value='"+ tno +"' id='modifyBtn' class='modify pull-right text-muted'>"+ 
+						"<span class='glyphicon glyphicon-erase'></span> </button>"
+	  				
+	  				$this.find("#userBtn").html(button);
+	  				
 	 			 }
 			});
 			
-	//	});
+			}
+			user();
+			
 		
 	//엔터키 이벤트 막아버리기	
 		function KeyPress(e) { 
 		    if(window.event.keyCode == 13){ 
-		    	console.log(window.event.keyCode);
+
 		    window.event.KeyCode = 0; 
 		} else {
 			return;
@@ -386,12 +399,9 @@ div .replyDiv{
 		
 		var formObj = $("#form");
 
-		console.log(formObj);
-
 		
 		$(document).on("click","#removeBtn", function(event) {
 			event.preventDefault();
-			console.log(event);
 			
 			if(!confirm("정말 삭제하시겠습니까?")){
 				return;
@@ -406,8 +416,11 @@ div .replyDiv{
 		});
 		
 		$(document).on("click","#modifyBtn", function(event) {
-			var $modalPop = $(this).parent().find('#myModal'); 
+			
+			event.preventDefault();
+			var $modalPop = $(this).parent().parent().find('#myModal'); 
 			$modalPop.toggle();
+			
 			
 		});
 		
@@ -441,11 +454,7 @@ div .replyDiv{
 			var tno = $(this).val();
 			$('#ftno').val(tno);
 			var mno = $(this).parents('#timelineBox').find('#replymno').val();
-			
-			
-			console.log(tno);
-			console.log(mno);
-			
+					
 	 		$.ajax({
     			type : 'get',
     			url : '/timeline/likeHistory',
@@ -456,9 +465,7 @@ div .replyDiv{
     			dataType : 'text',
     			data : {tno : tno, mno:mno},
     			success : function(result) {
-    				
-    				console.log(result);
-    				
+    				 				
     					if(!result){
     						
 					formObj.attr("action", "timeline/addlikeCnt");
@@ -484,7 +491,6 @@ div .replyDiv{
 			var tno = $(this).val();
 			var content = $()
 			$('#ftno').val(tno);
-			console.log(tno);
 			
 			$(this).parents('#timelineBox').find('.replyDiv').toggle();
 			
@@ -516,11 +522,7 @@ div .replyDiv{
 			var replyContent = $this.val();
 			var updateList = $this.parents('.replyDiv').find('.box-comments');
 	
-			console.log(tno);
-			console.log(mno);
-			console.log(replyContent);
-			console.log(updateList);
-			
+				
 			//addreply 실행!ㅇㅅㅇ!
 			  replyManager.addReply(
 					  //얘네가 data임. 위에서 밸류값 채집한 애들 보내는것
@@ -539,13 +541,12 @@ div .replyDiv{
 		
 	$(document).on("click","#removeReply", function(event){
 
-		console.log("삭제버튼클릭됨");	
+			
 			var $this = $(this);
 			//tno mno replycontent 밸류값 채집함.
 			var trno = $this.val();
 			var tno = $this.parents('.replyDiv').attr("name");
 			var updateList = $this.parents('.box-comments') ;
-			console.log("티..알..엔..오.."+trno);
 			
 			//addreply 실행!ㅇㅅㅇ!
 			  replyManager.removeReply(
@@ -563,7 +564,8 @@ div .replyDiv{
 	});
 	
 		
-	});
+	//document end
+	 //});
 	
 	//replyManager 만들어놓앗읍니다.
 	 var replyManager = (function () {
@@ -627,7 +629,7 @@ div .replyDiv{
 					var str = "";
 
 					 for(var i = 0; i < result.length; i++){
-						console.log("LELGLELGE" + result.length);
+						
 				    	var nick = result[i].nickname;
 				    	var content = result[i].content;
 				    	var regDate = result[i].regDate;
@@ -639,12 +641,12 @@ div .replyDiv{
 						regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
 						d.getHours() + ":" + d.getMinutes();
 				    	
-				    	console.log("닉" + nick);
-				    	console.log("날짜" + result[i].regDate);
-				    	console.log("ㅋㅋㅋㅋㅇㅁㅇㄹ내용 "+result[i].content);
-				    	console.log("티알엔오" + trno);
-				    	console.log("픽픽픽쳐" + picture);
-				    	console.log(result);
+// 				    	console.log("닉" + nick);
+// 				    	console.log("날짜" + result[i].regDate);
+// 				    	console.log("ㅋㅋㅋㅋㅇㅁㅇㄹ내용 "+result[i].content);
+// 				    	console.log("티알엔오" + trno);
+// 				    	console.log("픽픽픽쳐" + picture);
+// 				    	console.log(result);
 				    	
 
 					str += "<div class='box-comment'>" + 
@@ -670,9 +672,9 @@ div .replyDiv{
 	
 	
      //무한스크롤
-		$(document).ready(function () {
+	//	$(document).ready(function () {
 			
-			event.preventDefault();
+			//event.preventDefault();
 			
 					$(document).scroll(function() {
 						var maxHeight = $(document).height();
@@ -682,13 +684,11 @@ div .replyDiv{
 						if (maxHeight <= currentScroll + 1) {
 
 	//여기까지임~ 스크롤이 뭐 맨 아래에 닿으면...scroll event 실행ㄱㄱ하면서 밑에 함수들 다 실행함
-							var tno = $("#timelinebigbox").children(":last").find("#removeBtn").val();
+							var tno = $("#timelinebigbox").children(":last").find("#userTno").val();
 							var timelinebigbox = $("#timelinebigbox");
 							var updateList = $('.replyDiv').find('.box-comments');
 							
-							
 							console.log(tno);
-
 							
 							$.ajax({
 				    			type : 'get',
@@ -700,9 +700,7 @@ div .replyDiv{
 				    			dataType : 'json',
 				    			data : {"tno" : tno},
 				    			
-				    			success : function(result) {
-				    				
-				    				console.log(result);
+				    			success : function(result, fn) {
 				    				
 									var lastStr = "";
 
@@ -724,33 +722,32 @@ div .replyDiv{
 										if(result != ""){
 							
 														
-				    				console.log(result[j].nickname);
-										 
-									lastStr = "<div class='box box-solid' id='timelineBox'> 	<!-- .box-header START --> "+
-									"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='/user/show?name=${vo.picture}' alt='User Image'>" +
+									lastStr = "<div class='box box-solid' id='timelineBox'> "+
+									" <!-- .box-header START --> "+
+									"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>" +
+									" <input type='hidden' id='userTno' value='"+ tno +"'>" +
 									" <span class='username'><a href='#'>"+ nickname +"</a></span> <span class='description'> "+ regDate +" </span> "+ 
-									" <button type='button' value='${vo.tno}' id='removeBtn' class='pull-right text-muted'> <span class='glyphicon glyphicon-trash'></span>"+
-									" </button>  <button type='button' value='${vo.tno}' id='modifyBtn' class='modify pull-right text-muted'> "+
-									" <span class='glyphicon glyphicon-erase'></span> </button> <!-- Modify Modal --> <div id='myModal' class='modal'>"+
+									" <!-- Modify Modal --> <div id='myModal' class='modal'>"+
 									" <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> <span class='close' id='closeBtn'>&times;</span> "+
-									" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='${vo.content}' name='content' id='modContent'> "+
-									"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='${vo.tno}'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
+									" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='"+ content +"' name='content' id='modContent'> "+
+									"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='"+ tno +"'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
 									"</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"+
 									"<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer 'value=" + mno +"> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
 									" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='"+ tno +"' class='btn btn-default btn-xs'>"+
 									"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +" likes - "+ replyCnt +" comments</span> </div>"+
-									"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list -->"+
+									"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"+
 									" <div class='box-footer box-comments' id='commentsbox'> </div>	<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'"+
 									"src='/user/show?name=" + picture+"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
 									" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='Press enter to post comment!'>"+
-									"</div> </div><!-- /.box-footer --> /div> </div><!-- big div --> ";
+									"</div> </div><!-- /.box-footer --> <div> </div><!-- big div --> ";
 									
 								 
 										}else{
 											return;
 										}
 								 $("#timelinebigbox").append(lastStr);
-								 
+									 console.log("useruser");
+								 user();
 								  replyManager.listReply({"tno":tno},
 										  function(str){
 									  updateList.html(str);
@@ -765,14 +762,11 @@ div .replyDiv{
 							
 					} else if($(window).scrollTop() <= 0) {
 						
-						var tno = $("#timelinebigbox").children(":first").find("#removeBtn").val();
+						var tno = $("#timelinebigbox").children(":first").find("#userTno").val();
 						var timelinebigbox = $("#timelinebigbox");
 						var updateList = $('.replyDiv').find('.box-comments');
 						
-						
-						console.log(tno);
-
-						
+												
 						$.ajax({
 			    			type : 'get',
 			    			url : '/timeline/firstListView',
@@ -784,9 +778,7 @@ div .replyDiv{
 			    			data : {"tno" : tno},
 			    			
 			    			success : function(result) {
-			    				
-			    				console.log(result);
-			    				
+			    			
 								var lastStr = "";
 
 								for(var j = 0; j< result.length; j++){
@@ -806,33 +798,30 @@ div .replyDiv{
 									
 									if(result != ""){
 						
-													
-			    				console.log(result[j].nickname);
-									 
 								fistlist = "<div class='box box-solid' id='timelineBox'> 	<!-- .box-header START --> "+
-								"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='/user/show?name=${vo.picture}' alt='User Image'>" +
+								"<div class='box-header with-border'> <div class='user-block'> "+
+								"<img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>" +
+								" <input type='hidden' id='userTno' value='"+ tno +"'>" +
 								" <span class='username'><a href='#'>"+ nickname +"</a></span> <span class='description'> "+ regDate +" </span> "+ 
-								" <button type='button' value='${vo.tno}' id='removeBtn' class='pull-right text-muted'> <span class='glyphicon glyphicon-trash'></span>"+
-								" </button>  <button type='button' value='${vo.tno}' id='modifyBtn' class='modify pull-right text-muted'> "+
-								" <span class='glyphicon glyphicon-erase'></span> </button> <!-- Modify Modal --> <div id='myModal' class='modal'>"+
+								" <!-- Modify Modal --> <div id='myModal' class='modal'>"+
 								" <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> <span class='close' id='closeBtn'>&times;</span> "+
-								" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='${vo.content}' name='content' id='modContent'> "+
-								"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='${vo.tno}'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
+								" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='"+content+"' name='content' id='modContent'> "+
+								"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='"+ tno +"'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
 								"</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"+
 								"<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer 'value=" + mno +"> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
 								" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='"+ tno +"' class='btn btn-default btn-xs'>"+
 								"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +" likes - "+ replyCnt +" comments</span> </div>"+
 								"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list -->"+
-								"src='/user/show?name=" +picture +"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
+								"src='/user/show?name="+picture +"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
 								" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='Press enter to post comment!'>"+
-								"</div> </div><!-- /.box-footer --> /div> </div><!-- big div --> ";
+								"</div> </div><!-- /.box-footer --> </div> </div><!-- big div --> ";
 								
 							 
 									}else{
 										return;
 									}
 							 $("#timelinebigbox").prepend(fistlist);
-							 
+							 user();
 							  replyManager.listReply({"tno":tno},
 									  function(str){
 								  updateList.html(str);
@@ -847,7 +836,7 @@ div .replyDiv{
 						
 					}
 					 //위에 스크롤이벤트 if문 끝임!
-					});
+					})
 
 					
 					}); //DOCUMENT end!
