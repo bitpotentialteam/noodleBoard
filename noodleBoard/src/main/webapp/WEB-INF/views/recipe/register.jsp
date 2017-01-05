@@ -213,7 +213,7 @@ button#addStepBtn {
 									</div>
 									 <div class="media-body">
 									 	<h4 class="media-heading">STEP 1</h4>
-									 	<input type='hidden' id='stepIndex' name='clist[0].step' value='0'>
+									 	<input type='hidden' id='stepIndex' name='clist[0].step' value='1'>
 										<textarea id='stepContent' name='clist[0].content'></textarea>
 									</div>
 									<div class="media-right media-middle">
@@ -311,33 +311,31 @@ button#addStepBtn {
 		
 		$("#addStepBtn").on("click", function(event){
 			
+			if(stepCnt == 1){
+				$steps.find("#delStepBtn").removeClass("glyphicon-ok-circle").addClass("glyphicon-remove-circle");
+			}
 			if(stepCnt == 20){
 				return;
 			}
 			
-			var index = stepCnt - 1;
+			var index = stepCnt;
+			stepCnt ++;
 			var stepStr = "<div class='media form-group' id='step'>"
 				+"<div class='media-left media-middle'>"
 				+"<div id='stepImg'><span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span><div id='noImg'>"
 				+"<span class='glyphicon glyphicon-open' aria-hidden='true'></span>"
 				+"<h5>Drag&Darop HERE!</h5></div>"
 				+"</div></div>"
-				+"<div class='media-body'><h4 class='media-heading'>STEP "+index+"</h4><input type='hidden' id='stepIndex' name='clist["+index+"].step'>"
+				+"<div class='media-body'><h4 class='media-heading'>STEP "+stepCnt+"</h4><input type='hidden' id='stepIndex' name='clist["+index+"].step' value="+stepCnt+">"
 				+"<textarea id='stepContent' name='clist["+index+"].content'></textarea></div>"
 				+"<div class='media-right media-middle'><span id='delStepBtn' class='glyphicon glyphicon-remove-circle'></span></div>"
-				+"<div id='fileUpload'><input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail'>"
-				+"<input type='file' name='ilist[0].thumbnail' id='imgFile' class='inputfile inputfile-1' data-multiple-caption='{count} files selected' multiple=''>"
+				+"<div id='fileUpload'><input type='hidden' id='imgFileDropped' name='ilist["+index+"].thumbnail'>"
+				+"<input type='file' name='ilist["+index+"].thumbnail' id='imgFile' class='inputfile inputfile-1'>"
 				+"<label for='file-1'><span class='glyphicon glyphicon-open' aria-hidden='true'> Choose a file…</span></label></div></div>";
 				
 				
 			$steps.append(stepStr);				
-				
-			if(stepCnt == 1){
-				$steps.find("#delStepBtn").removeClass("glyphicon-ok-circle").addClass("glyphicon-remove-circle");
-			}
-				
-			stepCnt ++;
-			
+							
 		});
 		
 		
