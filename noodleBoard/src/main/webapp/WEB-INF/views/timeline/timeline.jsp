@@ -213,8 +213,8 @@ div .replyDiv{
 			<!-- .box-body START -->
 				<div class="box-body">
 					<form id="createForm" action='timeline/regist' method='post'>
-						<input id="content" name="content" type="text" class="form-control input-md"
-							placeholder="안녕하새오 뿌잉뿌잉 'ㅅ'">							
+						<textarea id="content" name="content" type="text" class="form-control input-md"
+							placeholder="안녕하새오 뿌잉뿌잉 'ㅅ'"></textarea>			
 							<input type="hidden" name="mno" placeholder="mno" value="${sessionScope.VO.mno}">
 							<button type="submit" id="createBtn" class="pull-right" > submit! </button>
 					</form>
@@ -289,7 +289,7 @@ div .replyDiv{
 						<div class="box-footer">
 				
 								<img class="img-responsive img-circle img-sm"
-									src="${vo.picture}"
+									src="/user/show?name=${vo.picture}"
 									alt="Alt Text">
 								<!-- .img-push is used to add margin to elements next to floating images -->
 								<div class="img-push">
@@ -345,6 +345,17 @@ div .replyDiv{
 	
 		
 	$( document ).ready(function() {
+		
+		
+	//엔터키 이벤트 막아버리기	
+		function KeyPress(e) { 
+		    if(window.event.keyCode == 13){ 
+		    	console.log(window.event.keyCode);
+		    window.event.KeyCode = 0; 
+		} else {
+			return;
+			}
+		}
 		
 		//맨 위로 올라가기!
 			$(document).on("click","#up", function(event) {
@@ -441,27 +452,9 @@ div .replyDiv{
     					}
     			}
     		});
-			
-			
-			
-			
-
-			
-// 	  		$.ajax({
-//     			type : 'get',
-//     			url : '/timeline/addlikeCnt',
-//     			headers : {
-//     				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
-//     				"X-HTTP-Method-Override" : "GET"
-//     			},
-//     			dataType : 'text',
-//     			data : {tno : tno, mno:mno},
-//     			success : function(result) {
-    				
-//     			}
-//     		});
 					
 		});
+		
 		
 		$(document).on("click","#replyBtn", function(event){
 			event.preventDefault();
@@ -482,7 +475,7 @@ div .replyDiv{
 			    	function (result){
 						
 						addComment.html(result);
-						console.log("result"+result);
+			
 			    	}
 				);
 		});
@@ -635,8 +628,8 @@ div .replyDiv{
 				    	
 
 					str += "<div class='box-comment'>" + 
-					"<img class='img-circle img-sm' "+
-					"src=/user/show?name="+ picture + "alt='User Image'>" +
+					"<img class='img-circle' "+
+					"src=/user/show?name="+ picture + " alt='User Image'>" +
 					"<div class='comment-text'> " +
 					"<span class='username'>" + nick + " <span class='text-muted pull-right'>" +
 					regDate + " </span></span> " + content + "<button type='submit' id='removeReply' value='" + trno + "'> x </button></div> </div>";
@@ -727,7 +720,7 @@ div .replyDiv{
 									"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +" likes - "+ replyCnt +" comments</span> </div>"+
 									"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list -->"+
 									" <div class='box-footer box-comments' id='commentsbox'> </div>	<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'"+
-									"src='${vo.picture}' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
+									"src='/user/show?name=" + picture+"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
 									" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='Press enter to post comment!'>"+
 									"</div> </div><!-- /.box-footer --> /div> </div><!-- big div --> ";
 									
@@ -808,8 +801,7 @@ div .replyDiv{
 								" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='"+ tno +"' class='btn btn-default btn-xs'>"+
 								"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +" likes - "+ replyCnt +" comments</span> </div>"+
 								"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list -->"+
-								" <div class='box-footer box-comments' id='commentsbox'> </div>	<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'"+
-								"src='${vo.picture}' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
+								"src='/user/show?name=" +picture +"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
 								" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='Press enter to post comment!'>"+
 								"</div> </div><!-- /.box-footer --> /div> </div><!-- big div --> ";
 								

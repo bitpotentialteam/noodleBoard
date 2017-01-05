@@ -10,7 +10,7 @@
 		insert into 
 			tbl_recipeboard(mno, bno, ino, title, content, materialContent)
 		values 
-			(#{mno, jdbcType=INTEGER}, seq_bno.nextval, seq_ino.nextval, #{title , jdbcType=VARCHAR}, 
+			(#{mno, jdbcType=INTEGER}, seq_recipeBoard.nextval, seq_ino.nextval, #{title , jdbcType=VARCHAR}, 
 			#{content , jdbcType=VARCHAR}, #{materialContent , jdbcType=VARCHAR})
 	</insert>
 	
