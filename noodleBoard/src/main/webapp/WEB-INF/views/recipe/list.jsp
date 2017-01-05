@@ -53,7 +53,9 @@
 }
 
 #ellipsis{
-	text-overflow: ellipsis;
+	
+	overflow: hidden;
+	display: inline;
 }
 </style>
 
@@ -104,7 +106,7 @@
 		<div class="row">
 			<!-- items START -->
 			<c:forEach items="${list}" var="boardVO">
-				<div class="col-md-4 col-sm-6 portfolio-item">
+				<div class="col-md-4 col-sm-6 portfolio-item" id="ellipsis">
 <!-- 					<div class="portfolio-hover"> -->
 <!-- 						<div class="portfolio-hover-content"> -->
 <!-- 							<i class="fa fa-plus fa-3x"></i> -->
@@ -115,8 +117,9 @@
 						<img src="../resources/img/noodle/${boardVO.ino}.jpg"
 						class="img-responsive" alt="image of ${boardVO.title}">
 					</a>
-					<div class="portfolio-caption" id="ellipsis">
+					<div class="portfolio-caption">
 						<p class="text-muted">${boardVO.title}</p>
+						<p class="text-muted">${boardVO.content}</p>
 					
 					<c:set var="loop" value="true"></c:set>
 					<c:forEach items="${MemberList}" var="memberVO">
@@ -158,7 +161,7 @@
 			<div class="form-group col-md-12" id="regBtn">
 			
 			<button type="submit" id="regBtn" class="btn btn-default-right">글쓰기</button>
-			
+			</div>
 
 
 	<div class='box'>
@@ -199,7 +202,7 @@
 
 			<button id="searchBtn" class="btn btn-primary">검색</button>
 		</div>
-	</div>
+	
 	</section>
 
 	<form id="pageForm">
