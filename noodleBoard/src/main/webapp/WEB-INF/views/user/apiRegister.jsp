@@ -137,7 +137,7 @@ body {
 					<form action="create_client" method="POST">
 						<div class="box-footer">
 							<ul>
-								<li class="list-group-item" id="client_ID"><h4>일회용ID</h4>${sessionScope.VO.client_ID}</li>
+								<li class="list-group-item" id="client_ID" value="${sessionScope.VO.client_ID}"><h4>일회용ID</h4>${sessionScope.VO.client_ID}</li>
 								<li class="list-group-item" id="client_PW"><h4>일회용PW</h4>${sessionScope.VO.client_PW}</li>
 							</ul>
 						</div>
@@ -224,6 +224,7 @@ body {
 					success : function(fn) {
 					
 						alert("삭제 ㅇㅋ");
+						window.location.reload(true);
 					}
 					
 				});
@@ -236,20 +237,22 @@ body {
 
 
 			$("#makeBtn").on("click", function() {
-				console.log("check");
+				
+				event.preventDefault();
+				
 				var client_ID = $("#client_ID").val();
 				var formData = new FormData();
-
+				
+				console.log("클라이언트아이디" + client_ID);
 				formData.append("client_ID", client_ID);
 
-				$.get("create_client");
 
-				if ("${'CLIENTMSG'}" == "success") {
-					alert("등록 성공되었습니다.");
+				if ( client_ID == '0' ) {
+					$.get("create_client");
+					alert("발급되었습니당 하하하하하하하하하하");	
 					window.location.reload();
-				}
-				if ("${'CLIENTMSG'}" == 'fail') {
-					alert("이미 발급되었습니다.");
+				} else {
+					alert("이미발급되었슴다.");	
 				}
 			});
 		});
