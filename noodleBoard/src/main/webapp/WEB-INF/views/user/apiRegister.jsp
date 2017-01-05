@@ -171,8 +171,7 @@ body {
 								
 						</div>
 						<div>
-							<button type="submit" class="btn btn-primary" id="urlRegister">URL
-								REGISTER</button>
+							<button type="submit" class="btn btn-primary" id="urlRegister">URL REGISTER</button>
 						</div>
 							</div>
 					</form>
@@ -231,17 +230,12 @@ body {
 	    			data : {url : url},
 	    			success : function() {
 	  					alert("등록되어씀ㄴ당");
+	  					window.location.reload(true);
 	    			}
 	    		});
 						
 			});
-			
-			
-			
-			
-			
-			
-			
+
 			$(document).on("click", "#removeURLBtn",function(){
 				event.preventDefault();
 				
