@@ -4,7 +4,7 @@
 */
 
 'use strict';
-
+ 
 ;( function ( document, window, index )
 {
 	var inputs = document.querySelectorAll( '.inputfile' );
