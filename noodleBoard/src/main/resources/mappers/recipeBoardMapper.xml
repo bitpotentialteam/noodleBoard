@@ -117,22 +117,28 @@
 	
 	<select id="listSaerch" resultType="RecipeBoardVO">
 		<![CDATA[
-	       SELECT *
- 		 FROM (
-            select *
-            from TBL_RECIPEBOARD
-            order by bno desc
-            )
-  		 WHERE rownum>= #{startPage, jdbcType=INTEGER}  
-  		 AND rownum <= #{endPage, jdbcType=INTEGER}
-			]]> 
+	     SELECT
+			  * 
+			FROM
+			    (
+			    SELECT
+			      ROWNUM AS RNUM, Board.* 
+			    FROM
+			      (
+			      SELECT
+			        *
+			      FROM
+			        tbl_recipeBoard
+			      ORDER BY bno desc
+			      ) Board
+			    )
+			WHERE
+    			RNUM > #{startPage, jdbcType=INTEGER} AND RNUM <= #{endPage, jdbcType=INTEGER}
+		 ]]> 
 			
 		<include refid="search"></include>
 		
-		<![CDATA[
-		order by bno desc
-		]]> 
-		 
+		
 	</select>
 	<select id="listPage" resultType="RecipeBoardVO">
 		<![CDATA[

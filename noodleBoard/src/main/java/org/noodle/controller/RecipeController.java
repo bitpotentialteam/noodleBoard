@@ -72,7 +72,7 @@ public class RecipeController {
 		
 		pageMaker.setPageVO(cri);
 		pageMaker.setTotalCount(service.getTotalCount(cri));
-		logger.info("endPage.........." + pageMaker.getEndPage());
+		logger.info("endPage.........." + cri.getEndPage());
 		
 		model.addAttribute("pageMaker", pageMaker);
 

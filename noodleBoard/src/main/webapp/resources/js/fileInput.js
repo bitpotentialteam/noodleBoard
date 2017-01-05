@@ -3,9 +3,7 @@
 	Available for use under the MIT License
 */
 
-'use strict';
-
-;( function ( document, window, index )
+( function ( document, window, index )
 {
 	var inputs = document.querySelectorAll( '.inputfile' );
 	Array.prototype.forEach.call( inputs, function( input )

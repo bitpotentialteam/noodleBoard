@@ -47,11 +47,17 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 
 	@Override
 	public List<RecipeBoardVO> listAll(PageVO vo) throws Exception {
+		
 		return session.selectList(namespace + "listAll", vo);
 	}
 
 	@Override
 	public List<RecipeBoardVO> listSearch(SearchVO cri) throws Exception {
+		System.out.println("StartPage: "+cri.getStartPage());
+		System.out.println("EndPage: "+cri.getEndPage());
+		System.out.println("Page: "+cri.getPage());
+		System.out.println("PageUnit: "+cri.getPageUnit());
+		System.out.println("==============================");
 		return session.selectList(namespace + "listSaerch", cri);
 	}
 
