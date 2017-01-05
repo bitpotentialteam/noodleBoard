@@ -52,6 +52,7 @@
 	background-size: contain; 
 	margin: auto;
 	text-align:center;
+	color: rgba(138, 109, 59, 0.55);
 }
 #noImg {
 	display: inline-block;
@@ -81,6 +82,23 @@ button#addStepBtn {
 #delStepBtn{
 	font-size: 2em;
 }
+
+#fileUpload{
+	margin: 5px;
+}
+
+.inputfile + label{
+	border-radius: 4px;
+	word-spacing: -0.5em;
+}
+
+#delImgBtn{
+	color: darkgray;
+	display: none;
+}
+
+
+
 
 </style>
 
@@ -185,15 +203,13 @@ button#addStepBtn {
 								<div class="media form-group" id="step">
 									<div class="media-left media-middle">			
 										<div id="stepImg">
-											
+											<span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span>
 											<div id="noImg">
 												<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
 												<h5>Drag&Darop HERE!</h5>
 											</div>
-											<input type='hidden' id='imgFile' name='ilist[0].thumbnail'>
+										<!--	<input type='hidden' id='imgFile' name='ilist[0].thumbnail'> -->
 										</div>
-											<input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="">
-											<label for="file-1"><span class="glyphicon glyphicon-open" aria-hidden="true">Choose a file…</span></label>
 									</div>
 									 <div class="media-body">
 									 	<h4 class="media-heading">STEP 1</h4>
@@ -203,6 +219,11 @@ button#addStepBtn {
 									<div class="media-right media-middle">
 										<span id="delStepBtn" class="glyphicon glyphicon-ok-circle"></span>
 									</div>	
+									<div id="fileUpload">
+										<input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail'>
+										<input type="file" name="ilist[0].thumbnail" id="imgFile" class="inputfile inputfile-1">
+										<label for="file-1"><span class="glyphicon glyphicon-open" aria-hidden="true"> Choose a file…</span></label>
+									</div>
 								</div>
 								<!-- END -->
 								
@@ -266,7 +287,7 @@ button#addStepBtn {
 	
 	<!-- Theme JavaScript -->
     <script src="../resources/js/agency.min.js"></script>
-    <script src="../resources/js/fileInput.js"></script>
+<!--     <script src="../resources/js/fileInput.js"></script>  --> 
 	
 	<script>
 	$(document).ready(function(){
@@ -283,7 +304,7 @@ button#addStepBtn {
 					var $child = $children.eq(i);
 					$child.find('h4.media-heading').html("STEP "+ index);
 					$child.find('input#stepIndex').attr('name','clist['+i+'].step').val(index);
-					$child.find('div#stepImg input').attr('name','ilist['+i+'].thumbnail');
+					$child.find('div#fileUpload input').attr('name','ilist['+i+'].thumbnail');
 					$child.find('textarea#stepContent').attr('name','clist['+i+'].content');
 				}	
 		};
@@ -295,14 +316,18 @@ button#addStepBtn {
 			}
 			
 			var index = stepCnt + 1;
-			var stepStr = "<div class='media form-group' id='step'><div class='media-left media-middle'>"
-				+ "<div id='stepImg'><div id='noImg'>"
+			var stepStr = "<div class='media form-group' id='step'>"
+				+"<div class='media-left media-middle'>"
+				+"<div id='stepImg'><span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span><div id='noImg'>"
 				+"<span class='glyphicon glyphicon-open' aria-hidden='true'></span>"
 				+"<h5>Drag&Darop HERE!</h5></div>"
-				+"<input type='hidden' id='imgFile' name='ilist["+index+"].thumbnail' value=''></div></div>"
+				+"</div></div>"
 				+"<div class='media-body'><h4 class='media-heading'>STEP "+index+"</h4><input type='hidden' id='stepIndex' name='clist["+index+"].step'>"
 				+"<textarea id='stepContent' name='clist["+index+"].content'></textarea></div>"
-				+"<div class='media-right media-middle'><span id='delStepBtn' class='glyphicon glyphicon-remove-circle'></span></div></div>";
+				+"<div class='media-right media-middle'><span id='delStepBtn' class='glyphicon glyphicon-remove-circle'></span></div>"
+				+"<div id='fileUpload'><input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail'>"
+				+"<input type='file' name='file-1[]' id='file-1' class='inputfile inputfile-1' data-multiple-caption='{count} files selected' multiple=''>"
+				+"<label for='file-1'><span class='glyphicon glyphicon-open' aria-hidden='true'> Choose a file…</span></label></div></div>";
 				
 				
 			$steps.append(stepStr);				
@@ -341,15 +366,43 @@ button#addStepBtn {
 			console.log($thisDiv);
 			
 			$thisDiv.css("background-image","");
-			$thisDiv.children("#imgFile").removeAttr('value');
-			$thisDiv.find("#noImg").show();
-			$this.remove("#delImgBtn");
+			$thisDiv.parent().parent().find("#fileUpload").children("#imgFileDropped").removeAttr('value');
+			$thisDiv.children("#noImg").show();
+			$this.hide("#delImgBtn");
 			
 		});
 		
 		//Steps END
-		
-		
+		<!--
+		$(document).on("change","imgFile", function(){
+				var input = $(this);
+				console.log(input);
+				var label	 = input.nextElementSibling,
+					labelVal = label.innerHTML;
+				console.log(label);
+				console.log(labelVal);
+			
+				input.on( 'change', function( e )
+				{
+				console.log(input);	
+				var fileName = '';
+				if( this.files && this.files.length > 1 )
+					fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+				else
+					fileName = e.target.value.split( '\\' ).pop();
+	
+				if( fileName )
+					label.querySelector( 'span' ).innerHTML = " "+fileName;
+				else
+					label.innerHTML = labelVal;
+			});
+	
+			// Firefox bug fix
+			input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+			input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+			
+		});
+		-->
 			
 		$(document).on("dragenter dragover","#stepImg", function(event) {
 			event.preventDefault();
@@ -359,15 +412,15 @@ button#addStepBtn {
 		$(document).on("drop","#stepImg", function(event) {
 			event.preventDefault();
 			var $this = $(this);
-			var delImgBtn = "<span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span>";
 			
 			uploadImage(event, function(data){
 				var imgURL = "/displayFile?fileName="+data;
 				//var imgName = getOriginalName(data);
 				alert("이미지가 등록되었습니다");
 				$this.css("background-image","url("+imgURL+")");
-				$this.children("#imgFile").val(data);
-				$this.prepend(delImgBtn).children("#noImg").hide();
+				$this.parent().parent().find("#fileUpload").children("#imgFileDropped").val(data);
+				$this.find("#delImgBtn").show();
+				$this.children("#noImg").hide();
 				
 			})
 			
@@ -462,7 +515,7 @@ button#addStepBtn {
 		
 		
 		$("#registerBtn").on("click", function(event){
-			formObj.submit();
+			
 			alert("등록 완료!");
 		
 		});
@@ -488,6 +541,7 @@ button#addStepBtn {
 		that.get(0).submit();
 
 		-->   
+
 		
 	});
 
