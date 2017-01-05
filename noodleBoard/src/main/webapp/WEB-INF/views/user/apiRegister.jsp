@@ -72,8 +72,7 @@ body {
 }
 </style>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
 
@@ -155,7 +154,8 @@ body {
 							<ul>
 								<c:forEach items="${list}" var="urlVO">
 									<li>
-										<h4>URL: ${urlVO.url}</h4><button id="removeURLBtn" value= "${urlVO.uno}" name= "uno">삭제하기</button>
+										<h4>URL: ${urlVO.url}</h4>
+										<button id="removeURLBtn" value= "${urlVO.uno}" name= "uno">삭제하기</button>
 									</li>
 								</c:forEach>
 							</ul>
@@ -208,11 +208,29 @@ body {
 			console.log("listForm ="+listForm);
 			
 			
-			$("#removeURLBtn").on("click", function(){
-			var $this = $(this);
-				$this.parent(listForm).attr("action", "/user/removeURL");
-				$this.parent(listForm).attr("method", "post");
-				$this.parent(listForm).submit();
+			$(document).on("click", "#removeURLBtn",function(){
+				event.preventDefault();
+				
+				var $this = $(this);
+				var test =$this.val();
+				
+				console.log("uno: "+test);
+				
+				$.ajax({
+					url : '../user/removeURL',
+					data : test,
+					dataType : 'text',
+					type : "post",
+					success : function(data) {
+						console.log("DATA: "+data);
+						console.log("======================AJAX");
+					}
+					
+				});
+				
+				//(listForm).attr("action", "/user/removeURL");
+				//$(listForm).attr("method", "post");
+				//$(listForm).submit();
 				
 			}); 
 
