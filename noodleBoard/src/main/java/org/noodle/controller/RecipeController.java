@@ -81,7 +81,7 @@ public class RecipeController {
 		for(int i = 0; i<blist.size(); i++){
 			MemberVO vo = mservice.read(blist.get(i).getMno());
 			
-			mlist.set(i, vo);
+			mlist.add(vo);
 		}
 		logger.info(mlist.toString());
 		
