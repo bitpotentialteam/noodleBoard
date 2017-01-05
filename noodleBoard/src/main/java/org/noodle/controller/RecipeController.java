@@ -83,10 +83,8 @@ public class RecipeController {
 			
 			mlist.add(vo);
 		}
-		logger.info(mlist.toString());
-		
 		model.addAttribute("MemberList", mlist);
-		
+
 		
 		logger.info("listAll callll.........."+ service.search(cri).toString());
 		PageMaker pageMaker = new PageMaker();

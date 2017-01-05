@@ -116,7 +116,17 @@
 					</a>
 					<div class="portfolio-caption">
 						<p class="text-muted">${boardVO.content}</p>
-						<h5>${boardVO.nickname}</h5>
+					
+					<c:set var="loop" value="true"></c:set>
+					<c:forEach items="${MemberList}" var="memberVO">
+						<c:if test="${boardVO.mno eq memberVO.mno}">
+						<c:if test="${loop}">
+							<h5>${memberVO.nickname}</h5>
+							<c:set var="loop" value="false"></c:set>
+						</c:if>
+						</c:if> 
+					</c:forEach>						
+			
 						<h6>${boardVO.regdate}</h6>
 					</div>
 				</div>
@@ -227,7 +237,8 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 	<script>
-		$(document).ready(
+
+	$(document).ready(
 				function() {
 					$('#searchBtn').on(
 							"click",
