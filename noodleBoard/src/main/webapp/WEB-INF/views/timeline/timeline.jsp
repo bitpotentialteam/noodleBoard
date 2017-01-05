@@ -186,7 +186,7 @@ div .replyDiv{
 					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
 					</c:if>
 					<c:if test='${sessionScope.LOGIN ne success}'>
-					<li><a class="page-scroll" href="/user/login" id="login">LOGOUT</a></li>
+					<li><a class="page-scroll" id="login" href="<c:url value="/logout" />">LOGOUT</a></li>
 					<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
 					</c:if>
 			</ul>
@@ -215,7 +215,7 @@ div .replyDiv{
 					<form id="createForm" action='timeline/regist' method='post'>
 						<textarea id="content" name="content" type="text" class="form-control input-md"
 							placeholder="안녕하새오 뿌잉뿌잉 'ㅅ'"></textarea>			
-							<input type="hidden" name="mno" placeholder="mno" value="${sessionScope.VO.mno}">
+							<input type="hidden" id="sessionMno" name="mno" placeholder="mno" value="${sessionScope.VO.mno}">
 							<button type="submit" id="createBtn" class="pull-right" > submit! </button>
 					</form>
 				</div>
@@ -233,6 +233,8 @@ div .replyDiv{
 								<img class="img-circle" src="/user/show?name=${vo.picture}" alt="User Image">
 								<span class="username"> ${vo.nickname}</span>
 								<span class="description"> ${vo.regDate} </span>
+								
+								
 								<button type="button" value="${vo.tno}" id="removeBtn" class="pull-right text-muted"> 
 									<span class="glyphicon glyphicon-trash"></span>
 								</button>           
@@ -266,6 +268,7 @@ div .replyDiv{
 						<div class="box-body">
 							<!-- post text -->
 							<p>${vo.content}</p>
+							<input type = 'hidden' id='writer' value="${vo.mno}">
 							<!-- Social sharing buttons -->
 							<button type="button" id="likeBtn" value="${vo.tno}" class="btn btn-default btn-xs">
 								<i class="fa fa-thumbs-o-up"></i> Like </button>
@@ -289,7 +292,7 @@ div .replyDiv{
 						<div class="box-footer">
 				
 								<img class="img-responsive img-circle img-sm"
-									src="/user/show?name=${vo.picture}"
+									src="/user/show?name=${sessionScope.VO.picture}"
 									alt="Alt Text">
 								<!-- .img-push is used to add margin to elements next to floating images -->
 								<div class="img-push">
@@ -320,9 +323,9 @@ div .replyDiv{
 		</div>
 
 	</div>
-<div>
-<button id="up"> 올라가라 올라가라 올라가라 </button>
-</div>
+								<div>
+								<button id="up"> 맨우ㅣ로올라감니당 </button>
+								</div>
 	</section>
 	
 	<!-- Bootstrap Core JavaScript -->
@@ -346,6 +349,19 @@ div .replyDiv{
 		
 	$( document ).ready(function() {
 		
+		$(document).on('ready',function(){
+
+ 			sessionMno = $("#createForm").find("#sessionMno").val();
+ 			mno = $("#writer").val();
+
+ 			console.log("세션엠엔오  : " + sessionMno);
+ 			console.log("구냥엠엔오  : " + mno);
+ 			
+  			if(sessionMno != mno){
+					$("#modifyBtn").toggle();
+					$("#removeBtn").toggle();
+ 			 	}
+		});
 		
 	//엔터키 이벤트 막아버리기	
 		function KeyPress(e) { 
@@ -546,10 +562,7 @@ div .replyDiv{
 	//replyManager 만들어놓앗읍니다.
 	 var replyManager = (function () {
 	      //여기서 Ajax를 날림
-	      
-	      
-
-	      
+	            
 	      //얘는 댓글 등록될 때 실행될 함수. 아까 그 3개 data받아와서 fn콜백함수시키는데 콜백은 alert띄우는것!
 	      var addReply = function (data, fn) {//1. data와 콜백함수를 넘겨받음
 	         		
@@ -614,6 +627,7 @@ div .replyDiv{
 				    	var regDate = result[i].regDate;
 				    	var trno = result[i].trno;
 				    	var picture = result[i].picture;
+				
 				    	
 				    	var d = new Date();
 						regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
@@ -695,7 +709,8 @@ div .replyDiv{
 										var tno = result[j].tno;
 										var likeCnt = result[j].likeCnt;
 										var replyCnt = result[j].replyCnt;
-										
+										var mno = result[j].mno;
+								
 										var d = new Date();
 										regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
 										d.getHours() + ":" + d.getMinutes();
@@ -715,7 +730,7 @@ div .replyDiv{
 									" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='${vo.content}' name='content' id='modContent'> "+
 									"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='${vo.tno}'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
 									"</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"+
-									"<div class='box-body'><!-- post text --> <p>"+content+"</p> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
+									"<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer 'value=" + mno +"> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
 									" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='"+ tno +"' class='btn btn-default btn-xs'>"+
 									"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +" likes - "+ replyCnt +" comments</span> </div>"+
 									"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list -->"+
@@ -777,6 +792,7 @@ div .replyDiv{
 									var tno = result[j].tno;
 									var likeCnt = result[j].likeCnt;
 									var replyCnt = result[j].replyCnt;
+									var mno =  result[j].mno;
 									
 									var d = new Date();
 									regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
@@ -797,7 +813,7 @@ div .replyDiv{
 								" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='${vo.content}' name='content' id='modContent'> "+
 								"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='${vo.tno}'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
 								"</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"+
-								"<div class='box-body'><!-- post text --> <p>"+content+"</p> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
+								"<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer 'value=" + mno +"> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
 								" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='"+ tno +"' class='btn btn-default btn-xs'>"+
 								"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +" likes - "+ replyCnt +" comments</span> </div>"+
 								"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list -->"+
@@ -826,10 +842,7 @@ div .replyDiv{
 					}
 					 //위에 스크롤이벤트 if문 끝임!
 					});
-					
-					
-					
-					
+
 					
 					}); //DOCUMENT end!
 	

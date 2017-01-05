@@ -18,7 +18,7 @@
 	  <![CDATA[
 				   select *
 		from (
-		select tbl_user.nickname, tbl_user.picture, 
+		select tbl_user.nickname, tbl_user.picture, tbl_user.mno,
 		        tbl_timeline.tno, tbl_timeline.content, tbl_timeline.likecnt, tbl_timeline.replycnt, tbl_timeline.regdate
 		            from tbl_timeline
 		            join tbl_user
@@ -33,7 +33,7 @@
 		<select id="lastListView" resultType="TimeLineVO">
 	
 	  <![CDATA[
-		    select tbl_user.nickname, tbl_user.picture, tbl_timeline.tno,
+		    select tbl_user.nickname, tbl_user.picture, tbl_timeline.tno,tbl_user.mno,
 				tbl_timeline.content, tbl_timeline.likecnt, tbl_timeline.replycnt, tbl_timeline.regdate
 			from tbl_timeline
 			join tbl_user
@@ -48,7 +48,7 @@
 		<select id="firstListView" resultType="TimeLineVO">
 	
 	  <![CDATA[
-		      select tbl_user.nickname, tbl_user.picture, tbl_timeline.tno,
+		      select tbl_user.nickname, tbl_user.picture, tbl_timeline.tno,tbl_user.mno,
 				tbl_timeline.content, tbl_timeline.likecnt, tbl_timeline.replycnt, tbl_timeline.regdate
 				from tbl_timeline
 					join tbl_user
