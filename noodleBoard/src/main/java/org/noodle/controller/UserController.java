@@ -76,9 +76,6 @@ public class UserController {
 		vo.setMno(mno);
 		vo.setUrl(url);
 		URLService.regist(vo);
-		
-		
-		
 
 	}
 

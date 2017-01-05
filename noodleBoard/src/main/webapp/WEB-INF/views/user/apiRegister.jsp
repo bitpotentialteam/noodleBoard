@@ -70,6 +70,7 @@
 body {
 	background: #222;
 }
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -154,7 +155,7 @@ body {
 							<ul>
 								<c:forEach items="${list}" var="urlVO">
 									<li>
-										<h4>URL: ${urlVO.url}</h4>
+										<p>URL: ${urlVO.url}</p>
 										<button id="removeURLBtn" value= "${urlVO.uno}" name= "uno">삭제하기</button>
 									</li>
 								</c:forEach>
