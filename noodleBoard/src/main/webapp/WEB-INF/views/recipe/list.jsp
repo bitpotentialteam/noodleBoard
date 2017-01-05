@@ -52,11 +52,13 @@
 	left: 300px;
 }
 
-#ellipsis{
-	
-	overflow: hidden;
-	display: inline;
+div.portfolio-caption p{
+	text-overflow: ellipsis;
+    overflow: hidden;
+	max-width: 290px;
+	white-space: nowrap;
 }
+
 </style>
 
 </head>
@@ -106,7 +108,7 @@
 		<div class="row">
 			<!-- items START -->
 			<c:forEach items="${list}" var="boardVO">
-				<div class="col-md-4 col-sm-6 portfolio-item" id="ellipsis">
+				<div class="col-md-4 col-sm-6 portfolio-item">
 <!-- 					<div class="portfolio-hover"> -->
 <!-- 						<div class="portfolio-hover-content"> -->
 <!-- 							<i class="fa fa-plus fa-3x"></i> -->

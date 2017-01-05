@@ -315,7 +315,7 @@ button#addStepBtn {
 				return;
 			}
 			
-			var index = stepCnt + 1;
+			var index = stepCnt - 1;
 			var stepStr = "<div class='media form-group' id='step'>"
 				+"<div class='media-left media-middle'>"
 				+"<div id='stepImg'><span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span><div id='noImg'>"
@@ -326,7 +326,7 @@ button#addStepBtn {
 				+"<textarea id='stepContent' name='clist["+index+"].content'></textarea></div>"
 				+"<div class='media-right media-middle'><span id='delStepBtn' class='glyphicon glyphicon-remove-circle'></span></div>"
 				+"<div id='fileUpload'><input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail'>"
-				+"<input type='file' name='file-1[]' id='file-1' class='inputfile inputfile-1' data-multiple-caption='{count} files selected' multiple=''>"
+				+"<input type='file' name='ilist[0].thumbnail' id='imgFile' class='inputfile inputfile-1' data-multiple-caption='{count} files selected' multiple=''>"
 				+"<label for='file-1'><span class='glyphicon glyphicon-open' aria-hidden='true'> Choose a file…</span></label></div></div>";
 				
 				
