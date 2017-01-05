@@ -104,6 +104,7 @@ public class RecipeController {
 		logger.info("view.............");
 		model.addAttribute("vo", service.view(bno));
 		model.addAttribute("clist", cservice.view(bno));
+		model.addAttribute("ilist", iservice.viewBno(bno));
 		
 		PageMaker pageMaker = new PageMaker();		
 		pageMaker.setPageVO(cri);

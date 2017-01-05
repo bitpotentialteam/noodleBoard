@@ -12,7 +12,9 @@ public interface RecipeImageDAO {
 	public RecipeImageVO read(Integer ino)throws Exception;
 	public void delete(Integer ino)throws Exception;
 	
+	public List<RecipeImageVO> readBno(Integer bno) throws Exception;
 	public RecipeImageVO readStep(RecipeImageVO vo) throws Exception;
 	public void bnoDelete(Integer bno) throws Exception;
+	
 	
 }

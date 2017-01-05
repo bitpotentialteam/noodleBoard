@@ -37,4 +37,11 @@ public class RecipeImageServiceImpl implements RecipeImageService {
 		return dao.readStep(vo);
 	}
 
+	
+	@Override
+	public List<RecipeImageVO> viewBno(Integer bno) throws Exception {
+
+		return dao.readBno(bno);
+	}
+
 }

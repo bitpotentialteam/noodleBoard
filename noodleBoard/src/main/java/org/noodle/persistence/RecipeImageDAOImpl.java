@@ -47,4 +47,10 @@ public class RecipeImageDAOImpl implements RecipeImageDAO {
 		session.delete(namespace + "bnoDelete", bno);
 	}
 
+	@Override
+	public List<RecipeImageVO> readBno(Integer bno) throws Exception {
+
+		return session.selectList(namespace+"readBno", bno);
+	}
+
 }

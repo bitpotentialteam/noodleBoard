@@ -144,18 +144,26 @@ textarea {
 						<label>조리순서</label>
 							<div id="steps">
 							
-								<c:forEach items="${clist}" var="vo">
+								<c:forEach items="${clist}" var="cuisineVO">
 								<!-- START -->
 								<div class="media form-group" id="step">
-									<div class="media-left media-middle">			
-										<div class="form-control" id="thumbnail" style="background-image:url(../resources/img/noodle/${vo.thumbnail}.jpg)">
+									<div class="media-left media-middle">
+									
+									<c:set var="loop" value="true"></c:set>
+									<c:forEach items="${ilist}" var="imageVO">
+										<c:if test="${imageVO.step == cuisineVO.step}">
+										<c:if test="${loop}">
+											<div class="form-control" id="thumbnail" style="background-image:url(../resources/img/noodle/${imageVO.thumbnail}.jpg)"></div>
+											<c:set var="loop" value="false"></c:set>
+										</c:if>
+										</c:if> 
+									</c:forEach>
 											<!-- 사진 크게 보기 모달 창 넣기-->
-										</div>
 									</div>
 									 <div class="media-body">
-									 	<h4 class="media-heading">STEP ${vo.step}</h4>
+									 	<h4 class="media-heading">STEP ${cuisineVO.step}</h4>
 										<div>
-											<p>${vo.content}</p>
+											<p>${cuisineVO.content}</p>
 										</div>
 									</div>
 								</div>

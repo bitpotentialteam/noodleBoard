@@ -19,12 +19,21 @@
 		from 
 			tbl_recipeImage where ino =#{ino, jdbcType=INTEGER}
 	</select>
+	
+	<select id="readBno" resultType="RecipeImageVO">
+		select
+			*
+		from
+			tbl_recipeImage
+		where
+			bno=#{bno, jdbcType=INTEGER}
+	</select>
 
 	<delete id="delete">
 		delete 
 			tbl_recipeImage 
 		where 
-			ino = #{ino}
+			ino = #{ino, jdbcType=INTEGER}
 	</delete>	
 	
 	<select id="readStep" resultType="RecipeImageVO">

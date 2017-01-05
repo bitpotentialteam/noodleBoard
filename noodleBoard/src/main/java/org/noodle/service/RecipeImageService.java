@@ -13,5 +13,6 @@ public interface RecipeImageService {
 	public void remove(Integer ino)throws Exception;
 	
 	public RecipeImageVO viewSteps(RecipeImageVO vo) throws Exception;
+	public List<RecipeImageVO> viewBno(Integer bno) throws Exception;
 	
 }
