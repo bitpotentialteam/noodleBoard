@@ -3,7 +3,6 @@
 	Available for use under the MIT License
 */
 
-
 'use strict';
  
 ;( function ( document, window, index )
