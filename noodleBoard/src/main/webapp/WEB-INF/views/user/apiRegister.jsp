@@ -155,7 +155,7 @@ body {
 							<ul>
 								<c:forEach items="${list}" var="urlVO">
 									<li>
-										<h4>URL: ${urlVO.url}</h4><button id="removeURLBtn" value= "${urlVO.uno}" name= "uno"></button>
+										<h4>URL: ${urlVO.url}</h4><button id="removeURLBtn" value= "${urlVO.uno}" name= "uno">삭제하기</button>
 									</li>
 								</c:forEach>
 							</ul>
@@ -168,7 +168,7 @@ body {
 								placeholder="URL Address">
 						</div>
 						<div>
-							<button type="submit" class="btn btn-primary btn-flat">URL
+							<button type="submit" class="btn btn-primary">URL
 								REGISTER</button>
 						</div>
 
@@ -201,14 +201,18 @@ body {
 
 			var formObj = $("#form");
 
-			console.log(formObj);
+			console.log("formObj = "+ formObj);
 			
 			var listForm = $("#listForm");
 			
+			console.log("listForm ="+listForm);
+			
+			
 			$("#removeURLBtn").on("click", function(){
-				listForm.attr("action", "/user/removeURL");
-				listForm.attr("method", "post");
-				listForm.submit();
+			var $this = $(this);
+				$this.parent(listForm).attr("action", "/user/removeURL");
+				$this.parent(listForm).attr("method", "post");
+				$this.parent(listForm).submit();
 				
 			}); 
 			

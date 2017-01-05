@@ -36,12 +36,13 @@ public class UserController {
 
 	
 	@PostMapping("/removeURL")
-	public void removeURL(Integer uno) throws Exception{
+	public String removeURL(Integer uno) throws Exception{
 		logger.info("removeURL");
 		
 		logger.info("uno: " + uno);
 		
 		URLService.remove(uno);
+		return "redirect:/user/apiRegister";
 	}
 	
 	@GetMapping("/apiRegister")
