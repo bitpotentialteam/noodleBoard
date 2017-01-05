@@ -5,16 +5,19 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.noodle.domain.MemberVO;
 import org.noodle.domain.PageMaker;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.domain.RecipeImageVO;
 import org.noodle.domain.SearchVO;
+import org.noodle.service.MemberService;
 import org.noodle.service.RecipeBoardService;
 import org.noodle.service.RecipeCuisineService;
 import org.noodle.service.RecipeImageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +41,9 @@ public class RecipeController {
 	
 	@Inject
 	private RecipeCuisineService cservice;
+	
+	@Autowired
+	private MemberService mservice;
 	
 	
 	@GetMapping("/register")
@@ -66,7 +72,7 @@ public class RecipeController {
 		
 		logger.info("listAll.............");
 		model.addAttribute("list", service.search(cri));
-		
+
 		logger.info("listAll callll.........."+ service.search(cri).toString());
 		PageMaker pageMaker = new PageMaker();
 		

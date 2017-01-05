@@ -116,7 +116,7 @@
 					</a>
 					<div class="portfolio-caption">
 						<p class="text-muted">${boardVO.content}</p>
-						<h5>닉네임</h5>
+						<h5>${boardVO.nickname}</h5>
 						<h6>${boardVO.regdate}</h6>
 					</div>
 				</div>
