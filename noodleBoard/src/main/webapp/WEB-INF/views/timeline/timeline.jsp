@@ -356,8 +356,8 @@ div .replyDiv{
 	
 			
 			function user(){
-			var timeLineBox = $('#timelinebigbox').children(); 
 			
+			var timeLineBox = $('#timelinebigbox').children(); 
 			timeLineBox.each(function(){
 				var $this =	 $(this);
 				//console.log($this);
@@ -370,8 +370,8 @@ div .replyDiv{
 	  				
 	  				button =  "<button type='button' value=' " + tno + "'id='removeBtn' class='pull-right text-muted'>" +
 							"<span class='glyphicon glyphicon-trash'></span></button>"  +         
-					"<button type='button' value='"+ tno +"' id='modifyBtn' class='modify pull-right text-muted'>"+ 
-						"<span class='glyphicon glyphicon-erase'></span> </button>"
+							"<button type='button' value='"+ tno +"' id='modifyBtn' class='modify pull-right text-muted'>"+ 
+							"<span class='glyphicon glyphicon-erase'></span> </button>"
 	  				
 	  				$this.find("#userBtn").html(button);
 	  				
@@ -638,8 +638,8 @@ div .replyDiv{
 				
 				    	
 				    	var d = new Date();
-						regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
-						d.getHours() + ":" + d.getMinutes();
+						//regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
+						//d.getHours() + ":" + d.getMinutes();
 				    	
 // 				    	console.log("닉" + nick);
 // 				    	console.log("날짜" + result[i].regDate);
@@ -654,7 +654,7 @@ div .replyDiv{
 					"src=/user/show?name="+ picture + " alt='User Image'>" +
 					"<div class='comment-text'> " +
 					"<span class='username'>" + nick + " <span class='text-muted pull-right'>" +
-					regDate + " </span></span> " + content + "<button type='submit' id='removeReply' value='" + trno + "'> x </button></div> </div>";
+					regDate + " </span></span> " + content + "<button type='submit' id='removeReply' value='" + trno + "'> x </button></div> </div>" 
 
 				 };
 				
@@ -688,7 +688,6 @@ div .replyDiv{
 							var timelinebigbox = $("#timelinebigbox");
 							var updateList = $('.replyDiv').find('.box-comments');
 							
-							console.log(tno);
 							
 							$.ajax({
 				    			type : 'get',
@@ -727,12 +726,13 @@ div .replyDiv{
 									"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>" +
 									" <input type='hidden' id='userTno' value='"+ tno +"'>" +
 									" <span class='username'><a href='#'>"+ nickname +"</a></span> <span class='description'> "+ regDate +" </span> "+ 
+									"<div id='userBtn'> </div>"+
 									" <!-- Modify Modal --> <div id='myModal' class='modal'>"+
 									" <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> <span class='close' id='closeBtn'>&times;</span> "+
 									" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='"+ content +"' name='content' id='modContent'> "+
 									"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='"+ tno +"'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
 									"</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"+
-									"<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer 'value=" + mno +"> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
+									"<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer' value='" + mno +"'> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
 									" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='"+ tno +"' class='btn btn-default btn-xs'>"+
 									"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +" likes - "+ replyCnt +" comments</span> </div>"+
 									"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"+
@@ -746,7 +746,6 @@ div .replyDiv{
 											return;
 										}
 								 $("#timelinebigbox").append(lastStr);
-									 console.log("useruser");
 								 user();
 								  replyManager.listReply({"tno":tno},
 										  function(str){
@@ -821,7 +820,6 @@ div .replyDiv{
 										return;
 									}
 							 $("#timelinebigbox").prepend(fistlist);
-							 user();
 							  replyManager.listReply({"tno":tno},
 									  function(str){
 								  updateList.html(str);
