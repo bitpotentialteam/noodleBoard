@@ -420,7 +420,6 @@ button {
 			
 			}
 			user();
-			
 		
 	//엔터키 이벤트 막아버리기	
 		function KeyPress(e) { 
@@ -578,7 +577,7 @@ button {
 						  replyManager.listReply({tno:tno},
 								  function(str){
 							  updateList.html(str);
-							 
+							 userReply();
 						  });
 			       });
 		}
@@ -681,6 +680,10 @@ button {
 				    	var regDate = result[i].regDate;
 				    	var trno = result[i].trno;
 				    	var picture = result[i].picture;
+				    	var mno = result[i].mno;
+				    	
+				    	console.log(mno);
+				    	console.log(sessionMno);
 				
 				    	
 				    	var d = new Date();
@@ -694,21 +697,34 @@ button {
 // 				    	console.log("픽픽픽쳐" + picture);
 // 				    	console.log(result);
 				    	
+				    	if(sessionMno != mno){
 
 					str += "<div class='box-comment'>" + 
 					"<img class='img-circle' "+
 					"src=/user/show?name="+ picture + " alt='User Image'>" +
 					"<div class='comment-text'> " +
+					"<input type='hidden' id='removeMno' value='"+mno+"'>"+
+					"<span class='username'>" + nick + " <span class='text-muted pull-right'>" +
+					regDate + " </span></span> " + content + "</div> </div>" 
+				    	
+				    	}else{
+				    		
+					str += "<div class='box-comment'>" + 
+					"<img class='img-circle' "+
+					"src=/user/show?name="+ picture + " alt='User Image'>" +
+					"<div class='comment-text'> " +
+					"<input type='hidden' id='removeMno' value='"+mno+"'>"+
 					"<span class='username'>" + nick + " <span class='text-muted pull-right'>" +
 					regDate + " </span></span> " + content + "<button type='submit' id='removeReply' value='" + trno + "'> x </button></div> </div>" 
-
+				    		
+				    		
+				    	}
 				 };
 				
 				 fn(str);
 
     			}
     		});
-	    	  
 	      };
 	     
 	      return {addReply: addReply, removeReply: removeReply, listReply: listReply};
@@ -791,7 +807,7 @@ button {
 									"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"+
 									" <div class='box-footer box-comments' id='commentsbox'> </div>	<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'"+
 									"src='/user/show?name=" + picture+"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
-									" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder=ss enter to post comment!'>"+
+									" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='댓글은 너의 인성을 보여줍니다'>"+
 									"</div> </div><!-- /.box-footer --> <div> </div><!-- big div --> ";
 									
 								 
@@ -874,7 +890,7 @@ button {
 								"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"+
 								" <div class='box-footer box-comments' id='commentsbox'> </div>	<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'"+
 								"src='/user/show?name=" + picture+"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
-								" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder=ss enter to post comment!'>"+
+								" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='댓글은 너의 인성을 보여줍니다'>"+
 								"</div> </div><!-- /.box-footer --> <div> </div><!-- big div --> ";
 
 									}else{
