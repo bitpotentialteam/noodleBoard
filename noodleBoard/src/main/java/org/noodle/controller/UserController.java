@@ -142,9 +142,8 @@ public class UserController {
 	public String modifyPOST(Model model, MemberVO vo) throws Exception {
 
 		logger.info("mofify post....");
-		int mno = service.read1(vo.getUserid()).getMno();
-
-		vo.setMno(mno);
+		logger.info("모디파이모디파이모디파이모디파이");
+		
 		service.modify(vo);
 
 		return "redirect:/";

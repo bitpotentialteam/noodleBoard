@@ -133,6 +133,8 @@ body {
 					<form id="form" role="formModify" action="modify" method="post">
 						<div class="box-footer no-padding">
 						
+							<input type="hidden" name="mno" value="${sessionScope.VO.mno}">
+							<input type="hidden" name="userid" value="${sessionScope.VO.userid}">
 							<ul class="list-group">
 								<li class="list-group-item"><h4>ID</h4>${sessionScope.VO.userid}</li>
 								<li class="list-group-item"><h4>PASSWORD</h4><input type="password" name="userpw" value="${sessionScope.VO.userpw}"></li>
