@@ -93,24 +93,24 @@
 			<form action="register" method="post" >
 				<div class="form-group has-feedback">
 					
-					<input type="text" id="userid" name="userid" class="form-control" placeholder="ID"/>
+					<input type="text" id="userid" name="userid" class="form-control" placeholder="ID" value=""/>
 					 <i class="glyphicon glyphicon-search" id="checkBtn" style='cursor: pointer;'></i>
 					
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" id="userpw" name="userpw" class="form-control" placeholder="Password">
+					<input type="password" id="userpw" name="userpw" class="form-control" placeholder="Password" value="">
 					<span class="glyphicon glyphicon-lock form-control-feedback" id="fa-check-square-o"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="text" id="username" name="username" class="form-control" placeholder="Username">
+					<input type="text" id="username" name="username" class="form-control" placeholder="Username" value="">
 					<span class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="text" id="nickname" name="nickname" class="form-control" placeholder="NickName">
+					<input type="text" id="nickname" name="nickname" class="form-control" placeholder="NickName" value="">
 					<span class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="email" id="email" name="email" class="form-control" placeholder="Email">
+					<input type="email" id="email" name="email" class="form-control" placeholder="Email" value="">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback" id="fileDrop" >
@@ -128,7 +128,7 @@
 					</div>
 					<!-- /.col -->
 					<div>
-						<button type="submit" class="btn btn-primary btn-flat">Register</button>
+						<button type="submit" id="regBtn" class="btn btn-primary btn-flat">Register</button>
 					</div>
 					<!-- /.col -->
 				</div>
@@ -159,6 +159,21 @@
 	</script>
 	<script>
 		$(document).ready(function() {
+			
+			
+			$("#regBtn").on("click",function(){
+				
+				var userid = $("#userid").val();
+				
+				if(userid == ""){
+					alert("아이디를 입력하여 주세용");
+				}
+
+			});
+			
+			
+			
+			
 
 			var uploadedList = $("#uploadedList")
 
