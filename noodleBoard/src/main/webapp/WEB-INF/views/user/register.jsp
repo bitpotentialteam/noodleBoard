@@ -73,7 +73,7 @@
 					<li><a class="page-scroll" href="/timeline">Community</a></li>
 					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
 					<li><a class="page-scroll" href="/user/login">LOGIN</a></li>
-					<li><a class="page-scroll" href="/user/register">SING-IN</a></li>
+					<li><a class="page-scroll" href="/user/register">SIGN-UP</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -165,9 +165,11 @@
 				
 				var userid = $("#userid").val();
 				
-				if(userid == ""){
-					alert("아이디를 입력하여 주세용");
+				
+				if(userid == "" || $('#userpw').val() == "" || $('#userpw').val() == "" || $('#username').val() == "" || $('#nickname').val() == "" || $('#email').val() == ""){
+					alert("항목을 입력해주세요");
 				}
+				
 
 			});
 			
