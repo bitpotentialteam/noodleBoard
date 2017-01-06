@@ -164,6 +164,10 @@
 			$("#regBtn").on("click",function(){
 				
 				var userid = $("#userid").val();
+				var userpw = $('#userpw').val();
+				
+				console.log(userpw);
+				console.log(userpw.size());
 				
 				
 				if(userid == "" || $('#userpw').val() == "" || $('#userpw').val() == "" || $('#username').val() == "" || $('#nickname').val() == "" || $('#email').val() == ""){

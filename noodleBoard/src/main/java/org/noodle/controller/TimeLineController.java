@@ -62,6 +62,9 @@ public class TimeLineController {
 	@PostMapping("/modify")
 	public String modifyPost(TimeLineVO vo, Model model) throws Exception{
 		
+		String contents = vo.getContent();
+		contents = contents.replace("\r\n","<br>");
+		vo.setContent(contents);
 		service.modify(vo);
 		model.addAttribute("vo",vo);
 		logger.info("Modify vo" + vo);

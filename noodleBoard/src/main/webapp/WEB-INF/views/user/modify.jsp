@@ -134,7 +134,7 @@ body {
 						<div class="box-footer no-padding">
 						
 							<ul class="list-group">
-								<li class="list-group-item"><h4>ID</h4><input  name="userid" value="${sessionScope.VO.userid}"></li>
+								<li class="list-group-item"><h4>ID</h4>${sessionScope.VO.userid}</li>
 								<li class="list-group-item"><h4>PASSWORD</h4><input type="password" name="userpw" value="${sessionScope.VO.userpw}"></li>
 								<li class="list-group-item"><h4>NAME</h4><input type="text" name="username" value="${sessionScope.VO.username}"></li>
 								<li class="list-group-item"><h4>NICKNAME</h4><input type="text" name="nickname" value="${sessionScope.VO.nickname}"></li>

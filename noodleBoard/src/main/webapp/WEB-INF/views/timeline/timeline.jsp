@@ -339,7 +339,7 @@ button {
 								<div class="img-push">
 								<input name="tno" type="hidden" value="${vo.tno}" id="replytno">
 								<input name="mno" type="hidden" value="${sessionScope.VO.mno}" id="replymno">
-									<input type="text" id="replyContent" class="form-control input-sm" placeholder="Press enter to post comment!">
+									<input type="text" id="replyContent" class="form-control input-sm" placeholder="댓글은 너의 인성을 보여줍니다">
 								</div>
 						
 							
@@ -437,7 +437,7 @@ button {
 				
 				$('body').animate({
 					scrollTop: 0
-				}, 100);
+				}, 200);
 				return false;
 	
 			//$("body").scrollTop(0);
@@ -771,11 +771,11 @@ button {
 									" <!-- .box-header START --> "+
 									"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>" +
 									" <input type='hidden' id='userTno' value='"+ tno +"'>" +
-									" <span class='username'><a href='#'>"+ nickname +"</a></span> <span class='description'> "+ regDate +" </span> "+ 
+									" <span class='username'>"+ nickname +"</span> <span class='description'> "+ regDate +" </span> "+ 
 									"<div id='userBtn'> </div>"+
 									" <!-- Modify Modal --> <div id='myModal' class='modal'>"+
 									" <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> <span class='close' id='closeBtn'>&times;</span> "+
-									" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='"+ content +"' name='content' id='modContent'> "+
+									" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <textarea name='content' id='modContent'> "+ content +"</textarea> "+
 									"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='"+ tno +"'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
 									"</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"+
 									"<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer' value='" + mno +"'> <!-- Social sharing buttons -->" +
@@ -854,7 +854,7 @@ button {
 								" <!-- .box-header START --> "+
 								"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>" +
 								" <input type='hidden' id='userTno' value='"+ tno +"'>" +
-								" <span class='username'><a href='#'>"+ nickname +"</a></span> <span class='description'> "+ regDate +" </span> "+ 
+								" <span class='username'>"+ nickname +"</span> <span class='description'> "+ regDate +" </span> "+ 
 								"<div id='userBtn'> </div>"+
 								" <!-- Modify Modal --> <div id='myModal' class='modal'>"+
 								" <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> <span class='close' id='closeBtn'>&times;</span> "+
