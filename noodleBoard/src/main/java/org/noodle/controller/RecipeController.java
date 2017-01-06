@@ -52,8 +52,12 @@ public class RecipeController {
 	
 	@PostMapping("/register")
 	public String registerPOST(RecipeBoardVO vo, BoardList boardList, RedirectAttributes rttr) throws Exception {
-
 		logger.info("RegisterPOST FUCK");
+		
+		for(int i = 0; i < boardList.getIlist().size(); i++){
+			String imageName = boardList.getIlist().get(i).getThumbnail().replaceAll("s_", "o_");
+			boardList.getIlist().get(i).setImage(imageName);
+		}
 		
 		logger.info("vo : " + vo);
 		logger.info("ilist : "+boardList.getIlist());

@@ -76,6 +76,9 @@ public class UploadController {
 		
 //		return new ResponseEntity<String>(file.getOriginalFilename(),HttpStatus.CREATED);
 
+		logger.info(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
+				HttpStatus.CREATED);
+		
 		return new ResponseEntity<String>(
 				UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
 				HttpStatus.CREATED);
