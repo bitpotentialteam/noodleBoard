@@ -161,9 +161,23 @@ button {
 
 }
 
+#likeBtn, #replyBtn{
+
+   background-color: rgba( 255, 255, 255, 0.5 );
+   border : 0;
+   outline : 0;
+
+}
+
 #up{
 	width: 100%;	
 }
+
+#content{
+	width: 100%;
+	margin-bottom: 10px;
+}
+
 
 
 
@@ -290,15 +304,21 @@ button {
 							<!-- post text -->
 							<p>${vo.content}</p>
 							<input type = 'hidden' id='writer' value="${vo.mno}">
+							
+							
 							<!-- Social sharing buttons -->
-							<button type="button" id="likeBtn" value="${vo.tno}" class="btn btn-default btn-xs">
-								<i class="fa fa-thumbs-o-up"></i> Like </button>
+							<div id='replyBtnDiv'>
+								<span class='pull-right text-muted'>
+							<button type='button' id='replyBtn' value='${vo.tno}' class='btn btn-default btn-xs'>
+								<span class='glyphicon glyphicon-menu-hamburger'></span> </button> <span class='badge'>${vo.replyCnt}</span></span>
+								</div>
 								
+								<div id='likeBtnDiv'>
+							<span class='pull-right text-muted'>
+							<button type='button' id='likeBtn' value='${vo.tno}' class='btn btn-default btn-xs'>
+								<span class='glyphicon glyphicon-thumbs-up'></span> </button> <span class='badge'>${vo.likeCnt}</span></span>
+							</div>
 								
-								<button type="button" id="replyBtn" value="${vo.tno}" class="btn btn-default btn-xs">
-								<i class="fa fa-heert"></i> 댓글보기 </button>
-								
-							<span class="pull-right text-muted">${vo.likeCnt} likes - ${vo.replyCnt} comments</span>
 						</div>
 						<!-- .box-body END -->
 						<!-- .box-footer START -->
@@ -758,9 +778,16 @@ button {
 									" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='"+ content +"' name='content' id='modContent'> "+
 									"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='"+ tno +"'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
 									"</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"+
-									"<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer' value='" + mno +"'> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
-									" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='"+ tno +"' class='btn btn-default btn-xs'>"+
-									"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +" likes - "+ replyCnt +" comments</span> </div>"+
+									"<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer' value='" + mno +"'> <!-- Social sharing buttons -->" +
+									
+									 " <div id='replyBtnDiv'> <span class='pull-right text-muted'> " +
+									 " <button type='button' id='replyBtn' value='" +tno+ "' class='btn btn-default btn-xs'> " +
+									 " <span class='glyphicon glyphicon-menu-hamburger'></span> </button>" +
+									 "  <span class='badge'>"+ replyCnt +"</span></span> </div>" +
+									 "<div id='likeBtnDiv'> <span class='pull-right text-muted'>" +
+									 "<button type='button' id='likeBtn' value='" +tno+ "' class='btn btn-default btn-xs'>" +
+									 " <span class='glyphicon glyphicon-thumbs-up'></span> </button> " +
+									 "  <span class='badge'>"+ likeCnt +"</span></span> </div> " +
 									"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"+
 									" <div class='box-footer box-comments' id='commentsbox'> </div>	<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'"+
 									"src='/user/show?name=" + picture+"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
@@ -823,25 +850,33 @@ button {
 									
 									if(result != ""){
 						
-								fistlist = "<div class='box box-solid' id='timelineBox'> 	<!-- .box-header START --> "+
-								"<div class='box-header with-border'> <div class='user-block'> "+
-								"<img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>" +
+								fistlist =  "<div class='box box-solid' id='timelineBox'> "+
+								" <!-- .box-header START --> "+
+								"<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>" +
 								" <input type='hidden' id='userTno' value='"+ tno +"'>" +
 								" <span class='username'><a href='#'>"+ nickname +"</a></span> <span class='description'> "+ regDate +" </span> "+ 
+								"<div id='userBtn'> </div>"+
 								" <!-- Modify Modal --> <div id='myModal' class='modal'>"+
 								" <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> <span class='close' id='closeBtn'>&times;</span> "+
-								" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='"+content+"' name='content' id='modContent'> "+
+								" <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='"+ content +"' name='content' id='modContent'> "+
 								"</div> <div class='modal-footer'> <button type='button' id='modBtn' value='"+ tno +"'><span class='mod glyphicon glyphicon-erase' ></span></button>"+
 								"</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"+
-								"<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer 'value=" + mno +"> <!-- Social sharing buttons --> <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default btn-xs'>"+
-								" <i class='fa fa-thumbs-o-up'></i> Like </button> <button type='button' id='replyBtn' value='"+ tno +"' class='btn btn-default btn-xs'>"+
-								"<i class='fa fa-heert'></i> 댓글보기 </button> <span class='pull-right text-muted'>"+ likeCnt +" likes - "+ replyCnt +" comments</span> </div>"+
-								"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list -->"+
-								"src='/user/show?name="+picture +"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
-								" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='Press enter to post comment!'>"+
-								"</div> </div><!-- /.box-footer --> </div> </div><!-- big div --> ";
+								"<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer' value='" + mno +"'> <!-- Social sharing buttons -->" +
 								
-							 
+								 " <div id='replyBtnDiv'> <span class='pull-right text-muted'> " +
+								 " <button type='button' id='replyBtn' value='" +tno+ "' class='btn btn-default btn-xs'> " +
+								 " <span class='glyphicon glyphicon-menu-hamburger'></span> </button>" +
+								 "  <span class='badge'>"+ replyCnt +"</span></span> </div>" +
+								 "<div id='likeBtnDiv'> <span class='pull-right text-muted'>" +
+								 "<button type='button' id='likeBtn' value='" +tno+ "' class='btn btn-default btn-xs'>" +
+								 " <span class='glyphicon glyphicon-thumbs-up'></span> </button> " +
+								 "  <span class='badge'>"+ likeCnt +"</span></span> </div> " +
+								"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"+
+								" <div class='box-footer box-comments' id='commentsbox'> </div>	<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'"+
+								"src='/user/show?name=" + picture+"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
+								" <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder=ss enter to post comment!'>"+
+								"</div> </div><!-- /.box-footer --> <div> </div><!-- big div --> ";
+
 									}else{
 										return;
 									}
