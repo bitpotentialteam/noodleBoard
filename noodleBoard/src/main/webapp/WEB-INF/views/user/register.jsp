@@ -168,10 +168,8 @@
 				
 				if(userid == "" || $('#userpw').val() == "" || $('#userpw').val() == "" || $('#username').val() == "" || $('#nickname').val() == "" || $('#email').val() == ""){
 					alert("항목을 입력해주세요");
-					return "redirect:/user/register";
 				}
-				
-
+					
 			});
 			
 			
