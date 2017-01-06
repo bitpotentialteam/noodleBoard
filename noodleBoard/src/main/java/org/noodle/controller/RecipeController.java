@@ -9,6 +9,8 @@ import org.noodle.domain.BoardList;
 import org.noodle.domain.MemberVO;
 import org.noodle.domain.PageMaker;
 import org.noodle.domain.RecipeBoardVO;
+import org.noodle.domain.RecipeCuisineVO;
+import org.noodle.domain.RecipeImageVO;
 import org.noodle.domain.SearchVO;
 import org.noodle.service.MemberService;
 import org.noodle.service.RecipeBoardService;
@@ -138,6 +140,18 @@ public class RecipeController {
 		rttr.addFlashAttribute("msg", "success");
 
 		return "redirect:list";
+	}
+	
+	@PostMapping("/modify")
+	public void modifyPOST(RecipeBoardVO bvo, RecipeImageVO ivo, RecipeCuisineVO cvo) throws Exception{
+		logger.info("ModifyPOST called.....");
+		
+		logger.info("bvo: "+bvo.toString());
+		logger.info("ivo: "+ivo.toString());
+		logger.info("cvo: "+cvo.toString());
+		
+		service.modify(bvo);
+		cservice.modify(cvo);
 	}
 
 }
