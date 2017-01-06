@@ -123,5 +123,21 @@ public class RecipeController {
 		pageMaker.setPageVO(cri);
 		model.addAttribute("pageMaker", pageMaker);
 	}
+	
+	@PostMapping("/remove")
+	public String remove(@RequestParam("bno") int bno, SearchVO cri, RedirectAttributes rttr) throws Exception {
+		logger.info("DELETE.......");
+		service.remove(bno);
+		logger.info("BNO : " + bno);
+
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPageUnit());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+
+		rttr.addFlashAttribute("msg", "success");
+
+		return "redirect:list";
+	}
 
 }

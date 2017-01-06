@@ -60,7 +60,7 @@ public class RecipeBoardServiceTester {
 		
 		vo.setBno(22);
 
-		service.remove(vo);
+		service.remove(102);
 	}
 
 }

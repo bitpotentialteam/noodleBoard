@@ -186,6 +186,16 @@ textarea {
 	
 		</div>
 	</div>
+	
+	<form role="form" action="modify" method="post">
+    	
+	<input type='hidden' name='bno' value="${vo.bno}">
+	<input type='hidden' name='page' value="${cri.page}">
+	<input type='hidden' name='perPageNum' value="${cri.pageUnit}">
+	<input type='hidden' name='searchType' value="${cri.searchType}">
+	<input type='hidden' name='keyword' value="${cri.keyword}">
+
+</form>
 
 	<!-- Footer START -->
     <footer>
@@ -245,18 +255,19 @@ textarea {
 			
 			console.log(formObj);
 			
-			$(".modifyBtn").on("click", function(){
+			$("#modifyBtn").on("click", function(){
 				formObj.attr("action", "/recipe/modify");
 				formObj.attr("method", "get");
 				formObj.submit();
 			});
 			
-			$(".removeBtn").on("click", function(){
-
+			$("#removeBtn").on("click", function(event){
+				console.log(event);
 				formObj.attr("action", "/recipe/remove");
+				formObj.attr("method", "post");
 				formObj.submit();
 							
-				alret("삭제 완료");
+				
 			});
 		});
 	</script>

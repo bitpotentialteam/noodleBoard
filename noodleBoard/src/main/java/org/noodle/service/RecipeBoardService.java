@@ -11,7 +11,7 @@ import org.noodle.domain.SearchVO;
 public interface RecipeBoardService {
 	public void regist(RecipeBoardVO vo) throws Exception;
 	public void modify(RecipeBoardVO vo)throws Exception;
-	public void remove(RecipeBoardVO vo)throws Exception;
+	public void remove(Integer bno)throws Exception;
 	public List<RecipeBoardVO> listAll(PageVO vo)throws Exception;
 	public List<RecipeBoardVO> search(SearchVO cri)throws Exception;
 	public List<RecipeBoardVO> listPage(int page) throws Exception;

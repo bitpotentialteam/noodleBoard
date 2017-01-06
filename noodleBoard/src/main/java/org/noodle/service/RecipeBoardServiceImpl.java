@@ -52,11 +52,11 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 
 	@Override
 	@Transactional
-	public void remove(RecipeBoardVO vo) throws Exception {
+	public void remove(Integer bno) throws Exception {
 		
-		dao.delete(vo.getBno());
-		idao.bnoDelete(vo.getBno());
-		cdao.bnoDelete(vo.getBno());
+		dao.delete(bno);
+		idao.bnoDelete(bno);
+		cdao.bnoDelete(bno);
 	}
 
 	@Override
