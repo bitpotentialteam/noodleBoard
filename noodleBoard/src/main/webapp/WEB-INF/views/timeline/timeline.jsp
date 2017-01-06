@@ -155,7 +155,7 @@ div .replyDiv{
 
 button {
 
-   background-color: rgba( 255, 255, 255, 0.5 );
+   background-color: rgba( 255, 255, 255, 0 );
    border : 0;
    outline : 0;
 
@@ -163,7 +163,7 @@ button {
 
 #likeBtn, #replyBtn{
 
-   background-color: rgba( 255, 255, 255, 0.5 );
+   background-color: rgba( 255, 255, 255, 0 );
    border : 0;
    outline : 0;
 
@@ -682,10 +682,6 @@ button {
 				    	var picture = result[i].picture;
 				    	var mno = result[i].mno;
 				    	
-				    	console.log(mno);
-				    	console.log(sessionMno);
-				
-				    	
 				    	var d = new Date();
 						//regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
 						//d.getHours() + ":" + d.getMinutes();
@@ -715,7 +711,7 @@ button {
 					"<div class='comment-text'> " +
 					"<input type='hidden' id='removeMno' value='"+mno+"'>"+
 					"<span class='username'>" + nick + " <span class='text-muted pull-right'>" +
-					regDate + " </span></span> " + content + "<button type='submit' id='removeReply' value='" + trno + "'> x </button></div> </div>" 
+					regDate + " </span></span> " + content + "<button type='submit' id='removeReply' value='" + trno + "'<span class='glyphicon glyphicon-remove' style='color : black;' ></span></button></div> </div>" 
 				    		
 				    		
 				    	}
