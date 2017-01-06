@@ -112,11 +112,12 @@ textarea {
         </div>
     </header>
     
-    
-<div class="container" id="recipe">
+<form id=recipe>
+<div class="container">
 		<div class="row">
 	
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<input type="hidden" name="bno" value="${vo.bno }">
 				<p>
 				<h1>title ${vo.title}</h1>
 				</p>		
@@ -186,7 +187,7 @@ textarea {
 	
 		</div>
 	</div>
-	
+	</form>
 	<form role="form" action="modify" method="post">
     	
 	<input type='hidden' name='bno' value="${vo.bno}">
