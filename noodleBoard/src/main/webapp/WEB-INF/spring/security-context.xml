@@ -24,6 +24,9 @@
 	<security:intercept-url pattern="/user/myPage" access="ROLE_MEMBER"/>
 	<security:intercept-url pattern="/user/modify" access="ROLE_MEMBER"/>
 	<security:intercept-url pattern="/user/apiRegister" access="ROLE_MEMBER"/>
+	<security:intercept-url pattern="/recipe/modify" access="ROLE_MEMBER"/>
+	<security:intercept-url pattern="/recipe/register" access="ROLE_MEMBER"/>
+	<security:intercept-url pattern="/recipe/view" access="ROLE_MEMBER"/>
 	<security:csrf disabled="true" />
 
 </security:http>
