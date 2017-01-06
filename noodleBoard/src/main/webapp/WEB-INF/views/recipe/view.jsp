@@ -264,6 +264,7 @@ textarea {
 			
 			$("#removeBtn").on("click", function(event){
 				console.log(event);
+				alert("삭제 완료되었습니다.");
 				formObj.attr("action", "/recipe/remove");
 				formObj.attr("method", "post");
 				formObj.submit();
