@@ -46,11 +46,10 @@
 #stepImg {
 	width: 150px;
 	height: 150px;
-	border: 1px dotted gray;
     border-radius: 4px;
 	background: #fed136 no-repeat center center;
 	background-size: contain; 
-	margin: auto;
+	margin: 5px;
 	text-align:center;
 	color: rgba(138, 109, 59, 0.55);
 }
@@ -73,6 +72,14 @@ textarea {
 	width: 100%;
 	height:125px;
 	resize: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
 button#addStepBtn {
@@ -97,7 +104,17 @@ button#addStepBtn {
 	display: none;
 }
 
+.mainImg{
+	-webkit-box-shadow: 0px 0px 3px 2px rgba(138, 109, 59,0.75);
+	-moz-box-shadow: 0px 0px 3px 2px rgba(138, 109, 59,0.75);
+	box-shadow: 0px 0px 3px 2px rgba(138, 109, 59,0.75);
+	border:0.2em solid #d3394c;
+}
 
+.subImg{
+	border: 1px dotted gray;
+	
+}
 
 
 </style>
@@ -197,18 +214,22 @@ button#addStepBtn {
 					<div class="row control-group" >
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 						<label>조리순서 (image drag&drop)</label>
+							<div id="fileUpload">
+										<input type="file" name="ilist[0].thumbnail" id="imgFile" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="" accept=".jpg, .png, .jpeg, .gif">
+										<label for="imgFile"><span class="glyphicon glyphicon-open" aria-hidden="true"> Choose a file…</span></label>
+							</div>
 							<div id="steps">
 							
 								<!-- START -->
 								<div class="media form-group" id="step">
 									<div class="media-left media-middle">			
-										<div id="stepImg">
+										<div id="stepImg" class="mainImg">
 											<span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span>
 											<div id="noImg">
 												<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
-												<h5>Drag&Darop HERE!</h5>
+												<h5>Drag&Drop<br>HERE!</h5>
 											</div>
-										<!--	<input type='hidden' id='imgFile' name='ilist[0].thumbnail'> -->
+											<input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail'>
 										</div>
 									</div>
 									 <div class="media-body">
@@ -220,11 +241,10 @@ button#addStepBtn {
 									<div class="media-right media-middle">
 										<span id="delStepBtn" class="glyphicon glyphicon-ok-circle"></span>
 									</div>	
-									<div id="fileUpload">
-										<input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail'>
-										<input type="file" name="ilist[0].thumbnail" id="imgFile" class="inputfile inputfile-1">
-										<label for="file-1"><span class="glyphicon glyphicon-open" aria-hidden="true"> Choose a file…</span></label>
-									</div>
+								</div>
+								<!-- 대표 이미지 hidden Input-->
+								<div id="mainImg">
+								
 								</div>
 								<!-- END -->
 								
@@ -237,8 +257,7 @@ button#addStepBtn {
 					<div class="right row">
 						<div class="form-group col-md-4">
 							<button type="submit" id="registerBtn" class="btn btn-default-right">등 록</button>
-							<a href="list"><input type="button"
-								class="btn btn-default-right" value="취 소"> </a>
+							<a href="list"><input type="button" class="btn btn-default-right" value="취 소"></a>
 						</div>
 					</div>
 				</form>
@@ -288,7 +307,7 @@ button#addStepBtn {
 	
 	<!-- Theme JavaScript -->
     <script src="../resources/js/agency.min.js"></script>
-<!--     <script src="../resources/js/fileInput.js"></script>  --> 
+	<script src="../resources/js/fileInput.js"></script>
 	
 	<script>
 	$(document).ready(function(){
@@ -306,7 +325,7 @@ button#addStepBtn {
 					$child.find('h4.media-heading').html("STEP "+ index);
 					$child.find('input#stepCIndex').attr('name','clist['+i+'].step').val(index);
 					$child.find('input#stepIIndex').attr('name','ilist['+i+'].step').val(index);
-					$child.find('div#fileUpload input').attr('name','ilist['+i+'].thumbnail');
+					$child.find('input.imgFileDropped').attr('name','ilist['+i+'].thumbnail');
 					$child.find('textarea#stepContent').attr('name','clist['+i+'].content');
 				}	
 		};
@@ -324,17 +343,14 @@ button#addStepBtn {
 			stepCnt ++;
 			var stepStr = "<div class='media form-group' id='step'>"
 				+"<div class='media-left media-middle'>"
-				+"<div id='stepImg'><span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span><div id='noImg'>"
+				+"<div id='stepImg'  class='subImg'><span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span><div id='noImg'>"
 				+"<span class='glyphicon glyphicon-open' aria-hidden='true'></span>"
-				+"<h5>Drag&Darop HERE!</h5></div>"
+				+"<h5>Drag&Drop<br>HERE!</h5></div>"
 				+"</div></div>"
 				+"<div class='media-body'><h4 class='media-heading'>STEP "+stepCnt+"</h4><input type='hidden' id='stepCIndex' name='clist["+index+"].step' value="+stepCnt+">"
 				+"<input type='hidden' id='stepIIndex' name='ilist["+index+"].step' value="+stepCnt+">"
 				+"<textarea id='stepContent' name='clist["+index+"].content'></textarea></div>"
-				+"<div class='media-right media-middle'><span id='delStepBtn' class='glyphicon glyphicon-remove-circle'></span></div>"
-				+"<div id='fileUpload'><input type='hidden' id='imgFileDropped' name='ilist["+index+"].thumbnail'>"
-				+"<input type='file' name='ilist["+index+"].thumbnail' id='imgFile' class='inputfile inputfile-1'>"
-				+"<label for='file-1'><span class='glyphicon glyphicon-open' aria-hidden='true'> Choose a file…</span></label></div></div>";
+				+"<div class='media-right media-middle'><span id='delStepBtn' class='glyphicon glyphicon-remove-circle'></span></div></div>";
 				
 				
 			$steps.append(stepStr);				
@@ -367,45 +383,41 @@ button#addStepBtn {
 			console.log($thisDiv);
 			
 			$thisDiv.css("background-image","");
-			$thisDiv.parent().parent().find("#fileUpload").children("#imgFileDropped").removeAttr('value');
+			$thisDiv.children("#imgFileDropped").removeAttr('value');
 			$thisDiv.children("#noImg").show();
 			$this.hide("#delImgBtn");
 			
 		});
 		
-		//Steps END
-		<!--
-		$(document).on("change","imgFile", function(){
-				var input = $(this);
-				console.log(input);
-				var label	 = input.nextElementSibling,
-					labelVal = label.innerHTML;
-				console.log(label);
-				console.log(labelVal);
+		$(document).on("click","#stepImg", function(event){
 			
-				input.on( 'change', function( e )
-				{
-				console.log(input);	
-				var fileName = '';
-				if( this.files && this.files.length > 1 )
-					fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-				else
-					fileName = e.target.value.split( '\\' ).pop();
-	
-				if( fileName )
-					label.querySelector( 'span' ).innerHTML = " "+fileName;
-				else
-					label.innerHTML = labelVal;
-			});
-	
-			// Firefox bug fix
-			input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
-			input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+			var $this = $(this);
+			var $stepImg = $this.parents("#steps").contents().find(".mainImg");
+			//var $stepImg = document.getElementsByClassName("mainImg");
+			
+			console.log("stepImg: "+$stepImg);
+			console.log("stepImg.length: "+$stepImg.length);
+			
+			for(var i =  0; i < $stepImg.length ; i++){
+				$stepImg.removeClass("mainImg").addClass("subImg");
+				console.log("add and remove After: "+ $stepImg.get(i));
+				}	
+			
+			$this.removeClass("subImg").addClass("mainImg");
+			
+			var $mainImgDiv = $("#mainImg");
+			
+			var mainImgData = "<input type='hidden' name='picture'>";
+			
+			$mainImgDiv.append(mainImgData);
+			
+			
 			
 		});
-		-->
+		
+		//Steps END
 			
-		$(document).on("dragenter dragover","#stepImg", function(event) {
+		$(document).on("dragenter dragover drop",window, function(event) {
 			event.preventDefault();
 		});
 
@@ -419,7 +431,7 @@ button#addStepBtn {
 				//var imgName = getOriginalName(data);
 				alert("이미지가 등록되었습니다");
 				$this.css("background-image","url("+imgURL+")");
-				$this.parent().parent().find("#fileUpload").children("#imgFileDropped").val(data);
+				$this.children("#imgFileDropped").val(data);
 				$this.find("#delImgBtn").show();
 				$this.children("#noImg").hide();
 				
@@ -521,8 +533,8 @@ button#addStepBtn {
 		
 		});
 		
-		<!--
-		$("#regBtn").submit(function(event) {
+
+/* 		$("#regBtn").submit(function(event) {
 			event.preventDefault();
 
 		});
@@ -539,9 +551,8 @@ button#addStepBtn {
 
 		that.append(str);
 
-		that.get(0).submit();
-
-		-->   
+		that.get(0).submit(); */
+   
 
 		
 	});

@@ -4,9 +4,8 @@
 */
 
 'use strict';
- 
-;( function ( document, window, index )
 
+;( function ( document, window, index )
 {
 	var inputs = document.querySelectorAll( '.inputfile' );
 	Array.prototype.forEach.call( inputs, function( input )
@@ -23,7 +22,7 @@
 				fileName = e.target.value.split( '\\' ).pop();
 
 			if( fileName )
-				label.querySelector( 'span' ).innerHTML = " "+fileName;
+				label.querySelector( 'span' ).innerHTML = " "+ fileName;
 			else
 				label.innerHTML = labelVal;
 		});
