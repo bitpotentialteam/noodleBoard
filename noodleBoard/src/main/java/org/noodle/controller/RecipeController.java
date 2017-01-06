@@ -54,6 +54,7 @@ public class RecipeController {
 	public String registerPOST(RecipeBoardVO vo, BoardList boardList, RedirectAttributes rttr) throws Exception {
 		logger.info("RegisterPOST FUCK");
 		
+		// 존나 민망하지만 급해서 어쩔 수 없습니다 핳핳하
 		for(int i = 0; i < boardList.getIlist().size(); i++){
 			String imageName = boardList.getIlist().get(i).getThumbnail().replaceAll("s_", "o_");
 			boardList.getIlist().get(i).setImage(imageName);
