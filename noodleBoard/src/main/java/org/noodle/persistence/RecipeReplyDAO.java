@@ -9,6 +9,6 @@ public interface RecipeReplyDAO {
 	public void create(RecipeReplyVO vo)throws Exception;
 	public void update(RecipeReplyVO vo) throws Exception;
 	public void delete(Integer rno) throws Exception;
-	public List<RecipeReplyVO> listAll()throws Exception;
+	public List<RecipeReplyVO> listAll(Integer bno)throws Exception;
 
 }

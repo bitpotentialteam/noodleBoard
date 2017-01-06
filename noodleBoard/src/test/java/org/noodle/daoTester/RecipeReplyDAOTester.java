@@ -56,7 +56,7 @@ public class RecipeReplyDAOTester {
 	@Test
 	public void testListAll() throws Exception {
 		
-		System.out.println(dao.listAll());
+		System.out.println(dao.listAll(13));
 	}
 
 }

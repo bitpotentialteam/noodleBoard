@@ -40,8 +40,8 @@ public class RecipeReplyServiceImpl implements RecipeReplyService {
 	}
 
 	@Override
-	public List<RecipeReplyVO> listAll() throws Exception {
-		return dao.listAll();
+	public List<RecipeReplyVO> listAll(Integer bno) throws Exception {
+		return dao.listAll(bno);
 	}
 
 }

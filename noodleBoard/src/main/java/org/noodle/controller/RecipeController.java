@@ -11,11 +11,13 @@ import org.noodle.domain.PageMaker;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.domain.RecipeImageVO;
+import org.noodle.domain.RecipeReplyVO;
 import org.noodle.domain.SearchVO;
 import org.noodle.service.MemberService;
 import org.noodle.service.RecipeBoardService;
 import org.noodle.service.RecipeCuisineService;
 import org.noodle.service.RecipeImageService;
+import org.noodle.service.RecipeReplyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -45,6 +48,9 @@ public class RecipeController {
 	
 	@Autowired
 	private MemberService mservice;
+	
+	@Autowired
+	private RecipeReplyService rservice;
 	
 	
 	@GetMapping("/register")
@@ -121,6 +127,8 @@ public class RecipeController {
 		model.addAttribute("vo", service.view(bno));
 		model.addAttribute("clist", cservice.view(bno));
 		model.addAttribute("ilist", iservice.viewBno(bno));
+		model.addAttribute("replyList", rservice.listAll(bno));
+		logger.info("ReplyListALl: "+rservice.listAll(bno).toString());
 		PageMaker pageMaker = new PageMaker();		
 		pageMaker.setPageVO(cri);
 		model.addAttribute("pageMaker", pageMaker);
@@ -132,10 +140,10 @@ public class RecipeController {
 		service.remove(bno);
 		logger.info("BNO : " + bno);
 
-		rttr.addAttribute("page", cri.getPage());
-		rttr.addAttribute("perPageNum", cri.getPageUnit());
-		rttr.addAttribute("searchType", cri.getSearchType());
-		rttr.addAttribute("keyword", cri.getKeyword());
+//		rttr.addAttribute("page", cri.getPage());
+//		rttr.addAttribute("perPageNum", cri.getPageUnit());
+//		rttr.addAttribute("searchType", cri.getSearchType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
 
 		rttr.addFlashAttribute("msg", "success");
 
@@ -153,5 +161,15 @@ public class RecipeController {
 		service.modify(bvo);
 		cservice.modify(cvo);
 	}
+	
+	@PostMapping("/removeReply")
+	@ResponseBody
+	public void removeReplyPost(RecipeReplyVO vo) throws Exception{
+		rservice.remove(vo);
+	}
 
+	@PostMapping("/registReply")
+	public void registReplyPOST(RecipeReplyVO vo) throws Exception{
+		rservice.regist(vo);
+	}
 }

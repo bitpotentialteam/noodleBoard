@@ -42,6 +42,7 @@
 			* 
 		from 
 			tbl_recipereply 
+		where bno=#{bno}
 		order by rno desc
 	</select>
 

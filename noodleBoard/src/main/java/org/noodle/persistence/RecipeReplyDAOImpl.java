@@ -31,8 +31,8 @@ public class RecipeReplyDAOImpl implements RecipeReplyDAO {
 	}
 
 	@Override
-	public List<RecipeReplyVO> listAll() throws Exception {
-		return session.selectList(NAME + "listAll");
+	public List<RecipeReplyVO> listAll(Integer bno) throws Exception {
+		return session.selectList(NAME + "listAll", bno);
 	}
 
 }

@@ -198,6 +198,24 @@ textarea {
 
 </form>
 
+	<!-- 댓글처리... -->
+	<div class="reply">
+	  <form id="replyListForm">
+	    <c:forEach items="${replyList}" var="replyVO">
+	      <div>
+	        <ul>
+	          <li>${replyVO.mno}</li>
+	      	  <li>${replyVO.content}</li>
+	          <li>${replyVO.regdate}</li>
+	        </ul>
+	      </div>
+	      <div><button type="submit" class="removeReplyBtn" name="rno" value="${replyrno}">삭제</button></div>
+		</c:forEach>
+		<input type="text" id="replyContent" placeholder="Press enter to post comment!">
+		<button type="submit" class="registReplyBtn"></button>
+	  </form>
+	</div>
+
 	<!-- Footer START -->
     <footer>
         <div class="container">
@@ -271,6 +289,7 @@ textarea {
 							
 				
 			});
+			
 		});
 	</script>
 </body>
