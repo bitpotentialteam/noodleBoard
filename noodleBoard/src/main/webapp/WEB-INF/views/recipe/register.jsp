@@ -129,7 +129,7 @@ button#addStepBtn {
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Noodles.com</a>
+                <a class="navbar-brand page-scroll" href="../">Noodles.com</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,7 +181,7 @@ button#addStepBtn {
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
 							<input type="hidden" class="form-control"
-								placeholder="Mno" name="mno" id="mno" value="104">
+								placeholder="Mno" name="mno" id="mno" value="${sessionScope.VO.mno}">
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>

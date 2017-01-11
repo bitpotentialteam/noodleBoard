@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.noodle.domain.BoardList;
 import org.noodle.domain.MemberVO;
@@ -21,6 +22,7 @@ import org.noodle.service.RecipeReplyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,7 +61,7 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/register")
-	public String registerPOST(RecipeBoardVO vo, BoardList boardList, RedirectAttributes rttr) throws Exception {
+	public String registerPOST(HttpSession session, RecipeBoardVO vo, BoardList boardList, RedirectAttributes rttr) throws Exception {
 		logger.info("RegisterPOST FUCK");
 		
 		// 존나 민망하지만 급해서 어쩔 수 없습니다 핳핳하
@@ -68,6 +70,14 @@ public class RecipeController {
 			boardList.getIlist().get(i).setImage(imageName);
 		}
 		
+		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
+		logger.info(user.toString());
+		mservice.read1(user.toString());
+		MemberVO mvo = mservice.read1(user.toString());
+
+		session.setAttribute("VO", mvo);
+		
+		logger.info("mvo : " + mvo);
 		logger.info("vo : " + vo);
 		logger.info("ilist : "+boardList.getIlist());
 		logger.info("clist : "+boardList.getClist());
@@ -121,13 +131,24 @@ public class RecipeController {
 	
 	
 	@GetMapping("/view")
-	public void view(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri, Model model) throws Exception {
+	public void view(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri,HttpSession session, Model model) throws Exception {
 
 		logger.info("view.............");
 		model.addAttribute("vo", service.view(bno));
 		model.addAttribute("clist", cservice.view(bno));
 		model.addAttribute("ilist", iservice.viewBno(bno));
 		model.addAttribute("replyList", rservice.listAll(bno));
+		
+		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
+		logger.info(user.toString());
+		mservice.read1(user.toString());
+		MemberVO vo = mservice.read1(user.toString());
+		
+		MemberVO nickVO = mservice.read(service.view(bno).getMno());
+
+		model.addAttribute("nickVO", nickVO);
+		
+		session.setAttribute("VO", vo);
 		logger.info("ReplyListALl: "+rservice.listAll(bno).toString());
 		PageMaker pageMaker = new PageMaker();		
 		pageMaker.setPageVO(cri);
@@ -148,6 +169,14 @@ public class RecipeController {
 		rttr.addFlashAttribute("msg", "success");
 
 		return "redirect:list";
+	}
+	
+	@GetMapping("/modify")
+	public void modifyGET(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri, Model model) throws Exception {
+		logger.info("modify called..................");
+		model.addAttribute("vo", service.view(bno));
+		model.addAttribute("clist", cservice.view(bno));
+		model.addAttribute("ilist", iservice.viewBno(bno));
 	}
 	
 	@PostMapping("/modify")
