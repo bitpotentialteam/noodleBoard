@@ -180,15 +180,18 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/modify")
-	public void modifyPOST(RecipeBoardVO bvo, RecipeImageVO ivo, RecipeCuisineVO cvo) throws Exception{
+	public String modifyPOST(RecipeBoardVO bvo, BoardList boardList, RecipeCuisineVO cvo) throws Exception{
 		logger.info("ModifyPOST called.....");
 		
 		logger.info("bvo: "+bvo.toString());
-		logger.info("ivo: "+ivo.toString());
-		logger.info("cvo: "+cvo.toString());
+		logger.info("ivo: "+boardList.getIlist().toString());
+		logger.info("cvo: "+boardList.getClist().toString());
 		
-		service.modify(bvo);
+		
+		service.modify(bvo, boardList.getIlist(), boardList.getClist());
 		cservice.modify(cvo);
+		
+		return "redirect:list";
 	}
 	
 	@PostMapping("/removeReply")

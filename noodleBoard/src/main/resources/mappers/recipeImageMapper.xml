@@ -20,6 +20,19 @@
 			tbl_recipeImage where ino =#{ino, jdbcType=INTEGER}
 	</select>
 	
+	<update id="update">
+		update 
+			tbl_recipeiamge 
+		set 
+			bno = #{bno, jdbcType=INTEGER},
+			ino = #{ino, jdbcType=INTEGER}, 
+			step = #{step, jdbcType=INTEGER},
+			image = #{image, jdbcType=VARCHAR},
+			thumbnail = #{thumbnail, jdbcType=VARCHAR}
+		where 
+			ino = #{ino, jdbcType=INTEGER}
+	</update>
+	
 	<select id="readBno" resultType="RecipeImageVO">
 		select
 			*

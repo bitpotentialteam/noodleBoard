@@ -206,7 +206,7 @@ button#addStepBtn {
 					</div>
 					
 					<label>설명</label>
-					<textarea name="content" id="content" value="${vo.content}"></textarea>
+					<textarea name="content" id="content">${vo.content}</textarea>
 							<p class="help-block text-danger"></p>
 					
 					<div class="row control-group" id="materialContent">
@@ -228,7 +228,6 @@ button#addStepBtn {
 										<label for="imgFile"><span class="glyphicon glyphicon-open" aria-hidden="true"> Choose a file…</span></label>
 							</div>
 							<div id="steps">
-							
 								<!-- START -->
 								<div class="media form-group" id="step">
 									<div class="media-left media-middle">			
@@ -245,7 +244,7 @@ button#addStepBtn {
 									 	<h4 class="media-heading">STEP 1</h4>
 									 	<input type='hidden' id='stepCIndex' name='clist[0].step' value='1'>
 									 	<input type='hidden' id='stepIIndex' name='ilist[0].step' value='1'>
-										<textarea id='stepContent' name='clist[0].content'></textarea>
+									 	<textarea id='stepContent' name='clist[0].content'></textarea>
 									</div>
 									<div class="media-right media-middle">
 										<span id="delStepBtn" class="glyphicon glyphicon-ok-circle"></span>
@@ -325,7 +324,11 @@ button#addStepBtn {
 			console.log(event);
 			self.location = "view?page=${cri.page}&perPageNum=${cri.pageUnit}&bno=${vo.bno}";
 		});
-	
+
+		
+		document.getElementById("#content").value = "${vo.content}";
+		
+		
 		//Steps START
 		var $steps = $("#steps");
 		var stepCnt = $steps.get(0).childElementCount;

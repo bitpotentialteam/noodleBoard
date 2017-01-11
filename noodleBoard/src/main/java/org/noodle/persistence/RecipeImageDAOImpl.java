@@ -53,4 +53,9 @@ public class RecipeImageDAOImpl implements RecipeImageDAO {
 		return session.selectList(namespace+"readBno", bno);
 	}
 
+	@Override
+	public void update(RecipeImageVO vo) throws Exception {
+		session.update(namespace+"update", vo);
+	}
+
 }

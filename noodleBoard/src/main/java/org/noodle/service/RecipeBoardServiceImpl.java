@@ -45,9 +45,16 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	}
 
 	@Override
-	public void modify(RecipeBoardVO vo) throws Exception {
+	@Transactional
+	public void modify(RecipeBoardVO vo, List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception {
 		
 		dao.update(vo);
+		for (RecipeCuisineVO recipeCuisineVO : clist) {
+			cdao.update(recipeCuisineVO);
+		}
+		for (RecipeImageVO recipeImageVO : ilist) {
+			idao.update(recipeImageVO);
+		}
 	}
 
 	@Override

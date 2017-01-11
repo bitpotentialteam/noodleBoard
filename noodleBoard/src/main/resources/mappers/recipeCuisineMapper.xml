@@ -32,9 +32,9 @@ from (
 		update 
 			tbl_recipeCuisine 
 		set
-			step = #{step}, content = #{content}, updatedate = sysdate 
+			step = #{step, jdbcType=INTEGER}, content = #{content, jdbcType=VARCHAR}, updatedate = sysdate 
  		where 
- 			bno = #{bno}
+ 			bno = #{bno, jdbcType=INTENT}
 	</update>
 
 	<delete id="delete">
