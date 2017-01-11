@@ -164,7 +164,7 @@ public class RecipeController {
 //		rttr.addAttribute("page", cri.getPage());
 //		rttr.addAttribute("perPageNum", cri.getPageUnit());
 //		rttr.addAttribute("searchType", cri.getSearchType());
-//		rttr.addAttribute("keyword", cri.getKeyword());
+//		rttr.addAttribute("keyword", cri.getKeyword()); 
 
 		rttr.addFlashAttribute("msg", "success");
 
