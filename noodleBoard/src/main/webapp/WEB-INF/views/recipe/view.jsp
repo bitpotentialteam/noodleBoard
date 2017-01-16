@@ -65,7 +65,6 @@ textarea {
 </head>
 
 <body class="hold-transition login-page">
-
 	<!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container">
@@ -113,11 +112,13 @@ textarea {
     </header>
     
 <form id=recipe>
+		<input type='hidden' id='sessionMno' name='mno' value="${sessionScope.VO.mno}">
+		<input type='hidden' id='mno' name='mno' value="${vo.mno}">
 <div class="container">
 		<div class="row">
 	
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<input type="hidden" name="bno" value="${vo.bno }">
+			<input type="hidden" name="bno" value="${vo.bno}">
 				<p>
 				<h1>title ${vo.title}</h1>
 				</p>		
@@ -176,11 +177,9 @@ textarea {
 						</div>
 					</div>
 					<div class="-right row">
-						<div class="form-group col-md-4">
-							<button type="submit" id="modifyBtn" class="btn btn-default-right">수 정</button>
-							<button type="submit" id="removeBtn" class="btn btn-default-right">삭 제</button>
-							<a href="list"><input type="button"
-								class="btn btn-default-right" value="목 록"> </a>
+						<div class="form-group col-md-4" id="mdBtn">
+							<input type="button"
+								class="btn btn-default-right" id="list" value="목 록">
 						</div>
 					</div>
 			</div>
@@ -260,6 +259,21 @@ textarea {
     <script src="../resources/js/agency.min.js"></script>
 	
 	<script>
+	
+	$(document).ready(function(){
+		
+		var sessionMno = $("#recipe").find("#sessionMno").val();
+		function user(){
+		var button = '';
+		var mno = $("#recipe").find("#mno").val();
+		
+		if(sessionMno == mno){
+			button = "<button type='submit' id='modifyBtn' class='btn btn-default-right'>수 정</button>"
+					 +"<button type='submit' id='removeBtn' class='btn btn-default-right'>삭 제</button>"
+		$("#recipe").find("#mdBtn").append(button);	 
+		}
+		}user();
+	});
 		$(function() {
 			$('input').iCheck({
 				checkboxClass : 'icheckbox_square-blue',
@@ -272,6 +286,11 @@ textarea {
 			var formObj = $('#recipe');
 			
 			console.log(formObj);
+			
+			$("#list").on("click", function(event){
+				console.log(event);
+				location.href="list";
+			});
 			
 			$("#modifyBtn").on("click", function(){
 				formObj.attr("action", "/recipe/modify");

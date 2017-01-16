@@ -4,6 +4,7 @@ package org.noodle.serivceTester;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.noodle.domain.BoardList;
 import org.noodle.domain.RecipeBoardVO;
 import org.noodle.service.RecipeBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class RecipeBoardServiceTester {
 	
 	@Test
 	public void testModify() throws Exception{
+		BoardList boardList = new BoardList();
 		
 		vo.setMno(123);
 		vo.setIno(123);
@@ -52,7 +54,7 @@ public class RecipeBoardServiceTester {
 		vo.setMaterialContent("25TEST");
 		vo.setBno(22);
 		
-		service.modify(vo);
+		service.modify(vo, boardList.getIlist(), boardList.getClist());
 	}
 	
 	@Test

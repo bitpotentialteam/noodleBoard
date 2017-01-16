@@ -34,7 +34,7 @@ from (
 		set
 			step = #{step, jdbcType=INTEGER}, content = #{content, jdbcType=VARCHAR}, updatedate = sysdate 
  		where 
- 			bno = #{bno, jdbcType=INTENT}
+ 			bno = #{bno, jdbcType=INTEGER}
 	</update>
 
 	<delete id="delete">

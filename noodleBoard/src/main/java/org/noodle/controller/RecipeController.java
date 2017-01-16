@@ -187,9 +187,7 @@ public class RecipeController {
 		logger.info("ivo: "+boardList.getIlist().toString());
 		logger.info("cvo: "+boardList.getClist().toString());
 		
-		
 		service.modify(bvo, boardList.getIlist(), boardList.getClist());
-		cservice.modify(cvo);
 		
 		return "redirect:list";
 	}
