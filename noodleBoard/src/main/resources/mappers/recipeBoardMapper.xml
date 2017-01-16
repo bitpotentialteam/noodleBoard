@@ -10,7 +10,7 @@
 		insert into 
 			tbl_recipeboard(mno, bno, ino, title, content, materialContent)
 		values 
-			(#{mno, jdbcType=INTEGER}, seq_recipeBoard.nextval, seq_ino.nextval, #{title , jdbcType=VARCHAR}, 
+			(#{mno, jdbcType=INTEGER}, seq_recipeBoard.nextval, seq_recipeImage.nextval, #{title , jdbcType=VARCHAR}, 
 			#{content , jdbcType=VARCHAR}, #{materialContent , jdbcType=VARCHAR})
 	</insert>
 	
@@ -53,14 +53,14 @@
 		update 
 			tbl_recipeboard 
 		set 
-			mno = #{mno}, 
-			title = #{title},
-			ino = #{ino}, 
-			content = #{content}, 
-			materialcontent = #{materialContent},
+			mno = #{mno, jdbcType=INTEGER}, 
+			title = #{title, jdbcType=VARCHAR},
+			ino = #{ino, jdbcType=INTEGER}, 
+			content = #{content, jdbcType=VARCHAR}, 
+			materialcontent = #{materialContent, jdbcType=VARCHAR},
 			updatedate = sysdate
 		where 
-			bno = #{bno}
+			bno = #{bno, jdbcType=INTEGER}
 	</update>
 
 	<delete id="delete">

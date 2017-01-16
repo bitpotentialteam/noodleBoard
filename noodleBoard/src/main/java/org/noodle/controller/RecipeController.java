@@ -63,11 +63,14 @@ public class RecipeController {
 	@PostMapping("/register")
 	public String registerPOST(HttpSession session, RecipeBoardVO vo, BoardList boardList, RedirectAttributes rttr) throws Exception {
 		logger.info("RegisterPOST FUCK");
+		logger.info("BoardList" + boardList);
+		
 		
 		// 존나 민망하지만 급해서 어쩔 수 없습니다 핳핳하
 		for(int i = 0; i < boardList.getIlist().size(); i++){
 			String imageName = boardList.getIlist().get(i).getThumbnail().replaceAll("s_", "o_");
 			boardList.getIlist().get(i).setImage(imageName);
+			logger.info("i" +i);
 		}
 		
 		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -180,7 +183,7 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/modify")
-	public String modifyPOST(RecipeBoardVO bvo, BoardList boardList, RecipeCuisineVO cvo) throws Exception{
+	public String modifyPOST(RecipeImageVO ivo, RecipeBoardVO bvo, BoardList boardList, RecipeCuisineVO cvo) throws Exception{
 		logger.info("ModifyPOST called.....");
 		
 		logger.info("bvo: "+bvo.toString());
@@ -188,6 +191,7 @@ public class RecipeController {
 		logger.info("cvo: "+boardList.getClist().toString());
 		
 		service.modify(bvo, boardList.getIlist(), boardList.getClist());
+		iservice.regist(ivo);
 		
 		return "redirect:list";
 	}

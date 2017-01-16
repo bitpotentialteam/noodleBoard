@@ -185,7 +185,7 @@ button#addStepBtn {
 				<h1>MODIFY</h1>
 				</p>
 				
-				<form action="register" method="post">
+				<form action="modify" method="post">
 					
 					<div class="row control-group" name="mno">
 						<div
@@ -222,8 +222,12 @@ button#addStepBtn {
 					<div class="row control-group" >
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 						<label>조리순서 (image drag&drop)</label>
+						<c:forEach items="${clist}" var="cuisineVO">
+						<c:set var="loop" value="true"></c:set>
+									<c:forEach items="${ilist}" var="imageVO">
+										<c:if test="${imageVO.step == cuisineVO.step}">
+										<c:if test="${loop}">
 							<div id="fileUpload">
-										
 										<input type="file" name="ilist[0].thumbnail" id="imgFile" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="" accept=".jpg, .png, .jpeg, .gif">
 										<label for="imgFile"><span class="glyphicon glyphicon-open" aria-hidden="true"> Choose a file…</span></label>
 							</div>
@@ -233,22 +237,26 @@ button#addStepBtn {
 									<div class="media-left media-middle">			
 										<div id="stepImg" class="mainImg">
 											<span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span>
-											<div id="noImg">
-												<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
-												<h5>Drag&Drop<br>HERE!</h5>
+											<div id="noImg" style="background-image:url(../resources/img/noodle/${imageVO.thumbnail}.jpg">
+												<h5>${imageVO.thumbnail}</h5>
 											</div>
 											<input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail'>
 										</div>
 									</div>
+									<c:set var="loop" value="false"></c:set>
+										</c:if>
+										</c:if> 
+								</c:forEach>
 									 <div class="media-body">
 									 	<h4 class="media-heading">STEP 1</h4>
 									 	<input type='hidden' id='stepCIndex' name='clist[0].step' value='1'>
 									 	<input type='hidden' id='stepIIndex' name='ilist[0].step' value='1'>
-									 	<textarea id='stepContent' name='clist[0].content'></textarea>
+									 	<textarea id='stepContent' name='clist[0].content'>${cuisineVO.content}</textarea>
 									</div>
 									<div class="media-right media-middle">
 										<span id="delStepBtn" class="glyphicon glyphicon-ok-circle"></span>
 									</div>	
+									</c:forEach>
 								</div>
 								<!-- 대표 이미지 hidden Input-->
 								<div id="mainImg">
@@ -279,23 +287,6 @@ button#addStepBtn {
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<ul class="list-inline text-center">
-					<li><a href="#"> <span class="fa-stack fa-lg"> <i
-								class="fa fa-circle fa-stack-2x"></i> <i
-								class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-						</span>
-					</a></li>
-					<li><a href="#"> <span class="fa-stack fa-lg"> <i
-								class="fa fa-circle fa-stack-2x"></i> <i
-								class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-						</span>
-					</a></li>
-					<li><a href="#"> <span class="fa-stack fa-lg"> <i
-								class="fa fa-circle fa-stack-2x"></i> <i
-								class="fa fa-github fa-stack-1x fa-inverse"></i>
-						</span>
-					</a></li>
-				</ul>
 				<p class="copyright text-muted">Copyright &copy; Noodle Website
 					2017</p>
 			</div>
@@ -324,10 +315,6 @@ button#addStepBtn {
 			console.log(event);
 			self.location = "view?page=${cri.page}&perPageNum=${cri.pageUnit}&bno=${vo.bno}";
 		});
-
-		
-		document.getElementById("#content").value = "${vo.content}";
-		
 		
 		//Steps START
 		var $steps = $("#steps");

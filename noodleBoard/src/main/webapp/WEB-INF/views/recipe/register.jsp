@@ -175,7 +175,7 @@ button#addStepBtn {
 				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
 				</p>
 				
-				<form action="register" method="post">
+				<form action="register" method="post" id="">
 					
 					<div class="row control-group" name="mno">
 						<div
@@ -214,10 +214,10 @@ button#addStepBtn {
 					<div class="row control-group" >
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 						<label>조리순서 (image drag&drop)</label>
-							<div id="fileUpload">
-										<input type="file" name="ilist[0].thumbnail" id="imgFile" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="" accept=".jpg, .png, .jpeg, .gif">
-										<label for="imgFile"><span class="glyphicon glyphicon-open" aria-hidden="true"> Choose a file…</span></label>
-							</div>
+<!-- 							<div id="fileUpload"> -->
+<!-- 										<input type="file" name="ilist[0].thumbnail" id="imgFile" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="" accept=".jpg, .png, .jpeg, .gif"> -->
+<!-- 										<label for="imgFile"><span class="glyphicon glyphicon-open" aria-hidden="true"> Choose a file…</span></label> -->
+<!-- 							</div> -->
 							<div id="steps">
 							
 								<!-- START -->
@@ -349,6 +349,7 @@ button#addStepBtn {
 				+"<div id='stepImg'  class='subImg'><span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span><div id='noImg'>"
 				+"<span class='glyphicon glyphicon-open' aria-hidden='true'></span>"
 				+"<h5>Drag&Drop<br>HERE!</h5></div>"
+				+"<input type='hidden' id='imgFileDropped' name='ilist["+index+"].thumbnail'>"
 				+"</div></div>"
 				+"<div class='media-body'><h4 class='media-heading'>STEP "+stepCnt+"</h4><input type='hidden' id='stepCIndex' name='clist["+index+"].step' value="+stepCnt+">"
 				+"<input type='hidden' id='stepIIndex' name='ilist["+index+"].step' value="+stepCnt+">"
@@ -530,8 +531,8 @@ button#addStepBtn {
 		
 		
 		
-		$("#registerBtn").on("click", function(event){
-		
+		$(document).on("click", "registerBtn", function(event){
+			$("#register").submit();
 			alert("등록 완료!");
 		
 		});
