@@ -586,7 +586,8 @@ button {
 		
 	$(document).on("click","#removeReply", function(event){
 
-			
+		if(confirm("진짜삭제할거에여?")){
+
 			var $this = $(this);
 			//tno mno replycontent 밸류값 채집함.
 			var trno = $this.val();
@@ -605,7 +606,9 @@ button {
 							 
 						  });
 			       });
-
+		}else{
+			return;
+		}
 	});
 	
 		
