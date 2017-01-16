@@ -242,13 +242,15 @@ button#addStepBtn {
 										<span id="delStepBtn" class="glyphicon glyphicon-ok-circle"></span>
 									</div>	
 								</div>
+								<!-- END -->
+								
+							</div>
+							
 								<!-- 대표 이미지 hidden Input-->
 								<div id="mainImg">
 								
 								</div>
-								<!-- END -->
 								
-							</div>
 								<button type="button" class="btn btn-default btn-lg" id="addStepBtn">
 								  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 								</button>
@@ -315,6 +317,7 @@ button#addStepBtn {
 		//Steps START
 		var $steps = $("#steps");
 		var stepCnt = $steps.get(0).childElementCount;
+		console.log("stepCnt: " + stepCnt);
 		
 		function indexOfStep(){
 			var $children = $steps.children();
