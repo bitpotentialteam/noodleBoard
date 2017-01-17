@@ -420,8 +420,52 @@ button {
 			
 			}
 			user();
+			
+			//likeBtn 막아버리기...ㅎ
+			
+			function disLikeBtn(){
+				
+			//var tno = $("#timelinebigbox").find("#timelineBox").find("#userTno").val();
+				
+				var timeLineBox = $('#timelinebigbox').children(); 
+				
+				timeLineBox.each(function(){
+
+					var $this =	 $(this);
 		
-	//엔터키 이벤트 막아버리기	
+		 			var tno = $this.find("#userTno").val();
+				
+				console.log(tno);
+				console.log(sessionMno);
+				
+				$.ajax({
+	    			type : 'get',
+	    			url : '/timeline/likeHistory',
+	    			headers : {
+	    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+	    				"X-HTTP-Method-Override" : "GET"
+	    			},
+	    			dataType : 'text',
+	    			data : {tno : tno, mno : sessionMno},
+	    			success : function(result) {
+	    				
+	    				if(result){
+	    					
+	    					$this.find("#likeBtn").attr('disabled',true);
+	    				}else{
+	    					return;
+	    				}
+	    					}
+	    		
+	    		});
+
+				});
+				
+	
+				
+			} disLikeBtn();
+			
+			//엔터키 이벤트 막아버리기	
 		function KeyPress(e) { 
 		    if(window.event.keyCode == 13){ 
 
@@ -510,6 +554,8 @@ button {
     			dataType : 'text',
     			data : {tno : tno, mno:mno},
     			success : function(result) {
+    				
+    				console.log(result);
     				 				
     					if(!result){
     						
@@ -578,6 +624,7 @@ button {
 								  function(str){
 							  updateList.html(str);
 							 userReply();
+
 						  });
 			       });
 		}
@@ -814,10 +861,12 @@ button {
 											return;
 										}
 								 $("#timelinebigbox").append(lastStr);
-								 user();
-								  replyManager.listReply({"tno":tno},
+									 user();
+									 disLikeBtn();
+									 replyManager.listReply({"tno":tno},
 										  function(str){
-									  updateList.html(str);
+											  updateList.html(str);
+						
 									 
 								  });
 								  

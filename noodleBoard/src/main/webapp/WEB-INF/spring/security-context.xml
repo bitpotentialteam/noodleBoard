@@ -17,7 +17,7 @@
       </security:session-management>
       
        <security:logout delete-cookies="JSESSIONID"
-         invalidate-session="true" logout-url="/logout" />
+         invalidate-session="true" logout-url="/logout" logout-success-url="/"/>
 	
 	<security:intercept-url pattern="/timeline" access="ROLE_MEMBER"/>
 	<security:intercept-url pattern="/wiki" access="ROLE_MEMBER"/>
