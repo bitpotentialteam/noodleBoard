@@ -613,7 +613,6 @@ button {
 						  replyManager.listReply({tno:tno},
 								  function(str){
 							  updateList.html(str);
-							
 							 readRcnt();
 
 						  });
@@ -650,7 +649,7 @@ button {
 		}
 	});
 	
-	
+	//reply갯수 읽어서 다시 뿌려주는 함수임다
 	function readRcnt(){
 		
 		var timeLineBox = $('#timelinebigbox').children(); 
@@ -680,7 +679,7 @@ button {
 
 		});
 
-	} readRcnt();
+	}
 
 	
 	//replyManager 만들어놓앗읍니다.
