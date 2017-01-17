@@ -49,17 +49,53 @@ textarea {
 
 #stepImg {
 	width: 150px;
-	height: 150px;
+	height: 100%;
     border-radius: 4px;
-	background: #fed136 no-repeat center center;
+	background: no-repeat center center;
 	background-size: contain; 
-	margin: 5px;
+	margin: 5px 5px 15px 5px;
 	text-align:center;
 	color: rgba(138, 109, 59, 0.55);
 }
 
 #thumbnail{
 	background-size: contain;
+}
+
+#stepImg img{
+	width: 100%;
+	height: auto;
+	border-radius: 4px;
+	
+}
+
+#step{
+    border-bottom: 1px solid #dddddd;
+}
+
+p {
+    white-space: pre-wrap;
+    word-break: break-all;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    padding: 0.5em;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+   
+}
+
+#steps p {
+	border:none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.col-xs-12 > label {
+	font-size: 1.5em;
+} 
+
+div.row.control-group {
+	margin-top: 20px;
 }
 
 </style>
@@ -120,11 +156,8 @@ textarea {
 		<div class="row">
 	
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<input type="hidden" name="bno" value="${vo.bno}">
-				<p>
-				<h1>title ${vo.title}</h1>
-				</p>		
-					<div class="row control-group" id="content">
+			<input type="hidden" name="bno" value="${vo.bno}">		
+					<div class="row control-group">
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>설명</label>
 							<div id="content">
@@ -304,36 +337,15 @@ textarea {
 			});
 		
 			
+
+		
+		
+		
 		});
 	
-	$(document).on(function(){
-		var stepImageDiv = $("#stepImg"); // 이미지를 감싸는 div
-		var stepImage = $("#stepImg").find("img"); // 이미지
-		console.log(stepImage);
-		var divAspect = 150 / 150;
-		var imgAspect = stepImage.height / stepImage.width;
-
-		if (imgAspect <= divAspect) {
-		    // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
-		    var imgWidthActual = stepImageDiv.offsetHeight / imgAspect;
-		    var imgWidthToBe = stepImageDiv.offsetHeight / divAspect;
-		    var marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
-		    stepImage.css({
-		    			"width": "auto",
-		    			"height": "100%",
-		    			"margin-left": marginLeft+"px"
-		    		    });
-
-		} else {
-		    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
-		    stepImage.css({
-		    			"width": "100%",
-		    			"height": "auto",
-		    			"margin-left": "0"
-		    		    });
-		}
+	
 		
-	});
+
 	</script>
 </body>
 </html>
