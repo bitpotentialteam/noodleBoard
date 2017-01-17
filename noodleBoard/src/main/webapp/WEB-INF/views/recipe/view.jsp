@@ -50,10 +50,12 @@ textarea {
 #stepImg {
 	width: 150px;
 	height: 150px;
-	border: 1px dotted gray;
-	background-color: #fed136;
-	background-size: cover;
-	margin: auto;
+    border-radius: 4px;
+	background: #fed136 no-repeat center center;
+	background-size: contain; 
+	margin: 5px;
+	text-align:center;
+	color: rgba(138, 109, 59, 0.55);
 }
 
 #thumbnail{
@@ -149,19 +151,21 @@ textarea {
 								<c:forEach items="${clist}" var="cuisineVO">
 								<!-- START -->
 								<div class="media form-group" id="step">
-									<div class="media-left media-middle">
 									
 									<c:set var="loop" value="true"></c:set>
 									<c:forEach items="${ilist}" var="imageVO">
 										<c:if test="${imageVO.step == cuisineVO.step}">
 										<c:if test="${loop}">
-											<div class="form-control" id="thumbnail" style="background-image:url(../resources/img/noodle/${imageVO.thumbnail}.jpg)"></div>
+									<div class="media-left media-middle">
+										<div id="stepImg">
+											<img src="../user/show?name=${imageVO.thumbnail}">
+										</div>											
+									</div>
 											<c:set var="loop" value="false"></c:set>
 										</c:if>
 										</c:if> 
 									</c:forEach>
 											<!-- 사진 크게 보기 모달 창 넣기-->
-									</div>
 									 <div class="media-body">
 									 	<h4 class="media-heading">STEP ${cuisineVO.step}</h4>
 										<div>
@@ -265,7 +269,7 @@ textarea {
 		}
 		}user();
 		
-	});
+	
 		$(function() {
 			$('input').iCheck({
 				checkboxClass : 'icheckbox_square-blue',
@@ -274,7 +278,7 @@ textarea {
 			});
 		});
 
-		$(document).ready(function(){
+	
 			var formObj = $('#recipe');
 			
 			console.log(formObj);
@@ -296,11 +300,40 @@ textarea {
 				formObj.attr("action", "/recipe/remove");
 				formObj.attr("method", "post");
 				formObj.submit();
-							
 				
 			});
+		
 			
 		});
+	
+	$(document).on(function(){
+		var stepImageDiv = $("#stepImg"); // 이미지를 감싸는 div
+		var stepImage = $("#stepImg").find("img"); // 이미지
+		console.log(stepImage);
+		var divAspect = 150 / 150;
+		var imgAspect = stepImage.height / stepImage.width;
+
+		if (imgAspect <= divAspect) {
+		    // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
+		    var imgWidthActual = stepImageDiv.offsetHeight / imgAspect;
+		    var imgWidthToBe = stepImageDiv.offsetHeight / divAspect;
+		    var marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
+		    stepImage.css({
+		    			"width": "auto",
+		    			"height": "100%",
+		    			"margin-left": marginLeft+"px"
+		    		    });
+
+		} else {
+		    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
+		    stepImage.css({
+		    			"width": "100%",
+		    			"height": "auto",
+		    			"margin-left": "0"
+		    		    });
+		}
+		
+	});
 	</script>
 </body>
 </html>
