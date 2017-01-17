@@ -54,4 +54,10 @@ public class RecipeImageDAOTester {
 		
 		System.out.println(dao.readStep(vo));
 	}
+	
+	@Test
+	public void testReadThumbnail() throws Exception{
+		
+		System.out.println(dao.readName("/2017/01/17/s_6d563870-b8e0-4e83-a12b-5f59bed81ae6_ansungtang.jpg"));
+	}
 }

@@ -178,6 +178,8 @@ button#addStepBtn {
 				</p>
 				<!-- form시작 -->
 				<form action="register" method="post" id="">
+					<!-- 대표 이미지값 전달 -->
+					<input type="hidden" name="topImageIndex" id="topImageIndex">					
 					<!-- mno를 hidden으로 숨겨서 register로 넘김 -->
 					<div class="row control-group" name="mno">
 						<div
@@ -244,7 +246,7 @@ button#addStepBtn {
 									 	<!-- Cuisine에 step을 넣기 위해 처음 값 value=1을 줌 -->
 									 	<input type='hidden' id='stepCIndex' name='clist[0].step' value='1'>
 									 	<!-- Image에 step을 넣기 위해 처음 값 value=1을 줌 -->
-									 	<input type='hidden' id='stepIIndex' name='ilist[0].step' value='1'>
+									 	<input type='hidden' class='stepIIndex' name='ilist[0].step' value='1'>
 									 	<!-- Step Content에 들어갈 내용  -->
 										<textarea id='stepContent' name='clist[0].content'></textarea>
 									</div>
@@ -339,11 +341,13 @@ button#addStepBtn {
 					var $child = $children.eq(i);
 					$child.find('h4.media-heading').html("STEP "+ index);
 					$child.find('input#stepCIndex').attr('name','clist['+i+'].step').val(index);
-					$child.find('input#stepIIndex').attr('name','ilist['+i+'].step').val(index);
+					$child.find('input.stepIIndex').attr('name','ilist['+i+'].step').val(index);
 					$child.find('input.imgFileDropped').attr('name','ilist['+i+'].thumbnail');
 					$child.find('textarea#stepContent').attr('name','clist['+i+'].content');
 				}	
 		};
+		
+		var index
 		
 		$("#addStepBtn").on("click", function(event){
 			
@@ -354,7 +358,7 @@ button#addStepBtn {
 				return;
 			}
 			
-			var index = stepCnt;
+			 index = stepCnt;
 			stepCnt ++;
 			var stepStr = "<div class='media form-group' id='step'>"
 				+"<div class='media-left media-middle'>"
@@ -364,7 +368,7 @@ button#addStepBtn {
 				+"<input type='hidden' id='imgFileDropped' name='ilist["+index+"].thumbnail'>"
 				+"</div></div>"
 				+"<div class='media-body'><h4 class='media-heading'>STEP "+stepCnt+"</h4><input type='hidden' id='stepCIndex' name='clist["+index+"].step' value="+stepCnt+">"
-				+"<input type='hidden' id='stepIIndex' name='ilist["+index+"].step' value="+stepCnt+">"
+				+"<input type='hidden' class='stepIIndex' name='ilist["+index+"].step' value="+stepCnt+">"
 				+"<textarea id='stepContent' name='clist["+index+"].content'></textarea></div>"
 				+"<div class='media-right media-middle'><span id='delStepBtn' class='glyphicon glyphicon-remove-circle'></span></div></div>";
 				
@@ -421,13 +425,18 @@ button#addStepBtn {
 			
 			$this.removeClass("subImg").addClass("mainImg");
 			
-			var $mainImgDiv = $("#mainImg");
+			var topIndex = $("#topImageIndex");
+
+			var $mainImgDiv =  $(".mainImg");
 			
 			var mainImgData = "<input type='hidden' name='picture'>";
 			
 			$mainImgDiv.append(mainImgData);
 			
+			var Iindex = $mainImgDiv.parent().parent().children(".media-body").children(".stepIIndex").val() -1;
+			console.log(Iindex);
 			
+			topIndex.val(Iindex);
 			
 		});
 		

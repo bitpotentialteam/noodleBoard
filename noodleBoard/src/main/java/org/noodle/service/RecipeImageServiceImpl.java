@@ -44,4 +44,10 @@ public class RecipeImageServiceImpl implements RecipeImageService {
 		return dao.readBno(bno);
 	}
 
+	@Override
+	public Integer viewThumbnail(String thumbnail) throws Exception {
+
+		return dao.readName(thumbnail);
+	}
+
 }

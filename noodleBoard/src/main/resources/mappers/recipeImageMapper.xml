@@ -58,6 +58,15 @@
 		bno = #{bno} and step = #{step}
 	</select>
 	
+	<select id="readName" resultType="int">
+		select
+			ino
+		from
+			tbl_recipeImage
+		where
+			thumbnail = #{thumbnail}
+	</select>
+	
 	<delete id="bnoDelete">
 		delete
 			tbl_recipeImage

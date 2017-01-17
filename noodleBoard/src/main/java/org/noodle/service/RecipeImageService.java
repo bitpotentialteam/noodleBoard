@@ -14,5 +14,6 @@ public interface RecipeImageService {
 	
 	public RecipeImageVO viewSteps(RecipeImageVO vo) throws Exception;
 	public List<RecipeImageVO> viewBno(Integer bno) throws Exception;
+	public Integer viewThumbnail(String thumbnail) throws Exception;
 	
 }

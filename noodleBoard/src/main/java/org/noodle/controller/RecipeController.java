@@ -61,7 +61,7 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/register")
-	public String registerPOST(HttpSession session, RecipeBoardVO vo, BoardList boardList, RedirectAttributes rttr) throws Exception {
+	public String registerPOST(HttpSession session, RecipeBoardVO vo, BoardList boardList, RedirectAttributes rttr, Integer topImageIndex) throws Exception {
 		logger.info("RegisterPOST FUCK");
 		logger.info("BoardList" + boardList);
 		
@@ -81,11 +81,21 @@ public class RecipeController {
 		session.setAttribute("VO", mvo);
 		
 		logger.info("mvo : " + mvo);
-		logger.info("vo : " + vo);
 		logger.info("ilist : "+boardList.getIlist());
 		logger.info("clist : "+boardList.getClist());
 		
+		logger.info("topImageIndex: "+topImageIndex);
+		logger.info("boardList.getIlist().get(topImageIndex).getThumbnail(): "+boardList.getIlist().get(topImageIndex).getThumbnail());
+		
+		logger.info("viewThumbnail: "+iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
+		vo.setIno(iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
+		logger.info("vo : " + vo);
+		
 		service.register(vo, boardList.getIlist(), boardList.getClist());
+		
+		logger.info("topImageName: "+boardList.getIlist().get(topImageIndex).getThumbnail());
+		logger.info("ino: "+iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
+		
 		return "redirect:/recipe/list";
 	}
 	

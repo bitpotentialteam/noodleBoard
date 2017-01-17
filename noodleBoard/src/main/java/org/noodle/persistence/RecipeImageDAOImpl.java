@@ -58,4 +58,10 @@ public class RecipeImageDAOImpl implements RecipeImageDAO {
 		session.update(namespace+"update", vo);
 	}
 
+	@Override
+	public Integer readName(String thumbnail) throws Exception {
+
+		return session.selectOne(namespace + "readName", thumbnail);
+	}
+
 }
