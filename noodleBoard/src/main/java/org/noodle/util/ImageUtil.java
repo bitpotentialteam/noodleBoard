@@ -38,7 +38,7 @@ public class ImageUtil {
         
         BufferedImage originImage = ImageIO.read(new File(path, fileName));
 
-        BufferedImage thumbImage = Scalr.resize(originImage, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
+        BufferedImage thumbImage = Scalr.resize(originImage, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 250);
 
         String thumbName = path + File.separator + "s_" + fileName;
 
