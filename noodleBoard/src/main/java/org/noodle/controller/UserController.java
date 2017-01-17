@@ -142,7 +142,7 @@ public class UserController {
 	public String modifyPOST(Model model, MemberVO vo) throws Exception {
 
 		logger.info("mofify post....");
-		logger.info("모디파이모디파이모디파이모디파이");
+		
 		
 		service.modify(vo);
 
@@ -168,14 +168,17 @@ public class UserController {
 
 		session.setAttribute("LOGIN", "success");
 	}
-	@GetMapping("/logout")
-	public String logout(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(auth !=null){
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-		}
-		return "redirect:/";
-	}
+	
+
+//	@GetMapping("/logout")
+//	public String logout(HttpServletRequest request, HttpServletResponse response)throws Exception{
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		logger.info("로그아웃과정");
+//		if(auth !=null){
+//			new SecurityContextLogoutHandler().logout(request, response, auth);
+//		}
+//		return "redirect:/";
+//	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET(MemberVO vo, Model model) throws Exception {
