@@ -17,6 +17,8 @@ public interface TimeLineService {
 	public void addLikeCnt(TimeLineVO vo) throws Exception;
 	public void updateLike(TimeLineVO vo)throws Exception;
 	public String likeHistory(TimeLineVO vo)throws Exception;
+	public Integer readLikeCnt(Integer tno)throws Exception;
+	public Integer readReplyCnt(Integer tno)throws Exception;
 	
 	public void addReplyCnt(Integer tno) throws Exception;
 	public void minReplyCnt(Integer tno) throws Exception; 

@@ -129,4 +129,12 @@ public class TimeLineController {
 		return service.lastListView(tno);
 		
 	}
+	
+	@GetMapping("/readReplyCnt")
+	@ResponseBody
+	public Integer readReplyCnt(@RequestParam("tno") Integer tno)throws Exception{
+		
+		return service.readReplyCnt(tno);
+		
+	}
 }

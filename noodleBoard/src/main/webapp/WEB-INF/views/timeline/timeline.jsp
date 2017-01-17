@@ -310,13 +310,13 @@ button {
 							<div id='replyBtnDiv'>
 								<span class='pull-right text-muted'>
 							<button type='button' id='replyBtn' value='${vo.tno}' class='btn btn-default btn-xs'>
-								<span class='glyphicon glyphicon-menu-hamburger'></span> </button> <span class='badge'>${vo.replyCnt}</span></span>
+								<span class='glyphicon glyphicon-menu-hamburger'></span> </button> <span class='badge' id='replyCnt'>${vo.replyCnt}</span></span>
 								</div>
 								
 								<div id='likeBtnDiv'>
 							<span class='pull-right text-muted'>
 							<button type='button' id='likeBtn' value='${vo.tno}' class='btn btn-default btn-xs'>
-								<span class='glyphicon glyphicon-thumbs-up'></span> </button> <span class='badge'>${vo.likeCnt}</span></span>
+								<span class='glyphicon glyphicon-thumbs-up'></span> </button> <span class='badge' id='likeCnt'>${vo.likeCnt}</span></span>
 							</div>
 								
 						</div>
@@ -435,9 +435,6 @@ button {
 		
 		 			var tno = $this.find("#userTno").val();
 				
-				console.log(tno);
-				console.log(sessionMno);
-				
 				$.ajax({
 	    			type : 'get',
 	    			url : '/timeline/likeHistory',
@@ -452,6 +449,7 @@ button {
 	    				if(result){
 	    					
 	    					$this.find("#likeBtn").attr('disabled',true);
+	    			
 	    				}else{
 	    					return;
 	    				}
@@ -460,10 +458,42 @@ button {
 	    		});
 
 				});
-				
-	
-				
+								
 			} disLikeBtn();
+			
+			// 좋아요기능 ajax
+			
+				
+		$(document).on("click","#likeBtn", function(event){
+			
+			event.preventDefault();
+			
+			var tno = $(this).val();
+			$('#ftno').val(tno);
+
+			
+			console.log(tno);
+			console.log(sessionMno);
+					
+	 		$.ajax({
+    			type : 'get',
+    			url : '/timeline/addlikeCnt',
+    			headers : {
+    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+    				"X-HTTP-Method-Override" : "GET"
+    			},
+    			dataType : 'text',
+    			data : {tno : tno, mno:sessionMno},
+    			success : function() {
+			
+    				
+    				alert("추천완료염");
+    				location.reload();
+    				
+    			}
+    		});
+					
+		});
 			
 			//엔터키 이벤트 막아버리기	
 		function KeyPress(e) { 
@@ -536,46 +566,6 @@ button {
 		});
 		
 		
-		$(document).on("click","#likeBtn", function(event){
-			
-			event.preventDefault();
-			
-			var tno = $(this).val();
-			$('#ftno').val(tno);
-			var mno = $(this).parents('#timelineBox').find('#replymno').val();
-					
-	 		$.ajax({
-    			type : 'get',
-    			url : '/timeline/likeHistory',
-    			headers : {
-    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
-    				"X-HTTP-Method-Override" : "GET"
-    			},
-    			dataType : 'text',
-    			data : {tno : tno, mno:mno},
-    			success : function(result) {
-    				
-    				console.log(result);
-    				 				
-    					if(!result){
-    						
-					formObj.attr("action", "timeline/addlikeCnt");
-					formObj.attr("method", "get");
-					formObj.submit();
-					
-    						
-    					}else{
-    						
-    						$("#likeBtn").attr('disabled',true);
-    						alert("이미 추천하셧슴니다!!!");
-    				
-    					}
-    			}
-    		});
-					
-		});
-		
-		
 		$(document).on("click","#replyBtn", function(event){
 			event.preventDefault();
 			
@@ -599,7 +589,7 @@ button {
 				);
 		});
 		
-		//엔터 이벤트입니당
+		//댓글 엔터 이벤트입니당
 		$(document).on("keypress","#replyContent", function(event){
 			
 			if (event.which == 13) {/* 13 == enter key@ascii */
@@ -623,7 +613,8 @@ button {
 						  replyManager.listReply({tno:tno},
 								  function(str){
 							  updateList.html(str);
-							 userReply();
+							
+							 readRcnt();
 
 						  });
 			       });
@@ -650,6 +641,7 @@ button {
 						  replyManager.listReply({tno:tno},
 								  function(str){
 							  updateList.html(str);
+							  readRcnt();
 							 
 						  });
 			       });
@@ -658,9 +650,38 @@ button {
 		}
 	});
 	
+	
+	function readRcnt(){
 		
-	//document end
-	 //});
+		var timeLineBox = $('#timelinebigbox').children(); 
+		
+		timeLineBox.each(function(){
+
+			var $this =	 $(this);
+
+ 			var tno = $this.find("#userTno").val();
+		
+			console.log("tno" + tno);
+			
+	 		$.ajax({
+			type : 'get',
+			url : '/timeline/readReplyCnt',
+			headers : {
+				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+				"X-HTTP-Method-Override" : "get"
+			},
+			dataType : 'text',
+			data : {tno : tno},
+			success : function(result) {
+
+					$this.find("#replyCnt").html(result);
+			}
+		});
+
+		});
+
+	} readRcnt();
+
 	
 	//replyManager 만들어놓앗읍니다.
 	 var replyManager = (function () {
@@ -845,11 +866,11 @@ button {
 									 " <div id='replyBtnDiv'> <span class='pull-right text-muted'> " +
 									 " <button type='button' id='replyBtn' value='" +tno+ "' class='btn btn-default btn-xs'> " +
 									 " <span class='glyphicon glyphicon-menu-hamburger'></span> </button>" +
-									 "  <span class='badge'>"+ replyCnt +"</span></span> </div>" +
+									 "  <span class='badge' id='replyCnt'>"+ replyCnt +"</span></span> </div>" +
 									 "<div id='likeBtnDiv'> <span class='pull-right text-muted'>" +
 									 "<button type='button' id='likeBtn' value='" +tno+ "' class='btn btn-default btn-xs'>" +
 									 " <span class='glyphicon glyphicon-thumbs-up'></span> </button> " +
-									 "  <span class='badge'>"+ likeCnt +"</span></span> </div> " +
+									 "  <span class='badge' id='likeCnt'>"+ likeCnt +"</span></span> </div> " +
 									"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"+
 									" <div class='box-footer box-comments' id='commentsbox'> </div>	<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'"+
 									"src='/user/show?name=" + picture+"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+
@@ -930,11 +951,11 @@ button {
 								 " <div id='replyBtnDiv'> <span class='pull-right text-muted'> " +
 								 " <button type='button' id='replyBtn' value='" +tno+ "' class='btn btn-default btn-xs'> " +
 								 " <span class='glyphicon glyphicon-menu-hamburger'></span> </button>" +
-								 "  <span class='badge'>"+ replyCnt +"</span></span> </div>" +
+								 "  <span class='badge' id='replyCnt'>"+ replyCnt +"</span></span> </div>" +
 								 "<div id='likeBtnDiv'> <span class='pull-right text-muted'>" +
 								 "<button type='button' id='likeBtn' value='" +tno+ "' class='btn btn-default btn-xs'>" +
 								 " <span class='glyphicon glyphicon-thumbs-up'></span> </button> " +
-								 "  <span class='badge'>"+ likeCnt +"</span></span> </div> " +
+								 "  <span class='badge' id='likeCnt'>"+ likeCnt +"</span></span> </div> " +
 								"<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"+
 								" <div class='box-footer box-comments' id='commentsbox'> </div>	<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'"+
 								"src='/user/show?name=" + picture+"' alt='Alt Text'> <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"+

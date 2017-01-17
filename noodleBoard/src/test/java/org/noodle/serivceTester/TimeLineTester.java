@@ -64,4 +64,18 @@ public class TimeLineTester {
 		
 		logger.info("history : " + service.likeHistory(vo));
 	}
+	
+	@Test
+	public void readReplyCnt()throws Exception{
+		
+		logger.info(" readReplyCnt : " +  service.readReplyCnt(72));
+	
+	}
+	
+	@Test
+	public void readLikeCnt()throws Exception{
+		
+		logger.info(" readLikeCnt : " +  service.readLikeCnt(72));
+	
+	}
 }

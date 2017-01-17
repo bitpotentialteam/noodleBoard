@@ -101,14 +101,14 @@
 	</update>
 	
 	
-	<select id="readReplyCnt">
+	<select id="readReplyCnt" resultType="Integer">
 	
 	select replycnt from tbl_timeline
 		where tno = #{tno, jdbcType=INTEGER}
 	
 	</select>
 	
-		<select id="readLikeCnt">
+		<select id="readLikeCnt" resultType="Integer">
 		select likecnt from tbl_timeline
 		where tno = #{tno, jdbcType=INTEGER}
 	
