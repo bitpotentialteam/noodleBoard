@@ -150,7 +150,6 @@ public class RecipeController {
 		model.addAttribute("vo", service.view(bno));
 		model.addAttribute("clist", cservice.view(bno));
 		model.addAttribute("ilist", iservice.viewBno(bno));
-		model.addAttribute("replyList", rservice.listAll(bno));
 		
 		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
 		logger.info(user.toString());
@@ -204,6 +203,11 @@ public class RecipeController {
 		iservice.regist(ivo);
 		
 		return "redirect:list";
+	}
+	
+	@PostMapping("/reply")
+	public void replyPOST(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri,HttpSession session, Model model) throws Exception{
+		model.addAttribute("replyList", rservice.listAll(bno));
 	}
 	
 	@PostMapping("/removeReply")
