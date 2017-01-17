@@ -237,8 +237,7 @@ button#addStepBtn {
 												<div class="media form-group" id="step">
 													<!-- Thumbnail Start -->
 													<div class="media-left media-middle">
-														<div id="stepImg" class="subImg" background=>
-															<img src="../user/show?name=${imageVO.thumbnail}">
+														<div id="stepImg" class="subImg" style="background:url(../user/show?name=${imageVO.thumbnail})">
 															<span class='glyphicon glyphicon-remove-sign'
 																id='delImgBtn' aria-hidden='true'></span>
 															<div id="noImg">
