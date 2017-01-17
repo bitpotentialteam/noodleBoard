@@ -40,6 +40,7 @@
 <body>
 
 <style>
+<!-- 맨 위에 링크 색깔 -->
 .navbar-custom  {
 	background-color: #222;
 }
@@ -166,27 +167,18 @@ button#addStepBtn {
             </div>
         </div>
     </header>
-    
-    <form role="form" action="modify" method="post">
-    	
-	<input type='hidden' name='bno' value="${vo.bno}">
-	<input type='hidden' name='page' value="${cri.page}">
-	<input type='hidden' name='perPageNum' value="${cri.pageUnit}">
-	<input type='hidden' name='searchType' value="${cri.searchType}">
-	<input type='hidden' name='keyword' value="${cri.keyword}">
-
-</form>
 
 	<!-- Main Content -->
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<!-- 헤더 밑의 맨 위 간판부분 -->
 				<p>
-				<h1>MODIFY</h1>
+				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
 				</p>
-				
-				<form action="modify" method="post">
-					
+				<!-- form시작 -->
+				<form action="modify" method="post" id="">
+					<!-- mno를 hidden으로 숨겨서 register로 넘김 -->
 					<div class="row control-group" name="mno">
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
@@ -195,7 +187,7 @@ button#addStepBtn {
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>
-					
+					<!-- title을 입력해서 넘김 -->
 					<div class="row control-group" name="title">
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
@@ -204,16 +196,16 @@ button#addStepBtn {
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>
-					
+					<!-- content를 입력해서 넘김 -->
 					<label>설명</label>
 					<textarea name="content" id="content">${vo.content}</textarea>
 							<p class="help-block text-danger"></p>
-					
+					<!-- 재료를 입력해서 넘김 -->
 					<div class="row control-group" id="materialContent">
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>재료</label>
 							<input type="text" class="form-control"
-							placeholder="Material Content" name="materialContent"
+							name="materialContent"
 							id="materialContent" value="${vo.materialContent}">
 							<p class="help-block text-danger"></p>
 						</div>
@@ -222,58 +214,63 @@ button#addStepBtn {
 					<div class="row control-group" >
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 						<label>조리순서 (image drag&drop)</label>
-						<c:forEach items="${clist}" var="cuisineVO">
-						<c:set var="loop" value="true"></c:set>
-									<c:forEach items="${ilist}" var="imageVO">
-										<c:if test="${imageVO.step == cuisineVO.step}">
-										<c:if test="${loop}">
-							<div id="fileUpload">
-										<input type="file" name="ilist[0].thumbnail" id="imgFile" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="" accept=".jpg, .png, .jpeg, .gif">
-										<label for="imgFile"><span class="glyphicon glyphicon-open" aria-hidden="true"> Choose a file…</span></label>
-							</div>
+						<!-- 파일업로드 개똥망 날아가게생김 ㅠㅠ 무능력해서 ㅈㅅ.. 모르는건 죄가 맞음 -->
+<!-- 							<div id="fileUpload"> -->
+<!-- 										<input type="file" name="ilist[0].thumbnail" id="imgFile" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="" accept=".jpg, .png, .jpeg, .gif"> -->
+<!-- 										<label for="imgFile"><span class="glyphicon glyphicon-open" aria-hidden="true"> Choose a file…</span></label> -->
+<!-- 							</div> -->
+							<!-- Image and Cuisine Start -->
 							<div id="steps">
-								<!-- START -->
+							
+								<!-- STEP START -->
 								<div class="media form-group" id="step">
+								<!-- Thumbnail Start -->
 									<div class="media-left media-middle">			
 										<div id="stepImg" class="mainImg">
 											<span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span>
-											<div id="noImg" style="background-image:url(../resources/img/noodle/${imageVO.thumbnail}.jpg">
-												<h5>${imageVO.thumbnail}</h5>
+											<div id="noImg">
+												<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+												<h5>Drag&Drop<br>HERE!</h5>
 											</div>
+											<!-- thumbnail을 hidden으로 넘기는 것은  -->
 											<input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail'>
 										</div>
 									</div>
-									<c:set var="loop" value="false"></c:set>
-										</c:if>
-										</c:if> 
-								</c:forEach>
+									<!-- RecipeImage와 RecipeCuisine에게 각각 step 전달 -->
 									 <div class="media-body">
+									 <!-- Step의 기본값으로 step1을 넣어놓음 -->
 									 	<h4 class="media-heading">STEP 1</h4>
+									 	<!-- Cuisine에 step을 넣기 위해 처음 값 value=1을 줌 -->
 									 	<input type='hidden' id='stepCIndex' name='clist[0].step' value='1'>
+									 	<!-- Image에 step을 넣기 위해 처음 값 value=1을 줌 -->
 									 	<input type='hidden' id='stepIIndex' name='ilist[0].step' value='1'>
-									 	<textarea id='stepContent' name='clist[0].content'>${cuisineVO.content}</textarea>
+									 	<!-- Step Content에 들어갈 내용  -->
+										<textarea id='stepContent' name='clist[0].content'></textarea>
 									</div>
+									<!-- thumbnail에 삭제버튼 -->
 									<div class="media-right media-middle">
 										<span id="delStepBtn" class="glyphicon glyphicon-ok-circle"></span>
 									</div>	
-									</c:forEach>
-								</div>
-								<!-- 대표 이미지 hidden Input-->
-								<div id="mainImg">
-								
 								</div>
 								<!-- END -->
 								
 							</div>
+							
+								<!-- 대표 이미지 hidden Input-->
+								<div id="mainImg">
+								
+								</div>
+								<!-- Thumbnail과 step 늘려주는 +버튼 -->
 								<button type="button" class="btn btn-default btn-lg" id="addStepBtn">
 								  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 								</button>
 						</div>
 					</div>
 					<div class="right row">
+						<!-- 등록, 취소 버튼 -->
 						<div class="form-group col-md-4">
 							<button type="submit" id="registerBtn" class="btn btn-default-right">저 장</button>
-							<input type="button" class="btn btn-default-right" id="cBtn" value="취 소">
+							<a href="list"><input type="button" class="btn btn-default-right" value="취 소"></a>
 						</div>
 					</div>
 				</form>
@@ -287,6 +284,23 @@ button#addStepBtn {
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<ul class="list-inline text-center">
+					<li><a href="#"> <span class="fa-stack fa-lg"> <i
+								class="fa fa-circle fa-stack-2x"></i> <i
+								class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+						</span>
+					</a></li>
+					<li><a href="#"> <span class="fa-stack fa-lg"> <i
+								class="fa fa-circle fa-stack-2x"></i> <i
+								class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+						</span>
+					</a></li>
+					<li><a href="#"> <span class="fa-stack fa-lg"> <i
+								class="fa fa-circle fa-stack-2x"></i> <i
+								class="fa fa-github fa-stack-1x fa-inverse"></i>
+						</span>
+					</a></li>
+				</ul>
 				<p class="copyright text-muted">Copyright &copy; Noodle Website
 					2017</p>
 			</div>
@@ -311,14 +325,17 @@ button#addStepBtn {
 	<script>
 	$(document).ready(function(){
 		
-		$(document).on("click","#cBtn", function(event){
-			console.log(event);
-			self.location = "view?page=${cri.page}&perPageNum=${cri.pageUnit}&bno=${vo.bno}";
-		});
-		
+		//취소버튼 누르면 전에 보던 view로 넘어감
+		$(document).on("click", "#cBtn", function(event) {
+					console.log(event);
+					self.location = "view?page=${cri.page}&perPageNum=${cri.pageUnit}&bno=${vo.bno}";
+				});
+
+	
 		//Steps START
 		var $steps = $("#steps");
 		var stepCnt = $steps.get(0).childElementCount;
+		console.log("stepCnt: " + stepCnt);
 		
 		function indexOfStep(){
 			var $children = $steps.children();
@@ -350,6 +367,7 @@ button#addStepBtn {
 				+"<div id='stepImg'  class='subImg'><span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span><div id='noImg'>"
 				+"<span class='glyphicon glyphicon-open' aria-hidden='true'></span>"
 				+"<h5>Drag&Drop<br>HERE!</h5></div>"
+				+"<input type='hidden' id='imgFileDropped' name='ilist["+index+"].thumbnail'>"
 				+"</div></div>"
 				+"<div class='media-body'><h4 class='media-heading'>STEP "+stepCnt+"</h4><input type='hidden' id='stepCIndex' name='clist["+index+"].step' value="+stepCnt+">"
 				+"<input type='hidden' id='stepIIndex' name='ilist["+index+"].step' value="+stepCnt+">"
@@ -531,17 +549,49 @@ button#addStepBtn {
 		
 		
 		
-		$("#registerBtn").on("click", function(event){
-		
-			alert("수정 완료!");
+		$(document).on("click", "registerBtn", function(event){
+			$("#register").submit();
+			alert("등록 완료!");
 		
 		});
+		
 
+/* 		$("#regBtn").submit(function(event) {
+			event.preventDefault();
+
+		});
+		
+		var that = $(this);
+		var str = "";
+
+		$(".uploadedList .regBtn").each(
+				function(index) {
+					str += "<input type = 'hidden' name='files[" + index
+							+ "]' value='" + $(this).attr("href") + "'>";
+
+		});
+
+		that.append(str);
+
+		that.get(0).submit(); */
+   
+
+		
 	});
 
 	
 	
 	</script>
+<!-- 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#steps" ).sortable({placeholder: "ui-state-highlight",helper:'clone'});
+    $( "#steps" ).disableSelection();
+    
+  } );
+</script>
+-->
 	
 </body>
 </html>
