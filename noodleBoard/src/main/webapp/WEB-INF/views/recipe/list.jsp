@@ -91,6 +91,20 @@ div.portfolio-caption p{
 	white-space: nowrap;
 }
 
+div.listBox {
+	margin-top:30px;
+}
+
+
+section h3.section-subheading {
+	margin-bottom:20px;
+}
+
+.input-group{
+    margin: auto 25%;
+    margin-bottom: 40px;
+}
+
 
 </style>
 
@@ -133,111 +147,105 @@ div.portfolio-caption p{
 		</div>
 	</div>
 	</nav>
-
+	
 	<section id="portfolio" class="bg-light-gray">
-	<div class="container" id="position">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<h2 class="section-heading">나만의 레시피</h2>
+		<div class="container">
+			<div class="text-center">
+                <h2 class="section-heading">나만의 레시피</h2>
 				<h3 class="section-subheading text-muted">나만의 특별한 레시피를 공유하세요</h3>
-				<div class='box' style="text-align:center; width: 100%">
-					<div class="box-header with-border">
+               
+				<div class="input-group">
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">검색조건 <span class="caret"></span></button>
+					    	<ul class="dropdown-menu">
+					        	<li><a href="#">제목</a></li>
+					         	<li><a href="#">내용</a></li>
+					         	<li><a href="#">작성자</a></li>
+					          	<li role="separator" class="divider"></li>
+					         	<li><a href="#">제목+내용</a></li>
+					         	<li><a href="#">내용+작성자</a></li>
+					         	<li><a href="#">제목+내용+작성자</a></li>
+					        </ul>
+					</div><!-- /btn-group -->
+					<input type="text" class="form-control" aria-label="...">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">검색</button>
+					</span>
+				</div><!-- /input-group -->
+					    
+<%-- 				<div id="search">
+					<select name="searchType">
+				
+						<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>제목</option>
+						<option value="c" <c:out value="${cri.searchType eq 'c'?'selected':''}"/>>내용</option>
+						<option value="w" <c:out value="${cri.searchType eq 'w'?'selected':''}"/>>작성자</option>
+						<option value="tc" <c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>제목+내용</option>
+						<option value="cw" <c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>내용+작성자</option>
+						<option value="tcw" <c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>제목+내용+작성자</option>
+					</select>
+				</div>
+				<div id="inputBtn">
+					<input type="text" name='keyword' id="keywordInput" size="37" value='${cri.keyword}'>
+					<button id="searchBtn" class="btn btn-primary">검색</button>
+				</div>
+				
+           		</div> --%>
+		</div>
+		
+		<div class="container listBox">
+		<!-- list div START -->
+			<div class="row">
+				<!-- items START -->
+				<c:forEach items="${list}" var="boardVO">
+					<div class="col-md-4 col-sm-6 portfolio-item">
+	<!-- 					<div class="portfolio-hover"> -->
+	<!-- 						<div class="portfolio-hover-content"> -->
+	<!-- 							<i class="fa fa-plus fa-3x"></i> -->
+	<!-- 						</div> -->
+	<!-- 					</div> -->
+						<a href="/recipe/view${pageMaker.makeSearch(pageMaker.pageVO.page)}&bno=${boardVO.bno}">
+							<img src="../resources/img/noodle/${boardVO.ino}.jpg" class="img-responsive" alt="image of ${boardVO.title}">
+						</a>
+						<div class="portfolio-caption">
+							<p class="text-muted">${boardVO.title}</p>
+							<p class="text-muted">${boardVO.content}</p>
+						
+						<c:set var="loop" value="true"></c:set>
+						<c:forEach items="${MemberList}" var="memberVO">
+							<c:if test="${boardVO.mno eq memberVO.mno}">
+							<c:if test="${loop}">
+								<h5>${memberVO.nickname}</h5>
+								<c:set var="loop" value="false"></c:set>
+							</c:if>
+							</c:if> 
+						</c:forEach>						
+						<h6><fmt:formatDate value="${boardVO.regdate}" pattern="yyyy년MM월dd일"/></h6>
+						</div>
 					</div>
+				</c:forEach> <!-- items END -->
+			</div> <!-- list div END -->
 
-		<div id="search">
-			<select name="searchType">
-
-				<option value="t"
-					<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
-					제목</option>
-				<option value="c"
-					<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
-					내용</option>
-				<option value="w"
-					<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
-					작성자</option>
-				<option value="tc"
-					<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-					제목+내용</option>
-				<option value="cw"
-					<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
-					내용+작성자</option>
-				<option value="tcw"
-					<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
-					제목+내용+작성자</option>
-			</select>
-		</div>
-		<div id="inputBtn">
-			<input type="text" name='keyword' id="keywordInput" size="37"
-				value='${cri.keyword}'>
-			<button id="searchBtn" class="btn btn-primary">검색</button>
-			<p></p>
-			<br><br>
-		</div>
-		</div>
+			<div class="text-center" id="centerBtn">
+				<ul class="pagination">
+					<c:if test="${pageMaker.prev}">
+						<li><a href="${pageMaker.makeQuery(pageMaker.startPage-1) }">이전</a></li>
+					</c:if>
+					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
+						var="idx">
+						<li
+							<c:out value="${pageMaker.pageVO.page == idx? 'class = active':''}"/>>
+							<a href="${pageMaker.makeQuery(idx)}">${idx}</a>
+						</li>
+					</c:forEach>
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li><a href="${pageMaker.makeQuery(pageMaker.endPage+1)}">다음</a></li>
+					</c:if>
+								
+								
+				</ul>
+				<button type="submit" id="regBtn" class="btn btn-primary">글쓰기</button>
 			</div>
 		</div>
-
-		<!-- list div START -->
-		<div class="row">
-			<!-- items START -->
-			<c:forEach items="${list}" var="boardVO">
-				<div class="col-md-4 col-sm-6 portfolio-item">
-<!-- 					<div class="portfolio-hover"> -->
-<!-- 						<div class="portfolio-hover-content"> -->
-<!-- 							<i class="fa fa-plus fa-3x"></i> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-					<a
-						href="/recipe/view${pageMaker.makeSearch(pageMaker.pageVO.page)}&bno=${boardVO.bno}">
-						<img src="../resources/img/noodle/${boardVO.ino}.jpg"
-						class="img-responsive" alt="image of ${boardVO.title}">
-					</a>
-					<div class="portfolio-caption">
-						<p class="text-muted">${boardVO.title}</p>
-						<p class="text-muted">${boardVO.content}</p>
-					
-					<c:set var="loop" value="true"></c:set>
-					<c:forEach items="${MemberList}" var="memberVO">
-						<c:if test="${boardVO.mno eq memberVO.mno}">
-						<c:if test="${loop}">
-							<h5>${memberVO.nickname}</h5>
-							<c:set var="loop" value="false"></c:set>
-						</c:if>
-						</c:if> 
-					</c:forEach>						
-					<h6><fmt:formatDate value="${boardVO.regdate}" pattern="yyyy년MM월dd일"/></h6>
-					</div>
-				</div>
-			</c:forEach>
-			<!-- items END -->
-		</div>
-		<!-- list div END -->
-
-		<div class="text-center" id="centerBtn">
-			<ul class="pagination">
-				<c:if test="${pageMaker.prev}">
-					<li><a href="${pageMaker.makeQuery(pageMaker.startPage-1) }">이전</a></li>
-				</c:if>
-				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
-					var="idx">
-					<li
-						<c:out value="${pageMaker.pageVO.page == idx? 'class = active':''}"/>>
-						<a href="${pageMaker.makeQuery(idx)}">${idx}</a>
-					</li>
-				</c:forEach>
-				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					<li><a href="${pageMaker.makeQuery(pageMaker.endPage+1)}">다음</a></li>
-				</c:if>
-							
-							
-			</ul>
-							<button type="submit" id="regBtn" class="btn btn-primary">글쓰기</button>
-		</div>
-
-	</div>
-
-	
 	</section>
 
 	<form id="pageForm">

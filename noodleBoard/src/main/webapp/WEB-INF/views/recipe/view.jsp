@@ -47,7 +47,7 @@ textarea {
 	resize: none;
 }
 
-#stepImg {
+.stepImg {
 	width: 150px;
 	height: 100%;
     border-radius: 4px;
@@ -62,14 +62,14 @@ textarea {
 	background-size: contain;
 }
 
-#stepImg img{
+.stepImg img{
 	width: 100%;
 	height: auto;
 	border-radius: 4px;
 	
 }
 
-#step{
+.step{
     border-bottom: 1px solid #dddddd;
 }
 
@@ -98,6 +98,28 @@ div.row.control-group {
 	margin-top: 20px;
 }
 
+.intro-text {
+	white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.portfolio-hover{
+	background: rgba(254,209,54,.9);
+    position: absolute;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: all ease .5s;
+    -webkit-transition: all ease .5s;
+    -moz-transition: all ease .5s;
+}
+
+.portfolio-link{
+
+    display: block;
+    position: relative;
+
+}
 </style>
 
 </head>
@@ -144,11 +166,11 @@ div.row.control-group {
             <div class="intro-text">
                 <div class="intro-lead-in">${nickVO.nickname}님의 맛있는</div>
                 <div class="intro-heading">${vo.title}</div>
-                <a href="#recipe" class="page-scroll btn btn-xl">detail</a>
+                <div><a href="#recipe" class="page-scroll btn btn-xl">detail</a></div>
             </div>
         </div>
     </header>
-    
+<section>
 <form id=recipe>
 		<input type='hidden' id='sessionMno' name='mno' value="${sessionScope.VO.mno}">
 		<input type='hidden' id='mno' name='mno' value="${vo.mno}">
@@ -183,15 +205,22 @@ div.row.control-group {
 							
 								<c:forEach items="${clist}" var="cuisineVO">
 								<!-- START -->
-								<div class="media form-group" id="step">
+								<div class="step media form-group" id="step">
 									
 									<c:set var="loop" value="true"></c:set>
 									<c:forEach items="${ilist}" var="imageVO">
 										<c:if test="${imageVO.step == cuisineVO.step}">
 										<c:if test="${loop}">
 									<div class="media-left media-middle">
-										<div id="stepImg">
-											<img src="../user/show?name=${imageVO.thumbnail}">
+										<div class="stepImg">
+											<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+						                        <div class="portfolio-hover">
+						                            <div class="portfolio-hover-content">
+						                                <i class="fa fa-plus fa-3x"></i>
+						                            </div>
+						                        </div>
+						                        <img src="../user/show?name=${imageVO.thumbnail}" class="img-responsive" alt="">
+						                    </a>
 										</div>											
 									</div>
 											<c:set var="loop" value="false"></c:set>
@@ -220,7 +249,51 @@ div.row.control-group {
 						</div>
 					</div>
 			</div>
+		</div><!-- row end -->
+		
+			<!-- 댓글!! -->
+		<div class="row col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<ul class="media-list">
+				<li class="media">
+					<div class="media-left">
+						<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">Media heading</h4>
+						<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+						
+						<div class="media">
+							<div class="media-left">
+								<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">Nested media heading</h4>
+								Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. 
+								
+								<div class="media">
+									<div class="media-left">
+										<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
+									</div>
+									<div class="media-body">
+										<h4 class="media-heading">Nested media heading</h4>
+										Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+										</div>
+									</div>
+								</div>
+							</div>
+						<div class="media">
+							<div class="media-left">
+								<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">Nested media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
 		</div>
+		
 	</div>
 	</form>
 	<form role="form" action="modify" method="post">
@@ -232,6 +305,9 @@ div.row.control-group {
 	<input type='hidden' name='keyword' value="${cri.keyword}">
 
 </form>
+
+
+
 
 
 	<!-- 댓글처리... -->
@@ -253,7 +329,10 @@ div.row.control-group {
 	  </form>
 	</div>
 	</div>
-	
+</section>
+
+
+
 	<!-- Footer START -->
     <footer>
         <div class="container">
