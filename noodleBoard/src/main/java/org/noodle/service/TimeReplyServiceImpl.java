@@ -32,8 +32,7 @@ public class TimeReplyServiceImpl implements TimeReplyService {
 		
 		//타임라인테이블의 리플카운트가 1 증가.
 		tdao.addReplyCnt(vo.getTno());
-		
-		logger.info(" tnotnotnotnotnotnotnoptnottno" + vo.getTno());
+
 
 	}
 

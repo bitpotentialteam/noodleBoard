@@ -76,7 +76,7 @@ public class TimeLineController {
 
 	public String likecnt(TimeLineVO vo, Model model) throws Exception{
 		
-		logger.info("likelikelike....!");
+		logger.info("like가 하나 추가되었습니당!");
 		
 	//	TimeLineVO vo = new TimeLineVO();
 		service.addLikeCnt(vo);
@@ -91,7 +91,7 @@ public class TimeLineController {
 	@ResponseBody
 	public String likeHistory(@RequestParam("tno") int tno, @RequestParam("mno") int mno) throws Exception{
 		
-		logger.info("like history 추적중ㅋㅋㅋ");
+		logger.info("like 몇개인지 셉니다");
 
 		TimeLineVO vo = new TimeLineVO();
 		
