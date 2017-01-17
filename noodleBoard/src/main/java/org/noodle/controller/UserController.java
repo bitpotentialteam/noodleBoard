@@ -163,22 +163,23 @@ public class UserController {
 	}
 
 	@GetMapping("/login")
-	public void loginGET(HttpSession session, MemberVO vo) throws Exception {
+	public void loginGET(HttpSession session) throws Exception {
 		logger.info("login get...");
 
 		session.setAttribute("LOGIN", "success");
 	}
 	
 
-//	@GetMapping("/logout")
-//	public String logout(HttpServletRequest request, HttpServletResponse response)throws Exception{
+	/*@GetMapping("/login?logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response)throws Exception{
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		logger.info("로그아웃과정");
+		logger.info("로그아웃과정");
 //		if(auth !=null){
 //			new SecurityContextLogoutHandler().logout(request, response, auth);
 //		}
-//		return "redirect:/";
-//	}
+		
+		return "redirect:/";
+	}*/
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET(MemberVO vo, Model model) throws Exception {
