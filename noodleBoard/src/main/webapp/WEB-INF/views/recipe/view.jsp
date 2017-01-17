@@ -260,7 +260,7 @@ textarea {
 		
 		if(sessionMno == mno){
 			button = "<button type='submit' id='modifyBtn' class='btn btn-default-right'>수 정</button>"
-					 +"<button type='submit' id='removeBtn' class='btn btn-default-right'>삭 제</button>"
+					 +"&nbsp<button type='submit' id='removeBtn' class='btn btn-default-right'>삭 제</button>"
 		$("#recipe").find("#mdBtn").append(button);	 
 		}
 		}user();
