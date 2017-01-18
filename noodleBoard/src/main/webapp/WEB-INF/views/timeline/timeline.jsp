@@ -178,6 +178,12 @@ button {
 	margin-bottom: 10px;
 }
 
+#userBtn {
+    display: block;
+    position: relative;
+    top: -3em;
+}
+
 
 
 
@@ -269,6 +275,17 @@ button {
  
 								
 								<div id="userBtn">
+									<div class="dropdown pull-right text-muted">
+									  <button class="btn btn-default dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									    <span class="glyphicon glyphicon-option-vertical"></span>
+									  </button>
+									  <ul class="dropdown-menu" aria-labelledby="userMenu">
+									    <li><a href="#">수정</a></li>
+									    <li><a href="#">삭제</a></li>
+									  </ul>
+									</div>
+																	
+								
 <%-- 								<button type="button" value="${vo.tno}" id="removeBtn" class="pull-right text-muted">  --%>
 <!-- 									<span class="glyphicon glyphicon-trash"></span> -->
 <!-- 								</button>            -->
