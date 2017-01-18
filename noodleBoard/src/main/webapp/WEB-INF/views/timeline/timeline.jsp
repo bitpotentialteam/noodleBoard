@@ -163,10 +163,11 @@ button {
 
 #likeBtn, #replyBtn{
 
-   background-color: rgba( 255, 255, 255, 0 );
-   border : 0;
-   outline : 0;
-
+    background-color: rgba( 255, 255, 255, 0 );
+    border : 0;
+    outline : 0;
+	font-size: 1.5em;
+	padding: 0px;
 }
 
 #up{
@@ -200,7 +201,12 @@ button {
     border: none;
 }
 
-
+.badge.badge-count{
+	postion:absolute;
+	top: -12px;
+    left: -11px;
+    background-color: #fed136;
+}
 
 </style>
 	
@@ -337,18 +343,18 @@ button {
 							<p>${vo.content}</p>
 							<input type = 'hidden' id='writer' value="${vo.mno}">
 							
-							
+							 
 							<!-- footer buttons -->
 							<div class='pull-right text-muted'>	
 								<span>
 									<button type='button' id='likeBtn' value='${vo.tno}' class='btn btn-default'>
 									<span class='glyphicon glyphicon-thumbs-up'></span>
-									<span class='badge' id='likeCnt'>${vo.likeCnt}</span> </button>
+									<span class='badge badge-count' id='likeCnt'>${vo.likeCnt}</span> </button>
 								</span>
 								<span>
 									<button type='button' id='replyBtn' value='${vo.tno}' class='btn btn-default'>
 									<span class='glyphicon glyphicon-comment'></span>
-									<span class='badge' id='replyCnt'>${vo.replyCnt}</span> </button>
+									<span class='badge badge-count' id='replyCnt'>${vo.replyCnt}</span> </button>
 								</span>
 							</div>
 								
