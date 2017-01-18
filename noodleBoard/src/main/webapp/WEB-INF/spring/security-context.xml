@@ -13,7 +13,7 @@
 	
 	<security:session-management>
          <security:concurrency-control
-            max-sessions="1" expired-url="/login_duplicate" />
+            max-sessions="1" expired-url="/user/login_duplicate" />
       </security:session-management>
       
        <security:logout delete-cookies="JSESSIONID"

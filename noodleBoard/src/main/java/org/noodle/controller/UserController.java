@@ -168,6 +168,11 @@ public class UserController {
 
 		session.setAttribute("LOGIN", "success");
 	}
+	@GetMapping("/login_duplicate")
+	public void login_duplicate()throws Exception{
+		logger.info("중복로그인");
+		
+	}
 	
 
 	/*@GetMapping("/login?logout")
