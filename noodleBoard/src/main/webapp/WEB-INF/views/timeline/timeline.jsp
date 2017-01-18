@@ -307,16 +307,16 @@ button {
 							
 							
 							<!-- footer buttons -->
-							<div class='pull-right text-muted'>
+							<div class='pull-right text-muted'>	
 								<span>
-									<button type='button' id='replyBtn' value='${vo.tno}' class='btn btn-default btn-xs'>
-									<span class='glyphicon glyphicon-menu-hamburger'></span> </button>
-									<span class='badge' id='replyCnt'>${vo.replyCnt}</span>
+									<button type='button' id='likeBtn' value='${vo.tno}' class='btn btn-default'>
+									<span class='glyphicon glyphicon-thumbs-up'></span>
+									<span class='badge' id='likeCnt'>${vo.likeCnt}</span> </button>
 								</span>
 								<span>
-									<button type='button' id='likeBtn' value='${vo.tno}' class='btn btn-default btn-xs'>
-									<span class='glyphicon glyphicon-thumbs-up'></span> </button>
-									<span class='badge' id='likeCnt'>${vo.likeCnt}</span>
+									<button type='button' id='replyBtn' value='${vo.tno}' class='btn btn-default'>
+									<span class='glyphicon glyphicon-menu-hamburger'></span>
+									<span class='badge' id='replyCnt'>${vo.replyCnt}</span> </button>
 								</span>
 							</div>
 								
