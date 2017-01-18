@@ -188,7 +188,6 @@ div.row.control-group {
 						</div>
 					</div>								
 					
-					
 					<div class="row control-group" id="materialContent">
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>재료</label>
@@ -252,47 +251,37 @@ div.row.control-group {
 		</div><!-- row end -->
 		
 			<!-- 댓글!! -->
-		<div class="row col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<ul class="media-list">
-				<li class="media">
-					<div class="media-left">
-						<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Media heading</h4>
-						<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+<!-- 		<div class="row col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"> -->
+<!-- 			<ul class="media-list"> -->
+<!-- 				<li class="media"> -->
+<!-- 					<div class="media-left"> -->
+<!-- 						<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a> -->
+<!-- 					</div> -->
+<!-- 					<div class="media-body"> -->
+<!-- 						<h4 class="media-heading">Media heading</h4> -->
+<!-- 						<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p> -->
 						
-						<div class="media">
-							<div class="media-left">
-								<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
-							</div>
-							<div class="media-body">
-								<h4 class="media-heading">Nested media heading</h4>
-								Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. 
+<!-- 						<div class="media"> -->
+<!-- 							<div class="media-left"> -->
+<!-- 								<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a> -->
+<!-- 							</div> -->
+<!-- 							<div class="media-body"> -->
+<!-- 								<h4 class="media-heading">Nested media heading</h4> -->
+<!-- 								Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.  -->
 								
-								<div class="media">
-									<div class="media-left">
-										<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
-									</div>
-									<div class="media-body">
-										<h4 class="media-heading">Nested media heading</h4>
-										Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-										</div>
-									</div>
-								</div>
-							</div>
-						<div class="media">
-							<div class="media-left">
-								<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
-							</div>
-							<div class="media-body">
-								<h4 class="media-heading">Nested media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
+<!-- 							</div> -->
+<!-- 						<div class="media"> -->
+<!-- 							<div class="media-left"> -->
+<!-- 								<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a> -->
+<!-- 							</div> -->
+<!-- 							<div class="media-body"> -->
+<!-- 								<h4 class="media-heading">Nested media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</li> -->
+<!-- 			</ul> -->
+<!-- 		</div> -->
 		
 	</div>
 	</form>
@@ -313,22 +302,52 @@ div.row.control-group {
 	<!-- 댓글처리... -->
 	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 	<div class="reply">
-	  <form id="replyListForm">
-	    <c:forEach items="${replyList}" var="replyVO">
-	      <div>
-	        <ul>
-	          <li>${replyVO.mno}</li>
-	      	  <li>${replyVO.content}</li>
-	          <li>${replyVO.regdate}</li>
-	        </ul>
-	      </div>
-	      <div><button type="submit" class="removeReplyBtn" name="rno" value="${replyrno}">삭제</button></div>
-		</c:forEach>
-		<input type="text" id="replyContent" placeholder="Press enter to post comment!">
-		<button type="submit" class="registReplyBtn"></button>
-	  </form>
+<!-- 	  <form id="replyListForm" action="registReply" method="post"> -->
+	  	<input type='hidden' id='sessionMno' name='mno' value="${sessionScope.VO.mno}">
+	    <input type='hidden' id="bno" name='bno' value="${vo.bno}">
+	    <div class="row control-group" name="content">
+						<div
+							class="form-group col-xs-12 floating-label-form-group controls">
+							<label>댓글</label> <input type="text" class="form-control"
+								placeholder="Reply" name="content" id="content" required
+								data-validation-required-message="Please enter reply.">
+						</div>
+					</div>
+<%-- 	      <div><button type="submit" class="removeReplyBtn" name="rno" value="${replyrno}">삭제</button></div> --%>
+		<button type="submit" id="registReplyBtn" class="registReplyBtn">댓글등록</button>
+		<br>
+	<br>
+	<br>
+<!-- 	  </form> -->
 	</div>
 	</div>
+	
+	<!-- 댓글!! -->
+		<div class="row col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<form id="reply">
+				<c:forEach items="${replyList}" var="rvo">
+			<ul class="media-list"> 
+				<c:set var="loop" value="true"></c:set>
+				<c:forEach items="${MemberList}" var="memberVO">
+				<c:if test="${rvo.mno eq memberVO.mno}">
+				<c:if test="${loop}">
+				<li class="media">
+					<div class="media-left">
+						<a href="#"> <img class="media-object" src="/user/show?name=${memberVO.picture}" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
+					</div>
+					<div class="media-body">
+					<h4 class="media-heading">${memberVO.nickname}</h4>
+						<p>${rvo.content}</p>
+					</div>
+				</li>
+				<c:set var="loop" value="false"></c:set>
+				</c:if>
+				</c:if>
+				</c:forEach>
+			</ul>
+				</c:forEach>
+			</form>
+		</div>
 </section>
 
 
@@ -354,7 +373,9 @@ div.row.control-group {
     </footer>
 	<!-- Footer END -->
 
-
+	<!-- jQuery -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 	<!-- jQuery 2.2.3 -->
 	<script src="../resources/vendor/jquery/jquery-2.2.3.min.js"></script>
@@ -392,6 +413,47 @@ div.row.control-group {
 				increaseArea : '20%' // optional
 			});
 		});
+		
+// 		function replyList(data){
+			
+	
+// 			$.ajax({
+//     			type : 'get',
+//     			url : '/recipe/reply',
+//     			dataType :'text',
+//     			data : data,
+//     			success : function(result) {
+//     			}
+//     		});
+// 			} replyList();
+			
+		
+		$("#registReplyBtn").on("click", function(event){
+			
+			var str = "";
+			var $this = $(this);
+			var reply = $("#reply");
+			var bno = $this.parents(".reply").find("#bno").val();
+			var content = $this.parents(".reply").find("#content").val();
+			console.log($this);
+			console.log(bno);
+			console.log("내용"+content);
+			console.log(sessionMno);
+			$.ajax({
+    			type : 'post',
+    			url : '/recipe/registReply',
+    			headers : {
+    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+    				"X-HTTP-Method-Override" : "POST"
+    			},
+    			dataType : 'text',
+    			data : {mno : sessionMno, content : content, bno:bno},
+    			success : function() {
+    				
+    			}
+    		});
+			location.reload();
+		});
 
 	
 			var formObj = $('#recipe');
@@ -418,16 +480,9 @@ div.row.control-group {
 				
 			});
 		
-			
-
-		
-		
 		
 		});
 	
-	
-		
-
 	</script>
 </body>
 </html>

@@ -10,5 +10,8 @@ public interface RecipeReplyDAO {
 	public void update(RecipeReplyVO vo) throws Exception;
 	public void delete(Integer rno) throws Exception;
 	public List<RecipeReplyVO> listAll(Integer bno)throws Exception;
+	public List<RecipeReplyVO> readSeq(Integer rrno)throws Exception;
+	public void rrnoUpdate(Integer rno) throws Exception;
+	public Integer rnoCurrval() throws Exception;
 
 }

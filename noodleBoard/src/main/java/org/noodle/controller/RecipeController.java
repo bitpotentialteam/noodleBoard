@@ -155,18 +155,26 @@ public class RecipeController {
 		model.addAttribute("vo", service.view(bno));
 		model.addAttribute("clist", cservice.view(bno));
 		model.addAttribute("ilist", iservice.viewBno(bno));
-		
+		model.addAttribute("replyList", rservice.listAll(bno));
+		logger.info("replyList : " + rservice.listAll(bno));
 		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
 		logger.info(user.toString());
-		mservice.read1(user.toString());
 		MemberVO vo = mservice.read1(user.toString());
 		
 		MemberVO nickVO = mservice.read(service.view(bno).getMno());
-
+		
+		List<MemberVO> mlist = new ArrayList<MemberVO>();
+		List<RecipeReplyVO> rlist = new ArrayList<RecipeReplyVO>();
+		rlist = rservice.listAll(bno);
+		for(int i = 0; i < rlist.size(); i++){
+			
+			MemberVO mvo = mservice.read(rlist.get(i).getMno());
+			mlist.add(mvo);
+		}
+		model.addAttribute("MemberList", mlist);
 		model.addAttribute("nickVO", nickVO);
 		
 		session.setAttribute("VO", vo);
-		logger.info("ReplyListALl: "+rservice.listAll(bno).toString());
 		PageMaker pageMaker = new PageMaker();		
 		pageMaker.setPageVO(cri);
 		model.addAttribute("pageMaker", pageMaker);
@@ -210,10 +218,32 @@ public class RecipeController {
 		return "redirect:list";
 	}
 	
-	@PostMapping("/reply")
-	public void replyPOST(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri,HttpSession session, Model model) throws Exception{
-		model.addAttribute("replyList", rservice.listAll(bno));
+	@PostMapping("/registReply")
+	public void recipeReplyPOST(@RequestParam("bno") Integer bno, RecipeReplyVO vo, Integer rno,
+		   HttpSession session, RedirectAttributes rttr, Model model) throws Exception{
+		logger.info("registReply called...............");
+		rservice.regist(vo);
+		logger.info("VO : " + vo);
 	}
+	
+//	@GetMapping("/reply")
+//	public List<RecipeReplyVO> replyList(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri,HttpSession session, Model model) throws Exception{
+//		logger.info("replyList called...........");
+//		model.addAttribute("replyList", rservice.listAll(bno));
+//		logger.info("listAll... " + rservice.listAll(bno));
+//		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
+//		logger.info(user.toString());
+//		mservice.read1(user.toString());
+//		MemberVO vo = mservice.read1(user.toString());
+//		MemberVO nickVO = mservice.read(service.view(bno).getMno());
+//
+//		model.addAttribute("nickVO", nickVO);
+//		
+//		session.setAttribute("VO", vo);
+//		logger.info("ReplyListALl: "+rservice.listAll(bno).toString());
+//		
+//		return rservice.listAll(bno);
+//	}
 	
 	@PostMapping("/removeReply")
 	@ResponseBody
@@ -221,8 +251,4 @@ public class RecipeController {
 		rservice.remove(vo);
 	}
 
-	@PostMapping("/registReply")
-	public void registReplyPOST(RecipeReplyVO vo) throws Exception{
-		rservice.regist(vo);
-	}
 }

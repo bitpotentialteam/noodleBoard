@@ -177,7 +177,7 @@ button#addStepBtn {
 				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
 				</p>
 				<!-- form시작 -->
-				<form action="register" method="post" id="">
+				<form action="register" method="post">
 					<!-- 대표 이미지값 전달 -->
 					<input type="hidden" name="topImageIndex" id="topImageIndex">					
 					<!-- mno를 hidden으로 숨겨서 register로 넘김 -->

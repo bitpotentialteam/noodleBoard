@@ -1,6 +1,7 @@
 package org.noodle.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class RecipeReplyVO {
 	
@@ -8,10 +9,11 @@ public class RecipeReplyVO {
 	private Integer mno;
 	private Integer bno;
 	private Integer rno;
+	private Integer rrno;
+	private Integer seq;
 	private String content;
 	private Date regdate;
 	private Date updatedate;
-	
 	
 	public Integer getMno() {
 		return mno;
@@ -31,6 +33,18 @@ public class RecipeReplyVO {
 	public void setRno(Integer rno) {
 		this.rno = rno;
 	}
+	public Integer getRrno() {
+		return rrno;
+	}
+	public void setRrno(Integer rrno) {
+		this.rrno = rrno;
+	}
+	public Integer getSeq() {
+		return seq;
+	}
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
 	public String getContent() {
 		return content;
 	}
@@ -49,10 +63,11 @@ public class RecipeReplyVO {
 	public void setUpdatedate(Date updatedate) {
 		this.updatedate = updatedate;
 	}
+	
 	@Override
 	public String toString() {
-		return "RecipeReplyVO [mno=" + mno + ", bno=" + bno + ", rno=" + rno + ", content=" + content + ", regdate="
-				+ regdate + ", updatedate=" + updatedate + "]";
+		return "RecipeReplyVO [mno=" + mno + ", bno=" + bno + ", rno=" + rno + ", rrno=" + rrno + ", seq=" + seq
+				+ ", content=" + content + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
 	}
 	
 }

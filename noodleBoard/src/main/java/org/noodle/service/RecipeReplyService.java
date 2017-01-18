@@ -10,5 +10,8 @@ public interface RecipeReplyService {
 	public void modify(RecipeReplyVO vo) throws Exception;
 	public void remove(RecipeReplyVO vo) throws Exception;
 	public List<RecipeReplyVO> listAll(Integer bno) throws Exception;
+	public List<RecipeReplyVO> seqRead(Integer rrno) throws Exception;
+	public void rrnoModify(Integer rno) throws Exception;
+	public Integer currvalRno()throws Exception;
 
 }

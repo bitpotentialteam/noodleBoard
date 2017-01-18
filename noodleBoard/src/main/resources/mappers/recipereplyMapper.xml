@@ -7,9 +7,11 @@
 
 	<insert id="create" parameterType="RecipeReplyVO">
 		insert into 
-			tbl_recipereply(mno, bno, rno, content)
+			tbl_recipereply(mno, bno, rno, seq, content)
 		values
-			(#{mno}, #{bno}, seq_recipeReply.nextval, #{content})
+			(#{mno, jdbcType=INTEGER}, #{bno, jdbcType=INTEGER}, seq_recipeReply.nextval,
+			#{seq, jdbcType=INTEGER},
+			#{content, jdbcType=VARCHAR})
 	</insert>
 
 	<select id="read" resultType="RecipeReplyVO">
@@ -18,23 +20,49 @@
 		from 
 			tbl_recipereply 
 		where 
-			rno = #{rno}
+			rno = #{rno, jdbcType=INTEGER}
+	</select>
+	
+	<select id="readSeq" resultType="RecipeReplyVO">
+		select
+			*
+		from
+			tbl_recipereply
+		where
+			rrno = #{rrno, jdbcType=INTEGER}
+	</select>
+	
+	<select id="rnoCurrval" resultType="Integer">
+	select
+		seq_recipereply.currval
+	from
+		dual
 	</select>
 
 	<update id="update">
 		update 
 			tbl_recipereply 
 		set 
-			bno = #{bno}, content = #{content}, updatedate = sysdate
+			content = #{content, jdbcType=VARCHAR}
 		where 
-			rno = #{rno}
+			rno = #{rno, jdbcType=INTEGER}
 	</update>
+	
+	<update id="rrnoUpdate">
+		update
+			tbl_recipereply
+		set
+			rrno = #{rno, jdbcType=INTEGER}
+		where
+			rno = #{rno, jdbcType=INTEGER}
+	</update>
+
 
 	<delete id="delete">
 		delete 
 			tbl_recipereply 
 		where 
-			rno = #{rno}
+			rno = #{rno, jdbcType=INTEGER}
 	</delete>
 
 	<select id="listAll" resultType="RecipeReplyVO">
@@ -42,8 +70,8 @@
 			* 
 		from 
 			tbl_recipereply 
-		where bno=#{bno}
-		order by rno desc
+		where bno=#{bno, jdbcType=INTEGER}
+		order by rrno desc, seq
 	</select>
 
 </mapper>

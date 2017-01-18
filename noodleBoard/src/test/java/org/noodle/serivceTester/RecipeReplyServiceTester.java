@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.noodle.domain.RecipeReplyVO;
+import org.noodle.persistence.RecipeReplyDAO;
 import org.noodle.service.RecipeReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,6 +17,9 @@ public class RecipeReplyServiceTester {
 
 	@Autowired
 	RecipeReplyService service;
+	
+	@Autowired
+	RecipeReplyDAO dao;
 	
 	RecipeReplyVO vo;
 	
@@ -31,7 +35,15 @@ public class RecipeReplyServiceTester {
 		vo.setBno(5);
 		vo.setContent("88888888888시");
 		
-		service.regist(vo);
+	}
+	
+	@Test
+	public void serviceCreate() throws Exception{
+		vo.setMno(192);
+		vo.setRrno(1);
+		vo.setSeq(0);
+		vo.setContent("test");
+		
 	}
 	
 	@Test

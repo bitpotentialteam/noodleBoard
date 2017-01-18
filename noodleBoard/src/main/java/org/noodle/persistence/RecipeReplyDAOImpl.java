@@ -35,4 +35,19 @@ public class RecipeReplyDAOImpl implements RecipeReplyDAO {
 		return session.selectList(NAME + "listAll", bno);
 	}
 
+	@Override
+	public List<RecipeReplyVO> readSeq(Integer rrno) throws Exception {
+		return session.selectList(NAME + "readSeq", rrno);
+	}
+
+	@Override
+	public void rrnoUpdate(Integer rno) throws Exception {
+		session.update(NAME + "rrnoUpdate", rno);
+	}
+
+	@Override
+	public Integer rnoCurrval() throws Exception {
+		return session.selectOne(NAME + "rnoCurrval");
+	}
+
 }

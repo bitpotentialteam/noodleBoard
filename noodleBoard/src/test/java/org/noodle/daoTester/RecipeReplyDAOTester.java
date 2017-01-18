@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.noodle.domain.RecipeReplyVO;
 import org.noodle.persistence.RecipeReplyDAO;
+import org.noodle.service.RecipeReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -17,6 +18,9 @@ public class RecipeReplyDAOTester {
 
 	@Autowired
 	private RecipeReplyDAO dao;
+	
+	@Autowired
+	private RecipeReplyService rseervice;
 	
 	private RecipeReplyVO vo;
 	
@@ -35,6 +39,19 @@ public class RecipeReplyDAOTester {
 		
 		dao.create(vo);
 
+	}
+	
+	@Test
+	public void serviceCreate() throws Exception{
+		vo.setBno(1);
+		vo.setMno(192);
+		vo.setRno(1);
+		vo.setRrno(1);
+		vo.setSeq(0);
+		vo.setContent("test");
+		
+		
+		
 	}
 
 	@Test

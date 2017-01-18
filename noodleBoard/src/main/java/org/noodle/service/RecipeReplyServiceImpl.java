@@ -21,9 +21,13 @@ public class RecipeReplyServiceImpl implements RecipeReplyService {
 	@Override
 	@Transactional
 	public void regist(RecipeReplyVO vo) throws Exception {
-
+		vo.setSeq(dao.readSeq(vo.getRrno()).size());
+		
 		dao.create(vo);
+		dao.rrnoUpdate(dao.rnoCurrval());
+		
 		bdao.addReplyCount(vo.getBno());
+		
 	}
 
 	@Override
@@ -43,5 +47,22 @@ public class RecipeReplyServiceImpl implements RecipeReplyService {
 	public List<RecipeReplyVO> listAll(Integer bno) throws Exception {
 		return dao.listAll(bno);
 	}
+
+	@Override
+	public List<RecipeReplyVO> seqRead(Integer rrno) throws Exception {
+		return dao.readSeq(rrno);
+	}
+
+	@Override
+	public void rrnoModify(Integer rno) throws Exception {
+		dao.rrnoUpdate(rno);
+	}
+
+	@Override
+	public Integer currvalRno() throws Exception {
+		return dao.rnoCurrval();
+	}
+
+
 
 }
