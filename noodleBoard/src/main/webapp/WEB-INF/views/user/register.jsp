@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>New Member</title>
@@ -50,6 +51,11 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+ <style>
+.btn{
+padding:9.2px 12px;
+}
+</style>
 </head>
 <body class="hold-transition register-page">
 	
@@ -93,14 +99,13 @@
 			<form action="register" method="post" >
 				<div class="form-group has-feedback">
 					<div class="input-group">
-				      <input type="text" class="form-control" placeholder="ID">
+				      <input type="text" name="userid" id="userid" class="form-control" placeholder="ID">
 				      <span class="input-group-btn">
 				        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" id="checkBtn"></span></button>
 				      </span>
 				    </div><!-- /input-group -->
 				    
-					<input type="text" id="userid" name="userid" class="form-control" placeholder="ID" value="">
-					 <span class="glyphicon glyphicon-search" id="checkBtn" style='cursor: pointer;'></span>
+					
 				</div>
 				<div class="form-group has-feedback">
 					<input type="password" id="userpw" name="userpw" class="form-control" placeholder="Password" value="">
