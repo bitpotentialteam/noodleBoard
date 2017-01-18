@@ -53,7 +53,7 @@
   <![endif]-->
  <style>
 .btn{
-padding:9.2px 12px;
+padding:9px 12px;
 }
 </style>
 </head>
@@ -99,13 +99,11 @@ padding:9.2px 12px;
 			<form action="register" method="post" >
 				<div class="form-group has-feedback">
 					<div class="input-group">
-				      <input type="text" name="userid" id="userid" class="form-control" placeholder="ID">
+				      <input type="text" name="userid" id="userid" class="form-control" placeholder="ID" value=""/>
 				      <span class="input-group-btn">
 				        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" id="checkBtn"></span></button>
 				      </span>
-				    </div><!-- /input-group -->
-				    
-					
+				    </div><!-- /input-group -->	
 				</div>
 				<div class="form-group has-feedback">
 					<input type="password" id="userpw" name="userpw" class="form-control" placeholder="Password" value="">
