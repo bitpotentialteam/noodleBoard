@@ -332,7 +332,7 @@ button {
 								</span>
 								<span>
 									<button type='button' id='replyBtn' value='${vo.tno}' class='btn btn-default'>
-									<span class='glyphicon glyphicon-menu-hamburger'></span>
+									<span class='glyphicon glyphicon-comment'></span>
 									<span class='badge' id='replyCnt'>${vo.replyCnt}</span> </button>
 								</span>
 							</div>
