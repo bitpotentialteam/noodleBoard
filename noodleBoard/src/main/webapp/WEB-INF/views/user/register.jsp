@@ -92,10 +92,15 @@
 
 			<form action="register" method="post" >
 				<div class="form-group has-feedback">
-					
-					<input type="text" id="userid" name="userid" class="form-control" placeholder="ID" value=""/>
-					 <i class="glyphicon glyphicon-search" id="checkBtn" style='cursor: pointer;'></i>
-					
+					<div class="input-group">
+				      <input type="text" class="form-control" placeholder="ID">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" id="checkBtn"></span></button>
+				      </span>
+				    </div><!-- /input-group -->
+				    
+					<input type="text" id="userid" name="userid" class="form-control" placeholder="ID" value="">
+					 <span class="glyphicon glyphicon-search" id="checkBtn" style='cursor: pointer;'></span>
 				</div>
 				<div class="form-group has-feedback">
 					<input type="password" id="userpw" name="userpw" class="form-control" placeholder="Password" value="">

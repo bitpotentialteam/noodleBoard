@@ -180,10 +180,25 @@ button {
 
 #userBtn {
     display: block;
-    position: relative;
-    top: -3em;
+    position: absolute;
+    top: 8px;
+    right: 9px;
 }
 
+.navbar-toggle {
+	color: #fff; 
+    border: 1px solid transparent;
+    margin-top: 8px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    padding: 9px 10px;
+	
+}
+
+#userMenu {
+	padding: 8px;
+    border: none;
+}
 
 
 
