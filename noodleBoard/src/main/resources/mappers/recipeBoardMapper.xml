@@ -8,9 +8,9 @@
 
 	<insert id="create">
 		insert into 
-			tbl_recipeboard(mno, bno, ino, title, content, materialContent)
+			tbl_recipeboard(mno, bno, title, content, materialContent)
 		values 
-			(#{mno, jdbcType=INTEGER}, seq_recipeBoard.nextval, seq_recipeImage.nextval, #{title , jdbcType=VARCHAR}, 
+			(#{mno, jdbcType=INTEGER}, seq_recipeBoard.nextval, #{title , jdbcType=VARCHAR}, 
 			#{content , jdbcType=VARCHAR}, #{materialContent , jdbcType=VARCHAR})
 	</insert>
 	
@@ -82,6 +82,24 @@
 			bno <= #{endPage, jdbcType=INTEGER} 
 		order by bno desc
 		 ]]>
+	</select>
+	
+	<update id="updateIno">
+		update
+			tbl_recipeBoard
+		set
+			ino = #{ino, jdbcType=INTEGER}
+		where
+			bno = #{bno, jdbcType=INTEGER}
+	</update>
+	
+	<select id="readTitle" resultType="RecipeBoardVO">
+		select
+			*
+		from
+			tbl_recipeBoard
+		where
+			title = #{title}
 	</select>
 	
 	

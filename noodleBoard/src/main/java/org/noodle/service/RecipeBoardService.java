@@ -21,4 +21,7 @@ public interface RecipeBoardService {
 	public void register(RecipeBoardVO vo, List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception;
 	public RecipeBoardVO view(Integer bno) throws Exception;
 	public void modify(RecipeBoardVO vo, List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception;
+
+	public void modifyIno(RecipeBoardVO vo) throws Exception;
+	public RecipeBoardVO viewTitle(String title) throws Exception;
 }

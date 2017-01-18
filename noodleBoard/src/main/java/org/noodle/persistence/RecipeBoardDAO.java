@@ -24,4 +24,6 @@ public interface RecipeBoardDAO {
 	public void addReplyCount(Integer bno) throws Exception;
 	public void minusReplyCount(Integer bno) throws Exception;
 	
+	public void updateIno(RecipeBoardVO vo) throws Exception;
+	public RecipeBoardVO readTitle(String title) throws Exception;
 }

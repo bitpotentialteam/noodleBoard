@@ -120,4 +120,16 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 		return dao.listPage(page);
 	}
 
+	@Override
+	public void modifyIno(RecipeBoardVO vo) throws Exception {
+
+		dao.updateIno(vo);
+	}
+
+	@Override
+	public RecipeBoardVO viewTitle(String title) throws Exception {
+
+		return dao.readTitle(title);
+	}
+
 }

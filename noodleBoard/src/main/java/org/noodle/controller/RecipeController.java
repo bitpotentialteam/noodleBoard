@@ -87,12 +87,17 @@ public class RecipeController {
 		logger.info("topImageIndex: "+topImageIndex);
 		logger.info("boardList.getIlist().get(topImageIndex).getThumbnail(): "+boardList.getIlist().get(topImageIndex).getThumbnail());
 		
-		logger.info("viewThumbnail: "+iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
-		vo.setIno(iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
 		logger.info("vo : " + vo);
-		
+		vo.setMno(mvo.getMno());
 		service.register(vo, boardList.getIlist(), boardList.getClist());
 		
+		vo.setIno(iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
+		vo.setBno(service.viewTitle(vo.getTitle()).getBno());
+		logger.info("Before ino modify vo: " + vo);
+		
+		service.modifyIno(vo);
+		
+		logger.info("viewThumbnail: "+iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
 		logger.info("topImageName: "+boardList.getIlist().get(topImageIndex).getThumbnail());
 		logger.info("ino: "+iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
 		

@@ -96,6 +96,19 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	public List<RecipeBoardVO> listPage(int page) throws Exception {
 		return session.selectList(namespace + "listPage");
 	}
+
+	@Override
+	public void updateIno(RecipeBoardVO vo) throws Exception {
+
+		session.update(namespace + "updateIno", vo);
+	}
+
+
+	@Override
+	public RecipeBoardVO readTitle(String title) throws Exception {
+
+		return session.selectOne(namespace + "readTitle", title);
+	}
 	
 
 }
