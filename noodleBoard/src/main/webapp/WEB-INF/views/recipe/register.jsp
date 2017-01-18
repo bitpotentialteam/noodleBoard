@@ -490,12 +490,8 @@ button#addStepBtn {
 						if(checkImageType(data)){
 							fn(data);
 	
-						}else{
-							alert("이미지 파일로 올려주세요!");;
-						}
-							
+						}	
 					}
-					
 				});
 			}else{
 				alert("이미지 파일로 올려주세요!");				
