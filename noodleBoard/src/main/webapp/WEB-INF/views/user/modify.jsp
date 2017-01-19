@@ -55,9 +55,21 @@
   <![endif]-->
 
 <style>
+.widget-user-image>img{
+	width: 65px;
+	height: auto;
+	float: left;
+}
+
+#imgMenu {
+	padding: 0px;
+    border: none;
+}
+
 .navbar-custom  {
 	background-color: #222;
 }
+
 
 .box p {
 	margin-bottom: 0.8em;
@@ -121,14 +133,19 @@ body {
 				<!-- Widget: user widget style 1 -->
 				<div class="box box-widget widget-user-2">
 					<!-- Add the bg color to the header using any of the bg-* classes -->
-					<div class="widget-user-header bg-yellow">
-						<div class="widget-user-image">
+					<div class="widget-user-header bg-yellow" id="imgBtn">
+						<div class="img-circle dropdown">
+							<button id="imgMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<img class="img-circle" id="imageDrop" src="show?name=${sessionScope.VO.picture}"
 								alt="User Avatar">
+							</button>
+								<ul class="dropdown-menu" aria-labelledby="imgMenu">
+									<li><a href="#">기본이미지로설정</a></li>
+									<li><a href="/user/modify">취소</a></li>
+								</ul>
 						</div>
 						<!-- /.widget-user-image -->
-						<h3 class="widget-user-username">${sessionScope.VO.username}</h3>
-						<h5 class="widget-user-desc">${sessionScope.VO.nickname}</h5>
+						
 					</div>
 					<form id="form" role="formModify" action="modify" method="post">
 						<div class="box-footer no-padding">
@@ -142,6 +159,8 @@ body {
 								<li class="list-group-item"><h4>NICKNAME</h4><input type="text" name="nickname" value="${sessionScope.VO.nickname}"></li>
 								<li class="list-group-item"><h4>E-MAIL</h4><input type="text" name="email" value="${sessionScope.VO.email}"></li>
 							</ul>
+								
+							
 						</div>
 					</form>
 					<div class="box-footer">
@@ -217,6 +236,7 @@ body {
 			
 		});
 	});
+	
 	</script>
 	
 </body>
