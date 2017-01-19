@@ -296,21 +296,21 @@ button {
  
 								
 								<div id="userBtn">
-									<div class="dropdown pull-right text-muted">
-									  <button class="btn btn-default dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									    <span class="glyphicon glyphicon-option-vertical"></span>
-									  </button>
-									  <ul class="dropdown-menu" aria-labelledby="userMenu">
-									    <li><a href="#">수정</a></li>
-									    <li><a href="#">삭제</a></li>
-									  </ul>
-									</div>
+<!-- 									<div class="dropdown pull-right text-muted"> -->
+<!-- 									  <button class="btn btn-default dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+<!-- 									    <span class="glyphicon glyphicon-option-vertical"></span> -->
+<!-- 									  </button> -->
+<!-- 									  <ul class="dropdown-menu" aria-labelledby="userMenu"> -->
+<!-- 									    <li><a href="#">수정</a></li> -->
+<!-- 									    <li><a href="#">삭제</a></li> -->
+<!-- 									  </ul> -->
+<!-- 									</div> -->
 																	
 								
 <%-- 								<button type="button" value="${vo.tno}" id="removeBtn" class="pull-right text-muted">  --%>
 <!-- 									<span class="glyphicon glyphicon-trash"></span> -->
 <!-- 								</button>            -->
-<%-- 								<button type="button" value="${vo.tno}" id="modifyBtn" class="modify pull-right text-muted">  --%>
+<%-- 								<button type="button" value="${vo.tno}" id="`" class="modify pull-right text-muted">  --%>
 <!-- 									<span class="glyphicon glyphicon-erase"></span>								 -->
 <!-- 								</button> -->
 								</div>
@@ -444,10 +444,24 @@ $( document ).ready(function() {
 		 			
 	  			//로그인한 mno = 글쓴 mno 대조
 	  			if(sessionMno == mno){
-	  				button = "<button type='button' value=' " + tno + "'id='removeBtn' class='pull-right text-muted'>"
-	  						+ "<span class='glyphicon glyphicon-trash'></span></button>"
-	  						+ "<button type='button' value='"+ tno +"' id='modifyBtn' class='modify pull-right text-muted'>"
-	  						+ "<span class='glyphicon glyphicon-erase'></span> </button>";
+	  				button = 
+	  					
+// 	  						"<button type='button' value=' " + tno + "'id='removeBtn' class='pull-right text-muted'>"
+// 	  						+ "<span class='glyphicon glyphicon-trash'></span></button>"
+// 	  						+ "<button type='button' value='"+ tno +"' id='modifyBtn' class='modify pull-right text-muted'>"
+// 	  						+ "<span class='glyphicon glyphicon-erase'></span> </button>";
+	  						
+							   " <div class='dropdown pull-right text-muted'> "
+							 + " <button class='btn btn-default dropdown-toggle' "
+							 + " type='button' id='userMenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
+							 + " <span class='glyphicon glyphicon-option-vertical'></span> "
+							 + " </button> <ul class='dropdown-menu' aria-labelledby='userMenu'> "
+							 + " <li value='"+ tno +"'id='modifyBtn'><a href='#' >수정</a></li> "
+							 + " <li value='"+ tno +"'id='removeBtn'><a href='#' >삭제</a></li> "
+							 + " </ul> </div>";
+	  						
+	  						
+	  						
 	  			
 	  				$this.find("#userBtn").html(button);	
 	 			 }
@@ -560,6 +574,8 @@ $( document ).ready(function() {
 		event.preventDefault();
 			
 		var $modalPop = $(this).parent().parent().find('#myModal'); 
+		console.log($modalPop);
+		console.log("글수정!!!!!!!!!!!!!!");
 		$modalPop.toggle();
 			
 			
