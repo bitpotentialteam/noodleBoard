@@ -179,7 +179,7 @@ button#addStepBtn {
 				<!-- form시작 -->
 				<form action="register" method="post">
 					<!-- 대표 이미지값 전달 -->
-					<input type="hidden" name="topImageIndex" id="topImageIndex">					
+					<input type="hidden" name="topImageIndex" id="topImageIndex" value="1">					
 					<!-- mno를 hidden으로 숨겨서 register로 넘김 -->
 					<div class="row control-group" name="mno">
 						<div
