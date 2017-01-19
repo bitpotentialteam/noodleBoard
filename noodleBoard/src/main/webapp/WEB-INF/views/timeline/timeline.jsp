@@ -602,10 +602,9 @@ $( document ).ready(function() {
 		event.preventDefault();
 			
 		var tno = $(this).val();
-		var content = $()
-		$('#ftno').val(tno);
+		//var content = $()
+		//$('#ftno').val(tno);
 			
-		$(this).parents('#timelineBox').find('.replyDiv').toggle();
 			
 		var addComment = $(this).parents('#timelineBox').find('.replyDiv').find('#commentsbox');
 		//	console.log("comment" + addComment);
@@ -614,10 +613,12 @@ $( document ).ready(function() {
 		replyManager.listReply (	
 				{tno:tno}, 
 		    	function (result){
+					console.log(result);
 				
 					addComment.html(result);
 		    	}
 			);
+		$(this).parents('#timelineBox').find('.replyDiv').toggle();
 	});
 		
 		//댓글 엔터 이벤트입니당
@@ -869,36 +870,83 @@ $( document ).ready(function() {
 									
 									regDate = d.getFullYear()  + "년" + (d.getMonth()+1) + "월" + d.getDate() + "일" +
 									d.getHours() + ":" + d.getMinutes();
-										
+									
+
 									if(result != ""){	
 														
-										lastStr = "<div class='box box-solid' id='timelineBox'> "
-												+ " <!-- .box-header START --> "
-												+ "<div class='box-header with-border'> <div class='user-block'><img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>"
-												+ " <input type='hidden' id='userTno' value='"+ tno +"'>"
-												+ " <span class='username'>"+ nickname +"</span> <span class='description'> "+ regDate +" </span> "
-												+ "<div id='userBtn'> </div> <!-- Modify Modal --> <div id='myModal' class='modal'>"
-												+ " <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> <span class='close' id='closeBtn'>&times;</span> "
-												+ " <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <textarea name='content' id='modContent'> "+ content +"</textarea> "
-												+ "</div> <div class='modal-footer'> <button type='button' id='modBtn' value='"+ tno +"'><span class='mod glyphicon glyphicon-erase' ></span></button>"
-												+ "</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"
-												+ "<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer' value='" + mno +"'>"
-												+ " <!-- footer buttons --> "
-												+ " <div class='pull-right text-muted'>	"
-												+ " <span> <button type='button' id='likeBtn' value='" + tno + "' class='btn btn-default'>"
-												+ " <span class='glyphicon glyphicon-thumbs-up'></span> "
-												+ " <span class='badge badge-count' id='likeCnt'>" + likeCnt + "</span> </button>"
-												+ "</span> <span> <button type='button' id='replyBtn' value='" + tno + "' class='btn btn-default'>"
-												+ " <span class='glyphicon glyphicon-comment'></span> "
-												+ " <span class='badge badge-count' id='replyCnt'>" + replyCnt + "</span> </button>"
-												+ "</span> </div>"
-												+ " <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"
-												+ " <div class='box-footer box-comments' id='commentsbox'> </div>"
-												+ " <!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'src='/user/show?name=" + picture+"' alt='Alt Text'>"
-												+ " <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"
-												+ " <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='댓글은 너의 인성을 보여줍니다'>"
-												+ "</div> </div><!-- /.box-footer --> <div> </div><!-- big div --> ";
+										lastStr = 
+											
+// 											"<div class='box box-solid' id='timelineBox'> "
+// 												+ " <!-- .box-header START --> "
+// 												+ "<div class='box-header with-border'> <div class='user-block'><img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>"
+// 												+ " <input type='hidden' id='userTno' value='"+ tno +"'>"
+// 												+ " <span class='username'>"+ nickname +"</span> <span class='description'> "+ regDate +" </span> "
+// 												+ "<div id='userBtn'> </div> <!-- Modify Modal --> <div id='myModal' class='modal'>"
+// 												+ " <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> <span class='close' id='closeBtn'>&times;</span> "
+// 												+ " <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <textarea name='content' id='modContent'> "+ content +"</textarea> "
+// 												+ "</div> <div class='modal-footer'> <button type='button' id='modBtn' value='"+ tno +"'><span class='mod glyphicon glyphicon-erase' ></span></button>"
+// 												+ "</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"
+// 												+ "<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer' value='" + mno +"'>"
+// 												+ " <!-- footer buttons --> "
+// 												+ " <div class='pull-right text-muted'>	"
+// 												+ " <span> <button type='button' id='likeBtn' value='" + tno + "' class='btn btn-default'>"
+// 												+ " <span class='glyphicon glyphicon-thumbs-up'></span> "
+// 												+ " <span class='badge badge-count' id='likeCnt'>" + likeCnt + "</span> </button>"
+// 												+ "</span> <span> <button type='button' id='replyBtn' value='" + tno + "' class='btn btn-default'>"
+// 												+ " <span class='glyphicon glyphicon-comment'></span> "
+// 												+ " <span class='badge badge-count' id='replyCnt'>" + replyCnt + "</span> </button>"
+// 												+ "</span> </div>"
+// 												+ " <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"
+// 												+ " <div class='box-footer box-comments' id='commentsbox'> </div>"
+												
+// 												+ " <!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'src='/user/show?name=" + picture+"' alt='Alt Text'>"
+// 												+ " <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"
+// 												+ " <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='댓글은 너의 인성을 보여줍니다'>"
+// 												+ "</div> </div><!-- /.box-footer --> <div> </div><!-- big div --> ";
 									 
+												
+										  " <div class='box box-solid' id='timelineBox'> <!-- .box-header START -->"
+										+ " <div class='box-header with-border'> "
+										+ " <div class='user-block'> "
+										+ " <img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>"
+										+ " <input type='hidden' id='userTno' value='"+tno+"'> <span class='username'> "+nickname+" </span>"
+										+ "	<span class='description'> "+ regDate +" </span> "
+										+ " <div id='userBtn'> </div> "
+										
+										+ " <!-- Modify Modal --> <div id='myModal' class='modal'> "
+										+ " <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> "
+										+ " <span class='close' id='closeBtn'>&times;</span> <h2>수정할 내용을 입력해주세요!</h2> </div> "
+										+ " <div class='modal-body'> <input value='"+content+"' name='content' id='modContent'> </div> "
+										
+										+ " <div class='modal-footer'> "
+										+ " <button type='button' id='modBtn' value='"+tno+"'><span class='mod glyphicon glyphicon-erase' ></span></button> "
+										+ " </div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--> <!-- .box-body START --> "
+										+ " <div class='box-body'> <!-- post text --> "
+										+ "	<p>"+content+"</p> <input type = 'hidden' id='writer' value='"+mno+"'> "
+											
+										+ " <!-- footer buttons --> <div class='pull-right text-muted'> <span> "
+										+ " <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default'> "
+										+ " <span class='glyphicon glyphicon-thumbs-up'></span> "
+										+ " <span class='badge badge-count' id='likeCnt'>"+likeCnt+"</span> </button> </span> "
+										
+										+ " <span> <button type='button' id='replyBtn' value='"+tno+"' class='btn btn-default'> "
+										+ " <span class='glyphicon glyphicon-comment'></span> "
+										+ " <span class='badge badge-count' id='replyCnt'>"+replyCnt+"</span> </button></span>\</div></div> "
+										+ "<!-- .box-body END --> <!-- .box-footer START --> "
+							
+										+ "	<!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list --> "
+										+ "	<div class='box-footer box-comments' id='commentsbox'> </div> "						
+								
+										+ " <!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm' "
+										+ " src='/user/show?name="+picture+"' alt='Alt Text'> "
+										+ " <!-- .img-push is used to add margin to elements next to floating images --> "
+										+ " <div class='img-push'> "
+										+ " <input name='tno' type='hidden' value='"+tno+"' id='replytno'> "
+										+ " <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> "
+										+ " <input type='text' id='replyContent' class='form-control input-sm' placeholder='댓글은 너의 인성을 보여줍니다'> </div>"
+										+ " </div><!-- /.box-footer -->	</div> </div><!-- big div --> "
+
+												
 									}else{
 										return;
 									}
@@ -937,7 +985,7 @@ $( document ).ready(function() {
 			    	success : 
 			    		function(result) {
 			  	
-							var lastStr = "";
+							var firstlist = "";
 							
 							for(var j = 0; j< result.length; j++){
 									
@@ -955,7 +1003,7 @@ $( document ).ready(function() {
 									
 							if(result != ""){
 						
-								fistlist = "<div class='box box-solid' id='timelineBox'> <!-- .box-header START --> "
+								firstlist = "<div class='box box-solid' id='timelineBox'> <!-- .box-header START --> "
 										+ "<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>"
 										+ " <input type='hidden' id='userTno' value='"+ tno +"'> <span class='username'>"+ nickname +"</span> <span class='description'> "+ regDate +" </span> "
 										+ "<div id='userBtn'> </div> <!-- Modify Modal --> <div id='myModal' class='modal'>"
@@ -981,7 +1029,7 @@ $( document ).ready(function() {
 								return;
 							}
 	
-							$("#timelinebigbox").prepend(fistlist);
+							$("#timelinebigbox").prepend(firstlist);
 							
 							replyManager.listReply(
 									{"tno":tno},
