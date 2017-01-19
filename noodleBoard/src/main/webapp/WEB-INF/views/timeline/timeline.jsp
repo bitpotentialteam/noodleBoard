@@ -444,14 +444,7 @@ $( document ).ready(function() {
 		 			
 	  			//로그인한 mno = 글쓴 mno 대조
 	  			if(sessionMno == mno){
-	  				button = 
-	  					
-// 	  						"<button type='button' value=' " + tno + "'id='removeBtn' class='pull-right text-muted'>"
-// 	  						+ "<span class='glyphicon glyphicon-trash'></span></button>"
-// 	  						+ "<button type='button' value='"+ tno +"' id='modifyBtn' class='modify pull-right text-muted'>"
-// 	  						+ "<span class='glyphicon glyphicon-erase'></span> </button>";
-	  						
-							   " <div class='dropdown pull-right text-muted'> "
+	  				button =   " <div class='dropdown pull-right text-muted'> "
 							 + " <button class='btn btn-default dropdown-toggle' "
 							 + " type='button' id='userMenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
 							 + " <span class='glyphicon glyphicon-option-vertical'></span> "
@@ -573,8 +566,8 @@ $( document ).ready(function() {
 			
 		event.preventDefault();
 			
-		var $modalPop = $(this).parent().parent().find('#myModal'); 
-		console.log("디쓰"+$(this));
+		var $modalPop = $(this).parents().find('#myModal'); 
+		console.log($(this));
 		console.log($modalPop);
 		console.log("글수정!!!!!!!!!!!!!!");
 		$modalPop.toggle();
@@ -890,17 +883,18 @@ $( document ).ready(function() {
 												+ "</div> <div class='modal-footer'> <button type='button' id='modBtn' value='"+ tno +"'><span class='mod glyphicon glyphicon-erase' ></span></button>"
 												+ "</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"
 												+ "<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer' value='" + mno +"'>"
-												+ "<!-- Social sharing buttons --> <div id='replyBtnDiv'> <span class='pull-right text-muted'> "
-												+ " <button type='button' id='replyBtn' value='" +tno+ "' class='btn btn-default btn-xs'> "
-												+ " <span class='glyphicon glyphicon-menu-hamburger'></span> </button>" 
-												+ "  <span class='badge' id='replyCnt'>"+ replyCnt +"</span></span> </div>"
-												+ "<div id='likeBtnDiv'> <span class='pull-right text-muted'>"
-												+ "<button type='button' id='likeBtn' value='" +tno+ "' class='btn btn-default btn-xs'>"
-												+ " <span class='glyphicon glyphicon-thumbs-up'></span> </button> "
-												+ "  <span class='badge' id='likeCnt'>"+ likeCnt +"</span></span> </div> " 
-												+ "<!-- .box-body END -->  <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"
+												+ " <!-- footer buttons --> "
+												+ " <div class='pull-right text-muted'>	"
+												+ " <span> <button type='button' id='likeBtn' value='" + tno + "' class='btn btn-default'>"
+												+ " <span class='glyphicon glyphicon-thumbs-up'></span> "
+												+ " <span class='badge badge-count' id='likeCnt'>" + likeCnt + "</span> </button>"
+												+ "</span> <span> <button type='button' id='replyBtn' value='" + tno + "' class='btn btn-default'>"
+												+ " <span class='glyphicon glyphicon-comment'></span> "
+												+ " <span class='badge badge-count' id='replyCnt'>" + replyCnt + "</span> </button>"
+												+ "</span> </div>"
+												+ " <!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"
 												+ " <div class='box-footer box-comments' id='commentsbox'> </div>"
-												+ "<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'src='/user/show?name=" + picture+"' alt='Alt Text'>"
+												+ " <!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'src='/user/show?name=" + picture+"' alt='Alt Text'>"
 												+ " <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"
 												+ " <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='댓글은 너의 인성을 보여줍니다'>"
 												+ "</div> </div><!-- /.box-footer --> <div> </div><!-- big div --> ";
