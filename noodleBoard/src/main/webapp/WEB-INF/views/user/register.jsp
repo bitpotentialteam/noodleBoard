@@ -127,7 +127,7 @@
 		<div class="register-box-body">
 			<p class="login-box-msg">Register a new membership</p>
 
-			<form action="register" method="post">
+			<form action="register" method="post" id="register">
 				<div class="form-group has-feedback">
 					<div class="input-group">
 						<input type="text" name="userid" id="userid" class="form-control"
@@ -177,24 +177,24 @@
 	
 				<!-- Image and Cuisine Start -->
 					<div id="steps">							
-						<!-- STEP START -->
-							<div class="media form-group" id="step">
-								<!-- Thumbnail Start -->
-									<div class="media-left media-middle">			
-										<div id="picture" class="mainImg" >
-											<input type="hidden"value="" name="picture" id="Vpicture">
-										<span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span>
-											<div id="noImg">
-												<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
-												<h5>Drag&Drop<br>HERE!</h5>
-											</div>
-											<!-- thumbnail을 hidden으로 넘기는 것은  -->
-											<input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail'>
-										</div>
-									</div>
-							</div>
-						<!-- END -->		
+				<!-- STEP START -->
+					<div class="media form-group" id="step">
+				<!-- Thumbnail Start -->
+					<div class="media-left media-middle">			
+						<div id="picture" class="mainImg" >
+							<input type="hidden"value="" name="picture" id="Vpicture">
+							<span class='glyphicon glyphicon-remove-sign' id='delImgBtn' aria-hidden='true'></span>
+						<div id="noImg">
+						<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+						<h5>Drag&Drop<br>HERE!</h5>
+						</div>
+				<!-- thumbnail을 hidden으로 넘기는 것은  -->
+					<input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail'>
+						</div>
 					</div>
+					</div>
+				<!-- END -->		
+				</div>
 
 				<div class="row">
 					<div class="col-xs-8"></div>
@@ -205,9 +205,6 @@
 					<!-- /.col -->
 				</div>
 			</form>
-
-
-
 			<a href="login" class="text-center">I already have a membership</a>
 		</div>
 		<!-- /.form-box -->
@@ -220,21 +217,32 @@
 	<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
 	
 	<script>
+		var checkResult = "false";//중복체크 부분 false로 고정 (중복체크안한사람 가입못하게 막는과정)
 		$(document).ready(function() {
-			$("#regBtn").on("click",function() {
+			$("#regBtn").on("click",function(event) {
+				//레지스터할때 중복체크안한사람 가입못하게 막는과정
+				event.preventDefault();
+				
 				var userid = $("#userid").val();
 				var userpw = $('#userpw').val();
-					console.log(userpw);
-					console.log(userpw.size());
+				//var size = userpw.size();
+				console.log(userpw);
+					
 										
-					if (userid == ""|| $('#userpw').val() == ""
+					if (userid == ""|| $('#userid').val() == ""
 									|| $('#userpw').val() == ""
 									|| $('#username').val() == ""
 									|| $('#nickname').val() == ""
 									|| $('#email').val() == "") {
 										alert("항목을 입력해주세요");
 						}
-					});
+					if(checkResult == "true"){
+						$("#register").submit();
+					} else if(checkResult =="false"){
+						alert("ID중복확인 해주세요");
+					}
+					//
+				});
 
 		// 아이디 중복체크
 		$("#checkBtn").on("click", function() {
@@ -260,6 +268,7 @@
 						alert("아이디를 입력해주세요 !");
 					} else {
 						alert("사용 가능합니다 !");
+						checkResult="true";
 					}
 				}// end success
 			});// end ajax
