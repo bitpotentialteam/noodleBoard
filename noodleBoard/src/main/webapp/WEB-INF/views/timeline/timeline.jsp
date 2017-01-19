@@ -363,11 +363,11 @@ button {
 						<!-- .box-footer START -->
 			
 						<!-- reply start -->
-						<div class = "replyDiv" name="${vo.tno}">
+						<div class = "replyDiv"">
 							<!-- reply list -->
 							<div class="box-footer box-comments" id="commentsbox">
 							</div>						
-				
+
 						<!-- .box-footer END-->
 						<div class="box-footer">
 				
@@ -576,7 +576,7 @@ $( document ).ready(function() {
 	});
 		
 	$(document).on("click","#closeBtn", function(event){
-		var $modalPop = $(this).parents("#myModal"); 
+		var $modalPop = $(this).parents().find("#myModal"); 
 		$modalPop.toggle(); 
 	
 	});
@@ -602,18 +602,14 @@ $( document ).ready(function() {
 		event.preventDefault();
 			
 		var tno = $(this).val();
-		//var content = $()
-		//$('#ftno').val(tno);
-			
-			
+		
 		var addComment = $(this).parents('#timelineBox').find('.replyDiv').find('#commentsbox');
-		//	console.log("comment" + addComment);
 
 		//replyManager.listReply 함수 시작!ㅇㅅㅇ!
 		replyManager.listReply (	
 				{tno:tno}, 
 		    	function (result){
-					console.log(result);
+// 					console.log(result);
 				
 					addComment.html(result);
 		    	}
@@ -634,7 +630,7 @@ $( document ).ready(function() {
 			var mno = $this.parents('.img-push').find('#replymno').val();
 			var replyContent = $this.val();
 			var updateList = $this.parents('.replyDiv').find('.box-comments');
-		
+			var content = $this.parents('.img-push').find("#replyContent");
 					
 			//addreply 실행!ㅇㅅㅇ!
 			replyManager.addReply(
@@ -648,6 +644,7 @@ $( document ).ready(function() {
 							function(str){
 								updateList.html(str);
 								readRcnt();
+								content.val("");
 							});
 			 });
 		}
@@ -790,6 +787,7 @@ $( document ).ready(function() {
 // 				    	console.log("티알엔오" + trno);
 // 				    	console.log("픽픽픽쳐" + picture);
 // 				    	console.log(result);
+
 				    	
 				    	if(sessionMno != mno){
 
