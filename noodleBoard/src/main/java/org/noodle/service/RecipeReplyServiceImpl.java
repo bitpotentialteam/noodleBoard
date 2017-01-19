@@ -47,7 +47,6 @@ public class RecipeReplyServiceImpl implements RecipeReplyService {
 			dao.delete(vo.getRno());
 			bdao.minusReplyCount(vo.getBno());
 		}
-	
 		
 	}
 
