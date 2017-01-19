@@ -7,8 +7,11 @@ import java.io.InputStream;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 
 import org.apache.commons.io.IOUtils;
+import org.noodle.domain.MemberVO;
+import org.noodle.service.MemberService;
 import org.noodle.util.MediaUtils;
 import org.noodle.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -23,8 +26,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping
@@ -32,10 +37,15 @@ public class UploadController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
 	
+
+
+	
+	
 	@PostMapping("/uploadFile")
 	@ResponseBody
 	public String uploadFile(MultipartFile file, Model model) throws Exception {
 
+		logger.info("로거들어간다");
 		UUID uid = UUID.randomUUID();
 		
 		String fileName = file.getOriginalFilename();
@@ -46,7 +56,8 @@ public class UploadController {
 		IOUtils.copy(file.getInputStream(), fos);
 		model.addAttribute("uploadName", uploadName);
 		fos.close();
-
+		
+		logger.info("uploadName :"+uploadName);
 		return uploadName;
 
 	}

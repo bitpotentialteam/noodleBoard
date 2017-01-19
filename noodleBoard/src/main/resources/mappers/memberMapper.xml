@@ -34,7 +34,7 @@
 		update tbl_user
 		set
 		userpw = #{userpw, jdbcType=VARCHAR}, username = #{username, jdbcType=VARCHAR}, 
-		nickname = #{nickname, jdbcType=VARCHAR}, email = #{email, jdbcType=VARCHAR}
+		nickname = #{nickname, jdbcType=VARCHAR}, email = #{email, jdbcType=VARCHAR}, picture = #{picture, jdbcType=VARCHAR}
 		where mno = #{mno, jdbcType=INTEGER}
 	</update>
 

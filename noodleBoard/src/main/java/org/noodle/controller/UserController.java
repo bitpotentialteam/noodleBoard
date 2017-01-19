@@ -142,11 +142,11 @@ public class UserController {
 	public String modifyPOST(Model model, MemberVO vo) throws Exception {
 
 		logger.info("mofify post....");
-		
+		logger.info("vo: "+vo);
 		
 		service.modify(vo);
 
-		return "redirect:/";
+		return "redirect:/user/modify";
 	}
 
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)

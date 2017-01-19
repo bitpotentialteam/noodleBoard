@@ -55,6 +55,28 @@
   <![endif]-->
 
 <style>
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
 .widget-user-image>img{
 	width: 65px;
 	height: auto;
@@ -140,6 +162,7 @@ body {
 								alt="User Avatar">
 							</button>
 								<ul class="dropdown-menu" aria-labelledby="imgMenu">
+									<li id="pictureBtn"><a href="#">프로필사진변경</a></li>
 									<li><a href="#">기본이미지로설정</a></li>
 									<li><a href="/user/modify">취소</a></li>
 								</ul>
@@ -159,10 +182,29 @@ body {
 								<li class="list-group-item"><h4>NICKNAME</h4><input type="text" name="nickname" value="${sessionScope.VO.nickname}"></li>
 								<li class="list-group-item"><h4>E-MAIL</h4><input type="text" name="email" value="${sessionScope.VO.email}"></li>
 							</ul>
-								
-							
+					<!-- Modify Modal -->
+								<div id="myModal" class="modal">
+									<!-- Modal content -->
+									<div class="modal-content">
+										<div class="modal-header">
+											<span class="close" id="closeBtn">&times;</span>
+											<h2>프로필사진변경</h2>
+										</div>
+										<div id="picture">
+											<input type="file" id="pictureInput">
+											<input type="hidden" name="picture" id="hiddenPicture" value="" >
+											<button type="submit" id="PmodifyBtn">확인</button>
+										</div>
+										
+										
+									</div>
+								</div><!-- modal 끝 --> 
+		
 						</div>
 					</form>
+					
+					
+					
 					<div class="box-footer">
 					<button type="submit" class="btn btn-warning">MYPAGE</button>
 					<button type="submit" class="btn btn-primary">SAVE</button>
@@ -201,41 +243,62 @@ body {
 	<script src="../resources/dist/js/demo.js"></script>
 	
 	<script>
-	$("#imageDrop").on("dragenter dragover", function(event) {
-		event.preventDefault();
-	});
-
 	
-	$("#imageDrop").on("drop", function(event) {
-		event.preventDefault();
-		var $this = $(this);
-		console.log($this);
-		var files = event.originalEvent.dataTransfer.files;
-
-		var file = files[0];
-		console.log(file);
-
-		var formData = new FormData();
-
-		formData.append("file", file);
-
 	
-		$.ajax({
-			url : '/uploadAjax',
-			data : formData,
-			dataType : 'text',
-			processData : false,
-			contentType : false,
-			method : 'POST',
-			success : function(data) {
-				console.log(data);
-
-				alert("이미지가 등록되었습니다.");
-				$("#imageDrop").css("background","url("+imgURL+") top left no-repeat").css("background-size","contain");
-			}
+	$(document).on("click","#pictureBtn", function(event) {
+		
+		event.preventDefault();
 			
-		});
+		var $modalPop = $(this).parents().find('#myModal'); 
+		console.log("디쓰"+$(this));
+		console.log($modalPop);
+		console.log("사진수정");
+		$modalPop.toggle();		
 	});
+	
+	$(document).on("click","#closeBtn", function(event){
+		var $modalPop = $(this).parents("#myModal"); 
+		$modalPop.toggle(); 
+	
+	});
+	$("#PmodifyBtn").on("click", function(event) {
+        event.preventDefault();
+
+        var $fileInput = $("#pictureInput");
+        console.log($fileInput);
+        
+        var file = $fileInput.get(0).files[0];
+        console.log(file);
+        var $modalPop = $(this).parents("#myModal"); 
+     
+        //form tag 추가해버리는거 근데 최근 브라우저에서만 지원함 옛날꺼는 안돼영!
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        console.log(formData);
+
+        $.ajax({
+           url : "../uploadFile",
+           data : formData, //기본이 멀티파트   
+           dataType : 'text',
+           type : "post",
+           contentType : false,
+           processData : false,
+           success : function(data) {
+              console.log(data);
+              $("#hiddenPicture").val(data);
+              //alert(data);
+              
+           }
+        });
+        $modalPop.toggle(); 
+     });
+
+	
+
+
+
 	
 	</script>
 	
