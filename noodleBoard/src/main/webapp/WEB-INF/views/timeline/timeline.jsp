@@ -574,6 +574,7 @@ $( document ).ready(function() {
 		event.preventDefault();
 			
 		var $modalPop = $(this).parent().parent().find('#myModal'); 
+		console.log("디쓰"+$(this));
 		console.log($modalPop);
 		console.log("글수정!!!!!!!!!!!!!!");
 		$modalPop.toggle();
