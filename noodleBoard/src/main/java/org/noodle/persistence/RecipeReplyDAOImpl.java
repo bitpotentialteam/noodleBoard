@@ -50,4 +50,16 @@ public class RecipeReplyDAOImpl implements RecipeReplyDAO {
 		return session.selectOne(NAME + "rnoCurrval");
 	}
 
+	@Override
+	public void deleteRrno(Integer rrno) throws Exception {
+
+		session.delete(NAME + "deleteRrno", rrno);
+	}
+
+	@Override
+	public void deleteBno(Integer bno) throws Exception {
+
+		session.delete(NAME + "deleteBno", bno);
+	}
+
 }

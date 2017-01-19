@@ -64,6 +64,20 @@
 		where 
 			rno = #{rno, jdbcType=INTEGER}
 	</delete>
+	
+	<delete id = "deleteRrno">
+		delete
+			tbl_recipeReply
+		where
+			rrno = #{rrno, jdbcType=INTEGER}
+	</delete>
+	
+	<delete id="deleteBno">
+		delete
+			tbl_recipeReply
+		where
+			bno = #{bno, jdbcType=INTEGER}
+	</delete>
 
 	<select id="listAll" resultType="RecipeReplyVO">
 		select 

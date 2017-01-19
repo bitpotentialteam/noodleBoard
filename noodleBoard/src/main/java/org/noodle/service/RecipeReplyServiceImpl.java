@@ -39,8 +39,16 @@ public class RecipeReplyServiceImpl implements RecipeReplyService {
 	@Transactional
 	public void remove(RecipeReplyVO vo) throws Exception {
 		
-		dao.delete(vo.getRno());
-		bdao.minusReplyCount(vo.getBno());
+		if(vo.getSeq() == 0){	// parent_reply
+			
+			dao.deleteRrno(vo.getRrno());
+	
+		}else{	// child_reply
+			dao.delete(vo.getRno());
+			bdao.minusReplyCount(vo.getBno());
+		}
+	
+		
 	}
 
 	@Override
