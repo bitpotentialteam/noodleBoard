@@ -177,9 +177,9 @@ button#addStepBtn {
 				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
 				</p>
 				<!-- form시작 -->
-				<form action="register" method="post">
+				<form action="register" method="post" id="registerForm">
 					<!-- 대표 이미지값 전달 -->
-					<input type="hidden" name="topImageIndex" id="topImageIndex" value="1">					
+					<input type="hidden" name="topImageIndex" id="topImageIndex" value='0'>					
 					<!-- mno를 hidden으로 숨겨서 register로 넘김 -->
 					<div class="row control-group" name="mno">
 						<div
@@ -217,6 +217,8 @@ button#addStepBtn {
 					<div class="row control-group" >
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 						<label>조리순서 (image drag&drop)</label>
+							<div>
+							</div>
 						<!-- 파일업로드 개똥망 날아가게생김 ㅠㅠ 무능력해서 ㅈㅅ.. 모르는건 죄가 맞음 -->
 <!-- 							<div id="fileUpload"> -->
 <!-- 										<input type="file" name="ilist[0].thumbnail" id="imgFile" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="" accept=".jpg, .png, .jpeg, .gif"> -->
@@ -236,7 +238,7 @@ button#addStepBtn {
 												<h5>Drag&Drop<br>HERE!</h5>
 											</div>
 											<!-- thumbnail을 hidden으로 넘기는 것은  -->
-											<input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail'>
+											<input type='hidden' id='imgFileDropped' name='ilist[0].thumbnail' value=''>
 										</div>
 									</div>
 									<!-- RecipeImage와 RecipeCuisine에게 각각 step 전달 -->
@@ -272,7 +274,7 @@ button#addStepBtn {
 					<div class="right row">
 						<!-- 등록, 취소 버튼 -->
 						<div class="form-group col-md-4">
-							<button type="submit" id="registerBtn" class="btn btn-default-right">등 록</button>
+							<button type="button" id="registerBtn" class="btn btn-default-right">등 록</button>
 							<a href="list"><input type="button" class="btn btn-default-right" value="취 소"></a>
 						</div>
 					</div>
@@ -548,10 +550,18 @@ button#addStepBtn {
 		
 		
 		
-		$(document).on("click", "registerBtn", function(event){
-			$("#register").submit();
-			alert("등록 완료!");
-		
+		$(document).on("click", "#registerBtn", function(event){
+			
+// 			var mainImgNameLength = $this.parents("#registerForm").find(".mainImg").get(0).style['backgroundImage'].length;
+			var mainImg = $("#stepImg.mainImg").children("#imgFileDropped").val();
+			console.log(mainImg);
+			
+			if(mainImg != ''){
+				$("#registerForm").submit();
+				alert("등록 완료!");
+			}else{
+				alert("대표이미지를 설정해주세요");
+			}
 		});
 		
 
