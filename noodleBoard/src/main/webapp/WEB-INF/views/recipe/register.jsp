@@ -552,13 +552,11 @@ button#addStepBtn {
 		
 		$(document).on("click", "#registerBtn", function(event){
 			
-			var topImage = $("#topImageIndex").val();
-			console.log(topImage);
 // 			var mainImgNameLength = $this.parents("#registerForm").find(".mainImg").get(0).style['backgroundImage'].length;
-			var mainImgNameLength = $(".mainImg").find(".imgFileDropped").val();
-			console.log(mainImgNameLength);
+			var mainImg = $("#stepImg.mainImg").children("#imgFileDropped").val();
+			console.log(mainImg);
 			
-			if(mainImgNameLength != ''){
+			if(mainImg != ''){
 				$("#registerForm").submit();
 				alert("등록 완료!");
 			}else{
