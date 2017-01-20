@@ -9,7 +9,8 @@
 	<security:form-login login-page="/user/login"
          username-parameter="userid" password-parameter="userpw"
          login-processing-url="/user/loginAction" default-target-url="/"
-         authentication-failure-url="/user/login" always-use-default-target="true" />
+         authentication-failure-url="/user/login" always-use-default-target="false"
+          />
 	
 	<security:session-management>
          <security:concurrency-control
