@@ -12,67 +12,8 @@
 			tbl_noodleapi
 		where 
 			rownum >= 0
-
-		<if test="keyword !=null">
-			and name like '%'||#{keyword}||'%'
-		</if>
-
-		<if test="brandFilter != null">
-			and brand in
-
-			<foreach item="brandFilter" index="index" collection="brandFilter"
-				open="(" separator="," close=")">
-				#{brandFilter}
-			</foreach>
-		</if>
-
-		<if test="kindFilter != null">
-			and kinds in
-
-			<foreach item="kindFilter" index="index" collection="kindFilter"
-				open="(" separator="," close=")">
-				#{kindFilter}
-			</foreach>
-		</if>
-
-		<if test="noodleTypeFilter != null">
-			and noodleType in
-
-			<foreach item="noodleTypeFilter" index="index" collection="noodleTypeFilter"
-				open="(" separator="," close=")">
-				#{noodleTypeFilter}
-			</foreach>
-		</if>
-
-		<if test="orderType != null">
-			<if test="orderType == 'new'.toString()">
-				order by RELEASEDATE desc
-			</if>
-
-			<if test="orderType == 'old'.toString()">
-				order by RELEASEDATE asc
-			</if>
-
-			<if test="orderType == 'lkcal'.toString()">
-				order by calories asc
-			</if>
-
-			<if test="orderType == 'hkcal'.toString()">
-				order by calories desc
-			</if>
-
-			<if test="orderType == 'rank'.toString()">
-				join
-					tbl_rank
-				on
-					tbl_noodleapi.name = tbl_rank.name
-				where
-					year=2015
-				order by
-					rank asc
-			</if>
-		</if>
-		
+		and 
+			name like '%'||#{name}||'%'
 	</select>
 	
 	<select id="read" resultType="NoodleVO">

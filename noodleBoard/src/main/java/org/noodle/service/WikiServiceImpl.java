@@ -2,7 +2,6 @@ package org.noodle.service;
 
 import java.util.List;
 
-import org.noodle.domain.Criteria;
 import org.noodle.domain.NoodleVO;
 import org.noodle.persistence.WikiDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,9 @@ public class WikiServiceImpl implements WikiServcie {
 	WikiDAOImpl dao;
 	
 	@Override
-	public List<NoodleVO> searchList(Criteria cri) throws Exception {
+	public List<NoodleVO> searchList(String name) throws Exception {
 		
-		return dao.searchList(cri);
+		return dao.searchList(name);
 	}
 
 	@Override

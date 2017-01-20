@@ -106,177 +106,110 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 	<!-- Navigation END -->
-
 	<section>
-	<div class="container">
+	  <div class="container">
 		<div class="row">
-			<h2>라면검색왕</h2>
-			<div class='groupType'>
-				<h4>SEARCH TYPE</h4>
-				<div class="brandFilterCheckbox">
-					<span><input type="checkbox" name='brandFilter'><label>농심</label></span>
-					<span><input type="checkbox" name='brandFilter'><label>삼양</label></span>
-					<span><input type="checkbox" name='brandFilter'><label>팔도</label></span>
-					<span><input type="checkbox" name='brandFilter'><label>오뚜기</label></span>
-					<span><input type="checkbox" name='brandFilter'><label>풀무원</label></span>
-					<span><input type="checkbox" name='brandFilter'><label>기타</label></span>
-				</div>
-				<div class="kindFilterCheckbox">
-					<span><input type="checkbox" name='kindFilter'><label>일반</label></span>
-					<span><input type="checkbox" name='kindFilter'><label>짜장</label></span>
-					<span><input type="checkbox" name='kindFilter'><label>짬뽕</label></span>
-					<span><input type="checkbox" name='kindFilter'><label>비빔면</label></span>
-					<span><input type="checkbox" name='kindFilter'><label>칼국수</label></span>
-					<span><input type="checkbox" name='kindFilter'><label>기타</label></span>
-				</div>
-				<div class="noodleTypeFilterCheckbox">
-					<span><input type="checkbox" name='noodleTypeFilter'><label>건면</label></span>
-					<span><input type="checkbox" name='noodleTypeFilter'><label>생면</label></span>
-					<span><input type="checkbox" name='noodleTypeFilter'><label>유탕</label></span>
-				</div>
-			</div>
-			<div class='groupType'>
-				<h4>DATA TYPE</h4>
-				<div class="outputTypeCheckbox">
-					<span><input type="checkbox"><label>noodle</label></span>
-					<span><input type="checkbox"><label>nutrition</label></span>
-					<span><input type="checkbox"><label>material</label></span>
-					<span><input type="checkbox"><label>component</label></span>
-					<span><input type="checkbox"><label>rank</label></span>
-				</div>
-			</div>
-			<div class='groupType'>
-				<h4>ORDER TYPE</h4>
-				<div class="orderTypeCheckbox">
-					<span><input type="checkbox" name="orderType"><label>popular</label></span>
-					<span><input type="checkbox" name="orderType"><label>calories</label></span>
-					<span><input type="checkbox" name="orderType"><label>release</label></span>
-					<span><input type="checkbox" name="orderType"><label>new</label></span>
-					<span><input type="checkbox" name="orderType"><label>old</label></span>
-					<span><input type="checkbox" name="orderType"><label>lkcal</label></span>
-					<span><input type="checkbox" name="orderType"><label>hkcal</label></span>
-				</div>
-			</div>
-			<div class='search'>
-				<form method="post" action="list">
-					<div class="field half first">
-						<input type="text" name="name" id="name">
-						<input type="hidden" name="brandFilter" value="">
-						<input type="hidden" name="kindFilter" value="">
-						<input type="hidden" name="noodleFilter" value="">
-						<input type="hidden" name="orderType" value="">
-						<label for="searchBtn">Search<input type="button" name="submit" id="searchBtn" class="btn btn-xl"></label> 
-					</div>
-
-				</form>
-			</div>
+		
+		  <div class='search'>
+			  <div class="field half first" style=>
+			    <input type="text" name="name" id="keywordInp" style='width: 50em; height: 4em; margin-left: 10em; margin-top: 2em; '> 
+			      <button type="button" class="btn btn-primary" id="searchBtn" style='width: 10em; height:4em; margin-left: 2em;'>Search</button>
+			  </div>
+		  </div>
+		  
 			<!-- 결과화면출력 -->
-			<div>
-				<h1>Results HERE</h1>
-			</div>	
-		</div>
-	</div>
+		  <div id = "resultDiv" style = 'border-style: solid; margin: 5em;'>
+		    <div id="demo">
+  
+		  	<table id="table" class="table table-hover table-mc-light-blue">
+		      <thead>
+		        <tr>
+		          <th>Thumbnail</th>
+		          <th>Name</th>
+		          <th>Brand</th>
+		          <th>Calories</th>
+		          <th>Carbonhydrate</th>
+		          <th>Protein</th>
+		          <th>Fat</th>
+		          <th>Cholesterol</th>
+		          <th>Natrium</th>
+		        </tr>
+		      </thead>
+		      
+		      <tbody id="tbody" >
+		      	<%-- <c:forEach items="${list}" var="list">
+		        <tr>
+		          <td>사진</td>
+		          <td>
+		            <a href="#" target="_blank">${vo.name}</a>
+		          </td>
+		          <td>농심</td>
+		          <td>389kal</td>
+		        </tr>
+		        </c:forEach> --%>
+		      </tbody>
+		    </table>
+	      </div>
+	      
+	    </div>
+	  </div>
 	</section>
 
 
-
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-
+	<script src="//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-58d22c749295bca52f487966e382a94a495ac103faca9206cbd160bdf8aedf2a.js"></script>
+	
 	<!-- Plugin JavaScript -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-	<!-- Contact Form JavaScript -->
-	<script src="resources/js/jqBootstrapValidation.js"></script>
-
-	<!-- Theme JavaScript -->
-	<script src="resources/js/agency.min.js"></script>
 
 	<!-- jQuery -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 	<script>
-		$(".orderTypeCheckbox input").on("click",function(){
-			console.log($(this));
-			if($(this).is(":checked")){
-				$('.orderTypeCheckbox input').prop('checked', false);
-				$(this).prop("checked", true);
-			};
-		});
-	
-		$("#searchBtn").on("click",function() {
+		$(document).ready(function(){
+			
+			$("#searchBtn").on("click", function(){
+				
+				var name = $("#keywordInp").val();
+				console.log(name);
+				
+				var $tbody = $("#tbody");
+				
+				$.ajax({
+	    			type : 'post',
+	    			url : '/wiki/list',
+	    			dataType : 'text',
+	    			data : {name : name},
+	    			success : function(data){
+	    				console.log(data);
+	    				
+	    				var jsonData = JSON.parse(data);
+	    				console.log(jsonData);
+	    				
+	    				for(var i = 0; i < jsonData.length; i++){
 
-			var brandArr = [];
-			var kindArr = [];
-			var noodleTypeArr = [];
-			var orderType = "";
-
-			$("input[name='brandFilter']:checked").each(function() {
-				brandArr.push($(this).parent().find('label').html());
-			});
+	    					var str = "<tr>"
+	    						  +"<td><img src=/user/show?name="+jsonData[i]['thumbnail']+"</td>"
+	    						  +"<td><a href='#' target='_blank'>"+jsonData[i]['name']+"</a></td>"
+	    						  +"<td>"+jsonData[i]['brand']+"</td>"
+	    						  +"<td>"+jsonData[i]['calories']+"</td>"
+	    						  +"<td>"+jsonData[i]['carbohydrate']+"</td>"
+	    						  +"<td>"+jsonData[i]['protein']+"</td>"
+	    						  +"<td>"+jsonData[i]['fat']+"</td>"
+	    						  +"<td>"+jsonData[i]['cholesterol']+"</td>"
+	    						  +"<td>"+jsonData[i]['natrium']+"</td>"
+	    						  +"</tr>";
+	    				$tbody.append(str);
+	    				}
+	    				
+	    				
+	    			}
+	    		});// end ajax...
+			});	// end searchBtn click...
 			
-			console.log("brandArr: " + brandArr);
-			
-			$("input[name='kindFilter']:checked").each(function() {
-				kindArr.push($(this).parent().find('label').html());
-			});
-				console.log("kindArr: " + kindArr);
-			
-			$("input[name='noodleTypeFilter']:checked").each(function() {
-				noodleTypeArr.push($(this).parent().find('label').html());
-			});
-				console.log("noodleTypeArr: " + noodleTypeArr);
-			
-			orderType = $("input[name='orderType']:checked").parent().find('label').html();
-			console.log("orderType: " + orderType);
-			
-			var filters = {brandFilter:brandArr,kindFilter:kindArr,noodleTypeFilter:noodleTypeArr,orderType:orderType };
-			console.log(filters);
-			
-			apiManager.search(
-				filters, //4.입력값
-				function (result) { alert("댓글이등록되어씀니다.");}
-			);
-			
+		});// end ready...
 		
-			
-			
-		});
-		
-		
-		var apiManager = (function () {
-		      //여기서 Ajax를 날림
-		      var search = function (data, fn) {//1. data와 콜백함수를 넘겨받음
-		         
-		    		
-		    		$.ajax({
-		    			type : 'get',
-		    			url : '/web/api/noodles/search',
-		    			headers : {
-		    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
-		    				"X-HTTP-Method-Override" : "POST"
-		    			},
-		    			dataType : 'text',
-		    			
-		    			data : data,
-		    			
-		    			success : function(result) {
-
-		    					alert("result");
-
-		    			}
-		    		});
-		      
-		    		
-		      }; //  URL, data, 콜백함수(결과값을 여기다 넘기는 )
-		     
-		      
-
-		      return {search: search};
-		  })();
 	</script>
 
 </body>

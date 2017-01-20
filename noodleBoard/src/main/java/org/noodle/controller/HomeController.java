@@ -60,15 +60,6 @@ public class HomeController {
 		
 	}
 	
-	
-	@GetMapping("/wiki")
-	public String wiki(Model model) throws Exception {
-
-		logger.info("WIKI called.....");
-
-		return "wiki/wiki";
-	}
-	
 	@GetMapping("/developer/api")
 	public String api()throws Exception{
 		
