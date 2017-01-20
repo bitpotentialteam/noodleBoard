@@ -85,5 +85,11 @@ public class MemberDAOImpl implements MemberDAO {
 		return session.selectOne(namespace + ".readNick", nickname);
 	}
 
+	@Override
+	public String checkNick(String nickname) throws Exception {
+
+		return session.selectOne(namespace + ".checkNick",nickname);
+	}
+
 
 }

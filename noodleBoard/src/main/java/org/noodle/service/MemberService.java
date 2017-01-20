@@ -14,6 +14,7 @@ public interface MemberService {
 	
 	public MemberVO login(MemberVO vo)throws Exception;
 	public String checkID(String userid)throws Exception;
+	public String checkNick(String nickname)throws Exception;
 	
 	public String regist_client(Integer mno) throws Exception;
 	public String remove_client(Integer mno) throws Exception; 

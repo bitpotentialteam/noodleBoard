@@ -92,7 +92,11 @@ public class MemberServiceImpl implements MemberService {
 		return dao.readNick(nickName);
 	}
 
-
+	@Override
+	public String checkNick(String nickname) throws Exception {
+		
+		return dao.checkNick(nickname);
+	}
 
 }
  

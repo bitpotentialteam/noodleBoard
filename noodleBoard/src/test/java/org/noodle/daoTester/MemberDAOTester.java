@@ -71,4 +71,16 @@ public class MemberDAOTester {
 		
 		dao.delete_client(19);
 	}
+	
+	@Test
+	public void nickTest()throws Exception{
+		
+		dao.checkNick("어피치");
+	}
+	
+	@Test
+	public void idTest()throws Exception{
+		
+		dao.checkID("123");
+	}
 }
