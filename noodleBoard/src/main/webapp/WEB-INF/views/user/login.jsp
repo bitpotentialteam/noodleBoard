@@ -6,6 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Login Page</title>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 
 <!-- Tell the browser to be responsive to screen width -->
 <meta
@@ -97,6 +98,7 @@
 					<input type="password" name="userpw" class="form-control" placeholder="Password">
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
+					<div class="form-group has-feedback" id="naver_id_login"></div>
 				<div class="row">
 					<div class="col-xs-8">
 						<div class="checkbox icheck">
@@ -106,6 +108,7 @@
 						</div>
 					</div> 
 					<!-- /.col -->
+					
 					<div class="col-xs-4">
 						<button type="submit" id="loginBtn" class="btn btn-primary btn-block btn-flat">Sign
 							In</button>
@@ -113,8 +116,6 @@
 					<!-- /.col -->
 				</div>
 			</form>
-
-
 
 			<a href="../user/register" class="text-center">Register a new membership</a>
 
@@ -129,6 +130,26 @@
 	<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<!-- iCheck -->
 	<script src="../resources/vendor/jquery/icheck.min.js"></script>
+	
+	<script>
+	
+	var naver_id_login = new naver_id_login("boQv6fXim3Obzkfnsoxz", "http://localhost:8080/");
+  	var state = naver_id_login.getUniqState();
+  	naver_id_login.setButton("white", 3,40);
+  	naver_id_login.setDomain("http://localhost:8080/");
+  	naver_id_login.setState(state);
+  	naver_id_login.setPopup();
+  	naver_id_login.init_naver_id_login();
+	
+	var naver_id_login = new naver_id_login("boQv6fXim3Obzkfnsoxz", "http://localhost:8080/");
+	naver_id_login.setDomain(".service.com"); //상태 토큰 비교를 위한 domain 설정
+	naver_id_login.init_naver_id_login();
+	
+	</script>
+	
+	
+	
+	
 	<script>
 		$(function() {
 			$('input').iCheck({
