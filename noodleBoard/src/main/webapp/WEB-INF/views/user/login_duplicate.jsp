@@ -7,7 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>중복로그인중</h1>
+
+	<script src="../resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+<script>
+
+alert("ID 중복로그인됨");
+location.href="/"
+
+</script>
 
 </body>
 </html>
