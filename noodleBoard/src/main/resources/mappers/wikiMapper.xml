@@ -5,7 +5,7 @@
 
 <mapper namespace="org.noodle.mapper.WikiMapper">
 
-<select id="search" parameterType="Criteria" resultType="NoodleVO">
+<select id="searchList" resultType="NoodleVO">
 		select
 			*
 		from

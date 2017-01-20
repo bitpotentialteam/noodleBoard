@@ -75,10 +75,7 @@ public class TimeLineTest {
 	@Test
 	public void wikiTest()throws Exception{
 	
-		NoodleVO vo = new NoodleVO();
-		vo.setName("신라면");
-		
-		System.out.println(wiki.read(vo));
+		System.out.println(wiki.read("신라면"));
 	}
 	
 	@Test
@@ -100,7 +97,7 @@ public class TimeLineTest {
 		
 		System.out.println(cri.toString());
 		
-		List<NoodleVO> result = wiki.listWiki(cri);
+		List<NoodleVO> result = wiki.searchList(cri);
 		System.out.println(result);
 		
 	}

@@ -28,7 +28,7 @@ public class WikiController {
 
 	@PostMapping("/list")
 	@ResponseBody
-	public String listView(@RequestParam(value="brandFilter[]") List<String> arr, Model model)throws Exception{
+	public String list(@RequestParam(value="brandFilter[]") List<String> arr, Model model)throws Exception{
 		
 		
 		Criteria cri = new Criteria();

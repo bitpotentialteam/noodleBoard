@@ -17,15 +17,15 @@ public class WikiDAOImpl implements WikiDAO {
 	private static final String namespace = "org.noodle.mapper.WikiMapper";
 
 	@Override
-	public List<NoodleVO> listWiki(Criteria cri) throws Exception {
+	public List<NoodleVO> searchList(Criteria cri) throws Exception {
 		
-		return session.selectList(namespace + ".search", cri);
+		return session.selectList(namespace + ".searchList", cri);
 	}
 
 	@Override
-	public NoodleVO read(NoodleVO vo) throws Exception {
+	public NoodleVO read(String name) throws Exception {
 		
-		return session.selectOne(namespace + ".read", vo);
+		return session.selectOne(namespace + ".read", name);
 	}
 
 }
