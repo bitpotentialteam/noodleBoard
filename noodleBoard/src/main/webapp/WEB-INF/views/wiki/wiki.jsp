@@ -189,9 +189,10 @@
 	    				
 	    				for(var i = 0; i < jsonData.length; i++){
 
+	    					
 	    					var str = "<tr>"
 	    						  +"<td><img src=/user/show?name="+jsonData[i]['thumbnail']+"</td>"
-	    						  +"<td><a href='#' target='_blank'>"+jsonData[i]['name']+"</a></td>"
+	    						  +"<td><a href=/wiki/view/"+jsonData[i]['name']+" target='_blank'>"+jsonData[i]['name']+"</a></td>"
 	    						  +"<td>"+jsonData[i]['brand']+"</td>"
 	    						  +"<td>"+jsonData[i]['calories']+"</td>"
 	    						  +"<td>"+jsonData[i]['carbohydrate']+"</td>"
