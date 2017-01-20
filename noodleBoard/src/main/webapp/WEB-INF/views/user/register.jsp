@@ -320,7 +320,7 @@ $(document).on("drop","#picture", function(event) {
 		$this.children("#imgFileDropped").val(data);
 		$this.find("#delImgBtn").show();
 		$this.children("#noImg").hide();
-		$this.children("#Vpicture").attr("value",data);
+		$this.children("#Vpicture").val(data);
 	})
 	
 });
@@ -339,7 +339,7 @@ function uploadImage(event,fn){
 		formData.append("file", file);
 
 		$.ajax({
-			url : '../uploadFile',
+			url : '../uploadAjax',
 			data : formData,
 			dataType : 'text',
 			processData : false,

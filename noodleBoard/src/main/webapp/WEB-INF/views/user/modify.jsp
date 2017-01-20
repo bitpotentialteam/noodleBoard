@@ -279,7 +279,7 @@ body {
         console.log(formData);
 
         $.ajax({
-           url : "../uploadFile",
+           url : "../uploadAjax",
            data : formData, //기본이 멀티파트   
            dataType : 'text',
            type : "post",
