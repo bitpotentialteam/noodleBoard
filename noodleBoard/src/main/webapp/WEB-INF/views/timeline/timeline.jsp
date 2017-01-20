@@ -168,6 +168,7 @@ button {
     outline : 0;
 	font-size: 1.5em;
 	padding: 0px;
+	padding-left: 10px;
 }
 
 #up{
@@ -202,10 +203,13 @@ button {
 }
 
 .badge.badge-count{
-	postion:absolute;
 	top: -12px;
     left: -11px;
     background-color: #fed136;
+}
+
+.btns div{
+	display:inline-block;
 }
 
 </style>
@@ -345,17 +349,17 @@ button {
 							
 							 
 							<!-- footer buttons -->
-							<div class='pull-right text-muted'>	
-								<span>
+							<div class='pull-right btns'>	
+								<div>
 									<button type='button' id='likeBtn' value='${vo.tno}' class='btn btn-default'>
 									<span class='glyphicon glyphicon-thumbs-up'></span>
 									<span class='badge badge-count' id='likeCnt'>${vo.likeCnt}</span> </button>
-								</span>
-								<span>
+								</div>
+								<div>
 									<button type='button' id='replyBtn' value='${vo.tno}' class='btn btn-default'>
 									<span class='glyphicon glyphicon-comment'></span>
 									<span class='badge badge-count' id='replyCnt'>${vo.replyCnt}</span> </button>
-								</span>
+								</div>
 							</div>
 								
 						</div>
@@ -414,10 +418,6 @@ button {
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="resources/js/jqBootstrapValidation.js"></script>
-    <script src="resources/js/contact_me.js"></script>
 
     <!-- Theme JavaScript -->
     <script src="resources/js/agency.min.js"></script>
@@ -600,21 +600,20 @@ $( document ).ready(function() {
 		
 	$(document).on("click","#replyBtn", function(event){
 		event.preventDefault();
-			
-		var tno = $(this).val();
-		
-		var addComment = $(this).parents('#timelineBox').find('.replyDiv').find('#commentsbox');
+		var $this = $(this);		
+		var tno = $this.val();
+		var replyDiv = $this.parents('#timelineBox').children('.replyDiv');
+		var addComment = replyDiv.children('#commentsbox');
 
 		//replyManager.listReply 함수 시작!ㅇㅅㅇ!
 		replyManager.listReply (	
 				{tno:tno}, 
-		    	function (result){
-// 					console.log(result);
-				
+		    	function (result){			
 					addComment.html(result);
-		    	}
-			);
-		$(this).parents('#timelineBox').find('.replyDiv').toggle();
+					replyDiv.toggle();
+				}
+		);
+		
 	});
 		
 		//댓글 엔터 이벤트입니당
@@ -624,29 +623,32 @@ $( document ).ready(function() {
 			event.preventDefault();
 				
 			var $this = $(this);
-				
+			console.log($this);
+			var parentDiv = $this.parent('.img-push');
 			//tno mno replycontent 밸류값 채집함.
-			var tno = $this.parents('.img-push').find('#replytno').val();
-			var mno = $this.parents('.img-push').find('#replymno').val();
+			var tno = parentDiv.children('#replytno').val();
+			var mno = parentDiv.children('#replymno').val();
 			var replyContent = $this.val();
-			var updateList = $this.parents('.replyDiv').find('.box-comments');
-			var content = $this.parents('.img-push').find("#replyContent");
+			var updateList = parentDiv.parents('.replyDiv').children('.box-comments');
 					
 			//addreply 실행!ㅇㅅㅇ!
 			replyManager.addReply(
 					  //얘네가 data임. 위에서 밸류값 채집한 애들 보내는것
 				{tno:tno,mno:mno,content:replyContent}, //4.입력값
 			    function (result) {
-					alert("댓글이 등록되어씀다~!");
 						
 					replyManager.listReply(
 							{tno:tno},
 							function(str){
 								updateList.html(str);
-								readRcnt();
-								content.val("");
-							});
-			 });
+							}
+					);
+					readRcnt();
+					$this.val("");
+					alert("댓글이 등록되어씀다~!");
+				}
+			);//addReply
+			
 		}
 	});
 		
@@ -658,22 +660,24 @@ $( document ).ready(function() {
 			var $this = $(this);
 			//tno mno replycontent 밸류값 채집함.
 			var trno = $this.val();
+
 			var tno = $this.parents('.replyDiv').attr("name");
 			var updateList = $this.parents('.box-comments') ;
 			
 			//addreply 실행!ㅇㅅㅇ!
-			  replyManager.removeReply(
+			replyManager.removeReply(
 					  //얘네가 data임. 위에서 밸류값 채집한 애들 보내는것
-					  {trno:trno, tno:tno}, //4.입력값
-			      function (result) {
-						  alert("댓글이 삭제되었다~!");
-						  replyManager.listReply({tno:tno},
-								  function(str){
-							  updateList.html(str);
-							  readRcnt();
-							 
-						  });
-			       });
+				{trno:trno, tno:tno}, //4.입력값
+				function (result) {
+					  alert("댓글이 삭제되었다~!");
+					  replyManager.listReply(
+							{tno:tno},
+							function(str){
+						 		updateList.html(str);
+						  		readRcnt();
+						 	}
+					  );
+			    });
 		}else{
 			return;
 		}
@@ -873,7 +877,6 @@ $( document ).ready(function() {
 									if(result != ""){	
 														
 										lastStr = 
-											
 // 											"<div class='box box-solid' id='timelineBox'> "
 // 												+ " <!-- .box-header START --> "
 // 												+ "<div class='box-header with-border'> <div class='user-block'><img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>"
@@ -886,11 +889,11 @@ $( document ).ready(function() {
 // 												+ "</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--><!-- .box-body START -->"
 // 												+ "<div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer' value='" + mno +"'>"
 // 												+ " <!-- footer buttons --> "
-// 												+ " <div class='pull-right text-muted'>	"
-// 												+ " <span> <button type='button' id='likeBtn' value='" + tno + "' class='btn btn-default'>"
+// 												+ " <div class='pull-right btns'>	"
+// 												+ " <div> <button type='button' id='likeBtn' value='" + tno + "' class='btn btn-default'>"
 // 												+ " <span class='glyphicon glyphicon-thumbs-up'></span> "
 // 												+ " <span class='badge badge-count' id='likeCnt'>" + likeCnt + "</span> </button>"
-// 												+ "</span> <span> <button type='button' id='replyBtn' value='" + tno + "' class='btn btn-default'>"
+// 												+ "</div> <div> <button type='button' id='replyBtn' value='" + tno + "' class='btn btn-default'>"
 // 												+ " <span class='glyphicon glyphicon-comment'></span> "
 // 												+ " <span class='badge badge-count' id='replyCnt'>" + replyCnt + "</span> </button>"
 // 												+ "</span> </div>"
@@ -922,14 +925,14 @@ $( document ).ready(function() {
 										+ " <div class='box-body'> <!-- post text --> "
 										+ "	<p>"+content+"</p> <input type = 'hidden' id='writer' value='"+mno+"'> "
 											
-										+ " <!-- footer buttons --> <div class='pull-right text-muted'> <span> "
+										+ " <!-- footer buttons --> <div class='pull-right btns'> <div> "
 										+ " <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default'> "
 										+ " <span class='glyphicon glyphicon-thumbs-up'></span> "
-										+ " <span class='badge badge-count' id='likeCnt'>"+likeCnt+"</span> </button> </span> "
+										+ " <span class='badge badge-count' id='likeCnt'>"+likeCnt+"</span> </button> </div> "
 										
-										+ " <span> <button type='button' id='replyBtn' value='"+tno+"' class='btn btn-default'> "
+										+ " <div> <button type='button' id='replyBtn' value='"+tno+"' class='btn btn-default'> "
 										+ " <span class='glyphicon glyphicon-comment'></span> "
-										+ " <span class='badge badge-count' id='replyCnt'>"+replyCnt+"</span> </button></span>\</div></div> "
+										+ " <span class='badge badge-count' id='replyCnt'>"+replyCnt+"</span> </button></div></div></div> "
 										+ "<!-- .box-body END --> <!-- .box-footer START --> "
 							
 										+ "	<!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list --> "
@@ -952,16 +955,10 @@ $( document ).ready(function() {
 									$("#timelinebigbox").append(lastStr);
 									user();
 									disLikeBtn();
-									
-									replyManager.listReply(
-										{"tno":tno},
-									  	function(str){
-										//	updateList.html(str);
-										});
 								  
-									};
+								};
 
-				    			}
+				    		}
 				    });
 							
 		} else if($(window).scrollTop() <= 0) {
@@ -1001,44 +998,56 @@ $( document ).ready(function() {
 									
 							if(result != ""){
 						
-								firstlist = "<div class='box box-solid' id='timelineBox'> <!-- .box-header START --> "
-										+ "<div class='box-header with-border'> <div class='user-block'> 	<img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>"
-										+ " <input type='hidden' id='userTno' value='"+ tno +"'> <span class='username'>"+ nickname +"</span> <span class='description'> "+ regDate +" </span> "
-										+ "<div id='userBtn'> </div> <!-- Modify Modal --> <div id='myModal' class='modal'>"
-										+ " <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> <span class='close' id='closeBtn'>&times;</span> "
-										+ " <h2>수정할 내용을 입력해주세요!</h2> </div> <div class='modal-body'> <input value='"+ content +"' name='content' id='modContent'> "
-										+ "</div> <div class='modal-footer'> <button type='button' id='modBtn' value='"+ tno +"'><span class='mod glyphicon glyphicon-erase' ></span></button>"
-										+ "</div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END-->"
-										+ "<!-- .box-body START --><div class='box-body'><!-- post text --> <p>"+content+"</p> <input type = 'hidden' id='writer' value='" + mno +"'>"
-										+ "<!-- Social sharing buttons --> <div id='replyBtnDiv'> <span class='pull-right text-muted'> "
-										+ " <button type='button' id='replyBtn' value='" +tno+ "' class='btn btn-default btn-xs'> " 
-										+ " <span cass='glyphicon glyphicon-menu-hamburger'></span> </button>" 
-										+ "  <span class='badge' id='replyCnt'>"+ replyCnt +"</span></span> </div>" 
-										+ "<div id='likeBtnDiv'> <span class='pull-right text-muted'> <button type='button' id='likeBtn' value='" +tno+ "' class='btn btn-default btn-xs'>"
-										+ " <span class='glyphicon glyphicon-thumbs-up'></span> </button> " 
-										+ "  <span class='badge' id='likeCnt'>"+ likeCnt +"</span></span> </div> <!-- .box-body END -->"
-										+ "<!-- reply start --> <div class = 'replyDiv' name='" + tno + "'> <!-- reply list -->"
-										+ "<div class='box-footer box-comments' id='commentsbox'> </div> "
-										+ "<!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm'src='/user/show?name=" + picture+"' alt='Alt Text'>"
-										+ " <!-- .img-push is used to add margin to elements next to floating images --> <div class='img-push'> <input name='tno' type='hidden' value='"+tno+"' id='replytno'>"
-										+ " <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> <input type='text' id='replyContent' class='form-control input-sm' placeholder='댓글은 너의 인성을 보여줍니다'>"
-										+ "</div> </div><!-- /.box-footer --> <div> </div><!-- big div --> ";
+								firstlist =   " <div class='box box-solid' id='timelineBox'> <!-- .box-header START -->"
+									+ " <div class='box-header with-border'> "
+									+ " <div class='user-block'> "
+									+ " <img class='img-circle' src='/user/show?name="+picture+"' alt='User Image'>"
+									+ " <input type='hidden' id='userTno' value='"+tno+"'> <span class='username'> "+nickname+" </span>"
+									+ "	<span class='description'> "+ regDate +" </span> "
+									+ " <div id='userBtn'> </div> "
+									
+									+ " <!-- Modify Modal --> <div id='myModal' class='modal'> "
+									+ " <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> "
+									+ " <span class='close' id='closeBtn'>&times;</span> <h2>수정할 내용을 입력해주세요!</h2> </div> "
+									+ " <div class='modal-body'> <input value='"+content+"' name='content' id='modContent'> </div> "
+									
+									+ " <div class='modal-footer'> "
+									+ " <button type='button' id='modBtn' value='"+tno+"'><span class='mod glyphicon glyphicon-erase' ></span></button> "
+									+ " </div> </div> </div><!-- modal 끝 --> </div> </div> <!-- .box-header END--> <!-- .box-body START --> "
+									+ " <div class='box-body'> <!-- post text --> "
+									+ "	<p>"+content+"</p> <input type = 'hidden' id='writer' value='"+mno+"'> "
+										
+									+ " <!-- footer buttons --> <div class='pull-right btns'> <div> "
+									+ " <button type='button' id='likeBtn' value='"+tno+"' class='btn btn-default'> "
+									+ " <span class='glyphicon glyphicon-thumbs-up'></span> "
+									+ " <span class='badge badge-count' id='likeCnt'>"+likeCnt+"</span> </button> </div> "
+									
+									+ " <div> <button type='button' id='replyBtn' value='"+tno+"' class='btn btn-default'> "
+									+ " <span class='glyphicon glyphicon-comment'></span> "
+									+ " <span class='badge badge-count' id='replyCnt'>"+replyCnt+"</span> </button></div></div></div> "
+									+ "<!-- .box-body END --> <!-- .box-footer START --> "
+						
+									+ "	<!-- reply start --> <div class = 'replyDiv' name='"+tno+"'> <!-- reply list --> "
+									+ "	<div class='box-footer box-comments' id='commentsbox'> </div> "						
+							
+									+ " <!-- .box-footer END--> <div class='box-footer'> <img class='img-responsive img-circle img-sm' "
+									+ " src='/user/show?name="+picture+"' alt='Alt Text'> "
+									+ " <!-- .img-push is used to add margin to elements next to floating images --> "
+									+ " <div class='img-push'> "
+									+ " <input name='tno' type='hidden' value='"+tno+"' id='replytno'> "
+									+ " <input name='mno' type='hidden' value='${sessionScope.VO.mno}' id='replymno'> "
+									+ " <input type='text' id='replyContent' class='form-control input-sm' placeholder='댓글은 너의 인성을 보여줍니다'> </div>"
+									+ " </div><!-- /.box-footer -->	</div> </div><!-- big div --> "
 							}else{
 								return;
 							}
 	
 							$("#timelinebigbox").prepend(firstlist);
-							
-							replyManager.listReply(
-									{"tno":tno},
-									function(str){
-										  updateList.html(str);
-									});
 							  
-							 };
+						};
 
 
-			    		}
+			    	}
 			    }); // ajax end
 						
 			}
