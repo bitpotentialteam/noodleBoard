@@ -123,10 +123,18 @@ public class UserController {
 
 	}
 
-	@PostMapping(value = "/idCheck")
+	@PostMapping(value = "/checkID")
 	public @ResponseBody String checkID(String userid) throws Exception {
 
+		logger.info("아이디체크중");
 		return service.checkID(userid);
+	}
+	
+	@PostMapping(value = "/checkNick")
+	public @ResponseBody String checkNick(String nickname) throws Exception {
+
+		logger.info("닉네임체크중");
+		return service.checkNick(nickname);
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)

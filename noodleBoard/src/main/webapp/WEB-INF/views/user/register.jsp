@@ -163,12 +163,26 @@
 						class="form-control" placeholder="Username" value=""> <span
 						class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
-
+				
+<!-- 		원래 nickname부분 -->
+<!-- 				<div class="form-group has-feedback"> -->
+<!-- 					<input type="text" id="nickname" name="nickname" -->
+<!-- 						class="form-control" placeholder="NickName" value=""> <span -->
+<!-- 						class="glyphicon glyphicon-user form-control-feedback"></span> -->
+<!-- 				</div> -->
+	<!-- 		원래 nickname부분 end -->			
+				
 				<div class="form-group has-feedback">
-					<input type="text" id="nickname" name="nickname"
-						class="form-control" placeholder="NickName" value=""> <span
-						class="glyphicon glyphicon-user form-control-feedback"></span>
+					<div class="input-group">
+						<input type="text" name=nickname id="nickname" class="form-control"
+							placeholder="NickName" value="" /> <span class="input-group-btn">
+							<button class="btn btn-default" type="button">
+								<span class="glyphicon glyphicon-search" id="NcheckBtn"></span>
+							</button>
+						</span>
+					</div>
 				</div>
+				
 				<div class="form-group has-feedback">
 					<input type="email" id="email" name="email" class="form-control"
 						placeholder="Email" value=""> <span
@@ -217,7 +231,8 @@
 	<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
 	
 	<script>
-		var checkResult = "false";//중복체크 부분 false로 고정 (중복체크안한사람 가입못하게 막는과정)
+		var checkResult = "false"; //중복체크 부분 false로 고정 (중복체크안한사람 가입못하게 막는과정)
+		var checkResults = "false"; 
 		$(document).ready(function() {
 			$("#regBtn").on("click",function(event) {
 				//레지스터할때 중복체크안한사람 가입못하게 막는과정
@@ -236,16 +251,20 @@
 									|| $('#email').val() == "") {
 										alert("항목을 입력해주세요");
 						}
-					if(checkResult == "true"){
+					if(checkResult == "true" , checkResults == "true"){
 						$("#register").submit();
+						alert("회원 가입을 축하드립니당 :) 환영환영 ");
 					} else if(checkResult =="false"){
-						alert("ID중복확인 해주세요");
+						alert("ID 중복확인을 해주세요");
+					} else if (checkResults == "false"){
+						alert("닉네임 중복확인 해주세요");
 					}
 					//
 				});
 
 		// 아이디 중복체크
 		$("#checkBtn").on("click", function() {
+			event.preventDefault();
 			console.log("check");
 			var userid = $("#userid").val();
 			var formData = new FormData();
@@ -253,7 +272,7 @@
 			formData.append("userid", userid);
 
 			$.ajax({
-				url : "idCheck",
+				url : "checkID",
 				data : formData,
 				dataType : 'text',
 				type : "post",
@@ -262,17 +281,51 @@
 				success : function(result) {
 					
 					if (result != "") {
-						alert("중복된 아이디 입니다 !");
+						alert("중복된 ID 입니다 !");
 						$("#userid").val("");
 					} else if (userid == "") {
-						alert("아이디를 입력해주세요 !");
+						alert("ID를 입력해주세요 !");
 					} else {
-						alert("사용 가능합니다 !");
+						alert("사용 가능한 ID입니다 !");
 						checkResult="true";
 					}
 				}// end success
 			});// end ajax
 		});
+		
+		
+		//닉네임 중복체크
+		$("#NcheckBtn").on("click", function() {
+			event.preventDefault();
+			console.log("check");
+			var nickname = $("#nickname").val();
+			var formData = new FormData();
+			console.log(nickname);
+
+			formData.append("nickname", nickname);
+
+			$.ajax({
+				url : "checkNick",
+				data : formData,
+				dataType : 'text',
+				type : "post",
+				contentType : false,
+				processData : false,
+				success : function(result) {
+					
+					if (result != "") {
+						alert("중복된 닉네임 입니다 !");
+						$("#nickname").val("");
+					} else if (nickname == "") {
+						alert("닉네임을 입력해주세요 !");
+					} else {
+						alert("사용 가능한 닉네임 입니다 !");
+						checkResults="true";
+					}
+				}// end success
+			});// end ajax
+		});
+		
 	});
 	</script>
 	
