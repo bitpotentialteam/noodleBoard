@@ -838,7 +838,7 @@ $( document ).ready(function() {
 	
 		if (maxHeight <= currentScroll + 1) {
 		//여기까지임~ 스크롤이 뭐 맨 아래에 닿으면...scroll event 실행ㄱㄱ하면서 밑에 함수들 다 실행함
-			var tno = $("#timelinebigbox").children(":last").find("#userTno").val();
+			var lastTno = $("#timelinebigbox").children(":last").find("#userTno").val();
 			var timelinebigbox = $("#timelinebigbox");
 			var updateList = $('.replyDiv').find('.box-comments');
 											
@@ -850,7 +850,7 @@ $( document ).ready(function() {
 				    				"X-HTTP-Method-Override" : "GET"
 				    			},
 				    dataType : 'json',
-				    data : {"tno" : tno},			
+				    data : {tno : lastTno},			
 				    success : 
 				    	function(result, fn) {		
 							var lastStr = "";
@@ -956,7 +956,7 @@ $( document ).ready(function() {
 									replyManager.listReply(
 										{"tno":tno},
 									  	function(str){
-											updateList.html(str);
+										//	updateList.html(str);
 										});
 								  
 									};
