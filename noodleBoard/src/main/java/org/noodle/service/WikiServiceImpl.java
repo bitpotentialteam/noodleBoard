@@ -15,15 +15,15 @@ public class WikiServiceImpl implements WikiServcie {
 	WikiDAOImpl dao;
 	
 	@Override
-	public List<NoodleVO> listWiki(Criteria cri) throws Exception {
+	public List<NoodleVO> searchList(Criteria cri) throws Exception {
 		
-		return dao.listWiki(cri);
+		return dao.searchList(cri);
 	}
 
 	@Override
-	public NoodleVO read(NoodleVO vo) throws Exception {
+	public NoodleVO view(String name) throws Exception {
 		
-		return dao.read(vo);
+		return dao.read(name);
 	}
 
 }

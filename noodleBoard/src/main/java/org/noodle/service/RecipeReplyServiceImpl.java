@@ -23,8 +23,14 @@ public class RecipeReplyServiceImpl implements RecipeReplyService {
 	public void regist(RecipeReplyVO vo) throws Exception {
 		vo.setSeq(dao.readSeq(vo.getRrno()).size());
 		
-		dao.create(vo);
-		dao.rrnoUpdate(dao.rnoCurrval());
+		if(vo.getRrno() == null){	// parent...
+			dao.create(vo);
+			dao.rrnoUpdate(dao.rnoCurrval());
+		
+		}else{	// child...
+			dao.create(vo);
+			dao.rrnoUpdate(vo.getRrno());
+		}
 		
 		bdao.addReplyCount(vo.getBno());
 		
