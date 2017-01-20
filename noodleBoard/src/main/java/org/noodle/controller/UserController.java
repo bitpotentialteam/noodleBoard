@@ -146,7 +146,7 @@ public class UserController {
 		
 		service.modify(vo);
 
-		return "redirect:/user/modify";
+		return "redirect:/user/myPage";
 	}
 
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
