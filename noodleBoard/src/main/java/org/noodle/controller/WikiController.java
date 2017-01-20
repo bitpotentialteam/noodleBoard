@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/wiki/*")
+@RequestMapping("/wiki")
 public class WikiController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(WikiController.class);
@@ -30,7 +30,7 @@ public class WikiController {
 		return "wiki/demo";
 	}
 	
-	@GetMapping("/")
+	@GetMapping()
 	public String index_search(){
 		logger.info("wiki called.....");
 		
