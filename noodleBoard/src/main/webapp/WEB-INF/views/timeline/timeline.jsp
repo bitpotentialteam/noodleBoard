@@ -882,7 +882,7 @@ $( document ).ready(function() {
 								+ " <span class='glyphicon glyphicon-thumbs-up'></span> "
 								+ " <span class='badge badge-count' id='likeCnt'>"+nLikeCnt+"</span> </button> </div> "
 								
-								+ " <div> <button type='button' id='replyBtn' value='"+tno+"' class='btn btn-default'> "
+								+ " <div> <button type='button' id='replyBtn' value='"+nTno+"' class='btn btn-default'> "
 								+ " <span class='glyphicon glyphicon-comment'></span> "
 								+ " <span class='badge badge-count' id='replyCnt'>"+nReplyCnt+"</span> </button></div></div></div> "
 								+ "<!-- .box-body END --> <!-- .box-footer START --> "
@@ -907,9 +907,11 @@ $( document ).ready(function() {
 			
 		
 		
-		if (maxHeight <= currentScroll) {
+		if (maxHeight <= currentScroll + 1) {
 		//여기까지임~ 스크롤이 뭐 맨 아래에 닿으면...scroll event 실행ㄱㄱ하면서 밑에 함수들 다 실행함
 			var lastTno = $timelinebigbox.children(":last").find("#userTno").val();
+			
+			console.log(lastTno);
 			
 				$.ajax({
 					type : 'get',
