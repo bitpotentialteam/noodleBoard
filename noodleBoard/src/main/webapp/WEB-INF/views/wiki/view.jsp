@@ -71,20 +71,6 @@
 	padding: 3% 5%;
 }
 
-.tableImg img{
-	width: 8em;
-	height: 6em;
-}
-
-.tr td{
-	font-size: large;
-	font-style: inherit;
-	text-align: center;
-}
-
-.table thead tr th{
-	text-align: center;
-}
 </style>
 
 </head>
@@ -124,39 +110,28 @@
 	<section>
 	  <div class="container">
 		<div class="row">
-		
-		  <div class='search'>
-			  <div class="field half first" style=>
-			    <input type="text" name="name" id="keywordInp" style='width: 50em; height: 4em; margin-left: 10em; margin-top: 2em; '> 
-			      <button type="button" class="btn btn-primary" id="searchBtn" style='width: 10em; height:4em; margin-left: 2em;'>Search</button>
-			  </div>
+		  <div>
+		  	<h3>==================</h3>
+		  	<h3>${sessionScope.view.name}</h3>
+		  	<h3>${sessionScope.view.brand}</h3>
+		  	<h3>${sessionScope.view.releaseDate}</h3>
+		  	<h3>${sessionScope.view.weight}</h3>
+		  	<h3>${sessionScope.view.thumbnail}</h3>
+		  	<h3>${sessionScope.view.soupColor}</h3>
+		  	<h3>${sessionScope.view.noodleType}</h3>
+		  	<h3>${sessionScope.view.kinds}</h3>
+		  	<h3>${sessionScope.view.calories}</h3>
+		  	<h3>${sessionScope.view.carbohydrate}</h3>
+		  	<h3>${sessionScope.view.protein}</h3>
+		  	<h3>${sessionScope.view.fat}</h3>
+		  	<h3>${sessionScope.view.saturatedFat}</h3>
+		  	<h3>${sessionScope.view.transFat}</h3>
+		  	<h3>${sessionScope.view.cholesterol}</h3>
+		  	<h3>${sessionScope.view.natrium}</h3>
+		  	<h3>${sessionScope.view.material_noodle}</h3>
+		  	<h3>${sessionScope.view.material_powder}</h3>
+		  	<h3>==================</h3>
 		  </div>
-		  
-			<!-- 결과화면출력 -->
-		  <div id = "resultDiv" style = 'border-style: solid; margin: 5em;'>
-		    <div id="demo">
-  			  <label><button id="tableRemoveBtn">Reset</button></label>
-		  	  <table id="table" class="table table-hover table-mc-light-blue">
-		        <thead>
-		          <tr>
-		            <th>Thumbnail</th>
-		            <th>Name</th>
-		            <th>Brand</th>
-		            <th>Calories</th>
-		            <th>Carbonhydrate</th>
-		            <th>Protein</th>
-		            <th>Fat</th>
-		            <th>Cholesterol</th>
-		            <th>Natrium</th>
-		          </tr>
-		        </thead>
-		      
-		      <tbody id="tbody" >
-		      	
-		      </tbody>
-		    </table>
-	      </div>
-	      
 	    </div>
 	  </div>
 	</section>
@@ -175,70 +150,11 @@
 	<script>
 		$(document).ready(function(){
 
-			var $tbody = $("#tbody");
 			
-			$("#searchBtn").on("click", function(){
-
-				var name = $("#keywordInp").val();
-				console.log(name);
-				
-				$.ajax({
-	    			type : 'post',
-	    			url : '/wiki/list',
-	    			dataType : 'text',
-	    			data : {name : name},
-	    			success : function(data){
-	    				console.log(data);
-	    				
-	    				var jsonData = JSON.parse(data);
-	    				console.log(jsonData);
-	    				
-	    				for(var i = 0; i < jsonData.length; i++){
-	    					
-	    					var str = "<tr class='tr' onclick='javascript:viewClick(this)'>"													// DB 더미데이터 확장자 붙인 후 제거..
-	    						  	 +"<td class='tableImg'><img src= '/user/show?name="+jsonData[i]['thumbnail']+".jpg'"+"></td>"
-	    						  	 +"<td>"+jsonData[i]['name']+"</td>"
-	    						  	 +"<td>"+jsonData[i]['brand']+"</td>"
-	    						  	 +"<td>"+jsonData[i]['calories']+"</td>"
-	    						  	 +"<td>"+jsonData[i]['carbohydrate']+"</td>"
-	    						  	 +"<td>"+jsonData[i]['protein']+"</td>"
-	    						  	 +"<td>"+jsonData[i]['fat']+"</td>"
-	    						  	 +"<td>"+jsonData[i]['cholesterol']+"</td>"
-	    						  	 +"<td>"+jsonData[i]['natrium']+"</td>"
-	    						  	 +"</tr>";
-	    						  	 
-	    				$tbody.append(str);
-	    				}
-	    				
-	    			}
-	    		});// end ajax...
-			});	// end searchBtn click...
 			
-			$("#tableRemoveBtn").on("click", function(){
-				
-				$tbody.children().remove();
-			}); // end tableRemoveBtn click...
-		
 		});// end ready...
 		
-		function viewClick(event){
-
-			var name = event.children[1].outerHTML.replace(/(<([^>]+)>)/gi, "");
-			console.log("name: " + name);
-			
-			$.ajax({
-				url: "../wiki/view/"+ name,
-				type: 'post',
-				data: name,
-				dataType: 'text',
-				success: function(){
-					window.open("/wiki/view");
-				}
-				
-			}); // end ajax...
-		
-		}
 	</script>
 
 </body>
-</html>
+</html>   
