@@ -882,7 +882,7 @@ $( document ).ready(function() {
 								+ " <span class='glyphicon glyphicon-thumbs-up'></span> "
 								+ " <span class='badge badge-count' id='likeCnt'>"+nLikeCnt+"</span> </button> </div> "
 								
-								+ " <div> <button type='button' id='replyBtn' value='"+tno+"' class='btn btn-default'> "
+								+ " <div> <button type='button' id='replyBtn' value='"+nTno+"' class='btn btn-default'> "
 								+ " <span class='glyphicon glyphicon-comment'></span> "
 								+ " <span class='badge badge-count' id='replyCnt'>"+nReplyCnt+"</span> </button></div></div></div> "
 								+ "<!-- .box-body END --> <!-- .box-footer START --> "
