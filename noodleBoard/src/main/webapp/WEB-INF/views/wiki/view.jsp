@@ -112,24 +112,24 @@
 		<div class="row">
 		  <div>
 		  	<h3>==================</h3>
-		  	<h3>${sessionScope.view.name}</h3>
-		  	<h3>${sessionScope.view.brand}</h3>
-		  	<h3>${sessionScope.view.releaseDate}</h3>
-		  	<h3>${sessionScope.view.weight}</h3>
-		  	<h3>${sessionScope.view.thumbnail}</h3>
-		  	<h3>${sessionScope.view.soupColor}</h3>
-		  	<h3>${sessionScope.view.noodleType}</h3>
-		  	<h3>${sessionScope.view.kinds}</h3>
-		  	<h3>${sessionScope.view.calories}</h3>
-		  	<h3>${sessionScope.view.carbohydrate}</h3>
-		  	<h3>${sessionScope.view.protein}</h3>
-		  	<h3>${sessionScope.view.fat}</h3>
-		  	<h3>${sessionScope.view.saturatedFat}</h3>
-		  	<h3>${sessionScope.view.transFat}</h3>
-		  	<h3>${sessionScope.view.cholesterol}</h3>
-		  	<h3>${sessionScope.view.natrium}</h3>
-		  	<h3>${sessionScope.view.material_noodle}</h3>
-		  	<h3>${sessionScope.view.material_powder}</h3>
+		  	<h3>name: ${sessionScope.view.name}</h3>
+		  	<h3>brand: ${sessionScope.view.brand}</h3>
+		  	<h3>releaseDate: ${sessionScope.view.releaseDate}</h3>
+		  	<h3>weight: ${sessionScope.view.weight}</h3>
+		  	<h3>thumbnail: ${sessionScope.view.thumbnail}</h3>
+		  	<h3>soupColor: ${sessionScope.view.soupColor}</h3>
+		  	<h3>noodleType: ${sessionScope.view.noodleType}</h3>
+		  	<h3>kinds: ${sessionScope.view.kinds}</h3>
+		  	<h3>calories: ${sessionScope.view.calories}</h3>
+		  	<h3>carbohydrate: ${sessionScope.view.carbohydrate}</h3>
+		  	<h3>protein: ${sessionScope.view.protein}</h3>
+		  	<h3>fat: ${sessionScope.view.fat}</h3>
+		  	<h3>saturatedFat: ${sessionScope.view.saturatedFat}</h3>
+		  	<h3>transFat: ${sessionScope.view.transFat}</h3>
+		  	<h3>cholesterol: ${sessionScope.view.cholesterol}</h3>
+		  	<h3>natrium: ${sessionScope.view.natrium}</h3>
+		  	<h3>material_noodle: ${sessionScope.view.material_noodle}</h3>
+		  	<h3>material_powder:${sessionScope.view.material_powder}</h3>
 		  	<h3>==================</h3>
 		  </div>
 	    </div>
