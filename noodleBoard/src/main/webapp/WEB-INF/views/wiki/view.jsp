@@ -129,7 +129,7 @@
 		  	<h3>cholesterol: ${sessionScope.view.cholesterol}</h3>
 		  	<h3>natrium: ${sessionScope.view.natrium}</h3>
 		  	<h3>material_noodle: ${sessionScope.view.material_noodle}</h3>
-		  	<h3>material_powder:${sessionScope.view.material_powder}</h3>
+		  	<h3>material_powder: ${sessionScope.view.material_powder}</h3>
 		  	<h3>==================</h3>
 		  </div>
 	    </div>
