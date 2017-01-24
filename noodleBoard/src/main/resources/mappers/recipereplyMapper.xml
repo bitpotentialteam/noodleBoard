@@ -29,6 +29,8 @@
 		from
 			tbl_recipereply
 		where
+			seq > 0
+		and
 			rrno = #{rrno, jdbcType=INTEGER}
 	</select>
 	
@@ -84,7 +86,10 @@
 			* 
 		from 
 			tbl_recipereply 
-		where bno=#{bno, jdbcType=INTEGER}
+		where 
+			bno=#{bno, jdbcType=INTEGER}
+		and
+			seq=0
 		order by rrno desc, seq
 	</select>
 

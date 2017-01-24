@@ -553,8 +553,10 @@ button#addStepBtn {
 		$(document).on("click", "#registerBtn", function(event){
 			
 // 			var mainImgNameLength = $this.parents("#registerForm").find(".mainImg").get(0).style['backgroundImage'].length;
-			var mainImg = $("#stepImg.mainImg").children("#imgFileDropped").val();
-			console.log(mainImg);
+ 			var mainImg = $("#stepImg.mainImg").children("#imgFileDropped").val();
+//			var mainImg = $(".mainImg").children()[2];
+// 			var imgInput = mainImg; 
+// 			console.log(imgInput);
 			
 			if(mainImg != ''){
 				$("#registerForm").submit();

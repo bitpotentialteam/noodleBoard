@@ -103,6 +103,7 @@ section h3.section-subheading {
 .input-group{
     margin: auto 25%;
     margin-bottom: 40px;
+    z-index: 3 !important;
 }
 
 
@@ -156,41 +157,31 @@ section h3.section-subheading {
                
 				<div class="input-group">
 					<div class="input-group-btn">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">검색조건 <span class="caret"></span></button>
+						<button type="button" id="btnSearch" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value='tcw'>전체<span class="caret"></span></button>
 					    	<ul class="dropdown-menu">
-					        	<li><a href="#">제목</a></li>
-					         	<li><a href="#">내용</a></li>
-					         	<li><a href="#">작성자</a></li>
-					          	<li role="separator" class="divider"></li>
-					         	<li><a href="#">제목+내용</a></li>
-					         	<li><a href="#">내용+작성자</a></li>
-					         	<li><a href="#">제목+내용+작성자</a></li>
+					         	<li id='tcw'><a href="#">전체</a></li>
+					        	<li id='t'><a href="#">제목</a></li>
+					         	<li id='c'><a href="#">내용</a></li>
+					         	<li id='w'><a href="#">작성자</a></li>
+					         	<li id='tc'><a href="#">제목+내용</a></li>
+					         	<li id='cw'><a href="#">내용+작성자</a></li>
+<!-- 					         	<select name="searchType"> -->
+				
+<%-- 									<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>제목</option> --%>
+<%-- 									<option value="c" <c:out value="${cri.searchType eq 'c'?'selected':''}"/>>내용</option> --%>
+<%-- 									<option value="w" <c:out value="${cri.searchType eq 'w'?'selected':''}"/>>작성자</option> --%>
+<%-- 									<option value="tc" <c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>제목+내용</option> --%>
+<%-- 									<option value="cw" <c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>내용+작성자</option> --%>
+<%-- 									<option value="tcw" <c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>제목+내용+작성자</option> --%>
+<!-- 								</select> -->
 					        </ul>
 					</div><!-- /btn-group -->
-					<input type="text" class="form-control" aria-label="...">
+					<input type="text" class="form-control" aria-label="..." id="keywordInput" name="keyword" value="${cri.keyword}">
 					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">검색</button>
+						<button class="btn btn-default" type="button" id="searchBtn">검색</button>
 					</span>
 				</div><!-- /input-group -->
-					    
-<%-- 				<div id="search">
-					<select name="searchType">
-				
-						<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>제목</option>
-						<option value="c" <c:out value="${cri.searchType eq 'c'?'selected':''}"/>>내용</option>
-						<option value="w" <c:out value="${cri.searchType eq 'w'?'selected':''}"/>>작성자</option>
-						<option value="tc" <c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>제목+내용</option>
-						<option value="cw" <c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>내용+작성자</option>
-						<option value="tcw" <c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>제목+내용+작성자</option>
-					</select>
-				</div>
-				<div id="inputBtn">
-					<input type="text" name='keyword' id="keywordInput" size="37" value='${cri.keyword}'>
-					<button id="searchBtn" class="btn btn-primary">검색</button>
-				</div>
-				
-           		</div> --%>
-		</div>
+			</div>
 		
 		<div class="container listBox">
 		<!-- list div START -->
@@ -240,8 +231,6 @@ section h3.section-subheading {
 					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 						<li><a href="${pageMaker.makeQuery(pageMaker.endPage+1)}">다음</a></li>
 					</c:if>
-								
-								
 				</ul>
 				<button type="submit" id="regBtn" class="btn btn-primary">글쓰기</button>
 			</div>
@@ -276,21 +265,37 @@ section h3.section-subheading {
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 	<script>
-
+	
 	$(document).ready(
 				function() {
 					$('#searchBtn').on(
 							"click",
 							function(event) {
+								
 								self.location = "list"
 										+ '${pageMaker.makeQuery(1)}'
 										+ "&searchType="
-										+ $("select option:selected").val()
+										+ $("#btnSearch").val()
 										+ "&keyword="
 										+ $('#keywordInput').val();
 							});
 					$('#regBtn').on("click", function(evt) {
 						self.location = "register";
+					});
+					
+// 					$(".dropdown-menu li a").click(function(){
+// 						  $(this).parents(".input-group").find('#btnSearch').html($(this).text() + ' <span class="caret"></span>');
+// 						  $(this).parents(".input-group").find('#btnSearch').val($(this).data('value'));
+// 					});
+
+					$(".dropdown-menu li").click(function(){
+						  var $this = $(this);
+						  var selText = $this.children("a").text();
+						  console.log(selText);
+						  var buttonId = $this.attr("id");
+						  var searchBtn = $this.parents(".input-group-btn").children('#btnSearch');
+						  searchBtn.html(selText+' <span class="caret"></span>');
+						  searchBtn.val(buttonId);
 					});
 				});
 	</script>

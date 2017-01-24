@@ -21,14 +21,19 @@ public class RecipeReplyServiceImpl implements RecipeReplyService {
 	@Override
 	@Transactional
 	public void regist(RecipeReplyVO vo) throws Exception {
+		//rrno의 길이만큼 seq를 읽어서 vo에 담아줌.
 		vo.setSeq(dao.readSeq(vo.getRrno()).size());
-		
+		//화면에서 rrno를 넘겨받지 않으면 부모댓글 regist
 		if(vo.getRrno() == null){	// parent...
+			//나머지는 화면에서 받고 
 			dao.create(vo);
+			//rrno에는 rno값을 넣어준다
 			dao.rrnoUpdate(dao.rnoCurrval());
-		
+		//화면에서 rrno를 넘겨 받으면 자식 regist
 		}else{	// child...
+			//나머지는 화면에서 받고
 			dao.create(vo);
+			//rrno에는 부모댓글의 rrno를 넣어준다
 			dao.rrnoUpdate(vo.getRrno());
 		}
 		

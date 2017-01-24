@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -120,6 +121,10 @@ div.row.control-group {
     position: relative;
 
 }
+
+ #reReplyContent{ 
+  	display: none; 
+ }
 </style>
 
 </head>
@@ -172,13 +177,12 @@ div.row.control-group {
     </header>
 <section>
 <form id=recipe>
-		<input type='hidden' id='sessionMno' name='mno' value="${sessionScope.VO.mno}">
-		<input type='hidden' id='mno' name='mno' value="${vo.mno}">
-<div class="container">
+	<input type='hidden' id='sessionMno' name='mno' value="${sessionScope.VO.mno}">
+	<input type='hidden' id='mno' name='mno' value="${vo.mno}">
+	<div class="container">
 		<div class="row">
-	
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<input type="hidden" name="bno" value="${vo.bno}">		
+				<input type="hidden" name="bno" value="${vo.bno}">		
 					<div class="row control-group">
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>설명</label>
@@ -204,36 +208,35 @@ div.row.control-group {
 							
 								<c:forEach items="${clist}" var="cuisineVO">
 								<!-- START -->
-								<div class="step media form-group" id="step">
-									
+									<div class="step media form-group" id="step">
 									<c:set var="loop" value="true"></c:set>
 									<c:forEach items="${ilist}" var="imageVO">
 										<c:if test="${imageVO.step == cuisineVO.step}">
 										<c:if test="${loop}">
-									<div class="media-left media-middle">
-										<div class="stepImg">
-											<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-						                        <div class="portfolio-hover">
+										<div class="media-left media-middle">
+											<div class="stepImg">
+												<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+						                       	 <div class="portfolio-hover">
 						                            <div class="portfolio-hover-content">
 						                                <i class="fa fa-plus fa-3x"></i>
 						                            </div>
 						                        </div>
 						                        <img src="../user/show?name=${imageVO.thumbnail}" class="img-responsive" alt="">
-						                    </a>
-										</div>											
-									</div>
-											<c:set var="loop" value="false"></c:set>
+						                   	 	</a>
+											</div>											
+										</div>
+									<c:set var="loop" value="false"></c:set>
 										</c:if>
 										</c:if> 
 									</c:forEach>
 											<!-- 사진 크게 보기 모달 창 넣기-->
-									 <div class="media-body">
-									 	<h4 class="media-heading">STEP ${cuisineVO.step}</h4>
-										<div>
-											<p>${cuisineVO.content}</p>
+									 	<div class="media-body">
+									 		<h4 class="media-heading">STEP ${cuisineVO.step}</h4>
+											<div>
+												<p>${cuisineVO.content}</p>
+											</div>
 										</div>
 									</div>
-								</div>
 								<!-- END -->
 								</c:forEach>
 								
@@ -250,38 +253,89 @@ div.row.control-group {
 			</div>
 		</div><!-- row end -->
 		
-			<!-- 댓글!! -->
-<!-- 		<div class="row col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"> -->
-<!-- 			<ul class="media-list"> -->
-<!-- 				<li class="media"> -->
-<!-- 					<div class="media-left"> -->
-<!-- 						<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a> -->
-<!-- 					</div> -->
-<!-- 					<div class="media-body"> -->
-<!-- 						<h4 class="media-heading">Media heading</h4> -->
-<!-- 						<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p> -->
-						
-<!-- 						<div class="media"> -->
-<!-- 							<div class="media-left"> -->
-<!-- 								<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a> -->
-<!-- 							</div> -->
-<!-- 							<div class="media-body"> -->
-<!-- 								<h4 class="media-heading">Nested media heading</h4> -->
-<!-- 								Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.  -->
-								
-<!-- 							</div> -->
-<!-- 						<div class="media"> -->
-<!-- 							<div class="media-left"> -->
-<!-- 								<a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64" src="" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a> -->
-<!-- 							</div> -->
-<!-- 							<div class="media-body"> -->
-<!-- 								<h4 class="media-heading">Nested media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 			</ul> -->
-<!-- 		</div> -->
+			<!-- 댓글처리... -->
+	<div class="row">
+	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+	<div class="reply">
+<!-- 	  <form id="replyListForm" action="registReply" method="post"> -->
+	  	<input type='hidden' id='sessionMno' name='mno' value="${sessionScope.VO.mno}">
+	    <input type='hidden' id="bno" name='bno' value="${vo.bno}">
+	    <div class="row control-group" name="content">
+			<div class="form-group col-xs-12 floating-label-form-group controls">
+				<label>댓글</label> <input type="text" class="form-control"
+					placeholder="Reply" name="content" id="content" required
+					data-validation-required-message="Please enter reply.">
+			</div>
+		</div>
+<%-- 	      <div><button type="submit" class="removeReplyBtn" name="rno" value="${replyrno}">삭제</button></div> --%>
+		<button type="submit" id="registReplyBtn" class="registReplyBtn">댓글등록</button>
+		<br>
+<!-- 	  </form> -->
+	</div>
+	<br>
+	</div>
+	<!-- 댓글!! -->
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<form id="reply">
+				<c:forEach items="${replyList}" var="rvo">
+					<ul class="media-list"> 
+					<c:set var="loop" value="true"></c:set>
+					<c:forEach items="${MemberList}" var="memberVO">
+					<c:if test="${rvo.mno eq memberVO.mno}">
+					<c:if test="${loop}">
+						<li class="media">
+							<div class="media-left">
+								<a href="#"> <img class="media-object" src="/user/show?name=${memberVO.picture}" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
+							</div>
+							
+							<div class="media-body">
+								<h4 class="media-heading">${memberVO.nickname}</h4>
+								<p>${rvo.content}</p>
+							</div>
+						<div>
+							<button type="button" id="reReplyBtn" class="glyphicon glyphicon-pencil"></button>
+							<div class="row control-group" name="content" id="reReplyContent">
+								<input type='hidden' id="rno" name='rno' value="${rvo.rno}">
+								<input type='hidden' id="bno" name='bno' value="${vo.bno}">
+								<c:set var="loopsss" value="true"></c:set>
+								<c:forEach items="${rReplyList}" var="rrvo">
+								<input type='hidden' id="rrno" name='rrno' value="${rrvo.rrno}">
+									<c:if test="${rvo.rno eq rrvo.rrno}">
+									<c:if test="${loopsss}">
+										<div id='reContent'>
+										</div>
+									</c:if>
+									</c:if>
+								</c:forEach>
+								<c:set var="loopsss" value="false"></c:set>
+								<div class="form-group col-xs-12 floating-label-form-group controls">
+									<input type="text" class="form-control"
+									placeholder="Reply" name="content" id="content" required
+									data-validation-required-message="Please enter reply.">
+									<button type="button" class="reReplyRegist glyphicon glyphicon-pencil"></button>
+								</div>
+							</div>
+						</div>
+						<c:set var="loopss" value="true"></c:set>
+						<c:if test="${rvo.mno eq sessionScope.VO.mno}">
+						<c:if test="${loopss}">
+						<div>
+					<button type="button" id="replyModifyBtn" class="glyphicon glyphicon-erase"></button>
+					<button type="button" id="replyRemoveBtn" class="replyRemoveBtn glyphicon glyphicon-trash"></button>
+					</div>
+					</c:if>
+					</c:if>
+					<c:set var="loopss" value="false"></c:set>
+				</li>
+				<c:set var="loop" value="false"></c:set>
+				</c:if>
+				</c:if>
+				</c:forEach>
+			</ul>
+				</c:forEach>
+			</form>
+		</div>
+	</div>
 		
 	</div>
 	</form>
@@ -293,64 +347,8 @@ div.row.control-group {
 	<input type='hidden' name='searchType' value="${cri.searchType}">
 	<input type='hidden' name='keyword' value="${cri.keyword}">
 
-</form>
-
-
-
-
-
-	<!-- 댓글처리... -->
-	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-	<div class="reply">
-<!-- 	  <form id="replyListForm" action="registReply" method="post"> -->
-	  	<input type='hidden' id='sessionMno' name='mno' value="${sessionScope.VO.mno}">
-	    <input type='hidden' id="bno" name='bno' value="${vo.bno}">
-	    <div class="row control-group" name="content">
-						<div
-							class="form-group col-xs-12 floating-label-form-group controls">
-							<label>댓글</label> <input type="text" class="form-control"
-								placeholder="Reply" name="content" id="content" required
-								data-validation-required-message="Please enter reply.">
-						</div>
-					</div>
-<%-- 	      <div><button type="submit" class="removeReplyBtn" name="rno" value="${replyrno}">삭제</button></div> --%>
-		<button type="submit" id="registReplyBtn" class="registReplyBtn">댓글등록</button>
-		<br>
-	<br>
-	<br>
-<!-- 	  </form> -->
-	</div>
-	</div>
-	
-	<!-- 댓글!! -->
-		<div class="row col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<form id="reply">
-				<c:forEach items="${replyList}" var="rvo">
-			<ul class="media-list"> 
-				<c:set var="loop" value="true"></c:set>
-				<c:forEach items="${MemberList}" var="memberVO">
-				<c:if test="${rvo.mno eq memberVO.mno}">
-				<c:if test="${loop}">
-				<li class="media">
-					<div class="media-left">
-						<a href="#"> <img class="media-object" src="/user/show?name=${memberVO.picture}" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
-					</div>
-					<div class="media-body">
-					<h4 class="media-heading">${memberVO.nickname}</h4>
-						<p>${rvo.content}</p>
-					</div>
-				</li>
-				<c:set var="loop" value="false"></c:set>
-				</c:if>
-				</c:if>
-				</c:forEach>
-			</ul>
-				</c:forEach>
-			</form>
-		</div>
+	</form>
 </section>
-
-
 
 	<!-- Footer START -->
     <footer>
@@ -404,7 +402,6 @@ div.row.control-group {
 		$("#recipe").find("#mdBtn").append(button);	 
 		}
 		}user();
-		
 	
 		$(function() {
 			$('input').iCheck({
@@ -426,11 +423,100 @@ div.row.control-group {
 //     			}
 //     		});
 // 			} replyList();
+
+		$(document).on("click","#reReplyBtn", function(event){
+			var $this = $(this);
+			var $replyToggle = $this.parent().find("#reReplyContent");
+			var rno = $replyToggle.find("#rno").val();
+			var bno = $replyToggle.find("#bno").val();
+			var reContent = $replyToggle.find("#reContent");
+			console.log($this);
+			console.log($replyToggle);
+			console.log(rno);
+			console.log(bno);
+			console.log(reContent);
+			$replyToggle.toggle();
+			
+				$.ajax({
+	    			type : 'post',
+	    			url : '/recipe/reReplyList',
+	    			headers : {
+	    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+	    				"X-HTTP-Method-Override" : "POST"
+	    			},
+	    			dataType : 'json',
+	    			data : {mno : sessionMno, bno:bno, rrno:rno},
+	    			success : function(result) {
+	    				console.log(result);
+	    				if(result != ""){
+							var str = '';
+							for(var i = 0; i<result.length; i++){
+							var content = result[i].content;
+							}
+							console.log(content);
+	    					str = "<p>"+content+"</p>";
+	    					reContent.html(str);
+	    				}
+	    			}
+	    			});
+			
+		});
+		
+		$(".reReplyRegist").on("click", function(event){
+			
+			var $this = $(this);
+			var reply = $("#reply");
+			var bno = $this.parents("#reReplyContent").find("#bno").val();
+			var content = $this.parents("#reReplyContent").find("#content").val();
+			var rrno = $this.parents("#reReplyContent").find("#rrno").val();
+			console.log(bno);
+			console.log(content);
+			console.log(sessionMno);
+			console.log(rrno);
+			function reRegist(){
+			$.ajax({
+    			type : 'post',
+    			url : '/recipe/registReply',
+    			headers : {
+    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+    				"X-HTTP-Method-Override" : "POST"
+    			},
+    			dataType : 'text',
+    			data : {mno : sessionMno, content : content, bno:bno, rrno:rrno},
+    			success : function() {
+    				console.log(data);
+    				
+    			}
+    			});
+				location.reload();
+			};
+			
+		});
+		$(document).on("click", "replyRemoveBtn",function(event){
+			
+			var $this = $(this);
+			var rno = $this.parents("#reReplyContent").find("#rno").val();
+			console.log(rno);
+			$.ajax({
+    			type : 'post',
+    			url : '/recipe/removeReply',
+    			headers : {
+    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+    				"X-HTTP-Method-Override" : "POST"
+    			},
+    			dataType : 'text',
+    			data : data,
+    			success : function() {
+    				console.log(data);
+    				
+    			}
+    		});
+			location.reload();
+		});
 			
 		
 		$("#registReplyBtn").on("click", function(event){
 			
-			var str = "";
 			var $this = $(this);
 			var reply = $("#reply");
 			var bno = $this.parents(".reply").find("#bno").val();
@@ -449,6 +535,7 @@ div.row.control-group {
     			dataType : 'text',
     			data : {mno : sessionMno, content : content, bno:bno},
     			success : function() {
+    				alert("댓글 등록");
     				
     			}
     		});

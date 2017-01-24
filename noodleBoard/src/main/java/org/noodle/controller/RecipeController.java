@@ -150,13 +150,15 @@ public class RecipeController {
 	
 	@GetMapping("/view")
 	public void view(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri,HttpSession session, Model model) throws Exception {
-
+		
 		logger.info("view.............");
 		model.addAttribute("vo", service.view(bno));
 		model.addAttribute("clist", cservice.view(bno));
 		model.addAttribute("ilist", iservice.viewBno(bno));
 		model.addAttribute("replyList", rservice.listAll(bno));
 		logger.info("replyList : " + rservice.listAll(bno));
+		
+		List<RecipeReplyVO> rRlist = rservice.listAll(bno);
 		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
 		logger.info(user.toString());
 		MemberVO vo = mservice.read1(user.toString());
@@ -171,6 +173,7 @@ public class RecipeController {
 			MemberVO mvo = mservice.read(rlist.get(i).getMno());
 			mlist.add(mvo);
 		}
+		
 		model.addAttribute("MemberList", mlist);
 		model.addAttribute("nickVO", nickVO);
 		
@@ -179,6 +182,16 @@ public class RecipeController {
 		pageMaker.setPageVO(cri);
 		model.addAttribute("pageMaker", pageMaker);
 	}
+	
+	@PostMapping("/reReplyList")
+	@ResponseBody
+	public List<RecipeReplyVO> reReply(@RequestParam("rrno") Integer rrno) throws Exception{
+		logger.info("rrno" + rrno);
+//		model.addAttribute("rReplyList", rservice.seqRead(rrno));
+		
+		return rservice.seqRead(rrno);
+	}
+	
 	
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno") int bno, SearchVO cri, RedirectAttributes rttr) throws Exception {
@@ -219,12 +232,14 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/registReply")
-	public void recipeReplyPOST(@RequestParam("bno") Integer bno, RecipeReplyVO vo, Integer rno,
+	public void recipeReplyPOST(@RequestParam("bno") Integer bno, RecipeReplyVO vo,
 		   HttpSession session, RedirectAttributes rttr, Model model) throws Exception{
 		logger.info("registReply called...............");
 		rservice.regist(vo);
 		logger.info("VO : " + vo);
+		
 	}
+	
 	
 //	@GetMapping("/reply")
 //	public List<RecipeReplyVO> replyList(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri,HttpSession session, Model model) throws Exception{
