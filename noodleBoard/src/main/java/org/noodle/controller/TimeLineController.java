@@ -77,10 +77,7 @@ public class TimeLineController {
 	public String likecnt(TimeLineVO vo, Model model) throws Exception{
 		
 		logger.info("like가 하나 추가되었습니당!");
-		
-	//	TimeLineVO vo = new TimeLineVO();
 		service.addLikeCnt(vo);
-
 	
 		logger.info("addlikeCnt" + vo);
 
@@ -109,9 +106,7 @@ public class TimeLineController {
 
 		logger.info("firstListView called.....");
 		logger.info("tno" + tno);
-		logger.info("vo" + service.firstListView(tno));
-		service.firstListView(tno);
-
+		
 		return service.firstListView(tno);
 	
 	}	
@@ -122,10 +117,7 @@ public class TimeLineController {
 
 		logger.info("lastListView called.....");
 		logger.info("tno" + tno);
-		logger.info("vo" + service.lastListView(tno));
-		service.lastListView(tno);
-		
-
+	
 		return service.lastListView(tno);
 		
 	}

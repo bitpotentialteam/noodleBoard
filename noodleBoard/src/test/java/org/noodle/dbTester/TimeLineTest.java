@@ -98,7 +98,7 @@ public class TimeLineTest {
 		System.out.println(cri.toString());
 		
 	//	List<NoodleVO> result = wiki.searchList(cri);
-		System.out.println(result);
+		//System.out.println(result);
 		
 	}
 	
