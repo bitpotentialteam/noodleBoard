@@ -183,15 +183,6 @@ public class RecipeController {
 		model.addAttribute("pageMaker", pageMaker);
 	}
 	
-	@PostMapping("/reReplyList")
-	@ResponseBody
-	public List<RecipeReplyVO> reReply(@RequestParam("rrno") Integer rrno) throws Exception{
-		logger.info("rrno" + rrno);
-//		model.addAttribute("rReplyList", rservice.seqRead(rrno));
-		
-		return rservice.seqRead(rrno);
-	}
-	
 	
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno") int bno, SearchVO cri, RedirectAttributes rttr) throws Exception {
@@ -230,15 +221,7 @@ public class RecipeController {
 		
 		return "redirect:list";
 	}
-	
-	@PostMapping("/registReply")
-	public void recipeReplyPOST(@RequestParam("bno") Integer bno, RecipeReplyVO vo,
-		   HttpSession session, RedirectAttributes rttr, Model model) throws Exception{
-		logger.info("registReply called...............");
-		rservice.regist(vo);
-		logger.info("VO : " + vo);
-		
-	}
+
 	
 	
 //	@GetMapping("/reply")
@@ -260,10 +243,6 @@ public class RecipeController {
 //		return rservice.listAll(bno);
 //	}
 	
-	@PostMapping("/removeReply")
-	@ResponseBody
-	public void removeReplyPost(RecipeReplyVO vo) throws Exception{
-		rservice.remove(vo);
-	}
+
 
 }

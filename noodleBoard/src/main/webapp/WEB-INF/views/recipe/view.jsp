@@ -277,8 +277,8 @@ div.row.control-group {
 	<!-- 댓글!! -->
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<form id="reply">
-				<c:forEach items="${replyList}" var="rvo">
 					<ul class="media-list"> 
+				<c:forEach items="${replyList}" var="rvo">
 					<c:set var="loop" value="true"></c:set>
 					<c:forEach items="${MemberList}" var="memberVO">
 					<c:if test="${rvo.mno eq memberVO.mno}">
@@ -291,36 +291,25 @@ div.row.control-group {
 							<div class="media-body">
 								<h4 class="media-heading">${memberVO.nickname}</h4>
 								<p>${rvo.content}</p>
+								<button type="button" id="reReplyBtn" class="glyphicon glyphicon-pencil"></button>
+								<div class="media" id="reReplyContent">			
+									<div id='reContent'>
+										
+									</div>
+									<div class="form-group col-xs-12 floating-label-form-group controls">
+										<input type='hidden' id="nickName" name='nickName' value="${memberVO.nickname}">
+										<input type='hidden' id="rno" name='rno' value="${rvo.rno}">
+										<input type='hidden' id="bno" name='bno' value="${vo.bno}">
+										<input type='hidden' id="rrno" name='rrno' value="${rvo.rrno}">
+										<input type="text" class="form-control" placeholder="Reply" name="content" id="content" required data-validation-required-message="Please enter reply.">
+										<button type="button" class="reReplyRegist glyphicon glyphicon-pencil"></button>
+									</div>
+								 </div>
 							</div>
-						<div>
-							<button type="button" id="reReplyBtn" class="glyphicon glyphicon-pencil"></button>
-							<div class="row control-group" name="content" id="reReplyContent">
-								<input type='hidden' id="rno" name='rno' value="${rvo.rno}">
-								<input type='hidden' id="bno" name='bno' value="${vo.bno}">
-								<c:set var="loopsss" value="true"></c:set>
-								<c:forEach items="${rReplyList}" var="rrvo">
-								<input type='hidden' id="rrno" name='rrno' value="${rrvo.rrno}">
-									<c:if test="${rvo.rno eq rrvo.rrno}">
-									<c:if test="${loopsss}">
-										<div id='reContent'>
-										</div>
-									</c:if>
-									</c:if>
-								</c:forEach>
-								<c:set var="loopsss" value="false"></c:set>
-								<div class="form-group col-xs-12 floating-label-form-group controls">
-									<input type="text" class="form-control"
-									placeholder="Reply" name="content" id="content" required
-									data-validation-required-message="Please enter reply.">
-									<button type="button" class="reReplyRegist glyphicon glyphicon-pencil"></button>
-								</div>
-							</div>
-						</div>
 						<c:set var="loopss" value="true"></c:set>
 						<c:if test="${rvo.mno eq sessionScope.VO.mno}">
 						<c:if test="${loopss}">
 						<div>
-					<button type="button" id="replyModifyBtn" class="glyphicon glyphicon-erase"></button>
 					<button type="button" id="replyRemoveBtn" class="replyRemoveBtn glyphicon glyphicon-trash"></button>
 					</div>
 					</c:if>
@@ -331,8 +320,8 @@ div.row.control-group {
 				</c:if>
 				</c:if>
 				</c:forEach>
-			</ul>
 				</c:forEach>
+			</ul>
 			</form>
 		</div>
 	</div>
@@ -389,6 +378,7 @@ div.row.control-group {
 	
 	<script>
 	
+		var nickName = $("#reReplyContent").find("#nickName").val();
 	$(document).ready(function(){
 		
 		var sessionMno = $("#recipe").find("#sessionMno").val();
@@ -411,18 +401,6 @@ div.row.control-group {
 			});
 		});
 		
-// 		function replyList(data){
-			
-	
-// 			$.ajax({
-//     			type : 'get',
-//     			url : '/recipe/reply',
-//     			dataType :'text',
-//     			data : data,
-//     			success : function(result) {
-//     			}
-//     		});
-// 			} replyList();
 
 		$(document).on("click","#reReplyBtn", function(event){
 			var $this = $(this);
@@ -430,6 +408,7 @@ div.row.control-group {
 			var rno = $replyToggle.find("#rno").val();
 			var bno = $replyToggle.find("#bno").val();
 			var reContent = $replyToggle.find("#reContent");
+			var nickName = $replyToggle.find("#nickName").val();
 			console.log($this);
 			console.log($replyToggle);
 			console.log(rno);
@@ -448,21 +427,20 @@ div.row.control-group {
 	    			data : {mno : sessionMno, bno:bno, rrno:rno},
 	    			success : function(result) {
 	    				console.log(result);
-	    				if(result != ""){
 							var str = '';
-							for(var i = 0; i<result.length; i++){
+							for(var i = 0; i < result.length; i++){
 							var content = result[i].content;
-							}
 							console.log(content);
-	    					str = "<p>"+content+"</p>";
+	    					str += "<h4 class='media-heading'>"+nickName+"</h4>"
+	    						  +"<p>"+content+"</p>";
+							}
 	    					reContent.html(str);
 	    				}
-	    			} 
 	    			});
 			
 		});
 		
-		$(".reReplyRegist").on("click", function(event){
+		$(document).on("click", ".reReplyRegist", function(event){
 			
 			var $this = $(this);
 			var reply = $("#reply");
@@ -473,23 +451,9 @@ div.row.control-group {
 			console.log(content);
 			console.log(sessionMno);
 			console.log(rrno);
-			function reRegist(){
-			$.ajax({
-    			type : 'post',
-    			url : '/recipe/registReply',
-    			headers : {
-    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
-    				"X-HTTP-Method-Override" : "POST"
-    			},
-    			dataType : 'text',
-    			data : {mno : sessionMno, content : content, bno:bno, rrno:rrno},
-    			success : function() {
-    				console.log(data);
-    				
-    			}
-    			});
-				location.reload();
-			};
+			
+			registReply(sessionMno, content, bno, rrno, $this);
+
 			
 		});
 		$(document).on("click", "replyRemoveBtn",function(event){
@@ -566,9 +530,11 @@ div.row.control-group {
 				formObj.submit();
 				
 			});
-		
+			
 		
 		});
+	
+
 	
 	</script>
 </body>

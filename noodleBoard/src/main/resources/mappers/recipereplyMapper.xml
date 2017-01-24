@@ -6,12 +6,25 @@
 <mapper namespace="org.noodle.RecipeReplyMapper">
 
 	<insert id="create" parameterType="RecipeReplyVO">
+		<if test="#{rrno}==null">
 		insert into 
-			tbl_recipereply(mno, bno, rno, seq, content)
+			tbl_recipereply(mno, bno, rno, rrno, seq, content)
 		values
 			(#{mno, jdbcType=INTEGER}, #{bno, jdbcType=INTEGER}, seq_recipeReply.nextval,
-			#{seq, jdbcType=INTEGER},
+			seq_recipeReply.currval, 0,
 			#{content, jdbcType=VARCHAR})
+			
+		</if>
+		
+		<if test="#{rrno}!=null">
+		insert into 
+			tbl_recipereply(mno, bno, rno, rrno, seq, content)
+		values
+			(#{mno, jdbcType=INTEGER}, #{bno, jdbcType=INTEGER}, seq_recipeReply.nextval,
+			#{rrno, jdbcType=INTEGER}, 1,
+			#{content, jdbcType=VARCHAR})
+		</if>
+		
 	</insert>
 
 	<select id="read" resultType="RecipeReplyVO">
@@ -32,6 +45,7 @@
 			seq > 0
 		and
 			rrno = #{rrno, jdbcType=INTEGER}
+		order by rno asc
 	</select>
 	
 	<select id="rnoCurrval" resultType="Integer">
