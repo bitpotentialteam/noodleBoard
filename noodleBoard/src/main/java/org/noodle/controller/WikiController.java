@@ -2,13 +2,14 @@ package org.noodle.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.noodle.domain.NoodleVO;
 import org.noodle.service.WikiServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,18 +54,26 @@ public class WikiController {
 			return null;
 		}
 		
+	}// end list...
+	
+	@GetMapping("/view")
+	public void viewGET(){
+		logger.info("Wiki viewGET called.....");
 	}
 
 	@PostMapping("/view/{name}")
-	public void viewPOST(@PathVariable("name") String name, Model model){
-		logger.info("Wiki view called.....");
+	public String viewPOST(@PathVariable("name") String name, HttpSession session){
+		logger.info("Wiki viewPOST called.....");
 		
 		try {
 			logger.info("name: " + name);
-			model.addAttribute("view", service.view(name));
+			session.setAttribute("view", service.view(name));
+			
+			return "/wiki/view";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-	}
-}
+	}// end viewPOST...
+}// end class...

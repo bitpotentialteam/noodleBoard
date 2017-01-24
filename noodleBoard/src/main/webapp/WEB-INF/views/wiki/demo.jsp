@@ -98,7 +98,7 @@ body {
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
   text-align: left;
-  padding: 1.6rem;
+  /* padding: 1.6rem; */
   vertical-align: top;
   border-top: 0;
   -webkit-transition: all 0.3s ease;
