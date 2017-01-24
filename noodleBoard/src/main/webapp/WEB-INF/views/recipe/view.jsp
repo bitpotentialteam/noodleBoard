@@ -457,7 +457,7 @@ div.row.control-group {
 	    					str = "<p>"+content+"</p>";
 	    					reContent.html(str);
 	    				}
-	    			}
+	    			} 
 	    			});
 			
 		});
