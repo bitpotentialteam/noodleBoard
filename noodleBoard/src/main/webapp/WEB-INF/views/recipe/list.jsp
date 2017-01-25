@@ -1,40 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>라면이 좋아</title>
-
-<!-- Bootstrap Core CSS -->
-<link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link href="../resources/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css">
-<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
-	rel='stylesheet' type='text/css'>
-<link
-	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
-	rel='stylesheet' type='text/css'>
-<link
-	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
-	rel='stylesheet' type='text/css'>
-
-<link href="../resources/css/agency.min.css" rel="stylesheet">
+<jsp:include page="../page/header.jsp" flush="false" />
 
 <style>
 .navbar-custom {
@@ -109,46 +76,6 @@ section h3.section-subheading {
 
 </style>
 
-</head>
-<body id="page-top" class="index">
-
-	<!-- Navigation -->
-	<nav id="mainNav"
-		class="navbar navbar-default navbar-custom navbar-fixed-top">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header page-scroll">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> Menu <i
-					class="fa fa-bars"></i>
-			</button>
-			<a class="navbar-brand page-scroll" href="#page-top">Noodles.com</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="hidden"><a href="#page-top"></a></li>
-				<li><a class="page-scroll" href="/wiki">NOODLE-WIKI</a></li>
-				<li><a class="page-scroll" href="/recipe/list">RECIPE</a></li>
-				<li><a class="page-scroll" href="/timeline">COMMUNITY</a></li>
-				<li><a class="page-scroll" href="/developer/api">DEVELOPER</a>
-				</li>
-				<c:if test='${sessionScope.LOGIN eq success}'>
-					<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
-					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
-				</c:if>
-				<c:if test='${sessionScope.LOGIN ne success}'>
-					<li><a class="page-scroll" id="login" href="<c:url value="/logout" />">LOGOUT</a></li>
-					<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
-				</c:if>
-			</ul>
-		</div>
-	</div>
-	</nav>
-	
 	<section id="portfolio" class="bg-light-gray">
 		<div class="container">
 			<div class="text-center">
@@ -160,20 +87,12 @@ section h3.section-subheading {
 						<button type="button" id="btnSearch" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value='tcw'>전체<span class="caret"></span></button>
 					    	<ul class="dropdown-menu">
 					         	<li id='tcw'><a href="#">전체</a></li>
+					         	<li role="separator" class="divider"></li>
 					        	<li id='t'><a href="#">제목</a></li>
 					         	<li id='c'><a href="#">내용</a></li>
 					         	<li id='w'><a href="#">작성자</a></li>
 					         	<li id='tc'><a href="#">제목+내용</a></li>
 					         	<li id='cw'><a href="#">내용+작성자</a></li>
-<!-- 					         	<select name="searchType"> -->
-				
-<%-- 									<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>제목</option> --%>
-<%-- 									<option value="c" <c:out value="${cri.searchType eq 'c'?'selected':''}"/>>내용</option> --%>
-<%-- 									<option value="w" <c:out value="${cri.searchType eq 'w'?'selected':''}"/>>작성자</option> --%>
-<%-- 									<option value="tc" <c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>제목+내용</option> --%>
-<%-- 									<option value="cw" <c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>내용+작성자</option> --%>
-<%-- 									<option value="tcw" <c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>제목+내용+작성자</option> --%>
-<!-- 								</select> -->
 					        </ul>
 					</div><!-- /btn-group -->
 					<input type="text" class="form-control" aria-label="..." id="keywordInput" name="keyword" value="${cri.keyword}">

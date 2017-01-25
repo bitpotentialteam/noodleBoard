@@ -17,22 +17,14 @@
 <title>NOODELS</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="resources/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="resources/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css">
-<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
-	rel='stylesheet' type='text/css'>
-<link
-	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
-	rel='stylesheet' type='text/css'>
-<link
-	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
-	rel='stylesheet' type='text/css'>
+<link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
 <!-- Theme CSS -->
 <link href="resources/css/agency.min.css" rel="stylesheet">
@@ -54,7 +46,6 @@
 
 </head>
 <body id="page-top" class="index">
-
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container">
@@ -73,22 +64,19 @@
 					<li><a class="page-scroll" href="/wiki">Noodle-Wiki</a></li>
 					<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
 					<li><a class="page-scroll" href="/timeline">Community</a></li>
-					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
-					
+					<li><a class="page-scroll" href="/developer/api">Developer</a></li>		
 					<c:if test='${sessionScope.LOGIN eq success}'>
-					<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
-					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
+						<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
+						<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
 					</c:if>
 					<c:if test='${sessionScope.LOGIN ne success}'>
-					<li><a class="page-scroll" id="login" href="<c:url value="/logout" />">LOGOUT</a></li>
-					<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
+						<li><a class="page-scroll" id="login" href="<c:url value="/logout" />">LOGOUT</a></li>
+						<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
 					</c:if>
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+            </div> <!-- /.navbar-collapse -->
+        </div> <!-- /.container-fluid -->
+    </nav> <!-- Navigation END -->
 
     <!-- Header -->
     <header>

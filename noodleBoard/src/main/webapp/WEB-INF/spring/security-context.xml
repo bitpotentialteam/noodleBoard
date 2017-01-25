@@ -21,7 +21,7 @@
          invalidate-session="true" logout-url="/logout" logout-success-url="/"/>
 	
 	<security:intercept-url pattern="/timeline" access="ROLE_MEMBER"/>
-	<security:intercept-url pattern="/wiki" access="ROLE_MEMBER"/>
+	
 	<security:intercept-url pattern="/user/myPage" access="ROLE_MEMBER"/>
 	<security:intercept-url pattern="/user/modify" access="ROLE_MEMBER"/>
 	<security:intercept-url pattern="/user/apiRegister" access="ROLE_MEMBER"/>
