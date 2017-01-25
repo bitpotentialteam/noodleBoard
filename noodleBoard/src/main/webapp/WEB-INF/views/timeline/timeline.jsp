@@ -242,7 +242,7 @@ button {
 										</div>
 										
 										<div class="modal-body">
-											<input value="${vo.content}" name="content" id="modContent">
+											<textarea placeholder="${vo.content}" name="content" id="modContent"></textarea>
 										</div>
 										
 										<div class="modal-footer">
@@ -346,7 +346,18 @@ button {
 $( document ).ready(function() {
 		
 		var sessionMno = $("#createForm").find("#sessionMno").val();
-				
+		
+		
+		$(document).on("click","#createBtn", function(event){
+			var content = $("#content").val();
+		
+				if(content == ""){
+					alert("내용을 입력해 주세요!");
+				return false;
+				}
+		});
+		
+
 		function user(){
 
 			var timeLineBox = $('#timelinebigbox').children(); 
@@ -506,11 +517,17 @@ $( document ).ready(function() {
 			
 		var content = $(this).parents('.modal-content').find('#modContent').val();
 		$('#fcontent').val(content);
+		
+		if(content == ""){
+			alert("수정할 내용을 입력해주세여!!");
+			return false;
 			
-		formObj.attr("action", "timeline/modify");
-		formObj.attr("method", "post");
-		formObj.submit();
-					
+		}else{
+			
+			formObj.attr("action", "timeline/modify");
+			formObj.attr("method", "post");
+			formObj.submit();
+		}
 	});
 		
 		
@@ -785,7 +802,7 @@ $( document ).ready(function() {
 								+ " <!-- Modify Modal --> <div id='myModal' class='modal'> "
 								+ " <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> "
 								+ " <span class='close' id='closeBtn'>&times;</span> <h2>수정할 내용을 입력해주세요!</h2> </div> "
-								+ " <div class='modal-body'> <input value='"+nContent+"' name='content' id='modContent'> </div> "
+								+ " <div class='modal-body'> <textarea placeholder='"+nContent+"' name='content' id='modContent'></textarea> </div> "
 								
 								+ " <div class='modal-footer'> "
 								+ " <button type='button' id='modBtn' value='"+nTno+"'><span class='mod glyphicon glyphicon-erase' ></span></button> "
