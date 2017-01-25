@@ -146,7 +146,7 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	@Override
 	public Integer likeHistory(RecipeBoardVO vo) throws Exception {
 		return dao.likeHistory(vo);
-	}
+	} 
 
 	@Override
 	public Integer readLikeCnt(Integer bno) throws Exception {
