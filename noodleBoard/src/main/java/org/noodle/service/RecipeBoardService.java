@@ -16,12 +16,16 @@ public interface RecipeBoardService {
 	public List<RecipeBoardVO> listPage(int page) throws Exception;
 	public int getTotalCount(SearchVO cri) throws Exception;
 
-	public void addLikeCount(Integer bno) throws Exception;
+	public void addLikeCount(RecipeBoardVO vo) throws Exception;
 	public void minusLikeCount(Integer bno) throws Exception;
 	public void register(RecipeBoardVO vo, List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception;
 	public RecipeBoardVO view(Integer bno) throws Exception;
 	public void modify(RecipeBoardVO vo, List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception;
 
+	public void registLike(RecipeBoardVO vo) throws Exception;
+	public Integer likeHistory(RecipeBoardVO vo) throws Exception;
+	public Integer readLikeCnt(Integer bno) throws Exception;
+	
 	public void modifyIno(RecipeBoardVO vo) throws Exception;
 	public RecipeBoardVO viewTitle(String title) throws Exception;
 }

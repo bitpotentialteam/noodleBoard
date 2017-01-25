@@ -96,7 +96,7 @@ public class TimeLineController {
 		vo.setTno(tno);
 		
 		logger.info(vo.toString());
-		
+	
 		return service.likeHistory(vo); 
 	}
 	

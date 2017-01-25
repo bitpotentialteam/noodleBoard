@@ -73,6 +73,17 @@ public class UploadController {
 
 	}
 	
+	@GetMapping(value = "recipe/show", produces = { "image/gif", "image/jpg", "image/jpeg" })
+
+	public @ResponseBody byte[] recipeShow(String name) throws Exception {
+
+		InputStream in = new FileInputStream("C:\\zzz\\upload\\" + name);
+		// OutputStream out = new ByteArrayOutputStream();
+
+		return IOUtils.toByteArray(in);
+
+	}
+	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 

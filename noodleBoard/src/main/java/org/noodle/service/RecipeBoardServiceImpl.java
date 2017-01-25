@@ -86,9 +86,10 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 
 
 	@Override
-	public void addLikeCount(Integer bno) throws Exception {
-
-		dao.addLikeCount(bno);
+	@Transactional
+	public void addLikeCount(RecipeBoardVO vo) throws Exception {
+		dao.addLikeCount(vo);
+		dao.createLike(vo);
 	}
 
 	@Override
@@ -135,6 +136,21 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	public RecipeBoardVO viewTitle(String title) throws Exception {
 
 		return dao.readTitle(title);
+	}
+
+	@Override
+	public void registLike(RecipeBoardVO vo) throws Exception {
+		dao.createLike(vo);
+	}
+
+	@Override
+	public Integer likeHistory(RecipeBoardVO vo) throws Exception {
+		return dao.likeHistory(vo);
+	}
+
+	@Override
+	public Integer readLikeCnt(Integer bno) throws Exception {
+		return dao.readLikeCnt(bno);
 	}
 
 }

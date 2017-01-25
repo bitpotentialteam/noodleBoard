@@ -50,4 +50,9 @@ public class RecipeImageServiceImpl implements RecipeImageService {
 		return dao.readName(thumbnail);
 	}
 
+	@Override
+	public List<RecipeImageVO> listAll() throws Exception {
+		return dao.readAll();
+	}
+
 }

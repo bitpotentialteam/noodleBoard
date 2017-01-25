@@ -194,9 +194,18 @@ section h3.section-subheading {
 	<!-- 							<i class="fa fa-plus fa-3x"></i> -->
 	<!-- 						</div> -->
 	<!-- 					</div> -->
+						<input type="hidden" name="bno" value="${boardVO.bno}">
+							<c:set var="loops" value="true"></c:set>
+							<c:forEach items="${ilist}" var="imageVO">
+							<c:if test="${boardVO.ino eq imageVO.ino}">
+							<c:if test="${loops}">
 						<a href="/recipe/view${pageMaker.makeSearch(pageMaker.pageVO.page)}&bno=${boardVO.bno}">
-							<img src="../resources/img/noodle/${boardVO.ino}.jpg" class="img-responsive" alt="image of ${boardVO.title}">
+								<img src="/recipe/show?name=${imageVO.thumbnail}" class="img-responsive">
 						</a>
+							<c:set var="loops" value="false"></c:set>
+							</c:if>
+							</c:if>
+						</c:forEach>
 						<div class="portfolio-caption">
 							<p class="text-muted">${boardVO.title}</p>
 							<p class="text-muted">${boardVO.content}</p>

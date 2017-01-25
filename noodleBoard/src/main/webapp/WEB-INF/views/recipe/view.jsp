@@ -125,6 +125,22 @@ div.row.control-group {
  #reReplyContent{ 
   	display: none; 
  }
+ 
+ #likeBtn {
+
+    background-color: rgba( 255, 255, 255, 0 );
+    border : 0;
+    outline : 0;
+	font-size: 1.5em;
+	padding: 0px;
+	padding-left: 10px;
+}
+
+.badge.badge-count{
+	top: -12px;
+    left: -11px;
+    background-color: #fed136;
+}
 </style>
 
 </head>
@@ -170,7 +186,14 @@ div.row.control-group {
         <div class="container">
             <div class="intro-text">
                 <div class="intro-lead-in">${nickVO.nickname}님의 맛있는</div>
-                <div class="intro-heading">${vo.title}</div>
+                <div class="intro-heading" id="check">${vo.title}
+                	<h3><fmt:formatDate value="${vo.regdate}" type="both" dateStyle="medium" timeStyle="short"/></h3>
+					<button type='button' id='likeBtn' value='${vo.bno}' class='btn btn-default'>
+					<span class='glyphicon glyphicon-thumbs-up'></span>
+					<span class='badge badge-count' id='likeCnt'>${vo.likeCnt}</span> </button>
+					<input type="hidden" id="likeCt" value="${vo.likeCnt}">
+					<input type="hidden" id="likeChk" value="${likeCheck}">
+                </div>
                 <div><a href="#recipe" class="page-scroll btn btn-xl">detail</a></div>
             </div>
         </div>
@@ -181,7 +204,7 @@ div.row.control-group {
 	<input type='hidden' id='mno' name='mno' value="${vo.mno}">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="bnoFind">
 				<input type="hidden" name="bno" value="${vo.bno}">		
 					<div class="row control-group">
 						<div class="form-group col-xs-12 floating-label-form-group controls">
@@ -246,8 +269,7 @@ div.row.control-group {
 					</div>
 					<div class="-right row">
 						<div class="form-group col-md-4" id="mdBtn">
-							<input type="button"
-								class="btn btn-default-right" id="list" value="목 록">
+							<input type="button" class="btn btn-default-right" id="list" value="목 록">
 						</div>
 					</div>
 			</div>
@@ -532,6 +554,42 @@ div.row.control-group {
 			});
 			
 		
+			$(document).on("click","#likeBtn", function(event){
+				event.preventDefault();
+					
+				var $this = $(this);
+				var bno = $this.val();
+				var mno = $("#mno").val();
+				var likeCnt = $("#check").find("#likeCt").val();
+				var likeCheck = $("#check").find("#likeChk").val();
+				console.log(bno);
+				console.log($("#mno").val());
+				console.log(likeCnt);
+				console.log(likeCheck);
+				
+				if(likeCheck == 0){
+				$.ajax({
+		    		type : 'get',
+		    		url : '/recipe/addlikeCnt',
+		    		headers : {
+		    			"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+		    			"X-HTTP-Method-Override" : "GET"
+		    		},
+		    		dataType : 'text',
+		    		data : {mno:sessionMno, bno:bno},
+		    		success : function(result) {    
+		    					console.log(result);		
+			    					alert("추천해주셔서 감사합니다");
+				    				likeCnt.html(result);
+			    			}
+		    		});
+				}else{
+					alert("중복 추천입니다");
+					$("#likeBtn").attr('disabled',true);
+				}
+				
+			});
+			
 		});
 	
 

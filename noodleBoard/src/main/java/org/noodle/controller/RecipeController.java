@@ -14,6 +14,7 @@ import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.domain.RecipeImageVO;
 import org.noodle.domain.RecipeReplyVO;
 import org.noodle.domain.SearchVO;
+import org.noodle.domain.TimeLineVO;
 import org.noodle.service.MemberService;
 import org.noodle.service.RecipeBoardService;
 import org.noodle.service.RecipeCuisineService;
@@ -110,6 +111,8 @@ public class RecipeController {
 		
 		logger.info("listAll.............");
 		model.addAttribute("list", service.search(cri));
+		model.addAttribute("ilist", iservice.listAll());
+		logger.info("bno : ");
 
 		List<RecipeBoardVO> blist = new ArrayList<RecipeBoardVO>();
 		blist = service.search(cri);
@@ -222,27 +225,22 @@ public class RecipeController {
 		return "redirect:list";
 	}
 
+	@GetMapping("/addlikeCnt")
+	@ResponseBody
+	public Integer addlikeCtn(RecipeBoardVO vo, Model model, @RequestParam("bno") Integer bno, @RequestParam("mno") Integer mno)throws Exception{
+		logger.info("addlike....");
+		logger.info("vo : " + vo);
+		vo.setBno(bno);
+		vo.setMno(mno);
+		logger.info("likeHistory : " + service.likeHistory(vo));
+		if(service.likeHistory(vo) == 0){
+			service.addLikeCount(vo);
+		}
+		
+		model.addAttribute("likeCheck", service.likeHistory(vo));
+		logger.info("likeHistory : " + service.likeHistory(vo));
+		return service.readLikeCnt(vo.getBno());
+	}
 	
-	
-//	@GetMapping("/reply")
-//	public List<RecipeReplyVO> replyList(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri,HttpSession session, Model model) throws Exception{
-//		logger.info("replyList called...........");
-//		model.addAttribute("replyList", rservice.listAll(bno));
-//		logger.info("listAll... " + rservice.listAll(bno));
-//		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
-//		logger.info(user.toString());
-//		mservice.read1(user.toString());
-//		MemberVO vo = mservice.read1(user.toString());
-//		MemberVO nickVO = mservice.read(service.view(bno).getMno());
-//
-//		model.addAttribute("nickVO", nickVO);
-//		
-//		session.setAttribute("VO", vo);
-//		logger.info("ReplyListALl: "+rservice.listAll(bno).toString());
-//		
-//		return rservice.listAll(bno);
-//	}
-	
-
 
 }

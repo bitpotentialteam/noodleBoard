@@ -164,6 +164,20 @@
 (select * from tbl_recipeboard order by bno desc) where rownum<=#{num}*10) where rn>(#{num}-1)*10
 		]]>
 	</select>
+	
+	<insert id="createLike">
+		insert into tbl_recipelike(bno, mno)
+		values ( #{bno, jdbcType=INTEGER} , #{mno, jdbcType=INTEGER})
+	</insert>
+	
+	<select id="likeHistory" resultType="Integer">
+		select bno from tbl_recipelike where bno = #{bno, jdbcType=INTEGER} and mno = #{mno, jdbcType=INTEGER}	
+		group by bno
+	</select>
+	
+	<select id="readLikeCnt" resultType="Integer">
+		select likeCnt from tbl_recipeboard where bno = #{bno, jdbcType=INTEGER}
+	</select>
 
 	<update id="addViewCount">
 		 update tbl_recipeBoard set viewCnt = viewCnt +1 where bno =#{bno, jdbcType=INTEGER}

@@ -19,10 +19,14 @@ public interface RecipeBoardDAO {
 	public int totalCount(SearchVO cri) throws Exception;
 	
 	public void addViewCount(Integer bno) throws Exception;
-	public void addLikeCount(Integer bno) throws Exception;
+	public void addLikeCount(RecipeBoardVO vo) throws Exception;
 	public void minusLikeCount(Integer bno) throws Exception;
 	public void addReplyCount(Integer bno) throws Exception;
 	public void minusReplyCount(Integer bno) throws Exception;
+	
+	public void createLike(RecipeBoardVO vo) throws Exception;
+	public Integer likeHistory(RecipeBoardVO vo) throws Exception;
+	public Integer readLikeCnt(Integer bno) throws Exception;
 	
 	public void updateIno(RecipeBoardVO vo) throws Exception;
 	public RecipeBoardVO readTitle(String title) throws Exception;

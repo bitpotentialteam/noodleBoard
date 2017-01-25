@@ -20,6 +20,10 @@
 			tbl_recipeImage where ino =#{ino, jdbcType=INTEGER}
 	</select>
 	
+	<select id="readAll" resultType="RecipeImageVO">
+		select * from tbl_recipeImage
+	</select>
+	
 	<update id="update">
 		update 
 			tbl_recipeiamge 
