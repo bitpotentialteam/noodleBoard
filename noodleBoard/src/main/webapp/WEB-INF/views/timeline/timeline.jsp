@@ -249,7 +249,7 @@ button {
 										</div>
 										
 										<div class="modal-body">
-											<textarea placeholder="${vo.content}" name="content" id="modContent"></textarea>
+											<textarea name="content" id="modContent">${vo.content}</textarea>
 										</div>
 										
 										<div class="modal-footer">
@@ -812,7 +812,7 @@ $( document ).ready(function() {
 								+ " <!-- Modify Modal --> <div id='myModal' class='modal'> "
 								+ " <!-- Modal content --> <div class='modal-content'> <div class='modal-header'> "
 								+ " <span class='close' id='closeBtn'>&times;</span> <h2>수정할 내용을 입력해주세요!</h2> </div> "
-								+ " <div class='modal-body'> <textarea placeholder='"+nContent+"' name='content' id='modContent'></textarea> </div> "
+								+ " <div class='modal-body'> <textarea name='content' id='modContent'>"+ nContent +"</textarea> </div> "
 								
 								+ " <div class='modal-footer'> "
 								+ " <button type='button' id='modBtn' value='"+nTno+"'><span class='mod glyphicon glyphicon-erase' ></span></button> "
