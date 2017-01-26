@@ -173,9 +173,8 @@ public class UserController {
 	@GetMapping("/login")
 	public void loginGET(HttpSession session) throws Exception {
 		logger.info("login get...");
-		//Object user = SecurityContextHolder.getContext().getAuthentication().getName();
-		//logger.info(user.toString());
-		//session.setAttribute("LOGIN", user.toString());
+
+		session.setAttribute("LOGIN", "success");
 	}
 	@GetMapping("/login_duplicate")
 	public void login_duplicate()throws Exception{

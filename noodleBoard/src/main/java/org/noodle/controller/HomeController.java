@@ -38,12 +38,25 @@ public class HomeController {
 	
 	@GetMapping("/timeline")
 	public String timeLine(Model model,  HttpSession session) throws Exception {
+		
+		TimeReplyVO vo = new TimeReplyVO();
 
 		logger.info("TIMELINE called.....");
 
 		model.addAttribute("list", service.listView());
+		
+		logger.info("myPage page...");
+		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
+		logger.info(user.toString());
+		mservice.read1(user.toString());
+		MemberVO info = mservice.read1(user.toString());
+		
+		session.setAttribute("VO", info);
 
 		return "timeline/timeline";
+		
+		
+		
 		
 	}
 	

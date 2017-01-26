@@ -2,8 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -59,11 +57,11 @@
 					<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
 					<li><a class="page-scroll" href="/timeline">Community</a></li>
 					<li><a class="page-scroll" href="/developer/api">Developer</a></li>
-					<c:if test="${SPRING_SECURITY_CONTEXT == null}">
+					<c:if test='${sessionScope.LOGIN eq success}'>
 						<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
 						<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
 					</c:if>
-					<c:if test="${SPRING_SECURITY_CONTEXT != null}">
+					<c:if test='${sessionScope.LOGIN ne success}'>
 						<li><a class="page-scroll" id="login" href="<c:url value="/logout" />">LOGOUT</a></li>
 						<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
 					</c:if>
