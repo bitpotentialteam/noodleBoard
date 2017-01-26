@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="../page/header.jsp" flush="false" />
@@ -166,7 +167,7 @@ button {
 }
 
 </style>	
-	
+
 
 	<section class="bg-light-gray">
 	<div class="container">
@@ -176,8 +177,14 @@ button {
 			<!-- .box-header START -->
 				<div class="box-header with-border">
 					<div class="user-block">
-						<img class="img-circle" src="/user/show?name=${sessionScope.VO.picture}">
-						<span class="username">${sessionScope.VO.nickname}</span>   
+					
+					<c:set var="userDetail" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+					
+					<img class="img-circle" src="/user/show?name=${memberVO.picture}">
+						<sec:authorize access="isAuthenticated()">
+						<span class="username">${memberVO.nickname}</span>
+						</sec:authorize>  
+						 
 					</div>
 				</div>
 			<!-- .box-header END-->
@@ -186,7 +193,7 @@ button {
 					<form id="createForm" action='timeline/regist' method='post'>
 						<textarea id="content" name="content" type="text" class="form-control input-md"
 							placeholder="안녕하새오 뿌잉뿌잉 'ㅅ'"></textarea>			
-							<input type="hidden" id="sessionMno" name="mno" placeholder="mno" value="${sessionScope.VO.mno}">
+							<input type="hidden" id="sessionMno" name="mno" placeholder="mno" value="${memberVO.mno}">
 							<button type="submit" class="pull-right" aria-label="Left Align" id="createBtn">
   					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> </button>
 
@@ -324,6 +331,9 @@ button {
 						
 
 	</div>
+	
+
+	
 	</section>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

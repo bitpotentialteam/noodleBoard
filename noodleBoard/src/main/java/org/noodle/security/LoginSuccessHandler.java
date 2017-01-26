@@ -1,47 +1,53 @@
 package org.noodle.security;
 
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.Response;
 
+import org.noodle.domain.MemberVO;
+import org.noodle.service.MemberService;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-	   static final int DEFAULT_MAX_AGE = 60 * 60 * 24 * 7;
+	private MemberService mservice;
 
-	   private int maxAge = DEFAULT_MAX_AGE;
+	public void setSerivce(MemberService serivce) {
+		this.mservice = serivce;
+	}
 
-	   public void setMaxAge(int maxAge) {
-	      this.maxAge = maxAge;
-	   }
+	@Override
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
+			throws IOException, ServletException {
 
-	   @Override
-	   public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
-	         throws IOException, ServletException {
+		User user = (User)auth.getPrincipal();
+
+		MemberVO memberVO = null;
+		try {
+			memberVO = mservice.read1(user.getUsername());
+			
+			request.getSession().setAttribute("memberVO", memberVO);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("login success handler......called............." + user.toString());
+
+		System.out.println("login success handler......called.............");
+
+		System.out.println("login success handler......called.............");
+
+		System.out.println("login success handler......called.............");
+		
+		response.sendRedirect("/");
+	}
 	
-	      String remember = request.getParameter("username");
-
-	      System.out.println("remember "+remember);
-	      if (remember != null) {
-
-	         String userid = auth.getName();
-	         System.out.println("userid"+userid);
-	         Cookie cookie = new Cookie("username", userid);
-	         System.out.println("cookie"+cookie);
-	         cookie.setMaxAge(maxAge);
-	         response.addCookie(cookie);
-
-	      } else {
-	         Cookie cookie = new Cookie("username", "");
-	         cookie.setMaxAge(0);
-	         response.addCookie(cookie);
-
-	      }
-	      response.sendRedirect("/");
-	   }
 }
