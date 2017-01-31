@@ -174,7 +174,7 @@ public class UserController {
 	public void loginGET(HttpSession session) throws Exception {
 		logger.info("login get...");
 
-		session.setAttribute("LOGIN", "success");
+		//session.setAttribute("LOGIN", "success");
 	}
 	@GetMapping("/login_duplicate")
 	public void login_duplicate()throws Exception{

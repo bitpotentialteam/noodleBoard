@@ -53,7 +53,7 @@
 		<div class="register-box-body">
 			<p class="login-box-msg">Register a new membership</p>
 
-			<form action="register" method="post" id="register">
+			<form action="register" method="post" id="registerPost">
 				<div class="form-group has-feedback">
 					<div class="input-group">
 						<input type="text" name="userid" id="userid" class="form-control"
@@ -161,6 +161,7 @@
 	<script>
 		var checkResult = "false"; //중복체크 부분 false로 고정 (중복체크안한사람 가입못하게 막는과정)
 		var checkResults = "false"; 
+		var register = $("#registerPost");
 		$(document).ready(function() {
 			$("#regBtn").on("click",function(event) {
 				//레지스터할때 중복체크안한사람 가입못하게 막는과정
@@ -180,8 +181,9 @@
 										alert("항목을 입력해주세요");
 						}
 					if(checkResult == "true" , checkResults == "true"){
-						$("#register").submit();
+						console.log(register);
 						alert("회원 가입을 축하드립니당 :) 환영환영 ");
+						register.submit();
 					} else if(checkResult =="false"){
 						alert("ID 중복확인을 해주세요");
 					} else if (checkResults == "false"){
