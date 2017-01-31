@@ -432,7 +432,7 @@ div.row.control-group {
 			}
 		})(); 
 		
-		(function(){
+		(function(){  
 			$.ajax({
 	    		type : 'get',
 	    		url : '/recipe/view',
