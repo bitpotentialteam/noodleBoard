@@ -73,6 +73,7 @@ public class PageMaker {
 			uriComponents = UriComponentsBuilder.fromUri(uriComponents.toUri())
 			.queryParam("searchType", ((SearchVO)cri).getSearchType())
 			.queryParam("keyword", cri.getKeyword())
+			.queryParam("orderType", cri.getOrderType())
 			.build();
 		}
 		

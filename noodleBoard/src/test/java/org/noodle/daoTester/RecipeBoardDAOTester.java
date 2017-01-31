@@ -49,7 +49,7 @@ public class RecipeBoardDAOTester {
 	}
 	@Test
 	public void testAddViewCount() throws Exception{
-		dao.addViewCount(3);
+//		dao.addViewCount(3);
 	}
 	
 

@@ -58,9 +58,9 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	}
 
 	@Override
-	public void addViewCount(Integer bno) throws Exception {
+	public void addViewCount(RecipeBoardVO vo) throws Exception {
 
-		session.update(namespace + "addViewCount", bno);
+		session.update(namespace + "addViewCount", vo);
 	}
 
 	@Override
@@ -123,6 +123,21 @@ public class RecipeBoardDAOImpl implements RecipeBoardDAO {
 	@Override
 	public Integer readLikeCnt(Integer bno) throws Exception {
 		return session.selectOne(namespace + "readLikeCnt", bno);
+	}
+
+	@Override
+	public void createViewCnt(RecipeBoardVO vo) throws Exception {
+		session.insert(namespace + "createViewCnt", vo);
+	}
+
+	@Override
+	public Integer viewHistory(RecipeBoardVO vo) throws Exception {
+		return session.selectOne(namespace + "viewHistory", vo);
+	}
+
+	@Override
+	public Integer readViewCnt(Integer bno) throws Exception {
+		return session.selectOne(namespace + "readViewCnt");
 	}
 	
 

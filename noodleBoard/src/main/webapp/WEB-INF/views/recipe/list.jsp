@@ -73,6 +73,22 @@ section h3.section-subheading {
     z-index: 3 !important;
 }
 
+ #like {
+
+    background-color: rgba( 255, 255, 255, 0 );
+    border : 0;
+    outline : 0;
+	font-size: 2.5em;
+	padding: 0px;
+	padding-left: 10px;
+}
+
+.badge.badge-count{
+	top: -12px;
+    left: -11px;
+    background-color: #fed136;
+}
+
 
 </style>
 
@@ -100,6 +116,9 @@ section h3.section-subheading {
 						<button class="btn btn-default" type="button" id="searchBtn">검색</button>
 					</span>
 				</div><!-- /input-group -->
+					        <input type="button" id="popular" value="인기순">
+					        <input type="button" id="viewCnt" value="조회순">
+					        <input type="button" id="newest" value="최신순">
 			</div>
 		
 		<div class="container listBox">
@@ -107,19 +126,19 @@ section h3.section-subheading {
 			<div class="row">
 				<!-- items START -->
 				<c:forEach items="${list}" var="boardVO">
-					<div class="col-md-4 col-sm-6 portfolio-item">
+					<div class="col-md-4 col-sm-6 portfolio-item" id="listBody">
 	<!-- 					<div class="portfolio-hover"> -->
 	<!-- 						<div class="portfolio-hover-content"> -->
 	<!-- 							<i class="fa fa-plus fa-3x"></i> -->
 	<!-- 						</div> -->
 	<!-- 					</div> -->
-						<input type="hidden" name="bno" value="${boardVO.bno}">
+						<input type="hidden" id="bno" name="bno" value="${boardVO.bno}">
 							<c:set var="loops" value="true"></c:set>
 							<c:forEach items="${ilist}" var="imageVO">
 							<c:if test="${boardVO.ino eq imageVO.ino}">
 							<c:if test="${loops}">
-						<a href="/recipe/view${pageMaker.makeSearch(pageMaker.pageVO.page)}&bno=${boardVO.bno}">
-								<img src="/recipe/show?name=${imageVO.thumbnail}" class="img-responsive">
+						<a id="srcView" href="/recipe/view${pageMaker.makeSearch(pageMaker.pageVO.page)}&bno=${boardVO.bno}" value="${boardVO.bno}">
+							<img src="/recipe/show?name=${imageVO.thumbnail}" class="img-responsive">
 						</a>
 							<c:set var="loops" value="false"></c:set>
 							</c:if>
@@ -139,6 +158,12 @@ section h3.section-subheading {
 							</c:if> 
 						</c:forEach>						
 						<h6><fmt:formatDate value="${boardVO.regdate}" pattern="yyyy년MM월dd일"/></h6>
+						<span class='glyphicon glyphicon-thumbs-up' id="like">
+							<span class='badge badge-count' id='likeCnt'>${boardVO.likeCnt}
+							</span>
+							</span>	
+							<span class='badge badge-count' id='viewCnt'>${boardVO.viewCnt}
+							</span>
 						</div>
 					</div>
 				</c:forEach> <!-- items END -->
@@ -167,10 +192,10 @@ section h3.section-subheading {
 
 	<form id="pageForm">
 		<input type="hidden" name="page" value="${pageMaker.pageVO.page }">
-		<input type="hidden" name="pageUnit"
-			value="${pageMaker.pageVO.pageUnit }"> <input type="hidden"
-			name="searchType" value="${cri.searchType}"> <input
-			type="hidden" name="keyword" value="${cri.keyword}">
+		<input type="hidden" name="pageUnit" value="${pageMaker.pageVO.pageUnit }"> 
+		<input type="hidden" name="searchType" value="${cri.searchType}"> 
+		<input type="hidden" name="keyword" value="${cri.keyword}">
+		<input type="hidden" name="orderType" value="${cri.orderType}">
 	</form>
 
 	<footer>
@@ -194,19 +219,54 @@ section h3.section-subheading {
 
 	<script>
 	
-	$(document).ready(
-				function() {
-					$('#searchBtn').on(
-							"click",
+	$(document).ready(function() {
+		
+		//최신순 함수 빼놓음
+		var newest = function(event) {
+			self.location = "list"
+					+ '${pageMaker.makeQuery(1)}'
+					+ "&searchType="
+					+ $("#btnSearch").val()
+					+ "&keyword="
+					+ $('#keywordInput').val();
+		}
+		
+					//검색
+					$('#searchBtn').on("click",function(event){
+						newest();
+					});
+					
+					//인기순
+					$('#popular').on("click",
 							function(event) {
-								
 								self.location = "list"
 										+ '${pageMaker.makeQuery(1)}'
 										+ "&searchType="
 										+ $("#btnSearch").val()
 										+ "&keyword="
-										+ $('#keywordInput').val();
-							});
+										+ $('#keywordInput').val()
+										+ "&orderType="
+										+ $('#popular').val();
+					});
+					
+					//조회순
+					$('#viewCnt').on("click",
+							function(event) {
+								self.location = "list"
+										+ '${pageMaker.makeQuery(1)}'
+										+ "&searchType="
+										+ $("#btnSearch").val()
+										+ "&keyword="
+										+ $('#keywordInput').val()
+										+ "&orderType="
+										+ $('#viewCnt').val();
+					});
+					//최신순
+					$("#newest").on("click", function(event){
+						newest();
+					});
+					
+					//등록버튼
 					$('#regBtn').on("click", function(evt) {
 						self.location = "register";
 					});

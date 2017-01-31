@@ -112,8 +112,13 @@ public class RecipeController {
 		logger.info("listAll.............");
 		model.addAttribute("list", service.search(cri));
 		model.addAttribute("ilist", iservice.listAll());
-		logger.info("bno : ");
-
+		
+		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
+		logger.info(user.toString());
+		MemberVO mvo = mservice.read1(user.toString());
+		
+		model.addAttribute("VO", mvo);
+		
 		List<RecipeBoardVO> blist = new ArrayList<RecipeBoardVO>();
 		blist = service.search(cri);
 		
@@ -128,6 +133,7 @@ public class RecipeController {
 		
 		logger.info("SearchType: "+cri.getSearchType());
 		logger.info("keyWord: "+cri.getKeyword());
+		logger.info("orderType: "+cri.getOrderType());
 		if(cri.getSearchType() == "w".toString()){
 			String mno = mservice.viewNick(cri.getKeyword()).getMno().toString();
 
@@ -152,7 +158,7 @@ public class RecipeController {
 	
 	
 	@GetMapping("/view")
-	public void view(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri,HttpSession session, Model model) throws Exception {
+	public void view(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri, HttpSession session, Model model) throws Exception {
 		
 		logger.info("view.............");
 		model.addAttribute("vo", service.view(bno));
@@ -160,11 +166,20 @@ public class RecipeController {
 		model.addAttribute("ilist", iservice.viewBno(bno));
 		model.addAttribute("replyList", rservice.listAll(bno));
 		logger.info("replyList : " + rservice.listAll(bno));
-		
+	
 		List<RecipeReplyVO> rRlist = rservice.listAll(bno);
 		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
 		logger.info(user.toString());
 		MemberVO vo = mservice.read1(user.toString());
+		
+		RecipeBoardVO rvo = new RecipeBoardVO();
+		rvo.setBno(bno);
+		rvo.setMno(vo.getMno());
+		logger.info("rvo : " + rvo);
+		service.registView(rvo);
+		model.addAttribute("likeCheck", service.likeHistory(rvo));
+		
+		logger.info("likeHistory : " + service.likeHistory(rvo));
 		
 		MemberVO nickVO = mservice.read(service.view(bno).getMno());
 		
@@ -227,20 +242,25 @@ public class RecipeController {
 
 	@GetMapping("/addlikeCnt")
 	@ResponseBody
-	public Integer addlikeCtn(RecipeBoardVO vo, Model model, @RequestParam("bno") Integer bno, @RequestParam("mno") Integer mno)throws Exception{
+	public Integer addlikeCtn(RecipeBoardVO vo, Model model)throws Exception{
 		logger.info("addlike....");
 		logger.info("vo : " + vo);
-		vo.setBno(bno);
-		vo.setMno(mno);
-		logger.info("likeHistory : " + service.likeHistory(vo));
-		if(service.likeHistory(vo) == 0){
-			service.addLikeCount(vo);
-		}
 		
-		model.addAttribute("likeCheck", service.likeHistory(vo));
-		logger.info("likeHistory : " + service.likeHistory(vo));
+			service.addLikeCount(vo);
+		
+		
 		return service.readLikeCnt(vo.getBno());
-	}
 	
 
+	}
+	
+	@GetMapping("/addViewCnt")
+	@ResponseBody
+	public void addViewCnt(RecipeBoardVO vo)throws Exception{
+		logger.info("addlike....");
+		logger.info("vo : " + vo);
+		vo.setBno(vo.getBno());
+		vo.setMno(vo.getMno());
+		service.registView(vo);
+	}
 }

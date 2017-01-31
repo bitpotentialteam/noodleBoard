@@ -188,11 +188,10 @@ div.row.control-group {
                 <div class="intro-lead-in">${nickVO.nickname}님의 맛있는</div>
                 <div class="intro-heading" id="check">${vo.title}
                 	<h3><fmt:formatDate value="${vo.regdate}" type="both" dateStyle="medium" timeStyle="short"/></h3>
-					<button type='button' id='likeBtn' value='${vo.bno}' class='btn btn-default'>
+					
+					<button type='button' id='likeBtn' value='${vo.bno}' class='btn btn-default' disabled>
 					<span class='glyphicon glyphicon-thumbs-up'></span>
 					<span class='badge badge-count' id='likeCnt'>${vo.likeCnt}</span> </button>
-					<input type="hidden" id="likeCt" value="${vo.likeCnt}">
-					<input type="hidden" id="likeChk" value="${likeCheck}">
                 </div>
                 <div><a href="#recipe" class="page-scroll btn btn-xl">detail</a></div>
             </div>
@@ -400,13 +399,13 @@ div.row.control-group {
 	
 	<script>
 	
-		var nickName = $("#reReplyContent").find("#nickName").val();
 	$(document).ready(function(){
-		
+		var nickName = $("#reReplyContent").find("#nickName").val();
+		var mno = $("#mno").val();
+		var bno = $("#bno").val();
 		var sessionMno = $("#recipe").find("#sessionMno").val();
 		function user(){
 		var button = '';
-		var mno = $("#recipe").find("#mno").val();
 		
 		if(sessionMno == mno){
 			button = "<button type='submit' id='modifyBtn' class='btn btn-default-right'>수 정</button>"
@@ -422,6 +421,31 @@ div.row.control-group {
 				increaseArea : '20%' // optional
 			});
 		});
+		
+		(function(event){
+			
+			var likeCheck =	"${likeCheck}";
+			console.log('likeCheck');
+			console.log(likeCheck);
+			if(likeCheck == 0){
+				$('#likeBtn').removeAttr("disabled");
+			}
+		})(); 
+		
+		(function(){
+			$.ajax({
+	    		type : 'get',
+	    		url : '/recipe/view',
+	    		headers : {
+	    			"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+	    			"X-HTTP-Method-Override" : "GET"
+	    		},
+	    		dataType : 'text',
+	    		data : {mno:sessionMno, bno:bno},
+	    		success : function() {    
+		    			}
+	    		});				
+		})();
 		
 
 		$(document).on("click","#reReplyBtn", function(event){
@@ -559,15 +583,12 @@ div.row.control-group {
 					
 				var $this = $(this);
 				var bno = $this.val();
-				var mno = $("#mno").val();
-				var likeCnt = $("#check").find("#likeCt").val();
-				var likeCheck = $("#check").find("#likeChk").val();
+				var likeCnt = $("#likeCnt");
+				console.log($this);
 				console.log(bno);
 				console.log($("#mno").val());
 				console.log(likeCnt);
-				console.log(likeCheck);
 				
-				if(likeCheck == 0){
 				$.ajax({
 		    		type : 'get',
 		    		url : '/recipe/addlikeCnt',
@@ -580,15 +601,13 @@ div.row.control-group {
 		    		success : function(result) {    
 		    					console.log(result);		
 			    					alert("추천해주셔서 감사합니다");
-				    				likeCnt.html(result);
+				    				likeCnt.text(result);
+				    				$this.attr('disabled',true);
+				    				
 			    			}
 		    		});
-				}else{
-					alert("중복 추천입니다");
-					$("#likeBtn").attr('disabled',true);
-				}
-				
 			});
+			
 			
 		});
 	

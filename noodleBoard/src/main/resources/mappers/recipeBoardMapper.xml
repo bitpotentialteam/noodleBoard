@@ -16,8 +16,10 @@
 	
 	<select id="totalCount" resultType="java.lang.Integer">
 	<![CDATA[
-	select count(bno) from tbl_recipeboard where bno > 0 
+		select count(bno) from tbl_recipeboard where bno > 0 
 	]]>
+		<include refid="search"></include>
+		<include refid="orderBy"></include>
 	</select>
 
 	<select id="read" parameterType="int" resultType="RecipeBoardVO">
@@ -102,10 +104,20 @@
 			title = #{title}
 	</select>
 	
+	<sql id="orderBy">
+		<if test = "orderType != null">	
+			<if test="orderType == '인기순'.toString()">
+				order by likecnt desc
+			</if>
+			<if test="orderType == '조회순'.toString()">
+				order by viewCnt desc
+			</if>
+		</if>
+	</sql>
 	
 	<sql id="search">
+		
 		<if test="searchType != null">
-			
 			<if test="searchType == 't'.toString()">
 				and title like ('%'||#{keyword}||'%')
 			</if>
@@ -147,7 +159,7 @@
 			        *
 			      FROM
 			        tbl_recipeBoard
-			      ORDER BY bno desc
+			        ORDER BY bno DESC
 			      ) Board
 			    )
 			WHERE
@@ -155,13 +167,30 @@
 		 ]]> 
 			
 		<include refid="search"></include>
+		<include refid="orderBy"></include>
 		
 		
 	</select>
+		
+		
+	
 	<select id="listPage" resultType="RecipeBoardVO">
 		<![CDATA[
-	select rownum rn, bno, ,ino, title, materialContent, content, regdate, updatedate from
-(select * from tbl_recipeboard order by bno desc) where rownum<=#{num}*10) where rn>(#{num}-1)*10
+	select 
+		rownum rn, bno, ,ino, title, materialContent, content, regdate, updatedate 
+	from
+		(select 
+			* 
+		from 
+			tbl_recipeboard 
+		order by 
+			bno desc
+		) 
+			where 
+				rownum<=#{num}*10
+			) 
+			where 
+				rn>(#{num}-1)*10
 		]]>
 	</select>
 	
@@ -171,12 +200,48 @@
 	</insert>
 	
 	<select id="likeHistory" resultType="Integer">
-		select bno from tbl_recipelike where bno = #{bno, jdbcType=INTEGER} and mno = #{mno, jdbcType=INTEGER}	
-		group by bno
+		select 
+			count(*) 
+		from 
+			tbl_recipelike 
+		where 
+			bno = #{bno, jdbcType=INTEGER} 
+		and 
+			mno = #{mno, jdbcType=INTEGER}	
 	</select>
 	
 	<select id="readLikeCnt" resultType="Integer">
-		select likeCnt from tbl_recipeboard where bno = #{bno, jdbcType=INTEGER}
+		select 
+			likeCnt 
+		from 
+			tbl_recipeboard 
+		where 
+			bno = #{bno, jdbcType=INTEGER}
+	</select>
+	
+	<insert id="createViewCnt">
+		insert into tbl_recipeview(bno, mno)
+		values(#{bno, jdbcType=INTEGER} , #{mno, jdbcType=INTEGER})
+	</insert>
+	
+	<select id="viewHistory" resultType="Integer">
+		select 
+			count(*) 
+		from 
+			tbl_recipeviewcnt 
+		where
+			bno = #{bno, jdbcType=INTEGER} 
+		and
+			mno = #{mno, jdbcType=INTEGER}
+	</select>
+	
+	<select id="readViewCnt" resultType="Integer">
+		select
+			viewCnt
+		from
+			tbl_recipeboard
+		where
+			bno = #{bno, jdbcType=INTEGER}
 	</select>
 
 	<update id="addViewCount">

@@ -153,4 +153,21 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 		return dao.readLikeCnt(bno);
 	}
 
+	@Override
+	@Transactional
+	public void registView(RecipeBoardVO vo) throws Exception {
+		dao.createViewCnt(vo);
+		dao.addViewCount(vo);
+	}
+
+	@Override
+	public Integer historyView(RecipeBoardVO vo) throws Exception {
+		return dao.viewHistory(vo);
+	}
+
+	@Override
+	public Integer viewCnt(Integer bno) throws Exception {
+		return dao.readViewCnt(bno);
+	}
+
 }

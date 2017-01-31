@@ -22,6 +22,10 @@ public interface RecipeBoardService {
 	public RecipeBoardVO view(Integer bno) throws Exception;
 	public void modify(RecipeBoardVO vo, List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception;
 
+	public void registView(RecipeBoardVO vo) throws Exception;
+	public Integer historyView(RecipeBoardVO vo) throws Exception;
+	public Integer viewCnt(Integer bno) throws Exception;
+	
 	public void registLike(RecipeBoardVO vo) throws Exception;
 	public Integer likeHistory(RecipeBoardVO vo) throws Exception;
 	public Integer readLikeCnt(Integer bno) throws Exception;
