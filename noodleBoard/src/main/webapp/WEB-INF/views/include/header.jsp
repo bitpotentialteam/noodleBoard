@@ -35,4 +35,21 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
+	<!-- jQuery 2.2.3 -->
+	<script src="../resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<!-- Bootstrap 3.3.6 -->
+	<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Slimscroll -->
+	<script src="../resources/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+	<!-- FastClick -->
+	<script src="../resources/plugins/fastclick/fastclick.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../resources/dist/js/app.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="../resources/dist/js/demo.js"></script>
+	
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   

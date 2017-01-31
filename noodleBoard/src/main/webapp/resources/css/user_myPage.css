@@ -1,0 +1,20 @@
+navbar-custom {
+	background-color: #222;
+}
+
+.box p {
+	margin-bottom: 0.8em;
+}
+
+.box {
+	padding: 3% 5%;
+}
+
+body {
+	background: #222;
+}
+#apiBtn {
+	margin-left: 90%;
+	width: 14%;
+	height: 4em;
+}

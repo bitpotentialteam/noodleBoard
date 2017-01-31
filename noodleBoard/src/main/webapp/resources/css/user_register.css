@@ -1,0 +1,34 @@
+.navbar-custom  {
+	background-color: #222;
+}
+.btn {
+	padding: 9px 12px;
+}
+#noImg span{
+	font-size: 3em;
+}
+#delImgBtn{
+	color: darkgray;
+	display: none;
+}
+#picture span.glyphicon-remove-sign{
+	float:right;
+	margin: 3px 3px;
+	font-size: 1.3em;
+}
+
+
+#picture {
+	width: 150px;
+	height: 150px;
+    border-radius: 4px;
+	background: #fed136 no-repeat center center;
+	background-size: contain; 
+	margin: 5px;
+	text-align:center;
+	color: rgba(138, 109, 59, 0.55);
+}
+#noImg {
+	display: inline-block;
+    margin-top: 18%;
+}
