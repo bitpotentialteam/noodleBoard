@@ -72,12 +72,13 @@ body {
 			<div class="col-md">
 				<!-- Widget: user widget style 1 -->
 				<div class="box box-widget widget-user-2">
+				
 					<!-- Add the bg color to the header using any of the bg-* classes -->
 					<div class="widget-user-header bg-yellow" id="imgBtn">
 						<div class="img-circle dropdown">
 							<button id="imgMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<img class="img-circle" id="imageDrop" src="show?name=${memberVO.picture}"
-								alt="User Avatar">
+								alt="User Avatar">asdfasdfasdasdfasf
 							</button>
 								<ul class="dropdown-menu" aria-labelledby="imgMenu">
 									<li id="pictureBtn"><a href="#">프로필사진변경</a></li>
@@ -88,7 +89,7 @@ body {
 						<!-- /.widget-user-image -->
 						
 					</div>
-					<form id="form" role="formModify" action="modify" method="post">
+						<form id="form" role="formModify" action="modify" method="post">
 						<div class="box-footer no-padding">
 						
 							<input type="hidden" name="userid" value="${memberVO.userid}">
@@ -104,7 +105,7 @@ body {
 										</span></li>
 								<li class="list-group-item"><h4>E-MAIL</h4><input type="text" name="email" value="${memberVO.email}"></li>
 							</ul>
-					<!-- Modify Modal -->
+								<!-- Modify Modal -->
 								<div id="myModal" class="modal">
 									<!-- Modal content -->
 									<div class="modal-content">
@@ -114,7 +115,7 @@ body {
 										</div>
 										<div id="picture">
 											<input type="file" id="pictureInput">
-											<input type="hidden" name="picture" id="hiddenPicture" value="" >
+											<input type="hidden" name="picture" id="hiddenPicture" value="${memberVO.picture }" >
 											<button type="submit" id="PmodifyBtn">확인</button>
 										</div>
 										
