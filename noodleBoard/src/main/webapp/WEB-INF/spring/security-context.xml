@@ -10,6 +10,7 @@
          username-parameter="userid" password-parameter="userpw"
          login-processing-url="/user/loginAction" default-target-url="/"
          authentication-failure-url="/user/login" always-use-default-target="false"
+         authentication-success-handler-ref="SuccessHandler" 
           />
 	
 	<security:session-management>
@@ -43,5 +44,9 @@
 	</security:authentication-provider>
 </security:authentication-manager>
 
+<bean id="SuccessHandler" class="org.noodle.security.SuccessHandler">
+  <property name="serivce" ref="memberServiceImpl" />
+  <property name="alwaysUseDefaultTargetUrl" value="false" />
+</bean>
 
 </beans>

@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/user/*")
 public class UserController {
 
+	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Inject
@@ -44,11 +46,9 @@ public class UserController {
 		logger.info("uno: " + uno);
 		
 		URLService.remove(uno);
-		
-//		return "redirect:/user/apiRegister";
-		
 	}
 	
+
 	@GetMapping("/apiRegister")
 	public void apiRegisterGET(Model model, HttpSession session) throws Exception {
 		logger.info("apiRegisterGET called.....");
@@ -62,6 +62,7 @@ public class UserController {
 		model.addAttribute("list", URLService.listAll(vo.getMno()));
 		session.setAttribute("VO", vo);
 	}
+	
 
 	@PostMapping("/apiRegister")
 	public void apiRegisterPOST(String url) throws Exception {
@@ -78,31 +79,7 @@ public class UserController {
 		URLService.regist(vo);
 
 	}
-
-	// @GetMapping("/login")
-	// public void login() throws Exception {
-	//
-	// logger.info("login page called.....");
-	//
-	// }
-	//
-	// @PostMapping("/login")
-	// public String postLogin(MemberVO vo, Model model, HttpSession session)
-	// throws Exception {
-	//
-	// MemberVO login = service.login(vo);
-	//
-	// if (login != null) {
-	// model.addAttribute("value", vo);
-	// session.setAttribute("LOGIN", vo);
-	//
-	// return "redirect:../";
-	//
-	// } else {
-	// return "redirect:../user/login";
-	// }
-	//
-	// }
+	
 
 	@GetMapping(value = "/create_client")
 	public void create_client(Model model) throws Exception {
@@ -122,95 +99,83 @@ public class UserController {
 		model.addAttribute("CLIENTMSG", clientMsg);
 
 	}
+	
 
 	@PostMapping(value = "/checkID")
 	public @ResponseBody String checkID(String userid) throws Exception {
-
 		logger.info("아이디체크중");
+		
 		return service.checkID(userid);
 	}
 	
+	
 	@PostMapping(value = "/checkNick")
 	public @ResponseBody String checkNick(String nickname) throws Exception {
-
 		logger.info("닉네임체크중");
+		
 		return service.checkNick(nickname);
 	}
 
+	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void modifyGET(Model model, HttpSession session) throws Exception {
-		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
-		service.read1(user.toString());
-		MemberVO vo = service.read1(user.toString());
-
-		session.setAttribute("VO", vo);
+		logger.info("modifyGET called.....");
 	}
 
+	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPOST(Model model, MemberVO vo) throws Exception {
-
+	public String modifyPOST(Model model, MemberVO vo, HttpSession session) throws Exception {
 		logger.info("mofify post....");
-		logger.info("vo: "+vo);
+		logger.info("Modify MemberVO: " + vo);
 		
+		vo.setMno(service.read1(vo.getUserid()).getMno());
 		service.modify(vo);
-
+		
+		session.setAttribute("memberVO", service.read(vo.getMno()));
+		
 		return "redirect:/user/myPage";
 	}
 
+	
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public void readGET(Model model, HttpSession session) throws Exception {
-
-		logger.info("myPage page...");
-		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
-		logger.info(user.toString());
-		service.read1(user.toString());
-		MemberVO vo = service.read1(user.toString());
-
-		session.setAttribute("VO", vo);
-
+	public void myPageGET(Model model, HttpSession session) throws Exception {
+		logger.info("myPageGET page...");
 	}
 
+	
 	@GetMapping("/login")
 	public void loginGET(HttpSession session) throws Exception {
 		logger.info("login get...");
-
-		//session.setAttribute("LOGIN", "success");
 	}
+	
+	
 	@GetMapping("/login_duplicate")
 	public void login_duplicate()throws Exception{
-		logger.info("중복로그인");
-		
+		logger.info("중복로그인");	
 	}
 	
 
-	/*@GetMapping("/login?logout")
-	public String logout(HttpServletRequest request, HttpServletResponse response)throws Exception{
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		logger.info("로그아웃과정");
-//		if(auth !=null){
-//			new SecurityContextLogoutHandler().logout(request, response, auth);
-//		}
-		
-		return "redirect:/";
-	}*/
-
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET(MemberVO vo, Model model) throws Exception {
-
 		logger.info("register...");
 	}
+	
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registPOST(MemberVO vo) throws Exception {
-
-		logger.info("regist post....");
-		logger.info("VO: " + vo.toString());
+		logger.info("registPOST called.....");
+		logger.info("Register MemberVO " + vo);
 
 		if (vo.getPicture().length() == 0) {
 			vo.setPicture(null);
 		}
 		
-		if (vo.getUserid().length() == 0  || vo.getUserpw().length() == 0  || vo.getNickname().length() == 0  || vo.getEmail().length() == 0  || vo.getUsername().length() == 0){
+		if (vo.getUserid().length() == 0  
+				|| vo.getUserpw().length() == 0  
+				|| vo.getNickname().length() == 0  
+				|| vo.getEmail().length() == 0  
+				|| vo.getUsername().length() == 0){
+			
 			return  "redirect:/user/register";
 		}
 
@@ -219,4 +184,4 @@ public class UserController {
 		return "redirect:/user/login";
 	}
 
-}
+}// end class...

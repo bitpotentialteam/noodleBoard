@@ -35,7 +35,6 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
 			request.getSession().setAttribute("memberVO", memberVO);
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

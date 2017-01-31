@@ -133,20 +133,20 @@ body {
 					<div class="widget-user-header bg-yellow">
 						<div class="widget-user-image">
 							<img class="img-circle"
-								src="show?name=${sessionScope.VO.picture}" alt="User Avatar">
+								src="show?name=${memberVO.picture}" alt="User Avatar">
 						</div>
 						<!-- /.widget-user-image -->
-						<h3 class="widget-user-username">${sessionScope.VO.username}</h3>
-						<h5 class="widget-user-desc">${sessionScope.VO.nickname}</h5>
+						<h3 class="widget-user-username">${memberVO.username}</h3>
+						<h5 class="widget-user-desc">${memberVO.nickname}</h5>
 					</div>
 					<form id="form">
 						<div class="box-footer no-padding">
 
 							<ul class="list-group">
-								<li class="list-group-item"><h4>ID</h4>${sessionScope.VO.userid}</li>
-								<li class="list-group-item"><h4>NAME</h4>${sessionScope.VO.username}</li>
-								<li class="list-group-item"><h4>NICKNAME</h4>${sessionScope.VO.nickname}</li>
-								<li class="list-group-item"><h4>E-MAIL</h4>${sessionScope.VO.email}</li>
+								<li class="list-group-item"><h4>ID</h4>${memberVO.userid}</li>
+								<li class="list-group-item"><h4>NAME</h4>${memberVO.username}</li>
+								<li class="list-group-item"><h4>NICKNAME</h4>${memberVO.nickname}</li>
+								<li class="list-group-item"><h4>E-MAIL</h4>${memberVO.email}</li>
 							</ul>
 						</div>
 					</form>
