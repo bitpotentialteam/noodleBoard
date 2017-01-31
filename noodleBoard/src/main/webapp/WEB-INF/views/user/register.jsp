@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:include page="../page/header.jsp" flush="false" />
+
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -43,6 +42,8 @@
     margin-top: 18%;
 }
 </style>
+
+<%@ include file="/WEB-INF/views/include/loginSection.jsp" %>
 
 <section class="bg-light-gray">
 	<div class="register-box">

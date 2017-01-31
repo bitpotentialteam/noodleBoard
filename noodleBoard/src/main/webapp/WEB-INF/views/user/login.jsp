@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:include page="../page/header.jsp" flush="false" />
+
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 
@@ -15,6 +14,8 @@
 	background-color: #222;
 }
 </style>
+
+<%@ include file="/WEB-INF/views/include/loginSection.jsp" %>
 
 <section class="bg-light-gray">   
 	<div class="login-box">
