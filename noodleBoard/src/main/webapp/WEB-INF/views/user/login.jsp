@@ -14,91 +14,90 @@
 	background-color: #222;
 }
 </style>
+</head>
+
+<body>
 
 <%@ include file="/WEB-INF/views/include/loginSection.jsp" %>
 
-<section class="bg-light-gray">   
+  <section class="bg-light-gray">   
 	<div class="login-box">
-		<div class="login-logo">
-			<b>로그인</b>
-		</div>
-		<!-- /.login-logo -->
-		<div class="login-box-body">
-			<p class="login-box-msg">정보를 기입하세요</p>
+	  
+	  <div class="login-logo">
+	    <b>로그인</b>
+	  </div>
+	  
+	  <!-- /.login-logo -->
+	  <div class="login-box-body">
+		<p class="login-box-msg">정보를 기입하세요</p>
 
-			<form action="loginAction" method="post">
-				<div class="form-group has-feedback">
-					<input type="text" name="userid" class="form-control" placeholder="ID">
-					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-				</div>
-				<div class="form-group has-feedback">
-					<input type="password" name="userpw" class="form-control" placeholder="Password">
-					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-				</div>
+		<form action="loginAction" method="post">
+		  <div class="form-group has-feedback">
+			<input type="text" name="userid" class="form-control" placeholder="ID">
+			<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+		  </div>
 				
-				<!-- NAVER FACEBOOK LOGIN BUTTON -->
-					<div class="form-group has-feedback" id="naver_id_login"></div>
+		  <div class="form-group has-feedback">
+		    <input type="password" name="userpw" class="form-control" placeholder="Password">
+			  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+		  </div>
+				
+		  <!-- NAVER FACEBOOK LOGIN BUTTON -->
+		  <div class="form-group has-feedback" id="naver_id_login"></div>
 					
-					<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-					</fb:login-button>
+		  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
 					
-					<div id="status">
-					</div>
+		  <div id="status"></div>
 						
-				<div class="row">
-					<div class="col-xs-8">
-						<div class="checkbox icheck">
-							<label class="">
-              <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
-              <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Remember Me
-            </label>
-						</div>
-					</div> 
+		  <div class="row">
+			
+			<div class="col-xs-8">
+			  <div class="checkbox icheck">
+				<label class="">
+                  <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
+                  <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                  <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                  </div>
+                Remember Me
+                </label>
+			  </div>
+			</div> 
 					
-					<!-- NAVER FACEBOOK LOGIN BUTTON -->
-					<!-- /.col -->
+			<!-- NAVER FACEBOOK LOGIN BUTTON -->
+			<!-- /.col -->
 					
-					<div class="col-xs-4">
-						<button type="submit" id="loginBtn" class="btn btn-primary btn-block btn-flat">Sign
-							In</button>
-					</div>
-					<!-- /.col -->
-				</div>
-			</form>
+			<div class="col-xs-4">
+			  <button type="submit" id="loginBtn" class="btn btn-primary btn-block btn-flat">Sign In</button>
+			</div>
+			<!-- /.col -->
+		  </div>
+		</form>
 
-			<a href="../user/register" class="text-center">Register a new membership</a>
+		<a href="../user/register" class="text-center">Register a new membership</a>
 
-		</div>
-		<!-- /.login-box-body -->
+	  </div>
+	  <!-- /.login-box-body -->
 	</div>
 	<!-- /.login-box -->
-</section>
+  </section>
 
-	<!-- jQuery 2.2.3 -->
-	<script src="../resources/vendor/jquery/jquery-2.2.3.min.js"></script>
-	<!-- Bootstrap 3.3.6 -->
-	<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!-- iCheck -->
-	<script src="../resources/vendor/jquery/icheck.min.js"></script>
+</body>	
 	
-	
-	<script>
-		$(function() {
-			$('input').iCheck({
-				checkboxClass : 'icheckbox_square-blue',
-				radioClass : 'iradio_square-blue',
-				increaseArea : '20%' // optional
-			});
-		});
-		
-		$("#loginBtn").on("click", function(event) {
+<script>
 
-			$("#login").attr("action", "../");
-
+	$(function() {
+		$('input').iCheck({
+			checkboxClass : 'icheckbox_square-blue',
+			radioClass : 'iradio_square-blue',
+			increaseArea : '20%' // optional
 		});
+	});
 		
+	$("#loginBtn").on("click", function(event) {
+		$("#login").attr("action", "../");
+	}); 
 		
-	</script>
+</script>
 	
 	<!-- FACEBOOK LOGIN -->
 	<div id="fb-root"></div>

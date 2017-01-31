@@ -50,6 +50,8 @@
 	<script src="../resources/dist/js/app.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="../resources/dist/js/demo.js"></script>
+	<!-- iCheck -->
+	<script src="../resources/vendor/jquery/icheck.min.js"></script>
 	
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   

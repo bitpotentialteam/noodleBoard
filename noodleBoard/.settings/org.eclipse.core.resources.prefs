@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/views/recipe/modify.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/timeline/timeline.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/user/apiRegister.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/user/login.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/user/modify.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/user/register.jsp=UTF-8
