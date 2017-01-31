@@ -89,7 +89,7 @@ public class RecipeController {
 		logger.info("boardList.getIlist().get(topImageIndex).getThumbnail(): "+boardList.getIlist().get(topImageIndex).getThumbnail());
 		
 		logger.info("vo : " + vo);
-		vo.setMno(mvo.getMno());
+		vo.setMno(mvo.getMno()); 
 		service.register(vo, boardList.getIlist(), boardList.getClist());
 		
 		vo.setIno(iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
@@ -172,7 +172,7 @@ public class RecipeController {
 		logger.info(user.toString());
 		MemberVO vo = mservice.read1(user.toString());
 		
-		RecipeBoardVO rvo = new RecipeBoardVO();
+		RecipeBoardVO rvo = new RecipeBoardVO(); 
 		rvo.setBno(bno);
 		rvo.setMno(vo.getMno());
 		logger.info("rvo : " + rvo);
