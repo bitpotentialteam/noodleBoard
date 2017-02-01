@@ -1,8 +1,58 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@ include file="/WEB-INF/views/include/header.jsp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>My Page</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+	
+<!-- Bootstrap 3.3.6 -->
+<link rel="stylesheet"
+	href="../resources/bootstrap/css/bootstrap.min.css">
+	
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="../resources/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+
+
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="../resources/dist/css/AdminLTE.min.css">
+<link href="../resources/css/agency.min.css" rel="stylesheet">
+
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+<link rel="stylesheet"
+	href="../resources/dist/css/skins/_all-skins.min.css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
 <style>
 
@@ -57,28 +107,26 @@ body {
 </style>  
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
 
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
-
+	
 <%@ include file="/WEB-INF/views/include/loginSection.jsp" %>
-
 <section>
 	<div class="container">
 		<div class="row">
 			<div class="col-md">
 				<!-- Widget: user widget style 1 -->
 				<div class="box box-widget widget-user-2">
-				
 					<!-- Add the bg color to the header using any of the bg-* classes -->
 					<div class="widget-user-header bg-yellow" id="imgBtn">
 						<div class="img-circle dropdown">
 							<button id="imgMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<img class="img-circle" id="imageDrop" src="show?name=${memberVO.picture}"
-								alt="User Avatar">asdfasdfasdasdfasf
+								alt="User Avatar">
 							</button>
 								<ul class="dropdown-menu" aria-labelledby="imgMenu">
 									<li id="pictureBtn"><a href="#">프로필사진변경</a></li>
@@ -89,23 +137,19 @@ body {
 						<!-- /.widget-user-image -->
 						
 					</div>
-						<form id="form" role="formModify" action="modify" method="post">
+					<form id="form" role="formModify" action="modify" method="post">
 						<div class="box-footer no-padding">
 						
+							<input type="hidden" name="mno" value="${memberVO.mno}">
 							<input type="hidden" name="userid" value="${memberVO.userid}">
 							<ul class="list-group">
 								<li class="list-group-item"><h4>ID</h4>${memberVO.userid}</li>
 								<li class="list-group-item"><h4>PASSWORD</h4><input type="password" name="userpw" value="${memberVO.userpw}"></li>
 								<li class="list-group-item"><h4>NAME</h4><input type="text" name="username" value="${memberVO.username}"></li>
-								<li class="list-group-item"><h4>NICKNAME</h4><input type="text" name="nickname" id="nickname" value="${memberVO.nickname}">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">
-										<span class="glyphicon glyphicon-search" id="NcheckBtn">중복체크</span>
-										</button>
-										</span></li>
+								<li class="list-group-item"><h4>NICKNAME</h4><input type="text" name="nickname" value="${memberVO.nickname}"></li>
 								<li class="list-group-item"><h4>E-MAIL</h4><input type="text" name="email" value="${memberVO.email}"></li>
 							</ul>
-								<!-- Modify Modal -->
+					<!-- Modify Modal -->
 								<div id="myModal" class="modal">
 									<!-- Modal content -->
 									<div class="modal-content">
@@ -184,7 +228,6 @@ body {
 		$modalPop.toggle(); 
 	
 	});
-	
 	$("#PmodifyBtn").on("click", function(event) {
         event.preventDefault();
 
@@ -204,7 +247,7 @@ body {
 
         $.ajax({
            url : "../uploadAjax",
-           data : formData, //기본이 멀티파트   
+           data : formData, //기본이 멀티파트  
            dataType : 'text',
            type : "post",
            contentType : false,
@@ -218,37 +261,6 @@ body {
         });
         $modalPop.toggle(); 
      });
-	//닉네임 중복체크
-	$("#NcheckBtn").on("click", function() {
-		event.preventDefault();
-		console.log("check");
-		var nickname = $("#nickname").val();
-		var formData = new FormData();
-		console.log(nickname);
-
-		formData.append("nickname", nickname);
-
-		$.ajax({
-			url : "checkNick",
-			data : formData,
-			dataType : 'text',
-			type : "post",
-			contentType : false,
-			processData : false,
-			success : function(result) {
-				
-				if (result != "") {
-					alert("중복된 닉네임 입니다 !");
-					$("#nickname").val("");
-				} else if (nickname == "") {
-					alert("닉네임을 입력해주세요 !");
-				} else {
-					alert("사용 가능한 닉네임 입니다 !");
-					checkResults="true";
-				}
-			}// end success
-		}); // end ajax
-	});
 
 	
 
