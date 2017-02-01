@@ -146,7 +146,12 @@ body {
 								<li class="list-group-item"><h4>ID</h4>${memberVO.userid}</li>
 								<li class="list-group-item"><h4>PASSWORD</h4><input type="password" name="userpw" value="${memberVO.userpw}"></li>
 								<li class="list-group-item"><h4>NAME</h4><input type="text" name="username" value="${memberVO.username}"></li>
-								<li class="list-group-item"><h4>NICKNAME</h4><input type="text" name="nickname" value="${memberVO.nickname}"></li>
+								<li class="list-group-item"><h4>NICKNAME</h4><input type="text" name="nickname" id="nickname" value="${memberVO.nickname}"><span class="input-group-btn">
+				  					<button class="btn btn-default" type="button">
+				    				<span class="glyphicon glyphicon-search" id="NcheckBtn"></span>
+				  					</button>
+			    				</span>
+			    				</li>
 								<li class="list-group-item"><h4>E-MAIL</h4><input type="text" name="email" value="${memberVO.email}"></li>
 							</ul>
 					<!-- Modify Modal -->
@@ -261,6 +266,43 @@ body {
         });
         $modalPop.toggle(); 
      });
+	
+	//닉네임 중복체크
+	$("#NcheckBtn").on("click", function() {
+		event.preventDefault();
+		console.log("check");
+		
+		var nickname = $("#nickname").val();
+		console.log(nickname);
+		var formData = new FormData();
+
+		formData.append("nickname", nickname);
+
+		$.ajax({
+			url : "checkNick",
+			data : formData,
+			dataType : 'text',
+			type : "post",
+			contentType : false,
+			processData : false,
+			success : function(result) {
+				
+				if (result != "") {
+					alert("중복된 닉네임 입니다 !");
+					$("#nickname").val("");
+					
+				} else if (nickname == "") {
+					alert("닉네임을 입력해주세요 !");
+					
+				} else {
+					alert("사용 가능한 닉네임 입니다 !");
+					checkResults="true";
+				}
+			} // end success...
+		}); // end ajax...
+	}); // end NcheckBtn click...
+	
+
 
 	
 
