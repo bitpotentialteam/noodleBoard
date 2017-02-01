@@ -220,7 +220,7 @@
 	</select>
 	
 	<insert id="createViewCnt">
-		insert into tbl_recipeview(bno, mno)
+		insert into tbl_recipeviewcnt(bno, mno)
 		values(#{bno, jdbcType=INTEGER} , #{mno, jdbcType=INTEGER})
 	</insert>
 	

@@ -85,6 +85,7 @@ p {
    
 }
 
+
 #steps p {
 	border:none;
     -webkit-box-shadow: none;
@@ -141,6 +142,10 @@ div.row.control-group {
     left: -11px;
     background-color: #fed136;
 }
+
+#reReplyContent div{
+	display:block;
+}
 </style>
 
 </head>
@@ -188,10 +193,11 @@ div.row.control-group {
                 <div class="intro-lead-in">${nickVO.nickname}님의 맛있는</div>
                 <div class="intro-heading" id="check">${vo.title}
                 	<h3><fmt:formatDate value="${vo.regdate}" type="both" dateStyle="medium" timeStyle="short"/></h3>
-					
 					<button type='button' id='likeBtn' value='${vo.bno}' class='btn btn-default' disabled>
-					<span class='glyphicon glyphicon-thumbs-up'></span>
-					<span class='badge badge-count' id='likeCnt'>${vo.likeCnt}</span> </button>
+					<div id="like">
+						<span class='glyphicon glyphicon-thumbs-up'></span>
+						<span class='badge badge-count' id='likeCnt'>${vo.likeCnt}</span> </button>
+                	</div>
                 </div>
                 <div><a href="#recipe" class="page-scroll btn btn-xl">detail</a></div>
             </div>
@@ -204,7 +210,7 @@ div.row.control-group {
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="bnoFind">
-				<input type="hidden" name="bno" value="${vo.bno}">		
+				<input type="hidden" name="bno" id="bno" value="${vo.bno}">		
 					<div class="row control-group">
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>설명</label>
@@ -261,7 +267,6 @@ div.row.control-group {
 									</div>
 								<!-- END -->
 								</c:forEach>
-								
 							</div>
 							
 						</div>
@@ -284,7 +289,7 @@ div.row.control-group {
 	    <div class="row control-group" name="content">
 			<div class="form-group col-xs-12 floating-label-form-group controls">
 				<label>댓글</label> <input type="text" class="form-control"
-					placeholder="Reply" name="content" id="content" required
+					placeholder="Reply" name="content" id="reContent" required
 					data-validation-required-message="Please enter reply.">
 			</div>
 		</div>
@@ -298,8 +303,8 @@ div.row.control-group {
 	<!-- 댓글!! -->
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<form id="reply">
-					<ul class="media-list"> 
-				<c:forEach items="${replyList}" var="rvo">
+				<ul class="media-list"> 
+					<c:forEach items="${replyList}" var="rvo">
 					<c:set var="loop" value="true"></c:set>
 					<c:forEach items="${MemberList}" var="memberVO">
 					<c:if test="${rvo.mno eq memberVO.mno}">
@@ -308,45 +313,34 @@ div.row.control-group {
 							<div class="media-left">
 								<a href="#"> <img class="media-object" src="/user/show?name=${memberVO.picture}" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
 							</div>
-							
-							<div class="media-body">
+							<div class="media-body" id="findHidden">
 								<h4 class="media-heading">${memberVO.nickname}</h4>
-								<p>${rvo.content}</p>
-								<button type="button" id="reReplyBtn" class="glyphicon glyphicon-pencil"></button>
-								<div class="media" id="reReplyContent">			
-									<div id='reContent'>
-										
-									</div>
-									<div class="form-group col-xs-12 floating-label-form-group controls">
-										<input type='hidden' id="nickName" name='nickName' value="${memberVO.nickname}">
-										<input type='hidden' id="rno" name='rno' value="${rvo.rno}">
-										<input type='hidden' id="bno" name='bno' value="${vo.bno}">
-										<input type='hidden' id="rrno" name='rrno' value="${rvo.rrno}">
-										<input type="text" class="form-control" placeholder="Reply" name="content" id="content" required data-validation-required-message="Please enter reply.">
-										<button type="button" class="reReplyRegist glyphicon glyphicon-pencil"></button>
-									</div>
-								 </div>
+								<div id='btns'>
+									<p>${rvo.content}</p>
+									<button type="button" id="reReplyBtn" class="glyphicon glyphicon-comment"></button>
+								</div>
+								<div id="reReplyContent">	
+								
+								</div>
+								<div class="form-group col-xs-12 floating-label-form-group controls" id="hidden">
+									<input type='hidden' id="nickName" name='nickName' value="${memberVO.nickname}">
+									<input type='hidden' id="pickture" name='pickture' value="${memberVO.picture}">
+									<input type='hidden' id="mno" name='mno' value="${rvo.mno}">
+									<input type='hidden' id="rno" name='rno' value="${rvo.rno}">
+									<input type='hidden' id="rrno" name='rrno' value="${rvo.rrno}">
+									<input type='hidden' id="seq" name='seq' value="${rvo.seq}">
+								</div>
 							</div>
-						<c:set var="loopss" value="true"></c:set>
-						<c:if test="${rvo.mno eq sessionScope.VO.mno}">
-						<c:if test="${loopss}">
-						<div>
-					<button type="button" id="replyRemoveBtn" class="replyRemoveBtn glyphicon glyphicon-trash"></button>
-					</div>
-					</c:if>
-					</c:if>
-					<c:set var="loopss" value="false"></c:set>
-				</li>
-				<c:set var="loop" value="false"></c:set>
-				</c:if>
-				</c:if>
-				</c:forEach>
-				</c:forEach>
-			</ul>
-			</form>
+						</li>
+						<c:set var="loop" value="false"></c:set>
+						</c:if>
+						</c:if>
+						</c:forEach>
+						</c:forEach>
+					</ul>
+				</form>
+			</div>
 		</div>
-	</div>
-		
 	</div>
 	</form>
 	<form role="form" action="modify" method="post">
@@ -404,15 +398,48 @@ div.row.control-group {
 		var mno = $("#mno").val();
 		var bno = $("#bno").val();
 		var sessionMno = $("#recipe").find("#sessionMno").val();
-		function user(){
-		var button = '';
 		
+		function user(){
+		var button = "";
+		var reButton = "";
 		if(sessionMno == mno){
 			button = "<button type='submit' id='modifyBtn' class='btn btn-default-right'>수 정</button>"
-					 +"&nbsp<button type='submit' id='removeBtn' class='btn btn-default-right'>삭 제</button>"
-		$("#recipe").find("#mdBtn").append(button);	 
+					 +"&nbsp<button type='submit' id='removeBtn' class='btn btn-default-right'>삭 제</button>";
+					 
+			$("#recipe").find("#mdBtn").append(button);	 
 		}
 		}user();
+		
+		//수정, 삭제 버튼 가리기
+		function replyBtn(){
+			var $this = $(this);
+			var mno = $this.find(".media").find("#mno").val();
+			var bno = $("#bno").val();
+			console.log($this);
+			console.log(bno);
+			
+			$.ajax({
+		    	type : 'post',
+		    	url : '/recipe/replyList',
+		    	headers : {
+		    		"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+		    		"X-HTTP-Method-Override" : "POST"
+		    	},
+		    	dataType : 'json',
+		    	data : {bno:bno},
+		    	success : function(result) {   
+		    				var reButton = "";
+		    		for(var i = 0; i < result.length; i++){
+		    			if(sessionMno == mno){
+		    				reButton = "&nbsp<button type='button' id='replyModifyBtn' class='replyRemoveBtn glyphicon glyphicon-pencil'></button>"
+		    						   +"&nbsp<button type='button' id='replyRemoveBtn' class='replyRemoveBtn glyphicon glyphicon-trash'></button>";
+		    				
+		    				$("#reReplyBtn").after(reButton);
+		    			}
+		    		}
+		    	}
+		    });	
+		}replyBtn();
 	
 		$(function() {
 			$('input').iCheck({
@@ -422,6 +449,7 @@ div.row.control-group {
 			});
 		});
 		
+		//좋아요
 		(function(event){
 			
 			var likeCheck =	"${likeCheck}";
@@ -432,6 +460,7 @@ div.row.control-group {
 			}
 		})(); 
 		
+		//조회수
 		(function(){  
 			$.ajax({
 	    		type : 'get',
@@ -443,70 +472,74 @@ div.row.control-group {
 	    		dataType : 'text',
 	    		data : {mno:sessionMno, bno:bno},
 	    		success : function() {    
-		    			}
-	    		});				
+		    	
+	    		}
+	    	});				
 		})();
 		
-
+		//대댓글 리스트
 		$(document).on("click","#reReplyBtn", function(event){
 			var $this = $(this);
-			var $replyToggle = $this.parent().find("#reReplyContent");
-			var rno = $replyToggle.find("#rno").val();
-			var bno = $replyToggle.find("#bno").val();
-			var reContent = $replyToggle.find("#reContent");
-			var nickName = $replyToggle.find("#nickName").val();
-			console.log($this);
-			console.log($replyToggle);
-			console.log(rno);
-			console.log(bno);
-			console.log(reContent);
+			var $replyToggle = $this.parents("#findHidden").find("#reReplyContent");
+			var rno = $this.parents("#findHidden").find("#rno").val();
+			var bno = $("#bno").val();
+			var nickName = $("#nickName").val();
+			var picture = $("#picture").val();
+			var input = "<div id='replyInput'><input type='text' class='form-control' placeholder='Reply' name='content' id='reReContent' required data-validation-required-message='Please enter reply.'>"
+						+"<button type='button' id='reReplyRegist' class='reReplyRegist glyphicon glyphicon-pencil'></button></div>";
+			 
+			console.log("this : "+$this);
+			console.log("rno : "+rno);
+			console.log("bno : "+bno);
+			console.log("reContent : "+reReplyContent);
 			$replyToggle.toggle();
 			
-				$.ajax({
-	    			type : 'post',
-	    			url : '/recipe/reReplyList',
-	    			headers : {
-	    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
-	    				"X-HTTP-Method-Override" : "POST"
-	    			},
-	    			dataType : 'json',
-	    			data : {mno : sessionMno, bno:bno, rrno:rno},
-	    			success : function(result) {
-	    				console.log(result);
-							var str = '';
+			$.ajax({
+    			type : 'post',
+    			url : '/recipe/reReplyList',
+    			headers : {
+    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+    				"X-HTTP-Method-Override" : "POST"
+    			},
+
+    			dataType : 'json',
+    			data : {mno : mno, bno:bno, rrno:rno},
+    			success : function(result) {
+    				console.log(result);
+    					var str = "";
+    					if(result){
 							for(var i = 0; i < result.length; i++){
 							var content = result[i].content;
 							console.log(content);
-	    					str += "<h4 class='media-heading'>"+nickName+"</h4>"
-	    						  +"<p>"+content+"</p>";
+    						str += "<div class='media-body' id='reContent'>"
+							   	   +"<h4 class='media-heading'>" + nickName + "</h4>"
+							  	   +"<p>"+content+"</p>"
+							   	   +"</div>";
+							   
 							}
-	    					reContent.html(str);
-	    				}
-	    			});
+							$replyToggle.html(str);
+							$replyToggle.append(input);
+							console.log(input);
+    					}else{
+    						$replyToggle.append(input);
+    					}
+    					
+    				}
+    			});
 			
 		});
 		
-		$(document).on("click", ".reReplyRegist", function(event){
-			
+		
+		//댓글 삭제
+		$(document).on("click", "#replyRemoveBtn",function(event){
+			if(confirm("삭제하시겠습니까?")){
 			var $this = $(this);
-			var reply = $("#reply");
-			var bno = $this.parents("#reReplyContent").find("#bno").val();
-			var content = $this.parents("#reReplyContent").find("#content").val();
-			var rrno = $this.parents("#reReplyContent").find("#rrno").val();
-			console.log(bno);
-			console.log(content);
-			console.log(sessionMno);
-			console.log(rrno);
-			
-			registReply(sessionMno, content, bno, rrno, $this);
-
-			
-		});
-		$(document).on("click", "replyRemoveBtn",function(event){
-			
-			var $this = $(this);
-			var rno = $this.parents("#reReplyContent").find("#rno").val();
-			console.log(rno);
+			var rrno = $this.parents("#findHidden").find("#rrno").val();
+			var seq = $this.parents("#findHidden").find("#seq").val();
+			var rno = $this.parents("#findHidden").find("#rno").val();
+			console.log("rrno : "+rrno);
+			console.log("seq : "+seq);
+			console.log("rno : "+rno);
 			$.ajax({
     			type : 'post',
     			url : '/recipe/removeReply',
@@ -514,23 +547,77 @@ div.row.control-group {
     				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
     				"X-HTTP-Method-Override" : "POST"
     			},
-    			dataType : 'text',
-    			data : data,
+    			dataType : 'json',
+    			data : {rrno:rrno, seq:seq, rno:rno},
     			success : function() {
-    				console.log(data);
-    				
     			}
     		});
+    		alert("삭제 완료");
 			location.reload();
+			}else{
+				return;
+			};
+		});
+		
+		//댓글 수정 버튼 누르면 input으로 바꾸어줌
+		$("#replyModifyBtn").on("click", function(event){
+			var $this = $(this);
+			
+// 			$("#btns").empty();
+			var input = $this.parent().children("p");
+			var originalContent = input.text();
+// 			var inputContent = "<input type='text' id='modifyContent' name='content' value='"+originalContent+"'>";
+// 				input.html(inputContent);
+// 			console.log(input);
+// 			console.log(originalContent);
+
+			var btns = $this.parent();
+			var pTag = "<input type='text' class='form-control' id='modifyContent' name='content' value='"+originalContent+"'>"
+					   +"<button type='button' id='replyModify' class='glyphicon glyphicon-pencil'></button>";
+					   btns.html(pTag);
 		});
 			
+		//댓글수정 됨
+		$(document).on("click", "#replyModify", function(event){
 		
+			var $this = $(this);
+			var rno = $this.parents("#findHidden").find("#hidden").find("#rno").val();
+			var content = $this.parent().children("#modifyContent").val();
+				
+			console.log($this);
+			console.log(rno);
+			console.log(content);
+			
+			$.ajax({
+    			type : 'post',
+    			url : '/recipe/modifyReply',
+    			headers : {
+    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+    				"X-HTTP-Method-Override" : "POST"
+    			},
+    			dataType : 'json',
+    			data : {content : content, rno:rno},
+    			success : function(result) {
+    				alert("수정 완료");
+    				var modifyContent = result.content;
+    				
+    				var btns = $this.parent();
+    				var pTag = "<p>"+modifyContent+"</p>"
+    						   +"<button type='button' id='replyModify' class='glyphicon glyphicon-comment'></button>"
+    						   +"&nbsp<button type='button' id='replyModifyBtn' class='replyRemoveBtn glyphicon glyphicon-pencil'></button>"
+					   		   +"&nbsp<button type='button' id='replyRemoveBtn' class='replyRemoveBtn glyphicon glyphicon-trash'></button>";
+    				btns.html(pTag);
+    			}
+    		});
+		});
+
+		
+		//댓글 등록
 		$("#registReplyBtn").on("click", function(event){
 			
 			var $this = $(this);
-			var reply = $("#reply");
 			var bno = $this.parents(".reply").find("#bno").val();
-			var content = $this.parents(".reply").find("#content").val();
+			var content = $this.parents(".reply").find("#reContent").val();
 			console.log($this);
 			console.log(bno);
 			console.log("내용"+content);
@@ -542,14 +629,52 @@ div.row.control-group {
     				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
     				"X-HTTP-Method-Override" : "POST"
     			},
-    			dataType : 'text',
+    			dataType : 'json',
     			data : {mno : sessionMno, content : content, bno:bno},
     			success : function() {
     				alert("댓글 등록");
-    				
     			}
     		});
 			location.reload();
+		});
+		
+		
+		//대댓글 등록
+		$(document).on("click","#reReplyRegist", function(event){
+			
+			var $this = $(this);
+			console.log($this);
+			var bno = $("#bno").val();
+			var content = $this.parents("#findHidden").find("#reReContent").val();
+			var rrno = $this.parents("#findHidden").find("#rrno").val();
+			var reReplyContent = $this.parent("#reReplyContent");
+			var str = '';
+			console.log($this);
+			console.log("bno : " + bno);
+			console.log("내용 : " + content);
+			console.log("MNO : " + sessionMno);
+			console.log("rrno : " + rrno);
+			$.ajax({
+    			type : 'post',
+    			url : '/recipe/registReply',
+    			headers : {
+    				"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+    				"X-HTTP-Method-Override" : "POST"
+    			},
+    			dataType : 'json',
+    			data : {mno : sessionMno, content : content, bno:bno, rrno:rrno},
+    			success : function(result) {
+    				console.log(result);
+    				alert("대댓글 등록");
+						var reReContent = result.content;
+						console.log(reReContent);
+						str += "<div class='media-body' id='reContent'>"
+						   	   +"<h4 class='media-heading'>" + nickName + "</h4>"
+						  	   +"<p>"+content+"</p>"
+						   	   +"</div>";
+					$this.parent("#replyInput").prepend(str);
+    			}
+    		});
 		});
 
 	
@@ -577,7 +702,7 @@ div.row.control-group {
 				
 			});
 			
-		
+			//좋아요 등록
 			$(document).on("click","#likeBtn", function(event){
 				event.preventDefault();
 					

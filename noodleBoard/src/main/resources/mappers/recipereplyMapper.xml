@@ -6,17 +6,16 @@
 <mapper namespace="org.noodle.RecipeReplyMapper">
 
 	<insert id="create" parameterType="RecipeReplyVO">
-		<if test="#{rrno}==null">
+		<if test="rrno == null">
 		insert into 
 			tbl_recipereply(mno, bno, rno, rrno, seq, content)
 		values
 			(#{mno, jdbcType=INTEGER}, #{bno, jdbcType=INTEGER}, seq_recipeReply.nextval,
 			seq_recipeReply.currval, 0,
 			#{content, jdbcType=VARCHAR})
-			
 		</if>
 		
-		<if test="#{rrno}!=null">
+		<if test="rrno != null">
 		insert into 
 			tbl_recipereply(mno, bno, rno, rrno, seq, content)
 		values
@@ -24,7 +23,6 @@
 			#{rrno, jdbcType=INTEGER}, 1,
 			#{content, jdbcType=VARCHAR})
 		</if>
-		
 	</insert>
 
 	<select id="read" resultType="RecipeReplyVO">
@@ -37,6 +35,7 @@
 	</select>
 	
 	<select id="readSeq" resultType="RecipeReplyVO">
+		<![CDATA[
 		select
 			*
 		from
@@ -46,6 +45,7 @@
 		and
 			rrno = #{rrno, jdbcType=INTEGER}
 		order by rno asc
+		]]>
 	</select>
 	
 	<select id="rnoCurrval" resultType="Integer">
@@ -71,6 +71,17 @@
 			rrno = #{rno, jdbcType=INTEGER}
 		where
 			rno = #{rno, jdbcType=INTEGER}
+	</update>
+	
+	<update id="seqUpdate">
+		<![CDATA[
+		update
+			tbl_recipereply
+		set
+			seq = seq - 1
+		where
+			rno = #{rno}
+		]]>
 	</update>
 
 
@@ -101,10 +112,10 @@
 		from 
 			tbl_recipereply 
 		where 
-			bno=#{bno, jdbcType=INTEGER}
+			seq = 0
 		and
-			seq=0
-		order by rrno desc, seq
+			bno=#{bno, jdbcType=INTEGER}
+		order by rrno desc
 	</select>
 
 </mapper>

@@ -176,7 +176,10 @@ public class RecipeController {
 		rvo.setBno(bno);
 		rvo.setMno(vo.getMno());
 		logger.info("rvo : " + rvo);
+		logger.info("viewHistory : "+service.historyView(rvo));
+		if(service.historyView(rvo) == 0){
 		service.registView(rvo);
+		}
 		model.addAttribute("likeCheck", service.likeHistory(rvo));
 		
 		logger.info("likeHistory : " + service.likeHistory(rvo));
@@ -254,13 +257,5 @@ public class RecipeController {
 
 	}
 	
-	@GetMapping("/addViewCnt")
-	@ResponseBody
-	public void addViewCnt(RecipeBoardVO vo)throws Exception{
-		logger.info("addlike....");
-		logger.info("vo : " + vo);
-		vo.setBno(vo.getBno());
-		vo.setMno(vo.getMno());
-		service.registView(vo);
-	}
+	
 }

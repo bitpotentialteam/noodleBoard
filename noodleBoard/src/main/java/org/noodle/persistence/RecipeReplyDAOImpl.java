@@ -62,4 +62,14 @@ public class RecipeReplyDAOImpl implements RecipeReplyDAO {
 		session.delete(NAME + "deleteBno", bno);
 	}
 
+	@Override
+	public void seqUpdate(Integer rno) throws Exception {
+		session.update(NAME + "seqUpdate", rno);
+	}
+
+	@Override
+	public RecipeReplyVO read(Integer rno) throws Exception {
+		return session.selectOne(NAME + "read", rno);
+	}
+
 }

@@ -7,6 +7,7 @@ import org.noodle.domain.RecipeReplyVO;
 public interface RecipeReplyService {
 	
 	public void regist(RecipeReplyVO vo) throws Exception;
+	public RecipeReplyVO view(Integer rno) throws Exception;
 	public void modify(RecipeReplyVO vo) throws Exception;
 	public void remove(RecipeReplyVO vo) throws Exception;
 	public List<RecipeReplyVO> listAll(Integer bno) throws Exception;

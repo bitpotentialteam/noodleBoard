@@ -76,9 +76,10 @@ section h3.section-subheading {
  #like {
 
     background-color: rgba( 255, 255, 255, 0 );
+    color : red;
     border : 0;
     outline : 0;
-	font-size: 2.5em;
+	font-size: 1.5em;
 	padding: 0px;
 	padding-left: 10px;
 }
@@ -145,6 +146,9 @@ section h3.section-subheading {
 							</c:if>
 						</c:forEach>
 						<div class="portfolio-caption">
+							<span class='glyphicon glyphicon-heart-empty' id="like"><span class='badge badge-count' id='likeCnt'>${boardVO.likeCnt}</span>
+							<span class='badge badge-count' id='viewCnt'>조회수${boardVO.viewCnt}
+							</span>
 							<p class="text-muted">${boardVO.title}</p>
 							<p class="text-muted">${boardVO.content}</p>
 						
@@ -158,12 +162,6 @@ section h3.section-subheading {
 							</c:if> 
 						</c:forEach>						
 						<h6><fmt:formatDate value="${boardVO.regdate}" pattern="yyyy년MM월dd일"/></h6>
-						<span class='glyphicon glyphicon-thumbs-up' id="like">
-							<span class='badge badge-count' id='likeCnt'>${boardVO.likeCnt}
-							</span>
-							</span>	
-							<span class='badge badge-count' id='viewCnt'>${boardVO.viewCnt}
-							</span>
 						</div>
 					</div>
 				</c:forEach> <!-- items END -->
