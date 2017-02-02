@@ -134,7 +134,7 @@ button {
 		<div class="row">
 		
 		  <div class='search'>
-			  <div class="field half first" style=>
+			  <div class="field half first">
 			    <input type="text" name="name" id="keywordInp" style='width: 50em; height: 4em; margin-left: 10em; margin-top: 2em; '> 
 			      <button type="button" class="btn btn-primary" id="searchBtn" style='width: 10em; height:4em; margin-left: 2em;'>Search</button>
 			  </div>
@@ -167,6 +167,7 @@ button {
 	      
 	    </div>
 	  </div>
+	  </div>
 	</section>
 
 
@@ -185,8 +186,8 @@ button {
 
 			var $tbody = $("#tbody");
 			
-			$("#searchBtn").on("click", function(){
-
+			function search(){
+				
 				var name = $("#keywordInp").val();
 				console.log(name);
 				
@@ -217,10 +218,29 @@ button {
 	    						  	 
 	    				$tbody.prepend(str);
 	    				}
-	    				
 	    			}
 	    		});// end ajax...
+			}
+			
+			
+			//서치버튼이벤트
+			$("#searchBtn").on("click", function(){
+
+				search();
+				
 			});	// end searchBtn click...
+			
+			//엔터이벤트
+			$("#keywordInp").keypress(function(e) { 
+
+			    if (e.keyCode == 13){
+			    	search(); 
+			    }    
+			});
+
+
+
+			출처: http://denodo1.tistory.com/124 [Back - End]
 			
 			$("#tableRemoveBtn").on("click", function(){
 				
