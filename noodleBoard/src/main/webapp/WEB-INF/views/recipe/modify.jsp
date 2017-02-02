@@ -204,7 +204,8 @@ button#addStepBtn {
 												<div class="media form-group" id="step">
 													<!-- Thumbnail Start -->
 													<div class="media-left media-middle">
-														<div id="stepImg" class="subImg" style="background:url(../user/show?name=${imageVO.thumbnail})">
+														<div id="stepImg" class="subImg" style="background:url(../user/show?name=${imageVO.thumbnail}); 
+														background-repeat:no-repeat; background-size:contain">
 															<span class='glyphicon glyphicon-remove-sign'
 																id='delImgBtn' aria-hidden='true'></span>
 															<div id="noImg">
@@ -257,7 +258,7 @@ button#addStepBtn {
 					<div class="right row">
 						<!-- 등록, 취소 버튼 -->
 						<div class="form-group col-md-4">
-							<button type="button" id="registerBtn"
+							<button type="submit" id="registerBtn"
 								class="btn btn-default-right">저 장</button>
 							<a href="list"><input type="button"
 								class="btn btn-default-right" value="취 소"></a>
@@ -498,32 +499,16 @@ button#addStepBtn {
 												event.preventDefault();
 												var $this = $(this);
 
-												uploadImage(
-														event,
-														function(data) {
-															var imgURL = "/displayFile?fileName="
-																	+ data;
-															//var imgName = getOriginalName(data);
-															alert("이미지가 등록되었습니다");
-															$this
-																	.css(
-																			"background-image",
-																			"url("
-																					+ imgURL
-																					+ ")");
-															$this
-																	.children(
-																			"#imgFileDropped")
-																	.val(data);
-															$this
-																	.find(
-																			"#delImgBtn")
-																	.show();
-															$this.children(
-																	"#noImg")
-																	.hide();
-
-														})
+												uploadImage(event, function(data){
+													var imgURL = "/displayFile?fileName="+data;
+													//var imgName = getOriginalName(data);
+													alert("이미지가 등록되었습니다");
+													$this.css("background-image","url("+imgURL+")");
+													$this.children("#imgFileDropped").val(data);
+													$this.find("#delImgBtn").show();
+													$this.children("#noImg").hide();
+													
+												})
 
 											});
 

@@ -294,8 +294,7 @@ div.row.control-group {
 	    <div class="row control-group" name="content">
 			<div class="form-group col-xs-12 floating-label-form-group controls">
 				<label>댓글</label> <input type="text" class="form-control"
-					placeholder="Reply" name="content" id="reContent" required
-					data-validation-required-message="Please enter reply.">
+					placeholder="Reply" name="content" id="reContent">
 			</div>
 		</div>
 		<button type="submit" id="registReplyBtn" class="registReplyBtn">댓글등록</button>

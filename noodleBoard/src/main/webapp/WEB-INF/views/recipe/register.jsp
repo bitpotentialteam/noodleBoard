@@ -54,6 +54,7 @@
 	text-align:center;
 	color: rgba(138, 109, 59, 0.55);
 }
+
 #noImg {
 	display: inline-block;
     margin-top: 18%;
