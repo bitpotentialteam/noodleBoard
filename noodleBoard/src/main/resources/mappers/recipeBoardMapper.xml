@@ -125,22 +125,22 @@
 				and content like ('%'||#{keyword}||'%')
 			</if>
 			<if test="searchType == 'w'.toString()">
-				and mno = to_number(#{keyword})
+				and mno = (select mno from tbl_user where nickName like ('%'||#{keyword}||'%'))
 			</if>
 			<if test="searchType == 'tc'.toString()">
 				and ( title like ('%'||#{keyword}||'%') OR content like
 				('%'||#{keyword}||'%') )
 			</if>
 			<if test="searchType == 'cw'.toString()">
-				and ( content like ('%'||#{keyword}||'%') OR writer like
-				('%'||#{keyword}||'%'))
+				and ( content like ('%'||#{keyword}||'%') 
+				OR mno = (select mno from tbl_user where nickName like ('%'||#{keyword}||'%'))
 			</if>
 			<if test="searchType == 'tcw'.toString()">
 				and ( title like ('%'||#{keyword}||'%')
 				OR
 				content like CONCAT('%'||#{keyword}||'%')
 				OR
-				nickname like CONCAT('%'||#{keyword}||'%'))
+				mno = (select mno from tbl_user where nickName like ('%'||#{keyword}||'%'))
 			</if>
 		</if>
 	</sql>
