@@ -146,6 +146,11 @@ div.row.control-group {
 #reReplyContent div{
 	display:block;
 }
+
+#like {
+	
+}
+
 </style>
 
 </head>
@@ -215,7 +220,7 @@ div.row.control-group {
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>설명</label>
 							<div id="content">
-								<p>내용 ${vo.content}</p>
+								<p>${vo.content}</p>
 							</div>
 						</div>
 					</div>								
@@ -293,7 +298,6 @@ div.row.control-group {
 					data-validation-required-message="Please enter reply.">
 			</div>
 		</div>
-<%-- 	      <div><button type="submit" class="removeReplyBtn" name="rno" value="${replyrno}">삭제</button></div> --%>
 		<button type="submit" id="registReplyBtn" class="registReplyBtn">댓글등록</button>
 		<br>
 <!-- 	  </form> -->
@@ -314,7 +318,8 @@ div.row.control-group {
 								<a href="#"> <img class="media-object" src="/user/show?name=${memberVO.picture}" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
 							</div>
 							<div class="media-body" id="findHidden">
-								<h4 class="media-heading">${memberVO.nickname}</h4>
+								<h4 class="media-heading">${memberVO.nickname}
+								<fmt:formatDate value="${rvo.regdate}" type="both" dateStyle="medium" timeStyle="short"/></h4>
 								<div id='btns'>
 									<p>${rvo.content}</p>
 									<button type="button" id="reReplyBtn" class="glyphicon glyphicon-comment"></button>
@@ -561,16 +566,16 @@ div.row.control-group {
 		
 		//댓글 수정 버튼 누르면 input으로 바꾸어줌
 		$("#replyModifyBtn").on("click", function(event){
-			var $this = $(this);
 			
 // 			$("#btns").empty();
-			var input = $this.parent().children("p");
-			var originalContent = input.text();
 // 			var inputContent = "<input type='text' id='modifyContent' name='content' value='"+originalContent+"'>";
 // 				input.html(inputContent);
 // 			console.log(input);
 // 			console.log(originalContent);
-
+			
+			var $this = $(this);
+			var input = $this.parent().children("p");
+			var originalContent = input.text();
 			var btns = $this.parent();
 			var pTag = "<input type='text' class='form-control' id='modifyContent' name='content' value='"+originalContent+"'>"
 					   +"<button type='button' id='replyModify' class='glyphicon glyphicon-pencil'></button>";
@@ -583,7 +588,6 @@ div.row.control-group {
 			var $this = $(this);
 			var rno = $this.parents("#findHidden").find("#hidden").find("#rno").val();
 			var content = $this.parent().children("#modifyContent").val();
-				
 			console.log($this);
 			console.log(rno);
 			console.log(content);

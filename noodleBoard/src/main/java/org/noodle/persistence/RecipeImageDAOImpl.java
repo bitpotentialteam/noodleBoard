@@ -69,4 +69,5 @@ public class RecipeImageDAOImpl implements RecipeImageDAO {
 		return session.selectList(namespace + "readAll");
 	}
 
+
 }

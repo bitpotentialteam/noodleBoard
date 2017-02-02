@@ -165,6 +165,8 @@ public class RecipeController {
 		model.addAttribute("clist", cservice.view(bno));
 		model.addAttribute("ilist", iservice.viewBno(bno));
 		model.addAttribute("replyList", rservice.listAll(bno));
+
+		logger.info("VO : " + service.view(bno));
 		logger.info("replyList : " + rservice.listAll(bno));
 	
 		List<RecipeReplyVO> rRlist = rservice.listAll(bno);
@@ -224,21 +226,31 @@ public class RecipeController {
 	@GetMapping("/modify")
 	public void modifyGET(@RequestParam("bno") Integer bno, @ModelAttribute("cri") SearchVO cri, Model model) throws Exception {
 		logger.info("modify called..................");
+		logger.info("VO : " + service.view(bno));
 		model.addAttribute("vo", service.view(bno));
 		model.addAttribute("clist", cservice.view(bno));
 		model.addAttribute("ilist", iservice.viewBno(bno));
+		logger.info("ilist : " + iservice.viewBno(bno));
+		logger.info("clist : " + cservice.view(bno));
+		
 	}
 	
 	@PostMapping("/modify")
-	public String modifyPOST(RecipeImageVO ivo, RecipeBoardVO bvo, BoardList boardList, RecipeCuisineVO cvo) throws Exception{
+	public String modifyPOST(RecipeBoardVO bvo, BoardList boardList) throws Exception{
 		logger.info("ModifyPOST called.....");
-		
 		logger.info("bvo: "+bvo.toString());
 		logger.info("ivo: "+boardList.getIlist().toString());
 		logger.info("cvo: "+boardList.getClist().toString());
+		logger.info("Spring security" + SecurityContextHolder.getContext().getAuthentication());
 		
+		for(int i = 0; i < boardList.getIlist().size(); i++){
+			String imageName = boardList.getIlist().get(i).getThumbnail().replaceAll("s_", "o_");
+			boardList.getIlist().get(i).setImage(imageName);
+			logger.info("i" +i);
+		}
+		bvo.setMno(mservice.read1(SecurityContextHolder.getContext().getAuthentication().getName()).getMno());
 		service.modify(bvo, boardList.getIlist(), boardList.getClist());
-		iservice.regist(ivo);
+//		iservice.regist(boardList.getIlist());
 		
 		return "redirect:list";
 	}

@@ -13,6 +13,14 @@
 			#{image, jdbcType=VARCHAR}, #{thumbnail,jdbcType=VARCHAR})
 	</insert>
 	
+	<insert id="modifyCreate">
+		insert 
+			into tbl_recipeImage (bno, ino, step, image, thumbnail)
+		values 
+			(#{bno, jdbcType=INTEGER}, seq_recipeImage.nextval, #{step, jdbcType=INTEGER}, 
+			#{image, jdbcType=VARCHAR}, #{thumbnail,jdbcType=VARCHAR})
+	</insert>
+	
 	<select id="read" resultType="RecipeImageVO">
 		select 
 			* 
@@ -26,7 +34,7 @@
 	
 	<update id="update">
 		update 
-			tbl_recipeiamge 
+			tbl_recipeimage 
 		set 
 			bno = #{bno, jdbcType=INTEGER},
 			ino = #{ino, jdbcType=INTEGER}, 

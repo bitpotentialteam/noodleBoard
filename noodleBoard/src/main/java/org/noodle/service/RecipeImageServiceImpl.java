@@ -55,4 +55,5 @@ public class RecipeImageServiceImpl implements RecipeImageService {
 		return dao.readAll();
 	}
 
+
 }

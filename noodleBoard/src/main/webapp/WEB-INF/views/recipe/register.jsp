@@ -185,7 +185,7 @@ button#addStepBtn {
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
 							<input type="hidden" class="form-control"
-								placeholder="Mno" name="mno" id="mno" value="${sessionScope.VO.mno}">
+								placeholder="Mno" name="mno" id="mno" value="${memberVO.mno}">
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>
@@ -195,7 +195,7 @@ button#addStepBtn {
 							class="form-group col-xs-12 floating-label-form-group controls">
 							<label>메뉴명</label> <input type="text" class="form-control"
 								placeholder="Title" name="title" id="title" required
-								data-validation-required-message="Please enter title.">
+								data-validation-required-message="Please enter title." value=''>
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>
@@ -204,12 +204,12 @@ button#addStepBtn {
 					<textarea name="content" id="content"></textarea>
 							<p class="help-block text-danger"></p>
 					<!-- 재료를 입력해서 넘김 -->
-					<div class="row control-group" id="materialContent">
+					<div class="row control-group">
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>재료</label>
 							<input type="text" class="form-control"
 							name="materialContent"
-							id="materialContent">
+							id="materialContent" value=''>
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>
@@ -552,17 +552,27 @@ button#addStepBtn {
 		
 		$(document).on("click", "#registerBtn", function(event){
 			
-// 			var mainImgNameLength = $this.parents("#registerForm").find(".mainImg").get(0).style['backgroundImage'].length;
  			var mainImg = $("#stepImg.mainImg").children("#imgFileDropped").val();
+ 			var title = $("#title").val();
+ 			var content = $("#content").val();
+ 			var materialContent = $("#materialContent").val();
+// 			var mainImgNameLength = $this.parents("#registerForm").find(".mainImg").get(0).style['backgroundImage'].length;
 //			var mainImg = $(".mainImg").children()[2];
 // 			var imgInput = mainImg; 
-// 			console.log(imgInput);
+			console.log(mainImg);
 			
-			if(mainImg != ''){
+			
+			if(mainImg == ''){
+				alert("대표이미지를 설정해주세요");
+			}else if(title == ''){
+				alert("제목을 입력해주세요");
+			}else if(content == ''){
+				alert("설명을 입력해주세요");
+			}else if(materialContent == ''){
+				alert("재료를 입력해주세요");
+			}else{
 				$("#registerForm").submit();
 				alert("등록 완료!");
-			}else{
-				alert("대표이미지를 설정해주세요");
 			}
 		});
 		

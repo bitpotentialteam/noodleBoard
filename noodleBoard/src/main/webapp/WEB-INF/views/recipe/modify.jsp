@@ -178,16 +178,16 @@ button#addStepBtn {
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 				<!-- 헤더 밑의 맨 위 간판부분 -->
 				<p>
-				<h1>자기만의 특별한 레시피를 올려주세요!</h1>
+				<h1>수정해주세요</h1>
 				</p>
 				<!-- form시작 -->
-				<form action="modify" method="post" id="">
+				<form action="modify" method="post" id='register'>
 					<!-- mno를 hidden으로 숨겨서 register로 넘김 -->
 					<div class="row control-group" name="mno">
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
-							<input type="hidden" class="form-control" placeholder="Mno"
-								name="mno" id="mno" value="${sessionScope.VO.mno}">
+							<input type="hidden" name="mno" value="${memberVO.mno}">
+							<input type="hidden" name="bno" value="${vo.bno}">
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>
@@ -219,20 +219,18 @@ button#addStepBtn {
 						<div
 							class="form-group col-xs-12 floating-label-form-group controls">
 							<label>조리순서 (image drag&drop)</label>
-							<!-- 파일업로드 개똥망 날아가게생김 ㅠㅠ 무능력해서 ㅈㅅ.. 모르는건 죄가 맞음 -->
 							<!--<div id="fileUpload"> 
  								<input type="file" name="ilist[0].thumbnail" id="imgFile" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="" accept=".jpg, .png, .jpeg, .gif"> 
  								<label for="imgFile"><span class="glyphicon glyphicon-open" aria-hidden="true"> Choose a file…</span></label>
  							</div> 
 							 Image and Cuisine Start -->
 							<div id="steps">
-
+								
 								<c:forEach items="${clist}" var="cuisineVO">
 									<c:set var="loop" value="true"></c:set>
 									<c:forEach items="${ilist}" var="imageVO">
 										<c:if test="${imageVO.step == cuisineVO.step}">
 											<c:if test="${loop}">
-
 												<!-- STEP START -->
 												<div class="media form-group" id="step">
 													<!-- Thumbnail Start -->
@@ -246,6 +244,7 @@ button#addStepBtn {
 															<!-- thumbnail을 hidden으로 넘기는 것은  -->
 															<input type='hidden' id='imgFileDropped'
 																name='ilist[0].thumbnail'>
+<!-- 															<input type='hidden' id='ino' name='ilist[0].ino'> -->
 														</div>
 													</div>
 													<!-- RecipeImage와 RecipeCuisine에게 각각 step 전달 -->
@@ -289,7 +288,7 @@ button#addStepBtn {
 					<div class="right row">
 						<!-- 등록, 취소 버튼 -->
 						<div class="form-group col-md-4">
-							<button type="submit" id="registerBtn"
+							<button type="button" id="registerBtn"
 								class="btn btn-default-right">저 장</button>
 							<a href="list"><input type="button"
 								class="btn btn-default-right" value="취 소"></a>
@@ -381,6 +380,9 @@ button#addStepBtn {
 									$child.find('input.imgFileDropped').attr(
 											'name',
 											'ilist[' + i + '].thumbnail');
+									$child.find('input#ino').attr(
+											'name',
+											'ilist[' + i + '].ino');
 									$child.find('textarea#stepContent').attr(
 											'name', 'clist[' + i + '].content');
 								}
@@ -506,7 +508,7 @@ button#addStepBtn {
 
 												var $mainImgDiv = $("#mainImg");
 
-												var mainImgData = "<input type='hidden' name='picture'>";
+												var mainImgData = "<input type='hidden' name='picture'>"
 
 												$mainImgDiv.append(mainImgData);
 
@@ -648,7 +650,8 @@ button#addStepBtn {
 										$("#register").submit();
 										alert("등록 완료!");
 
-									});
+							});
+							
 
 							/* 		$("#regBtn").submit(function(event) {
 							 event.preventDefault();

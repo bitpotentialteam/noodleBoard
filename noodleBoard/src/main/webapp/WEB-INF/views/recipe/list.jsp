@@ -148,9 +148,8 @@ section h3.section-subheading {
 						<div class="portfolio-caption">
 							<span class='glyphicon glyphicon-heart-empty' id="like"><span class='badge badge-count' id='likeCnt'>${boardVO.likeCnt}</span>
 							<span class='badge badge-count' id='viewCnt'>조회수${boardVO.viewCnt}
-							</span>
+							</span></span>
 							<p class="text-muted">${boardVO.title}</p>
-							<p class="text-muted">${boardVO.content}</p>
 						
 						<c:set var="loop" value="true"></c:set>
 						<c:forEach items="${MemberList}" var="memberVO">
