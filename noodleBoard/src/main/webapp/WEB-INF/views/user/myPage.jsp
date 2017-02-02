@@ -7,7 +7,11 @@
 <link href="../resources/css/user_myPage.css" rel="stylesheet">
 
 </head>
-
+<style>
+#yellowbar{
+	padding:35px;
+}
+</style>
 <body class="hold-transition skin-blue sidebar-mini">
 
 <%@ include file="/WEB-INF/views/include/loginSection.jsp" %>
@@ -20,15 +24,14 @@
 		  <div class="box box-widget widget-user-2">
 		  
 			<!-- Add the bg color to the header using any of the bg-* classes -->
-			<div class="widget-user-header bg-yellow">
+			<div class="widget-user-header bg-yellow" id="yellowbar">
 			  
 			  <div class="widget-user-image">
 				<img class="img-circle" src="show?name=${memberVO.picture}" alt="User Avatar">
 			  </div>
 			  
-			  <!-- /.widget-user-image -->
-			  <h3 class="widget-user-username">${memberVO.username}</h3>
-			  <h5 class="widget-user-desc">${memberVO.nickname}</h5>
+			  <!-- /.widget-user-image -->	  
+			  <h3 class="widget-user-desc">${memberVO.nickname}</h3>
 			</div>
 			
 			<form id="form">
