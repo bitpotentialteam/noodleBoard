@@ -131,6 +131,7 @@
 								|| $('#nickname').val() == ""
 								|| $('#email').val() == "") {
 									alert("항목을 입력해주세요");
+									return;
 						}
 				if(checkResult == "true" , checkResults == "true"){
 					console.log(register);
