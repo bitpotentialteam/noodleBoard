@@ -232,6 +232,7 @@ button {
 			
 			//엔터이벤트
 			$("#keywordInp").keypress(function(e) { 
+				
 
 			    if (e.keyCode == 13){
 			    	search(); 

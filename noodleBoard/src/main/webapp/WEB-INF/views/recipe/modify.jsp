@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List"%>
+<jsp:include page="../page/header.jsp" flush="false" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,12 +39,27 @@
 
 </head>
 
-<body>
-
 	<style>
 <!--
 맨 위에 링크 색깔 -->.navbar-custom {
 	background-color: #222;
+}
+
+.navbar-toggle {
+	color: #fff; 
+    border: 1px solid transparent;
+    margin-top: 8px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    padding: 9px 10px;
+ }
+ 
+ .navbar-custom  {
+	background-color: #222;
+}
+
+.header {
+	background-color: pink;
 }
 
 #stepImg {
@@ -121,65 +138,17 @@ button#addStepBtn {
 }
 </style>
 
+<body>
 
 
-	<!-- Navigation -->
-	<nav id="mainNav"
-		class="navbar navbar-default navbar-custom navbar-fixed-top">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header page-scroll">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> Menu <i
-					class="fa fa-bars"></i>
-			</button>
-			<a class="navbar-brand page-scroll" href="../">Noodles.com</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="hidden"><a href="#page-top"></a></li>
-				<li><a class="page-scroll" href="/wiki">Noodle-Wiki</a></li>
-				<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
-				<li><a class="page-scroll" href="/timeline">Community</a></li>
-				<li><a class="page-scroll" href="/developer/api">Developer</a></li>
-
-				<c:if test='${sessionScope.LOGIN eq success}'>
-					<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
-					<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
-				</c:if>
-				<c:if test='${sessionScope.LOGIN ne success}'>
-					<li><a class="page-scroll" href="/user/login" id="login">LOGOUT</a></li>
-					<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
-				</c:if>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid --> </nav>
-
-	<!-- Header -->
-	<header>
-	<div class="container">
-		<div class="intro-text">
-			<div class="intro-lead-in">Welcome To Noodle.com!</div>
-			<div class="intro-heading">Noodels Title</div>
-			<a href="#recipe" class="page-scroll btn btn-xl">Tell Me More</a>
-		</div>
-	</div>
-	</header>
-
+	
 	<!-- Main Content -->
+<section>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 				<!-- 헤더 밑의 맨 위 간판부분 -->
-				<p>
-				<h1>수정해주세요</h1>
-				</p>
+			
 				<!-- form시작 -->
 				<form action="modify" method="post" id='register'>
 					<!-- mno를 hidden으로 숨겨서 register로 넘김 -->
@@ -298,7 +267,7 @@ button#addStepBtn {
 			</div>
 		</div>
 	</div>
-
+</section>
 	<hr>
 	<!-- Footer -->
 	<footer>
