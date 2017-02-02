@@ -173,8 +173,7 @@ public class UserController {
 		if (vo.getUserid().length() == 0  
 				|| vo.getUserpw().length() == 0  
 				|| vo.getNickname().length() == 0  
-				|| vo.getEmail().length() == 0  
-				|| vo.getUsername().length() == 0){
+				|| vo.getEmail().length() == 0){
 			
 			return  "redirect:/user/register";
 		}

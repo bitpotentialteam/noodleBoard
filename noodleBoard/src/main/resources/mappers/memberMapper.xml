@@ -8,15 +8,15 @@
 	<sql id="createSQL">
 		<if test="picture != null">
 		insert into 
-			tbl_user(mno,userid,userpw,username,nickname,email,picture)
+			tbl_user(mno,userid,userpw,nickname,email,picture)
 		values
-			(seq_user.nextval, #{userid},#{userpw},#{username},#{nickname},#{email},#{picture})
+			(seq_user.nextval, #{userid},#{userpw},#{nickname},#{email},#{picture})
 		</if>
 		<if test="picture == null">
 		insert into 
-			tbl_user(mno,userid,userpw,username,nickname,email)
+			tbl_user(mno,userid,userpw,nickname,email)
 		values
-			(seq_user.nextval, #{userid},#{userpw},#{username},#{nickname},#{email})
+			(seq_user.nextval, #{userid},#{userpw},#{nickname},#{email})
 		</if>
 	</sql>
 	
@@ -33,7 +33,7 @@
 	<update id="update">
 		update tbl_user
 		set
-		userpw = #{userpw, jdbcType=VARCHAR}, username = #{username, jdbcType=VARCHAR}, 
+		userpw = #{userpw, jdbcType=VARCHAR},  
 		nickname = #{nickname, jdbcType=VARCHAR}, email = #{email, jdbcType=VARCHAR}, picture = #{picture, jdbcType=VARCHAR}
 		where mno = #{mno, jdbcType=INTEGER}
 	</update>

@@ -36,7 +36,6 @@
 
 			    <ul class="list-group">
 				  <li class="list-group-item"><h4>ID</h4>${memberVO.userid}</li>
-				  <li class="list-group-item"><h4>NAME</h4>${memberVO.username}</li>
 				  <li class="list-group-item"><h4>NICKNAME</h4>${memberVO.nickname}</li>
 				  <li class="list-group-item"><h4>E-MAIL</h4>${memberVO.email}</li>
 				</ul>

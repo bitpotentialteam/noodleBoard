@@ -52,10 +52,7 @@
 		    <font name="check" size="2" color="red"></font>
 		  </div>
 
-		  <div class="form-group has-feedback">
-			<input type="text" id="username" name="username" class="form-control" placeholder="Username" value=""> 
-			<span class="glyphicon glyphicon-user form-control-feedback"></span>
-		  </div>		
+		 		
 				
 		  <div class="form-group has-feedback">
 		    
@@ -131,7 +128,6 @@
 														
 				if (userid == ""|| $('#userid').val() == ""
 								|| $('#userpw').val() == ""
-								|| $('#username').val() == ""
 								|| $('#nickname').val() == ""
 								|| $('#email').val() == "") {
 									alert("항목을 입력해주세요");

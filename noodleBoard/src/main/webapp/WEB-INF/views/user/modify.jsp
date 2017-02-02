@@ -42,7 +42,6 @@
 				<ul class="list-group">
 				  <li class="list-group-item"><h4>ID</h4>${memberVO.userid}</li>
 				  <li class="list-group-item"><h4>PASSWORD</h4><input type="password" name="userpw" value="${memberVO.userpw}"></li>
-		  		  <li class="list-group-item"><h4>NAME</h4><input type="text" name="username" value="${memberVO.username}"></li>
 				  <li class="list-group-item"><h4>NICKNAME</h4><input type="text" name="nickname" id="nickname" value="${memberVO.nickname}">
 				    <span class="input-group-btn">
 				      <button class="btn btn-default" type="button">
