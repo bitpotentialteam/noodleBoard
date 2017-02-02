@@ -85,6 +85,14 @@
 .table thead tr th{
 	text-align: center;
 }
+
+button {
+
+   background-color: rgba( 255, 255, 255, 0 );
+   border : 0;
+   outline : 0;
+
+}
 </style>
 
 </head>
@@ -135,7 +143,7 @@
 			<!-- 결과화면출력 -->
 		  <div id = "resultDiv" style = 'border-style: solid; margin: 5em;'>
 		    <div id="demo">
-  			  <label><button id="tableRemoveBtn">Reset</button></label>
+  			  <label><button id="tableRemoveBtn" >Reset</button></label>
 		  	  <table id="table" class="table table-hover table-mc-light-blue">
 		        <thead>
 		          <tr>
@@ -207,7 +215,7 @@
 	    						  	 +"<td>"+jsonData[i]['natrium']+"</td>"
 	    						  	 +"</tr>";
 	    						  	 
-	    				$tbody.append(str);
+	    				$tbody.prepend(str);
 	    				}
 	    				
 	    			}
@@ -233,6 +241,7 @@
 				dataType: 'text',
 				success: function(){
 					window.open("/wiki/view");
+					console.log("?????????????");
 				}
 				
 			}); // end ajax...
