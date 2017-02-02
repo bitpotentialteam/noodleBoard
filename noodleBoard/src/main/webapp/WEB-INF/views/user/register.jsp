@@ -233,7 +233,7 @@
       $('#userpwRe').keyup(function() {
          if ($('#userpw').val() != $('#userpwRe').val()) {
             $('font[name=check]').text('');
-            $('font[name=check]').html("암호가 틀렸습니다.");
+            $('font[name=check]').html("비밀번호를 확인해 주세요.");
                
          } else {
             $('font[name=check]').text('');
