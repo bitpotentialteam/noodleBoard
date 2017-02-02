@@ -51,6 +51,10 @@
         <div class="form-group has-feedback">
           <font name="check" size="2" color="red"></font>
         </div>
+        <div class="form-group has-feedback">
+          <font name="pwcheck" size="2" color="red"></font>
+        </div>
+        
 
              
             
@@ -229,15 +233,29 @@
       $('#userpwRe').keyup(function() {
          if ($('#userpw').val() != $('#userpwRe').val()) {
             $('font[name=check]').text('');
-            $('font[name=check]').html("암호틀렸습니다.");
+            $('font[name=check]').html("암호가 틀렸습니다.");
                
          } else {
             $('font[name=check]').text('');
-            $('font[name=check]').html("암호맞습니다.");
+            $('font[name=check]').html("");
             
          }
       }); //#chpass.keyup
    }); // end password check function...
+   
+   //비밀번호 6글자 이상 조건
+   $(function(){
+      $('#userpw').keyup(function(){
+         $('font[name=pwcheck]').text('');
+      });
+      $('#userpw').keyup(function(){
+         if($('#userpw').val().length < 6){
+            
+            $('font[name=pwcheck]').text('');
+            $('font[name=pwcheck]').html("비밀번호를 6자 이상 입력해주세요");
+         }
+      });
+   });
 
 
    //프로필사진 이미지 드래그앤드랍
