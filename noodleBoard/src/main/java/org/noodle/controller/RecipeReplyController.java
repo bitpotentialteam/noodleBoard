@@ -1,16 +1,12 @@
 package org.noodle.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.noodle.domain.MemberVO;
 import org.noodle.domain.RecipeReplyVO;
-import org.noodle.service.MemberService;
 import org.noodle.service.RecipeReplyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,10 +24,6 @@ public class RecipeReplyController {
 	
 	@Autowired
 	private RecipeReplyService rservice;
-	
-	@Autowired
-	private MemberService mservice;
-	
 	
 	
 	@PostMapping("/reReplyList")
@@ -53,18 +45,8 @@ public class RecipeReplyController {
 			rservice.regist(vo);
 		return rservice.listAll(vo.getBno());
 		}else{
-			Object user = SecurityContextHolder.getContext().getAuthentication().getName();
-			logger.info(user.toString());
-			MemberVO mvo = mservice.read1(user.toString());
-			
-			List<RecipeReplyVO> rlist = new ArrayList<RecipeReplyVO>();
-//			rlist = rservice.listAll(bno);
-			for(int i = 0; i < rlist.size(); i++){
-				
-//				MemberVO mvo = mservice.read(rlist.get(i).getMno());
-//				mlist.add(mvo);
-			}
 			rservice.regist(vo);
+			logger.info("nickname : " + rservice.seqRead(vo.getRrno()));
 		return rservice.seqRead(vo.getRrno());
 		}
 	}

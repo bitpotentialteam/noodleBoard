@@ -72,4 +72,9 @@ public class RecipeReplyDAOImpl implements RecipeReplyDAO {
 		return session.selectOne(NAME + "read", rno);
 	}
 
+	@Override
+	public List<RecipeReplyVO> readNickname(Integer bno) throws Exception {
+		return session.selectList(NAME + "readNickname", bno);
+	}
+
 }

@@ -210,7 +210,7 @@ div.row.control-group {
     </header>
 <section>
 <form id=recipe>
-	<input type='hidden' id='sessionMno' name='mno' value="${sessionScope.VO.mno}">
+	<input type='hidden' id='sessionMno' name='mno' value="${memberVO.mno}">
 	<input type='hidden' id='mno' name='mno' value="${vo.mno}">
 	<div class="container">
 		<div class="row">
@@ -487,8 +487,6 @@ div.row.control-group {
 			var $replyToggle = $this.parents("#findHidden").find("#reReplyContent");
 			var rno = $this.parents("#findHidden").find("#rno").val();
 			var bno = $("#bno").val();
-			var nickName = $("#nickName").val();
-			var picture = $("#picture").val();
 			var input = "<div id='replyInput'><input type='text' class='form-control' placeholder='Reply' name='content' id='reReContent' required data-validation-required-message='Please enter reply.'>"
 						+"<button type='button' id='reReplyRegist' class='reReplyRegist glyphicon glyphicon-pencil'></button></div>";
 			 
@@ -514,9 +512,10 @@ div.row.control-group {
     					if(result){
 							for(var i = 0; i < result.length; i++){
 							var content = result[i].content;
+							var nickname = result[i].nickname;
 							console.log(content);
     						str += "<div class='media-body' id='reContent'>"
-							   	   +"<h4 class='media-heading'>" + nickName + "</h4>"
+							   	   +"<h4 class='media-heading'>" + nickname + "</h4>"
 							  	   +"<p>"+content+"</p>"
 							   	   +"</div>";
 							   
@@ -670,9 +669,10 @@ div.row.control-group {
     				console.log(result);
     				alert("대댓글 등록");
 						var reReContent = result.content;
+						var nickname = result.nickname;
 						console.log(reReContent);
 						str += "<div class='media-body' id='reContent'>"
-						   	   +"<h4 class='media-heading'>" + nickName + "</h4>"
+						   	   +"<h4 class='media-heading'>" + nickname + "</h4>"
 						  	   +"<p>"+content+"</p>"
 						   	   +"</div>";
 					$this.parent("#replyInput").prepend(str);

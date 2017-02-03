@@ -24,7 +24,19 @@
 			#{content, jdbcType=VARCHAR})
 		</if>
 	</insert>
-
+	
+	<select id="readNickname" resultType="RecipeReplyVO">
+	select 
+		tbl_recipereply.mno, tbl_recipereply.bno, tbl_user.nickname
+	from 
+		tbl_recipereply
+	join 
+		tbl_user
+	on 
+		tbl_user.mno = tbl_recipereply.mno where bno = #{bno, jdbcType=INTEGER};
+	
+	</select>
+	
 	<select id="read" resultType="RecipeReplyVO">
 		select 
 			* 
@@ -36,13 +48,17 @@
 	
 	<select id="readSeq" resultType="RecipeReplyVO">
 		<![CDATA[
-		select
+		select 
 			*
-		from
+		from 
 			tbl_recipereply
-		where
-			seq > 0
-		and
+		join 
+			tbl_user
+		on 
+			tbl_user.mno = tbl_recipereply.mno 
+		where 
+			tbl_recipereply.seq > 0 
+		and 
 			rrno = #{rrno, jdbcType=INTEGER}
 		order by rno asc
 		]]>

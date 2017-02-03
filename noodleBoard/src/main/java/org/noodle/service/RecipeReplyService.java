@@ -14,5 +14,6 @@ public interface RecipeReplyService {
 	public List<RecipeReplyVO> seqRead(Integer rrno) throws Exception;
 	public void rrnoModify(Integer rno) throws Exception;
 	public Integer currvalRno()throws Exception;
+	public List<RecipeReplyVO> readNickname(Integer bno) throws Exception;
 
 }

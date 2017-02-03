@@ -12,9 +12,9 @@ public class RecipeReplyVO {
 	private Integer rrno;
 	private Integer seq;
 	private String content;
+	private String nickname;
 	private Date regdate;
 	private Date updatedate;
-	
 	public Integer getMno() {
 		return mno;
 	}
@@ -51,6 +51,12 @@ public class RecipeReplyVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public Date getRegdate() {
 		return regdate;
 	}
@@ -63,11 +69,14 @@ public class RecipeReplyVO {
 	public void setUpdatedate(Date updatedate) {
 		this.updatedate = updatedate;
 	}
-	
 	@Override
 	public String toString() {
 		return "RecipeReplyVO [mno=" + mno + ", bno=" + bno + ", rno=" + rno + ", rrno=" + rrno + ", seq=" + seq
-				+ ", content=" + content + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
+				+ ", content=" + content + ", nickname=" + nickname + ", regdate=" + regdate + ", updatedate="
+				+ updatedate + "]";
 	}
+	
+	
+	
 	
 }
