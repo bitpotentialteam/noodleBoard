@@ -14,7 +14,6 @@ import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.domain.RecipeImageVO;
 import org.noodle.domain.RecipeReplyVO;
 import org.noodle.domain.SearchVO;
-import org.noodle.domain.TimeLineVO;
 import org.noodle.service.MemberService;
 import org.noodle.service.RecipeBoardService;
 import org.noodle.service.RecipeCuisineService;
@@ -169,7 +168,6 @@ public class RecipeController {
 		logger.info("VO : " + service.view(bno));
 		logger.info("replyList : " + rservice.listAll(bno));
 	
-		List<RecipeReplyVO> rRlist = rservice.listAll(bno);
 		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
 		logger.info(user.toString());
 		MemberVO vo = mservice.read1(user.toString());
@@ -210,14 +208,8 @@ public class RecipeController {
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno") int bno, SearchVO cri, RedirectAttributes rttr) throws Exception {
 		logger.info("DELETE.......");
-		service.remove(bno);
 		logger.info("BNO : " + bno);
-
-//		rttr.addAttribute("page", cri.getPage());
-//		rttr.addAttribute("perPageNum", cri.getPageUnit());
-//		rttr.addAttribute("searchType", cri.getSearchType());
-//		rttr.addAttribute("keyword", cri.getKeyword()); 
-
+		service.remove(bno);
 		rttr.addFlashAttribute("msg", "success");
 
 		return "redirect:list";
@@ -236,21 +228,20 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/modify")
-	public String modifyPOST(RecipeBoardVO bvo, BoardList boardList) throws Exception{
+	public String modifyPOST(@RequestParam("bno") Integer bno,RecipeImageVO ivo, RecipeBoardVO bvo, BoardList boardList, RecipeCuisineVO cvo) throws Exception{
 		logger.info("ModifyPOST called.....");
 		logger.info("bvo: "+bvo.toString());
 		logger.info("ivo: "+boardList.getIlist().toString());
 		logger.info("cvo: "+boardList.getClist().toString());
-		logger.info("Spring security" + SecurityContextHolder.getContext().getAuthentication());
+		logger.info("RecipeImageVO : " + ivo);
 		
-		for(int i = 0; i < boardList.getIlist().size(); i++){
-			String imageName = boardList.getIlist().get(i).getThumbnail().replaceAll("s_", "o_");
-			boardList.getIlist().get(i).setImage(imageName);
-			logger.info("i" +i);
-		}
-		bvo.setMno(mservice.read1(SecurityContextHolder.getContext().getAuthentication().getName()).getMno());
 		service.modify(bvo, boardList.getIlist(), boardList.getClist());
-//		iservice.regist(boardList.getIlist());
+		
+		//만약 step이 추가가 되면 image와 cuisine에 create 날려줌
+//		iservice.regist(ivo);
+		
+		//만약 step이 삭제되면 image와 cuisine에 delete 날려줌
+//		iservice.remove(ivo);
 		
 		return "redirect:list";
 	}
@@ -261,13 +252,9 @@ public class RecipeController {
 		logger.info("addlike....");
 		logger.info("vo : " + vo);
 		
-			service.addLikeCount(vo);
-		
+		service.addLikeCount(vo);
 		
 		return service.readLikeCnt(vo.getBno());
 	
-
 	}
-	
-	
 }

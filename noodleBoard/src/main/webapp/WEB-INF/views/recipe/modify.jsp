@@ -148,7 +148,6 @@ button#addStepBtn {
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 				<!-- 헤더 밑의 맨 위 간판부분 -->
-			
 				<!-- form시작 -->
 				<form action="modify" method="post" id='register'>
 					<!-- mno를 hidden으로 숨겨서 register로 넘김 -->
@@ -293,8 +292,7 @@ button#addStepBtn {
 						</span>
 					</a></li>
 				</ul>
-				<p class="copyright text-muted">Copyright &copy; Noodle Website
-					2017</p>
+				<p class="copyright text-muted">Copyright &copy; Noodle Website 2017</p>
 			</div>
 		</div>
 	</div>
