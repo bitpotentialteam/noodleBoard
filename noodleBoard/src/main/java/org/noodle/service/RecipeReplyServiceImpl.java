@@ -92,6 +92,11 @@ public class RecipeReplyServiceImpl implements RecipeReplyService {
 		return dao.read(rno);
 	}
 
+	@Override
+	public List<RecipeReplyVO> readNickname(Integer bno) throws Exception {
+		return dao.readNickname(bno);
+	}
+
 
 
 }

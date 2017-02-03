@@ -17,5 +17,6 @@ public interface RecipeReplyDAO {
 	public void rrnoUpdate(Integer rno) throws Exception;
 	public Integer rnoCurrval() throws Exception;
 	public void seqUpdate(Integer rno) throws Exception;
+	public List<RecipeReplyVO> readNickname(Integer bno) throws Exception;
 	
 }
