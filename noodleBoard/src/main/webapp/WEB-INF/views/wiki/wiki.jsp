@@ -121,8 +121,15 @@ button {
 				<li><a class="page-scroll" href="/recipe/list">Recipe</a></li>
 				<li><a class="page-scroll" href="/timeline">Community</a></li>
 				<li><a class="page-scroll" href="/developer/api">Developer</a></li>
-				<li><a class="page-scroll" href="/user/login">LOGIN</a></li>
-				<li><a class="page-scroll" href="/user/register">SIGN-UP</a></li>
+			<c:if test='${SPRING_SECURITY_CONTEXT == null}'>
+				<li><a class="page-scroll" href="/user/login" id="login">LOGIN</a></li>
+				<li><a class="page-scroll" href="/user/register" id="register">SIGN-UP</a></li>
+		  	</c:if>
+			
+		  	<c:if test='${SPRING_SECURITY_CONTEXT != null}'>
+				<li><a class="page-scroll" id="login" href="<c:url value="/logout" />">LOGOUT</a></li>
+				<li><a class="page-scroll" href="/user/myPage" id="register">MYPAGE</a></li>
+		  	</c:if>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
