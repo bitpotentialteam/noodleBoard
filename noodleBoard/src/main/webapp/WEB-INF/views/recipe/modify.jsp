@@ -208,6 +208,7 @@ button#addStepBtn {
 														background-repeat:no-repeat; background-size:contain">
 															<span class='glyphicon glyphicon-remove-sign'
 																id='delImgBtn' aria-hidden='true'></span>
+																<input type="hidden" value="${imageVO.ino}">
 															<div id="noImg">
 																
 															</div>
