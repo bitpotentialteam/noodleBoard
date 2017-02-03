@@ -209,7 +209,7 @@ div.row.control-group {
         </div>
     </header>
 <section>
-<form id=recipe>
+<form id="recipe">
 	<input type='hidden' id='sessionMno' name='mno' value="${memberVO.mno}">
 	<input type='hidden' id='mno' name='mno' value="${vo.mno}">
 	<div class="container">
@@ -254,7 +254,7 @@ div.row.control-group {
 						                                <i class="fa fa-plus fa-3x"></i>
 						                            </div>
 						                        </div>
-						                        <img src="../user/show?name=${imageVO.thumbnail}" class="img-responsive" alt="">
+						                        <img src="../user/show?name=${imageVO.thumbnail}" class="img-responsive">
 						                   	 	</a>
 											</div>											
 										</div>
@@ -289,7 +289,7 @@ div.row.control-group {
 	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 	<div class="reply">
 <!-- 	  <form id="replyListForm" action="registReply" method="post"> -->
-	  	<input type='hidden' id='sessionMno' name='mno' value="${sessionScope.VO.mno}">
+	  	<input type='hidden' id='sessionMno' name='mno' value="${memberVO.mno}">
 	    <input type='hidden' id="bno" name='bno' value="${vo.bno}">
 	    <div class="row control-group" name="content">
 			<div class="form-group col-xs-12 floating-label-form-group controls">
@@ -314,22 +314,23 @@ div.row.control-group {
 					<c:if test="${loop}">
 						<li class="media">
 							<div class="media-left">
-								<a href="#"> <img class="media-object" src="/user/show?name=${memberVO.picture}" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
+								<a href="#"> <img class="media-object" src="/user/show?name=${memberVO.picture}" data-holder-rendered="true" style="width: 70px; height: 70px;"> </a>
 							</div>
 							<div class="media-body" id="findHidden">
-								<h4 class="media-heading">${memberVO.nickname}
-								<fmt:formatDate value="${rvo.regdate}" type="both" dateStyle="medium" timeStyle="short"/></h4>
+								<span style = font-size:22px><b>${memberVO.nickname}</b></span>
+                       			<span class="text-muted pull-right"><fmt:formatDate value="${rvo.regdate}" type="both" dateStyle="medium" timeStyle="short"/></span>
 								<div id='btns'>
 									<p>${rvo.content}</p>
 									<button type="button" id="reReplyBtn" class="glyphicon glyphicon-comment"></button>
+									<br>
+									<br>								
 								</div>
 								<div id="reReplyContent">	
 								
 								</div>
 								<div class="form-group col-xs-12 floating-label-form-group controls" id="hidden">
-									<input type='hidden' id="nickName" name='nickName' value="${memberVO.nickname}">
 									<input type='hidden' id="pickture" name='pickture' value="${memberVO.picture}">
-									<input type='hidden' id="mno" name='mno' value="${rvo.mno}">
+									<input type='hidden' id="replyMno" name='mno' value="${rvo.mno}">
 									<input type='hidden' id="rno" name='rno' value="${rvo.rno}">
 									<input type='hidden' id="rrno" name='rrno' value="${rvo.rrno}">
 									<input type='hidden' id="seq" name='seq' value="${rvo.seq}">
@@ -405,7 +406,6 @@ div.row.control-group {
 		
 		function user(){
 		var button = "";
-		var reButton = "";
 		if(sessionMno == mno){
 			button = "<button type='submit' id='modifyBtn' class='btn btn-default-right'>수 정</button>"
 					 +"&nbsp<button type='submit' id='removeBtn' class='btn btn-default-right'>삭 제</button>";
@@ -417,29 +417,34 @@ div.row.control-group {
 		//수정, 삭제 버튼 가리기
 		function replyBtn(){
 			var $this = $(this);
-			var mno = $this.find(".media").find("#mno").val();
 			var bno = $("#bno").val();
+			var mno = $("#replyMno").val();
+			var sessionMno = $("#sessionMno").val();
 			console.log($this);
 			console.log(bno);
+			console.log("sessionMno : " + sessionMno);
+			console.log(mno);
 			
 			$.ajax({
 		    	type : 'post',
-		    	url : '/recipe/replyList',
-		    	headers : {
+		    	url : '/recipe/ReplyList',
+		    	headers : { 
 		    		"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
 		    		"X-HTTP-Method-Override" : "POST"
 		    	},
 		    	dataType : 'json',
 		    	data : {bno:bno},
 		    	success : function(result) {   
-		    				var reButton = "";
-		    		for(var i = 0; i < result.length; i++){
+		    		var reButton = "";
+		    		
+// 		    		for(var i = 0; i < result.length; i++){
+// 		    			}
+// 		    			var mno = result.mno;
+		    			console.log(mno);
 		    			if(sessionMno == mno){
-		    				reButton = "&nbsp<button type='button' id='replyModifyBtn' class='replyRemoveBtn glyphicon glyphicon-pencil'></button>"
+		    				reButton = "&nbsp<button type='button' id='replyModifyBtn' class='replyModifyBtn glyphicon glyphicon-pencil'></button>"
 		    						   +"&nbsp<button type='button' id='replyRemoveBtn' class='replyRemoveBtn glyphicon glyphicon-trash'></button>";
-		    				
 		    				$("#reReplyBtn").after(reButton);
-		    			}
 		    		}
 		    	}
 		    });	
@@ -487,7 +492,7 @@ div.row.control-group {
 			var $replyToggle = $this.parents("#findHidden").find("#reReplyContent");
 			var rno = $this.parents("#findHidden").find("#rno").val();
 			var bno = $("#bno").val();
-			var input = "<div id='replyInput'><input type='text' class='form-control' placeholder='Reply' name='content' id='reReContent' required data-validation-required-message='Please enter reply.'>"
+			var input = "<div id='replyInput'><input type='text' class='form-control' placeholder='Reply' name='content' id='reReContent'>"
 						+"<button type='button' id='reReplyRegist' class='reReplyRegist glyphicon glyphicon-pencil'></button></div>";
 			 
 			console.log("this : "+$this);
@@ -563,7 +568,7 @@ div.row.control-group {
 		});
 		
 		//댓글 수정 버튼 누르면 input으로 바꾸어줌
-		$("#replyModifyBtn").on("click", function(event){
+		$(document).on("click", "#replyModifyBtn", function(event){
 			
 // 			$("#btns").empty();
 // 			var inputContent = "<input type='text' id='modifyContent' name='content' value='"+originalContent+"'>";
@@ -580,7 +585,7 @@ div.row.control-group {
 					   btns.html(pTag);
 		});
 			
-		//댓글수정 됨
+		//댓글수정
 		$(document).on("click", "#replyModify", function(event){
 		
 			var $this = $(this);
@@ -645,11 +650,13 @@ div.row.control-group {
 		$(document).on("click","#reReplyRegist", function(event){
 			
 			var $this = $(this);
-			console.log($this);
 			var bno = $("#bno").val();
+			var $replyToggle = $this.parents("#findHidden").find("#reReplyContent");
 			var content = $this.parents("#findHidden").find("#reReContent").val();
 			var rrno = $this.parents("#findHidden").find("#rrno").val();
 			var reReplyContent = $this.parent("#reReplyContent");
+			var input = "<div id='replyInput'><input type='text' class='form-control' placeholder='Reply' name='content' id='reReContent'>"
+						+"<button type='button' id='reReplyRegist' class='reReplyRegist glyphicon glyphicon-pencil'></button></div>";
 			var str = '';
 			console.log($this);
 			console.log("bno : " + bno);
@@ -666,16 +673,19 @@ div.row.control-group {
     			dataType : 'json',
     			data : {mno : sessionMno, content : content, bno:bno, rrno:rrno},
     			success : function(result) {
-    				console.log(result);
+    				
     				alert("대댓글 등록");
-						var reReContent = result.content;
-						var nickname = result.nickname;
-						console.log(reReContent);
+    				for(var i = 0; i < result.length; i++){
+						var content = result[i].content;
+						var nickname = result[i].nickname;
+						console.log(content);
 						str += "<div class='media-body' id='reContent'>"
 						   	   +"<h4 class='media-heading'>" + nickname + "</h4>"
 						  	   +"<p>"+content+"</p>"
 						   	   +"</div>";
-					$this.parent("#replyInput").prepend(str);
+					}
+    				$replyToggle.html(str);
+					$replyToggle.append(input);
     			}
     		});
 		});

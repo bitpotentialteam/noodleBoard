@@ -46,7 +46,6 @@ public class RecipeReplyController {
 		return rservice.listAll(vo.getBno());
 		}else{
 			rservice.regist(vo);
-			logger.info("nickname : " + rservice.seqRead(vo.getRrno()));
 		return rservice.seqRead(vo.getRrno());
 		}
 	}
@@ -68,7 +67,7 @@ public class RecipeReplyController {
 	@PostMapping("/ReplyList")
 	@ResponseBody
 	public List<RecipeReplyVO> replyList(RecipeReplyVO vo) throws Exception{
-		
+		logger.info("modifyreplyList : " + rservice.listAll(vo.getBno()));
 		return rservice.listAll(vo.getBno());
 	}
 
