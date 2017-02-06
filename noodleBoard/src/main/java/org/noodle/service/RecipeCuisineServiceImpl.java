@@ -43,4 +43,9 @@ public class RecipeCuisineServiceImpl implements RecipeCuisineService {
 		return dao.readStep(vo);
 	}
 
+	@Override
+	public Integer stepRead(Integer bno) throws Exception {
+		return dao.stepRead(bno);
+	}
+
 }

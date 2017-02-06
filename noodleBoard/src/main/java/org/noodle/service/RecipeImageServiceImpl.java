@@ -4,15 +4,20 @@ import java.util.List;
 
 import org.noodle.domain.RecipeCuisineVO;
 import org.noodle.domain.RecipeImageVO;
+import org.noodle.persistence.RecipeCuisineDAO;
 import org.noodle.persistence.RecipeImageDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RecipeImageServiceImpl implements RecipeImageService {
 
 	@Autowired
 	private RecipeImageDAO dao;
+	
+	@Autowired
+	private RecipeCuisineDAO cdao;
 	
 	@Override
 	public void regist(RecipeImageVO vo) throws Exception {
@@ -53,6 +58,24 @@ public class RecipeImageServiceImpl implements RecipeImageService {
 	@Override
 	public List<RecipeImageVO> listAll() throws Exception {
 		return dao.readAll();
+	}
+
+	@Override
+	@Transactional
+	public void register(List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception {
+		for (RecipeCuisineVO recipeCuisineVO : clist) {
+			cdao.create(recipeCuisineVO);
+		}
+		for (RecipeImageVO recipeImageVO : ilist) {
+			dao.create(recipeImageVO);
+		}
+	}
+
+	@Override
+	@Transactional
+	public void deletes(Integer ino, RecipeCuisineVO cvo) throws Exception {
+			cdao.deletes(cvo);
+			dao.delete(ino);
 	}
 
 

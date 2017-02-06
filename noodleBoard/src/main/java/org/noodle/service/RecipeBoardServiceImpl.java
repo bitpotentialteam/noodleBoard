@@ -53,7 +53,6 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 	public void modify(RecipeBoardVO vo, List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception {
 		
 		dao.update(vo);
-		
 		for (RecipeCuisineVO recipeCuisineVO : clist) {
 			cdao.update(recipeCuisineVO);
 		}

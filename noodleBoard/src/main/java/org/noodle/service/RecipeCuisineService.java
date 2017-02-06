@@ -11,6 +11,7 @@ public interface RecipeCuisineService {
 	public List<RecipeCuisineVO> view(Integer bno)throws Exception;
 	public void modify(RecipeCuisineVO vo)throws Exception;
 	public void remove(Integer bno)throws Exception;
+	public Integer stepRead(Integer bno) throws Exception;
 	
 	public RecipeCuisineVO viewSteps(RecipeCuisineVO vo) throws Exception;
 }

@@ -52,4 +52,14 @@ public class RecipeCuisineDAOImpl implements RecipeCuisineDAO {
 		session.delete(namespace + "bnoDelete", bno);
 	}
 
+	@Override
+	public void deletes(RecipeCuisineVO vo) throws Exception {
+		session.delete(namespace + "deletes", vo);
+	}
+
+	@Override
+	public Integer stepRead(Integer bno) throws Exception {
+		return session.selectOne(namespace + "stepRead", bno);
+	}
+
 }

@@ -69,5 +69,10 @@ public class RecipeImageDAOImpl implements RecipeImageDAO {
 		return session.selectList(namespace + "readAll");
 	}
 
+	@Override
+	public void deletes(RecipeImageVO vo) throws Exception {
+		session.delete(namespace + "delete", vo);
+	}
+
 
 }

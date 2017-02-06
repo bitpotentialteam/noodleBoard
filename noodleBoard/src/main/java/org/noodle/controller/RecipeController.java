@@ -234,14 +234,16 @@ public class RecipeController {
 		logger.info("ivo: "+boardList.getIlist().toString());
 		logger.info("cvo: "+boardList.getClist().toString());
 		logger.info("RecipeImageVO : " + ivo);
+		logger.info("RecipeCuisineVO : " + cvo);
 		
+		bvo.setIno(ivo.getIno());
 		service.modify(bvo, boardList.getIlist(), boardList.getClist());
 		
 		//만약 step이 추가가 되면 image와 cuisine에 create 날려줌
-//		iservice.regist(ivo);
+//		iservice.register(boardList.getIlist(), boardList.getClist());
 		
 		//만약 step이 삭제되면 image와 cuisine에 delete 날려줌
-//		iservice.remove(ivo);
+//		iservice.remove(ivo.getIno(), cvo);
 		
 		return "redirect:list";
 	}
@@ -257,4 +259,22 @@ public class RecipeController {
 		return service.readLikeCnt(vo.getBno());
 	
 	}
+	
+	@PostMapping("/stepDelete")
+	@ResponseBody
+	public void stepDelete(@RequestParam("bno") Integer bno, RecipeCuisineVO cvo, Integer ino) throws Exception{
+		logger.info("stepDelete.......");
+		logger.info("ino : " + ino);
+		logger.info("cvo : " + cvo);
+		iservice.deletes(ino, cvo);
+	}
+	
+	@PostMapping("addStep")
+	@ResponseBody
+	public Integer stepRead(@RequestParam("bno") Integer bno)throws Exception{
+		logger.info("STEP : " + cservice.stepRead(bno));
+		
+		return cservice.stepRead(bno);
+	}
+	
 }
