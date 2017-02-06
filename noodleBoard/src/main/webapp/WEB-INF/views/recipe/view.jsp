@@ -322,7 +322,7 @@ div.row.control-group {
 								<div id='btns'>
 									<p>${rvo.content}</p>
 									<button type="button" id="reReplyBtn" class="glyphicon glyphicon-comment"></button>
-									<br>
+									<br> 
 									<br>								
 								</div>
 								<div id="reReplyContent">	

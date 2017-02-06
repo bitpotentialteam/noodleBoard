@@ -184,8 +184,7 @@ button#addStepBtn {
 					</div>
 
 					<div class="row control-group">
-						<div
-							class="form-group col-xs-12 floating-label-form-group controls">
+						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>조리순서 (image drag&drop)</label>
 							<!--<div id="fileUpload"> 
  								<input type="file" name="ilist[0].thumbnail" id="imgFile" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="" accept=".jpg, .png, .jpeg, .gif"> 
@@ -236,7 +235,6 @@ button#addStepBtn {
 															class="glyphicon glyphicon-ok-circle"></span>
 													</div>
 												</div>
-
 												<c:set var="loop" value="false"></c:set>
 											</c:if>
 										</c:if>
