@@ -233,6 +233,15 @@ section h3.section-subheading {
 						newest();
 					});
 					
+					
+					$("#keywordInput").keypress(function(e) { 
+						
+
+					    if (e.keyCode == 13){
+					    	newest();
+					    }    
+					});
+					
 					//인기순
 					$('#popular').on("click",
 							function(event) {
