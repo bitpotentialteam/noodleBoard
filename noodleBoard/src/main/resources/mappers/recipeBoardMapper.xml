@@ -133,12 +133,12 @@
 			</if>
 			<if test="searchType == 'cw'.toString()">
 				and ( content like ('%'||#{keyword}||'%') 
-				OR mno = (select mno from tbl_user where nickName like ('%'||#{keyword}||'%')))
+				OR mno in (select mno from tbl_user where nickName like ('%'||#{keyword}||'%')))
 			</if>
 			<if test="searchType == 'tcw'.toString()">
 				and ( content like ('%'||#{keyword}||'%')
 				OR ( title like ('%'||#{keyword}||'%')
-				OR mno = (select mno from tbl_user where nickName like ('%'||#{keyword}||'%'))))
+				OR mno in (select mno from tbl_user where nickName like ('%'||#{keyword}||'%'))))
 			</if>
 		</if>
 	</sql>
