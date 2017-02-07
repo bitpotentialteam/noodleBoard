@@ -118,37 +118,33 @@
 	  <div class="container">
 		<div class="row">
 		  <div>
-		  	<h3>==================</h3>
-		  	<h3>name: ${sessionScope.view.name}</h3>
-		  	<h3>brand: ${sessionScope.view.brand}</h3>
-		  	<h3>releaseDate: ${sessionScope.view.releaseDate}</h3>
-		  	<h3>weight: ${sessionScope.view.weight}</h3>
-		  	<h3>thumbnail: ${sessionScope.view.thumbnail}</h3>
-		  	<h3>soupColor: ${sessionScope.view.soupColor}</h3>
-		  	<h3>noodleType: ${sessionScope.view.noodleType}</h3>
-		  	<h3>kinds: ${sessionScope.view.kinds}</h3>
-		  	<h3>calories: ${sessionScope.view.calories}</h3>
-		  	<h3>carbohydrate: ${sessionScope.view.carbohydrate}</h3>
-		  	<h3>protein: ${sessionScope.view.protein}</h3>
-		  	<h3>fat: ${sessionScope.view.fat}</h3>
-		  	<h3>saturatedFat: ${sessionScope.view.saturatedFat}</h3>
-		  	<h3>transFat: ${sessionScope.view.transFat}</h3>
-		  	<h3>cholesterol: ${sessionScope.view.cholesterol}</h3>
-		  	<h3>natrium: ${sessionScope.view.natrium}</h3>
-		  	<h3>material_noodle: ${sessionScope.view.material_noodle}</h3>
-		  	<h3>material_powder: ${sessionScope.view.material_powder}</h3>
-		  	<h3>==================</h3>
+		  	<div class="col-md-4 col-sm-6 left" id="">
+		  		${sessionScope.view.thumbnail}
+		  	</div>
+		  		
+		  	<h3>name</h3><p>${sessionScope.view.name}</p>
+		  	<h3>brand</h3><p>${sessionScope.view.brand}</p>
+		  	<h3>releaseDate</h3><p>${sessionScope.view.releaseDate}</p>
+		  	
+		  	<h3>kinds</h3><p>${sessionScope.view.kinds}</p>
+		  	<h3>weight</h3><p>${sessionScope.view.weight}</p>
+		  	<h3>soupColor</h3><p>${sessionScope.view.soupColor}</p>
+		  	<h3>noodleType</h3><p>${sessionScope.view.noodleType}</p>
+		  	
+		  	<h3>calories</h3><p>${sessionScope.view.calories}</p>
+		  	<h3>carbohydrate</h3><p>${sessionScope.view.carbohydrate}</p>
+		  	<h3>protein</h3><p>${sessionScope.view.protein}</p>
+		  	<h3>fat</h3><p>${sessionScope.view.fat}</p>
+		  	<h3>saturatedFat</h3><p>${sessionScope.view.saturatedFat}</p>
+		  	<h3>transFat</h3><p>${sessionScope.view.transFat}</p>
+		  	<h3>cholesterol</h3><p>${sessionScope.view.cholesterol}</p>
+		  	<h3>natrium</h3><p>${sessionScope.view.natrium}</p>
+		  	<h3>material_noodle</h3><p>${sessionScope.view.material_noodle}</p>
+		  	<h3>material_powder</h3><p>${sessionScope.view.material_powder}</p>
 		  </div>
 	    </div>
 	  </div>
 	</section>
-
-
-	<script src="//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-58d22c749295bca52f487966e382a94a495ac103faca9206cbd160bdf8aedf2a.js"></script>
-	
-	<!-- Plugin JavaScript -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
 	<!-- jQuery -->
 	<script
