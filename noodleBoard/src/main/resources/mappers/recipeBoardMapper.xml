@@ -16,7 +16,7 @@
 	
 	<select id="totalCount" resultType="java.lang.Integer">
 	<![CDATA[
-		select count(bno) from tbl_recipeboard where bno > 0 
+		select count(bno) from tbl_recipeboard 
 	]]>
 		<include refid="search"></include>
 		<include refid="orderBy"></include>
@@ -119,24 +119,24 @@
 		
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
-				and title like ('%'||#{keyword}||'%')
+				where title like ('%'||#{keyword}||'%')
 			</if>
 			<if test="searchType == 'c'.toString()">
-				and content like ('%'||#{keyword}||'%')
+				where content like ('%'||#{keyword}||'%')
 			</if>
 			<if test="searchType == 'w'.toString()">
-				and mno = (select mno from tbl_user where nickName like ('%'||#{keyword}||'%'))
+				where mno = (select mno from tbl_user where nickName like ('%'||#{keyword}||'%'))
 			</if>
 			<if test="searchType == 'tc'.toString()">
-				and ( title like ('%'||#{keyword}||'%') OR content like
+				where ( title like ('%'||#{keyword}||'%') OR content like
 				('%'||#{keyword}||'%') )
 			</if>
 			<if test="searchType == 'cw'.toString()">
-				and ( content like ('%'||#{keyword}||'%') 
+				where ( content like ('%'||#{keyword}||'%') 
 				OR mno in (select mno from tbl_user where nickName like ('%'||#{keyword}||'%')))
 			</if>
 			<if test="searchType == 'tcw'.toString()">
-				and ( content like ('%'||#{keyword}||'%')
+				where ( content like ('%'||#{keyword}||'%')
 				OR ( title like ('%'||#{keyword}||'%')
 				OR mno in (select mno from tbl_user where nickName like ('%'||#{keyword}||'%'))))
 			</if>
@@ -144,27 +144,22 @@
 	</sql>
 	
 	<select id="listSaerch" resultType="RecipeBoardVO">
-		<![CDATA[
-	     SELECT
-			  * 
-			FROM
-			    (
-			    SELECT
-			      ROWNUM AS RNUM, Board.* 
-			    FROM
-			      (
-			      SELECT
-			        *
-			      FROM
-			        tbl_recipeBoard
-			        ORDER BY bno DESC
-			      ) Board
-			    )
-			WHERE
-    			RNUM > #{startPage, jdbcType=INTEGER} AND RNUM <= #{endPage, jdbcType=INTEGER}
-		 ]]> 
-			
+	<![CDATA[
+	SELECT * FROM (
+     SELECT board.*, 
+                 ROWNUM AS RNUM,
+                 COUNT(*) OVER() AS TOTCNT FROM (
+          select * from tbl_recipeboard
+          	 ]]> 
+          
 		<include refid="search"></include>
+		
+		<![CDATA[
+		   order by bno desc
+	    		) board
+					) WHERE RNUM > #{startPage, jdbcType=INTEGER}  AND RNUM <= #{endPage, jdbcType=INTEGER} 
+		 ]]> 
+
 		<include refid="orderBy"></include>
 		
 		
