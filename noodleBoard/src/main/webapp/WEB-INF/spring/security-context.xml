@@ -18,7 +18,7 @@
             max-sessions="1" expired-url="/user/login_duplicate" />
       </security:session-management>
       
-       <security:logout delete-cookies="JSESSIONID"
+       <security:logout delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"
          invalidate-session="true" logout-url="/logout" logout-success-url="/"/>
 	
 	<security:intercept-url pattern="/timeline" access="ROLE_MEMBER"/>
@@ -30,6 +30,8 @@
 	<security:intercept-url pattern="/recipe/register" access="ROLE_MEMBER"/>
 	<security:intercept-url pattern="/recipe/view" access="ROLE_MEMBER"/>
 	<security:csrf disabled="true" />
+	
+	<security:remember-me key="wmoskey" token-validity-seconds="2419200"/>
 
 </security:http>
 
@@ -46,7 +48,7 @@
 
 <bean id="SuccessHandler" class="org.noodle.security.SuccessHandler">
   <property name="serivce" ref="memberServiceImpl" />
-  <property name="alwaysUseDefaultTargetUrl" value="false" />
+  
 </bean>
 
 </beans>
