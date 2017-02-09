@@ -98,6 +98,10 @@
     right: 1em;
 }
 
+section h3.section-subheading {
+    margin-bottom: 20px;
+}
+
 /*table 반응형*/
 @media screen and (max-width: 600px) {
 table {width:100%;}
@@ -105,11 +109,17 @@ thead {display: none;}
 tr:nth-of-type(2n) {background-color: inherit;}
 tr td:first-child {background: #fed136;}
 tr td:nth-child(2) {font-weight:bold;font-size:1.3em;}
-tbody td {display: block;  text-align:center;}
+tbody td {display: block;}
 tbody td:before { 
     content: attr(data-th); 
     display: block;
-    text-align:center;  
+    float: left;
+    width: 150px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
@@ -158,8 +168,12 @@ tbody td:before {
 	<!-- Navigation END -->
 	
 	
-	<section>
+	<section class="bg-light-gray">
 	  <div class="container">
+	  	<div class="text-center">
+                <h2 class="section-heading">라면위키</h2>
+				<h3 class="section-subheading text-muted">라면 정보를 검색하실 수 있습니다. 알고 싶은 라면을 검색해보세요.</h3>
+		</div>
 		<div class="row">
 		
 			  <div id="search" class="col-lg-6 col-lg-offset-3">
