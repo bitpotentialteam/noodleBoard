@@ -31,14 +31,14 @@
 				</div>
 						
 				<!-- /.widget-user-image -->
-				<h3 class="widget-user-desc">NICKNAME : ${memberVO.nickname}</h3>
+				<h3 class="widget-user-desc">${memberVO.nickname}</h3>
 			  </div>
 
 			<form action="create_client" method="POST">
 			  <div class="box-footer">
 				
-				  <div class="list-group-item" id="client_ID" value="${sessionScope.VO.client_ID}"><h4>일회용ID</h4>${sessionScope.VO.client_ID}</div>
-				  <div class="list-group-item" id="client_PW"><h4>일회용PW</h4>${sessionScope.VO.client_PW}</div>
+				  <div class="list-group-item" id="client_ID" value="${sessionScope.VO.client_ID}"><h4>ClientID</h4>${sessionScope.VO.client_ID}</div>
+				  <div class="list-group-item" id="client_PW"><h4>ClientPW</h4>${sessionScope.VO.client_PW}</div>
 				
 			  </div>
 			</form>
