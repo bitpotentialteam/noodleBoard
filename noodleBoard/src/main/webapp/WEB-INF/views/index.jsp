@@ -134,50 +134,50 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Our Amazing Team</h2>
+                    <h2 class="section-heading">Would you like to eat ramen?</h2>
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
                     <div class="team-member">
-                        <img src="resources/img/team/1.jpg" class="img-responsive img-circle" alt="">
+                        <img src="resources/img/team/10.jpg" class="img-responsive img-circle" alt="">
                         <h4>KO DA EUN </h4>
-                        <p class="text-muted">Lead Designer</p>
+                        <p class="text-muted">Leader / Web Publisher</p>
                         
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="team-member">
-                        <img src="resources/img/team/2.jpg" class="img-responsive img-circle" alt="">
+                        <img src="resources/img/team/7.jpg" class="img-responsive img-circle" alt="">
                         <h4>EOM JUN HO</h4>
-                        <p class="text-muted">Lead Marketer</p>
+                        <p class="text-muted">Recipe Master</p>
                         
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="team-member">
-                        <img src="resources/img/team/3.jpg" class="img-responsive img-circle" alt="">
+                        <img src="resources/img/team/8.jpg" class="img-responsive img-circle" alt="">
                         <h4>KIM KUK HEE</h4>
-                        <p class="text-muted">Lead Developer</p>
+                        <p class="text-muted">DataBaseAdministrator</p>
                         
                     </div>
                 </div>
             </div>
                <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="position:absolte; left:200px">
                     <div class="team-member">
-                        <img src="resources/img/team/1.jpg" class="img-responsive img-circle" alt="">
+                        <img src="resources/img/team/6.jpg" class="img-responsive img-circle" alt="">
                         <h4>LEE SEUNG WOO</h4>
-                        <p class="text-muted">Lead Designer</p>
+                        <p class="text-muted">Security</p>
                         
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="position:absolte; left:200px">
                     <div class="team-member">
-                        <img src="resources/img/team/2.jpg" class="img-responsive img-circle" alt="">
+                        <img src="resources/img/team/9.jpg" class="img-responsive img-circle" alt="">
                         <h4>LEE SANG HWA</h4>
-                        <p class="text-muted">Lead Marketer</p>
+                        <p class="text-muted">Node.js</p>
                        
                     </div>
                 </div>
