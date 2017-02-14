@@ -171,7 +171,7 @@ tbody td:before {
 	<section class="bg-light-gray">
 	  <div class="container">
 	  	<div class="text-center">
-                <h2 class="section-heading">라면위키</h2>
+                <h2 class="section-heading">Noodle-Wiki</h2>
 				<h3 class="section-subheading text-muted">라면 정보를 검색하실 수 있습니다. 알고 싶은 라면을 검색해보세요.</h3>
 		</div>
 		<div class="row">

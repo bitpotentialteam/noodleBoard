@@ -121,7 +121,7 @@
                         <i class="fa fa-file-text-o fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">Noodle-Api</h4>
-                    <p class="text-muted">국내에서 출시하는 105개의 봉지라면 정보 제공합니다.  </p>
+                    <p class="text-muted">국내에서 출시하는 105개의 봉지라면 정보 제공합니다.</p>
                 </div>
             </div>
         </div>
