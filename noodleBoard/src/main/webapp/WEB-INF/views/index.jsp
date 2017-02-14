@@ -142,48 +142,46 @@
                 <div class="col-sm-4">
                     <div class="team-member">
                         <img src="resources/img/team/1.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Kay Garland</h4>
+                        <h4>KO DA EUN </h4>
                         <p class="text-muted">Lead Designer</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
+                        
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="team-member">
                         <img src="resources/img/team/2.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Larry Parker</h4>
+                        <h4>EOM JUN HO</h4>
                         <p class="text-muted">Lead Marketer</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
+                        
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="team-member">
                         <img src="resources/img/team/3.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Diana Pertersen</h4>
+                        <h4>KIM KUK HEE</h4>
                         <p class="text-muted">Lead Developer</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
+                        
                     </div>
                 </div>
+            </div>
+               <div class="row">
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="resources/img/team/1.jpg" class="img-responsive img-circle" alt="">
+                        <h4>LEE SEUNG WOO</h4>
+                        <p class="text-muted">Lead Designer</p>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="resources/img/team/2.jpg" class="img-responsive img-circle" alt="">
+                        <h4>LEE SANG HWA</h4>
+                        <p class="text-muted">Lead Marketer</p>
+                       
+                    </div>
+                </div>
+                
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
