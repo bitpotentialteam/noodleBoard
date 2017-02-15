@@ -195,7 +195,7 @@ button#addStepBtn {
 							<input type="text" class="form-control" name="materialContent" id="materialContent"
 							value="${vo.materialContent}">
 							<p class="help-block text-danger"></p>
-						</div>
+						</div> 
 					</div>
 
 					<div class="row control-group">

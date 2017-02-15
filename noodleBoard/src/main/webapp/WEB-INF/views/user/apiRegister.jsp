@@ -5,7 +5,11 @@
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 <link href="../resources/css/user_apiRegister.css" rel="stylesheet">
-
+<style>
+#yellowbar{
+	padding:35px;
+}
+</style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -20,23 +24,22 @@
 			<div class="box box-widget widget-user-2">
 			
 			  <!-- Add the bg color to the header using any of the bg-* classes -->
-			  <div class="widget-user-header bg-yellow">
+			  <div class="widget-user-header bg-yellow" id="yellowbar">
 				
 				<div class="widget-user-image">
-				  <img class="img-circle" src="show?name=${sessionScope.VO.picture}" alt="User Avatar">
+				   <img class="img-circle" src="show?name=${memberVO.picture}" alt="User Avatar"> 
 				</div>
 						
 				<!-- /.widget-user-image -->
-				<h3 class="widget-user-username">${sessionScope.VO.username}</h3>
-				<h5 class="widget-user-desc">${sessionScope.VO.nickname}</h5>
+				<h3 class="widget-user-desc">${memberVO.nickname}</h3>
 			  </div>
 
 			<form action="create_client" method="POST">
 			  <div class="box-footer">
-				<ul>
-				  <li class="list-group-item" id="client_ID" value="${sessionScope.VO.client_ID}"><h4>일회용ID</h4>${sessionScope.VO.client_ID}</li>
-				  <li class="list-group-item" id="client_PW"><h4>일회용PW</h4>${sessionScope.VO.client_PW}</li>
-				</ul>
+				
+				  <div class="list-group-item" id="client_ID" value="${sessionScope.VO.client_ID}"><h4>ClientID</h4>${sessionScope.VO.client_ID}</div>
+				  <div class="list-group-item" id="client_PW"><h4>ClientPW</h4>${sessionScope.VO.client_PW}</div>
+				
 			  </div>
 			</form>
 					

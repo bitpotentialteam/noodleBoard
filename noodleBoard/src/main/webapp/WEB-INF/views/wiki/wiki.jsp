@@ -9,8 +9,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>위끼위끼</title>
 
-
-
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -86,13 +84,45 @@
 	text-align: center;
 }
 
-button {
-
-   background-color: rgba( 255, 255, 255, 0 );
-   border : 0;
-   outline : 0;
-
+.panel{
+	margin-top:5em;
 }
+.panel-body{
+	position: relative;
+}
+
+#tableRemoveBtn {
+    position: absolute;
+    margin-bottom: 5em;
+    top: 2em;
+    right: 1em;
+}
+
+section h3.section-subheading {
+    margin-bottom: 20px;
+}
+
+/*table 반응형*/
+@media screen and (max-width: 600px) {
+table {width:100%;}
+thead {display: none;}
+tr:nth-of-type(2n) {background-color: inherit;}
+tr td:first-child {background: #fed136;}
+tr td:nth-child(2) {font-weight:bold;font-size:1.3em;}
+tbody td {display: block;}
+tbody td:before { 
+    content: attr(data-th); 
+    display: block;
+    float: left;
+    width: 150px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
 </style>
 
 </head>
@@ -136,43 +166,57 @@ button {
 	</div>
 	<!-- /.container-fluid --> </nav>
 	<!-- Navigation END -->
-	<section>
+	
+	
+	<section class="bg-light-gray">
 	  <div class="container">
+	  	<div class="text-center">
+                <h2 class="section-heading">Noodle-Wiki</h2>
+				<h3 class="section-subheading text-muted">라면 정보를 검색하실 수 있습니다. 알고 싶은 라면을 검색해보세요.</h3>
+		</div>
 		<div class="row">
 		
-		  <div class='search'>
-			  <div class="field half first">
-			    <input type="text" name="name" id="keywordInp" style='width: 50em; height: 4em; margin-left: 10em; margin-top: 2em; '> 
-			      <button type="button" class="btn btn-primary" id="searchBtn" style='width: 10em; height:4em; margin-left: 2em;'>Search</button>
-			  </div>
-		  </div>
+			  <div id="search" class="col-lg-6 col-lg-offset-3">
+			    <div class="input-group">
+			      <input type="text" class="form-control" name="name" id="keywordInp" placeholder="제품명">
+			      <span class="input-group-btn">
+			        <button class="btn btn-default" type="button" id="searchBtn">검색</button>
+			      </span>
+			    </div><!-- /input-group -->
+			  </div><!-- /.col-lg-6 -->
+		
 		  
 			<!-- 결과화면출력 -->
-		  <div id = "resultDiv" style = 'border-style: solid; margin: 5em;'>
-		    <div id="demo">
-  			  <label><button id="tableRemoveBtn" >Reset</button></label>
-		  	  <table id="table" class="table table-hover table-mc-light-blue">
-		        <thead>
-		          <tr>
-		            <th>Thumbnail</th>
-		            <th>Name</th>
-		            <th>Brand</th>
-		            <th>Calories</th>
-		            <th>Carbonhydrate</th>
-		            <th>Protein</th>
-		            <th>Fat</th>
-		            <th>Cholesterol</th>
-		            <th>Natrium</th>
+		  <div id = "resultDiv" class="panel panel-default">
+			<div id="demo"  class="panel-heading">
+		    	<h3 class="panel-title">검색결과</h3> 
+		  	</div>  
+  			<div class="panel-body">
+  				<p>검색결과는  아래에 추가됩니다.</p>
+  				<label><button id="tableRemoveBtn" class="btn btn-default">Reset</button></label>
+  			</div>
+		  	<table id="table" class="table table-hover table-mc-light-blue afternoon-session">
+		    	<thead>
+		        	<tr>
+		            <th scope="row">Thumbnail</th>
+		            <th scope="row">Name</th>
+		            <th scope="row">Brand</th>
+		            <th scope="row">Calories</th>
+		            <th scope="row">Carbonhydrate</th>
+		            <th scope="row">Protein</th>
+		            <th scope="row">Fat</th>
+		            <th scope="row">Cholesterol</th>
+		            <th scope="row">Natrium</th>
 		          </tr>
 		        </thead>
 		      
-		      <tbody id="tbody" >
+		      	<tbody id="tbody" >
 		      	
-		      </tbody>
+		      	</tbody>
 		    </table>
-	      </div>
+	   	  
 	      
-	    </div>
+	     </div>
 	  </div>
 	  </div>
 	</section>
@@ -194,7 +238,7 @@ button {
 			var $tbody = $("#tbody");
 			
 			function search(){
-				
+				 
 				var name = $("#keywordInp").val();
 				console.log(name);
 				
@@ -211,7 +255,7 @@ button {
 	    				
 	    				for(var i = 0; i < jsonData.length; i++){
 	    					
-	    					var str = "<tr class='tr' onclick='javascript:viewClick(this)'>"													// DB 더미데이터 확장자 붙인 후 제거..
+	    					var str = "<tr class='tr'>"													// DB 더미데이터 확장자 붙인 후 제거..
 	    						  	 +"<td class='tableImg'><img src= '/user/show?name="+jsonData[i]['thumbnail']+".jpg'"+"></td>"
 	    						  	 +"<td>"+jsonData[i]['name']+"</td>"
 	    						  	 +"<td>"+jsonData[i]['brand']+"</td>"
@@ -225,6 +269,7 @@ button {
 	    						  	 
 	    				$tbody.prepend(str);
 	    				}
+	    				addCellHeader(document.querySelector('.afternoon-session'));	
 	    			}
 	    		});// end ajax...
 			}
@@ -248,33 +293,76 @@ button {
 
 
 
-			출처: http://denodo1.tistory.com/124 [Back - End]
+			//출처: http://denodo1.tistory.com/124 [Back - End]
 			
 			$("#tableRemoveBtn").on("click", function(){
 				
 				$tbody.children().remove();
 			}); // end tableRemoveBtn click...
 		
+			
+			
+			
+			//
+			$(document).on("click","#tbody tr", function(event){
+				
+				var name = this.children[1].outerHTML.replace(/(<([^>]+)>)/gi, "");
+				console.log("name: " + name);
+				
+				$.ajax({
+					url: "../wiki/view/"+ name,
+					type: 'post',
+					data: name,
+					dataType: 'text',
+					success: function(){
+						window.open("/wiki/view");
+	
+					}
+					
+				}); // end ajax...	
+				
+			});
+		
+			
+			
+			//table 반응형
+			function addCellHeader(table) {
+				if (!table) {
+					return false;
+				}
+
+				var headertext = [];
+				var headers = document.querySelectorAll("thead");
+				var tablebody = document.querySelectorAll("tbody");
+				
+				for(var i = 0; i < headers.length; i++) {
+					headertext[i]=[];
+					for (var j = 0, headrow; headrow = headers[i].rows[0].cells[j]; j++) {
+					  var current = headrow;
+					  headertext[i].push(current.textContent.replace(/\r?\n|\r/,""));
+					  }
+				} 
+				
+				if (headers.length > 0) {
+					for (var h = 0, tbody; tbody = tablebody[h]; h++) {
+						for (var i = 0, row; row = tbody.rows[i]; i++) {
+						  for (var j = 0, col; col = row.cells[j]; j++) {
+							if(j==0 || j==1){
+								continue;
+							}
+						    col.setAttribute("data-th", headertext[h][j]);
+						  } 
+						}
+					}
+				}
+			}
+			addCellHeader(document.querySelector('.afternoon-session'));	
+			
+		
+		
 		});// end ready...
 		
-		function viewClick(event){
 
-			var name = event.children[1].outerHTML.replace(/(<([^>]+)>)/gi, "");
-			console.log("name: " + name);
-			
-			$.ajax({
-				url: "../wiki/view/"+ name,
-				type: 'post',
-				data: name,
-				dataType: 'text',
-				success: function(){
-					window.open("/wiki/view");
-					console.log("?????????????");
-				}
-				
-			}); // end ajax...
-		
-		}
 	</script>
 
 </body>

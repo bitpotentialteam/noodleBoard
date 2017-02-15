@@ -41,6 +41,10 @@
 	text-align: left;
 }
 
+.text-center{
+	margin-bottom: 40px;
+}
+
 #keywordInput{
 	border: 1px solid #bcbcbc;
   	border-radius: 0px;
@@ -69,7 +73,7 @@ section h3.section-subheading {
 
 .input-group{
     margin: auto 25%;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     z-index: 3 !important;
 }
 
@@ -117,9 +121,9 @@ section h3.section-subheading {
 						<button class="btn btn-default" type="button" id="searchBtn">검색</button>
 					</span>
 				</div><!-- /input-group -->
-					        <input type="button" id="popular" value="인기순">
-					        <input type="button" id="viewCnt" value="조회순">
-					        <input type="button" id="newest" value="최신순">
+					        <input type="button" class="btn btn-default" id="popular" value="인기순">
+					        <input type="button" class="btn btn-default" id="viewCnt" value="조회순">
+					        <input type="button" class="btn btn-default" id="newest" value="최신순">
 			</div>
 		
 		<div class="container listBox">
@@ -221,68 +225,75 @@ section h3.section-subheading {
 		//최신순 함수 빼놓음
 		var newest = function(event) {
 			self.location = "list"
-					+ '${pageMaker.makeQuery(1)}'
-					+ "&searchType="
-					+ $("#btnSearch").val()
-					+ "&keyword="
-					+ $('#keywordInput').val();
+						+ '${pageMaker.makeQuery(1)}'
+						+ "&searchType=" 
+						+ $("#btnSearch").val()
+						+ "&keyword="
+						+ $('#keywordInput').val();
 		}
 		
-					//검색
-					$('#searchBtn').on("click",function(event){
-						newest();
-					});
+		//검색
+		$('#searchBtn').on("click", function(event){
+			newest();
+		});
 					
-					//인기순
-					$('#popular').on("click",
-							function(event) {
-								self.location = "list"
-										+ '${pageMaker.makeQuery(1)}'
-										+ "&searchType="
-										+ $("#btnSearch").val()
-										+ "&keyword="
-										+ $('#keywordInput').val()
-										+ "&orderType="
-										+ $('#popular').val();
-					});
 					
-					//조회순
-					$('#viewCnt').on("click",
-							function(event) {
-								self.location = "list"
-										+ '${pageMaker.makeQuery(1)}'
-										+ "&searchType="
-										+ $("#btnSearch").val()
-										+ "&keyword="
-										+ $('#keywordInput').val()
-										+ "&orderType="
-										+ $('#viewCnt').val();
-					});
-					//최신순
-					$("#newest").on("click", function(event){
-						newest();
-					});
+		$("#keywordInput").keypress(function(e) { 						
+		    if (e.keyCode == 13){
+			   newest();
+		    }    
+		});
 					
-					//등록버튼
-					$('#regBtn').on("click", function(evt) {
-						self.location = "register";
-					});
+		//인기순
+		$('#popular').on("click", function(event) {
+			self.location = "list"
+						+ '${pageMaker.makeQuery(1)}'
+						+ "&searchType="
+						+ $("#btnSearch").val()
+						+ "&keyword="
+						+ $('#keywordInput').val()
+						+ "&orderType="
+						+ $('#popular').val();
+		});
+					
+		//조회순
+		$('#viewCnt').on("click", function(event) {
+			self.location = "list"
+						+ '${pageMaker.makeQuery(1)}'
+						+ "&searchType="
+						+ $("#btnSearch").val()
+						+ "&keyword="
+						+ $('#keywordInput').val()
+						+ "&orderType="
+						+ $('#viewCnt').val();
+		});
+		
+		//최신순
+		$("#newest").on("click", function(event){
+			newest();
+		});
+					
+		//등록버튼
+		$('#regBtn').on("click", function(evt) {
+			self.location = "register";
+		});
 					
 // 					$(".dropdown-menu li a").click(function(){
 // 						  $(this).parents(".input-group").find('#btnSearch').html($(this).text() + ' <span class="caret"></span>');
 // 						  $(this).parents(".input-group").find('#btnSearch').val($(this).data('value'));
 // 					});
 
-					$(".dropdown-menu li").click(function(){
-						  var $this = $(this);
-						  var selText = $this.children("a").text();
-						  console.log(selText);
-						  var buttonId = $this.attr("id");
-						  var searchBtn = $this.parents(".input-group-btn").children('#btnSearch');
-						  searchBtn.html(selText+' <span class="caret"></span>');
-						  searchBtn.val(buttonId);
-					});
-				});
+		$(".dropdown-menu li").click(function(){
+			var $this = $(this);
+			var selText = $this.children("a").text();
+			console.log(selText);
+			var buttonId = $this.attr("id");
+			var searchBtn = $this.parents(".input-group-btn").children('#btnSearch');
+			
+			searchBtn.html(selText+' <span class="caret"></span>');
+			searchBtn.val(buttonId);
+		});
+});
 	</script>
 
 	<!-- jQuery -->
