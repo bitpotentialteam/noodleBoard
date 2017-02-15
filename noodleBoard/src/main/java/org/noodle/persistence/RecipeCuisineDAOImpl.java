@@ -62,4 +62,9 @@ public class RecipeCuisineDAOImpl implements RecipeCuisineDAO {
 		return session.selectOne(namespace + "stepRead", bno);
 	}
 
+	@Override
+	public void modifyCreate(RecipeCuisineVO vo) throws Exception {
+		session.insert(namespace + "modifyCreate", vo);
+	}
+
 }

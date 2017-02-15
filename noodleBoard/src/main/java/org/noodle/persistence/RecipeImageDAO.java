@@ -9,6 +9,7 @@ public interface RecipeImageDAO {
 
 	
 	public void create(RecipeImageVO vo) throws Exception;
+	public void modifyCreate(RecipeImageVO vo) throws Exception;
 	public RecipeImageVO read(Integer ino)throws Exception;
 	public List<RecipeImageVO> readAll() throws Exception;
 	

@@ -74,5 +74,10 @@ public class RecipeImageDAOImpl implements RecipeImageDAO {
 		session.delete(namespace + "delete", vo);
 	}
 
+	@Override
+	public void modifyCreate(RecipeImageVO vo) throws Exception {
+		session.insert(namespace + "modifyCreate", vo);
+	}
+
 
 }

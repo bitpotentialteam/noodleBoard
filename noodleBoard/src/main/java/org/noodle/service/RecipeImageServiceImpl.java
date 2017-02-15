@@ -61,14 +61,8 @@ public class RecipeImageServiceImpl implements RecipeImageService {
 	}
 
 	@Override
-	@Transactional
-	public void register(List<RecipeImageVO> ilist, List<RecipeCuisineVO> clist) throws Exception {
-		for (RecipeCuisineVO recipeCuisineVO : clist) {
-			cdao.create(recipeCuisineVO);
-		}
-		for (RecipeImageVO recipeImageVO : ilist) {
-			dao.create(recipeImageVO);
-		}
+	public void register(RecipeImageVO vo) throws Exception {
+			dao.modifyCreate(vo);
 	}
 
 	@Override

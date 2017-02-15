@@ -59,6 +59,7 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
 		for (RecipeImageVO recipeImageVO : ilist) {
 			idao.update(recipeImageVO);
 		}
+		
 	}
 
 	@Override

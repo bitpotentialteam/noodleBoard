@@ -75,7 +75,6 @@ public class RecipeController {
 		
 		Object user = SecurityContextHolder.getContext().getAuthentication().getName();
 		logger.info(user.toString());
-		mservice.read1(user.toString());
 		MemberVO mvo = mservice.read1(user.toString());
 
 		session.setAttribute("VO", mvo);
@@ -91,15 +90,15 @@ public class RecipeController {
 		vo.setMno(mvo.getMno()); 
 		service.register(vo, boardList.getIlist(), boardList.getClist());
 		
+		logger.info("viewThumbnail: "+iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
+		logger.info("topImageName: "+boardList.getIlist().get(topImageIndex).getThumbnail());
+		
 		vo.setIno(iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
 		vo.setBno(service.viewTitle(vo.getTitle()).getBno());
 		logger.info("Before ino modify vo: " + vo);
 		
 		service.modifyIno(vo);
 		
-		logger.info("viewThumbnail: "+iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
-		logger.info("topImageName: "+boardList.getIlist().get(topImageIndex).getThumbnail());
-		logger.info("ino: "+iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
 		
 		return "redirect:/recipe/list";
 	}
@@ -228,16 +227,72 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/modify")
-	public String modifyPOST(@RequestParam("bno") Integer bno,RecipeImageVO ivo, RecipeBoardVO bvo, BoardList boardList, RecipeCuisineVO cvo) throws Exception{
+	public String modifyPOST(@RequestParam("bno") Integer bno,RecipeImageVO ivo, RecipeBoardVO bvo, BoardList boardList, RecipeCuisineVO cvo, Integer topImageIndex) throws Exception{
 		logger.info("ModifyPOST called.....");
 		logger.info("bvo: "+bvo.toString());
-		logger.info("ivo: "+boardList.getIlist().toString());
-		logger.info("cvo: "+boardList.getClist().toString());
-		logger.info("RecipeImageVO : " + ivo);
-		logger.info("RecipeCuisineVO : " + cvo);
+		logger.info("ivo: "+boardList.getIlist());
+		logger.info("cvo: "+boardList.getClist());
 		
-		bvo.setIno(ivo.getIno());
 		service.modify(bvo, boardList.getIlist(), boardList.getClist());
+		
+		List<RecipeImageVO> IBoardList = new ArrayList<RecipeImageVO>();
+		List<RecipeCuisineVO> CBoardList = new ArrayList<RecipeCuisineVO>();
+		
+		List<RecipeImageVO> ilist = new ArrayList<RecipeImageVO>();
+		ilist.addAll(iservice.viewBno(bno));
+		List<RecipeCuisineVO> clist = new ArrayList<RecipeCuisineVO>();
+		clist.addAll(cservice.view(bno));
+		
+		logger.info("ilist : " + ilist);
+		logger.info("clist : " + clist);
+	
+		IBoardList.addAll(boardList.getIlist());
+		CBoardList.addAll(boardList.getClist());
+		
+		
+		for(int i = 0; i < IBoardList.size(); i++){
+			
+			Integer step;
+			if(IBoardList.get(i).getIno() == null){
+				iservice.register(IBoardList.get(i));
+				step = IBoardList.get(i).getStep();
+				
+				if(step == CBoardList.get(i).getStep()){
+					cservice.modifyRegist(CBoardList.get(i));
+				}
+			}else if(IBoardList.get(i).getIno() == ilist.get(i).getIno()){
+					iservice.deletes(IBoardList.get(i).getIno(), CBoardList.get(i));
+			}
+		}
+//		logger.info("IBoardList : " + IBoardList);
+//		logger.info("CBoardList : " + CBoardList);
+//		IBoardList.remove(ilist);
+//		CBoardList.remove(clist);
+//		logger.info("IBoardList : " + IBoardList);
+//		logger.info("CBoardList : " + CBoardList);
+//		if(boardList.getIlist().size() > ilist.size()){
+//			iservice.register(IBoardList, CBoardList);
+//		}
+		
+//			if(boardList.getClist().get(i).getContent() != cist.get(i).geltcontent){
+//				service.modify(bvo, boardList.getIlist(), boardList.getClist());
+//			}else if()
+			
+				
+//			logger.info("boardList : " + boardList.getIlist().get(i).getStep());
+//			logger.info("clist : " + ilist.get(i).getStep());
+//			logger.info("ilist : " + clist.get(i).getStep());
+			
+//		for(int i = 0; i < boardList.getIlist().size(); i++){
+//			String imageName = boardList.getIlist().get(i).getThumbnail();
+//			boardList.getIlist().get(i).setImage(imageName);
+//			logger.info("i : " +i);
+//		}
+//		logger.info("topImageIndex : " + topImageIndex);
+//		logger.info("topIndex : " + iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
+//		bvo.setIno(iservice.viewThumbnail(boardList.getIlist().get(topImageIndex).getThumbnail()));
+		
+		
 		
 		//만약 step이 추가가 되면 image와 cuisine에 create 날려줌
 //		iservice.register(boardList.getIlist(), boardList.getClist());
@@ -245,7 +300,7 @@ public class RecipeController {
 		//만약 step이 삭제되면 image와 cuisine에 delete 날려줌
 //		iservice.remove(ivo.getIno(), cvo);
 		
-		return "redirect:list";
+		return "redirect:/recipe/list";
 	}
 
 	@GetMapping("/addlikeCnt")
@@ -260,6 +315,14 @@ public class RecipeController {
 	
 	}
 	
+	@PostMapping("/addStep")
+	@ResponseBody
+	public Integer stepRead(@RequestParam("bno") Integer bno)throws Exception{
+		logger.info("STEP : " + cservice.stepRead(bno));
+		
+		return cservice.stepRead(bno);
+	}
+
 	@PostMapping("/stepDelete")
 	@ResponseBody
 	public void stepDelete(@RequestParam("bno") Integer bno, RecipeCuisineVO cvo, Integer ino) throws Exception{
@@ -269,12 +332,10 @@ public class RecipeController {
 		iservice.deletes(ino, cvo);
 	}
 	
-	@PostMapping("addStep")
-	@ResponseBody
-	public Integer stepRead(@RequestParam("bno") Integer bno)throws Exception{
-		logger.info("STEP : " + cservice.stepRead(bno));
-		
-		return cservice.stepRead(bno);
-	}
+//	@PostMapping("/modifyCreate")
+//	@ResponseBody
+//	public void modifyCreate(BoardList boardList)throws Exception{
+//		iservice.register(boardList.getIlist(), boardList.getClist());
+//	}
 	
 }

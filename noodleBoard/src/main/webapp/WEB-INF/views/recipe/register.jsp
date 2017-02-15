@@ -350,7 +350,6 @@ button#addStepBtn {
 				}	
 		};
 		
-		var index
 		
 		$("#addStepBtn").on("click", function(event){
 			
@@ -361,7 +360,7 @@ button#addStepBtn {
 				return;
 			}
 			
-			 index = stepCnt;
+			index = stepCnt;
 			stepCnt ++;
 			var stepStr = "<div class='media form-group' id='step'>"
 				+"<div class='media-left media-middle'>"
@@ -430,7 +429,7 @@ button#addStepBtn {
 			
 			var topIndex = $("#topImageIndex");
 
-			var $mainImgDiv =  $(".mainImg");
+			var $mainImgDiv = $(".mainImg");
 			
 			var mainImgData = "<input type='hidden' name='picture'>";
 			

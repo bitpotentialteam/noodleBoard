@@ -209,13 +209,10 @@ div.row.control-group {
         </div>
     </header>
 <section>
-<form id="recipe">
-	<input type='hidden' id='sessionMno' name='mno' value="${memberVO.mno}">
-	<input type='hidden' id='mno' name='mno' value="${vo.mno}">
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="bnoFind">
-				<input type="hidden" name="bno" id="bno" value="${vo.bno}">		
 					<div class="row control-group">
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>설명</label>
@@ -343,19 +340,21 @@ div.row.control-group {
 						</c:forEach>
 						</c:forEach>
 					</ul>
-				</form>
+					</form>
 			</div>
 		</div>
 	</div>
-	</form>
-	<form role="form" action="modify" method="post">
-    	
-	<input type='hidden' name='bno' value="${vo.bno}">
-	<input type='hidden' name='page' value="${cri.page}">
-	<input type='hidden' name='perPageNum' value="${cri.pageUnit}">
-	<input type='hidden' name='searchType' value="${cri.searchType}">
-	<input type='hidden' name='keyword' value="${cri.keyword}">
+	<input type='hidden' id='sessionMno' name='mno' value="${memberVO.mno}">
+	<input type='hidden' id='mno' name='mno' value="${vo.mno}">
 
+	<form id="formModify" action="/recipe/modify" method="get">
+		<input type='hidden' name='page' id="page" value="${cri.page}">
+		<input type='hidden' name='perPageNum' value="${cri.pageUnit}">
+		<input type="hidden" name="bno" value="${vo.bno}">	
+	</form>
+	
+	<form id="removeForm">
+		<input type="hidden" name="bno" id="bno" value="${vo.bno}">
 	</form>
 </section>
 
@@ -402,7 +401,7 @@ div.row.control-group {
 		var nickName = $("#reReplyContent").find("#nickName").val();
 		var mno = $("#mno").val();
 		var bno = $("#bno").val();
-		var sessionMno = $("#recipe").find("#sessionMno").val();
+		var sessionMno = $("#sessionMno").val();
 		
 		function user(){
 		var button = "";
@@ -410,7 +409,7 @@ div.row.control-group {
 			button = "<button type='submit' id='modifyBtn' class='btn btn-default-right'>수 정</button>"
 					 +"&nbsp<button type='submit' id='removeBtn' class='btn btn-default-right'>삭 제</button>";
 					 
-			$("#recipe").find("#mdBtn").append(button);	 
+			$("#mdBtn").append(button);	 
 		}
 		}user();
 		
@@ -418,12 +417,12 @@ div.row.control-group {
 		function replyBtn(){
 			var $this = $(this);
 			var bno = $("#bno").val();
-			var mno = $("#replyMno").val();
+			var replyMno = $("#replyMno").val();
 			var sessionMno = $("#sessionMno").val();
 			console.log($this);
 			console.log(bno);
 			console.log("sessionMno : " + sessionMno);
-			console.log(mno);
+// 			console.log(replyMno);
 			
 			$.ajax({
 		    	type : 'post',
@@ -440,8 +439,7 @@ div.row.control-group {
 // 		    		for(var i = 0; i < result.length; i++){
 // 		    			}
 // 		    			var mno = result.mno;
-		    			console.log(mno);
-		    			if(sessionMno == mno){
+		    			if(sessionMno == replyMno){
 		    				reButton = "&nbsp<button type='button' id='replyModifyBtn' class='replyModifyBtn glyphicon glyphicon-pencil'></button>"
 		    						   +"&nbsp<button type='button' id='replyRemoveBtn' class='replyRemoveBtn glyphicon glyphicon-trash'></button>";
 		    				$("#reReplyBtn").after(reButton);
@@ -468,6 +466,37 @@ div.row.control-group {
 				$('#likeBtn').removeAttr("disabled");
 			}
 		})(); 
+		
+		//좋아요 등록
+		$(document).on("click","#likeBtn", function(event){
+			event.preventDefault();
+				
+			var $this = $(this);
+			var bno = $this.val();
+			var likeCnt = $("#likeCnt");
+			console.log($this);
+			console.log(bno);
+			console.log($("#mno").val());
+			console.log(likeCnt);
+			
+			$.ajax({
+	    		type : 'get',
+	    		url : '/recipe/addlikeCnt',
+	    		headers : {
+	    			"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+	    			"X-HTTP-Method-Override" : "GET"
+	    		},
+	    		dataType : 'text',
+	    		data : {mno:sessionMno, bno:bno},
+	    		success : function(result) {    
+	    					console.log(result);		
+		    					alert("추천해주셔서 감사합니다");
+			    				likeCnt.text(result);
+			    				$this.attr('disabled',true);
+			    				
+		    			}
+	    		});
+		});
 		
 		//조회수
 		(function(){  
@@ -690,61 +719,32 @@ div.row.control-group {
     		});
 		});
 
-			var formObj = $('#recipe');
-			
-			console.log(formObj);
 			
 			$("#list").on("click", function(event){
 				console.log(event);
 				location.href="list";
 			});
 			
-			$("#modifyBtn").on("click", function(){
-				formObj.attr("action", "/recipe/modify");
-				formObj.attr("method", "get");
-				formObj.submit();
+			$(document).on("click", "#modifyBtn", function(event){
+				var modifyForm = $("#formModify");
+				console.log(modifyForm);
+// 				modifyForm.attr("action", "/recipe/modify");
+// 				modifyForm.attr("method", "get");
+				modifyForm.submit();
+				console.log(modifyForm.find("#page").val());
 			});
 			
 			$("#removeBtn").on("click", function(event){
-				console.log(event);
-				alert("삭제 완료되었습니다.");
-				formObj.attr("action", "/recipe/remove");
-				formObj.attr("method", "post");
-				formObj.submit();
-				
+				var removeForm = $("#removeForm");
+				if(!confirm("정말 삭제하시겠습니까?")){
+					return;
+				}else{
+					alert("삭제 완료되었습니다.");
+					removeForm.attr("action", "/recipe/remove");
+					removeForm.attr("method", "post");
+					removeForm.submit();
+				}
 			});
-			
-			//좋아요 등록
-			$(document).on("click","#likeBtn", function(event){
-				event.preventDefault();
-					
-				var $this = $(this);
-				var bno = $this.val();
-				var likeCnt = $("#likeCnt");
-				console.log($this);
-				console.log(bno);
-				console.log($("#mno").val());
-				console.log(likeCnt);
-				
-				$.ajax({
-		    		type : 'get',
-		    		url : '/recipe/addlikeCnt',
-		    		headers : {
-		    			"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
-		    			"X-HTTP-Method-Override" : "GET"
-		    		},
-		    		dataType : 'text',
-		    		data : {mno:sessionMno, bno:bno},
-		    		success : function(result) {    
-		    					console.log(result);		
-			    					alert("추천해주셔서 감사합니다");
-				    				likeCnt.text(result);
-				    				$this.attr('disabled',true);
-				    				
-			    			}
-		    		});
-			});
-			
 			
 		});
 	

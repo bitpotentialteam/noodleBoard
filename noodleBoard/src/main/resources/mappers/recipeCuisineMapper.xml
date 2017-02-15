@@ -12,6 +12,13 @@
 			(seq_recipeBoard.currval, #{step, jdbcType=INTEGER}, #{content, jdbcType=VARCHAR})
 	</insert>
 	
+	<insert id="modifyCreate">
+		insert into 
+			tbl_recipeCuisine (bno, step, content)
+		values 
+			(#{bno, jdbcType=INTEGER}, #{step, jdbcType=INTEGER}, #{content, jdbcType=VARCHAR})
+	</insert>
+	
 	<select id="read" parameterType="int" resultType="RecipeCuisineVO">
 	select board.*
 from ( 
@@ -34,7 +41,7 @@ from (
 		set
 			step = #{step, jdbcType=INTEGER}, content = #{content, jdbcType=VARCHAR}, updatedate = sysdate 
  		where 
- 			bno = #{bno, jdbcType=INTEGER}
+ 			bno = #{bno, jdbcType=INTEGER} and step = #{step, jdbcType=INTEGER}
 	</update>
 
 	<delete id="delete">

@@ -48,4 +48,9 @@ public class RecipeCuisineServiceImpl implements RecipeCuisineService {
 		return dao.stepRead(bno);
 	}
 
+	@Override
+	public void modifyRegist(RecipeCuisineVO vo) throws Exception {
+			dao.modifyCreate(vo);
+	}
+
 }

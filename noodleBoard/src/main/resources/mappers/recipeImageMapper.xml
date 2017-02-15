@@ -36,8 +36,6 @@
 		update 
 			tbl_recipeimage 
 		set 
-			bno = #{bno, jdbcType=INTEGER},
-			ino = #{ino, jdbcType=INTEGER}, 
 			step = #{step, jdbcType=INTEGER},
 			image = #{image, jdbcType=VARCHAR},
 			thumbnail = #{thumbnail, jdbcType=VARCHAR}
