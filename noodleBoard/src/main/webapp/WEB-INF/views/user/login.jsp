@@ -51,19 +51,8 @@
 		  <div class="row">
 			
 			<div class="col-xs-8">
-			  <div class="checkbox icheck">
-				
-                  <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
-                  <input type="checkbox" id="remember-me" name="_spring_security_remember_me"  style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                  </div>
-                Remember Me
-                
-			  </div>
 			</div> 
-					
-			<!-- NAVER FACEBOOK LOGIN BUTTON -->
-			<!-- /.col -->
-					
+	
 			<div class="col-xs-4">
 			  <button type="submit" id="loginBtn" class="btn btn-primary btn-block btn-flat">Sign In</button>
 			</div>
